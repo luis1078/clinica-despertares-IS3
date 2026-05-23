@@ -9,9 +9,9 @@ import java.util.Optional;
 
 @Repository
 public interface IProveedorRepository extends JpaRepository<ProveedorEntity, String> {
-    Optional<ProveedorEntity> findByRucProveedor(String ruc);
+    Optional<ProveedorEntity> findByNombreProveedor (String nombreProveedor);
 
-    List<ProveedorEntity> findByNombreProveedorContainingIgnoreCase(String nombre);
+    List<ProveedorEntity> findByNombreProveedorContainingIgnoreCase(String nombreProveedor);
 
-    boolean existsByRucProveedor(String ruc);
+    boolean existsByNombreProveedor(String nombreProveedor);
 }
