@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Comprobantes</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+
+<body class="app-body">
+
+<div th:replace="~{fragments/header :: header}"></div>
+
+<main class="dashboard-body">
+
+    <div th:replace="~{fragments/sidebar :: sidebar}"></div>
+
+    <section class="content-card">
+        <h1>Gestión de Comprobantes de Pago</h1><div class="alert" th:if="${mensaje}" th:text="${mensaje}"></div><div class="actions"><a class="btn" th:href="@{/comprobantes/nuevo}">Nuevo comprobante</a><a class="btn secondary" th:href="@{/detalle-comprobantes}">Detalle de comprobante</a><form th:action="@{/comprobantes}" method="get" class="inline-form"><select name="estado"><option value="">Todos</option><option th:each="estado : ${estados}" th:value="${estado}" th:text="${estado}" th:selected="${estado == estadoSeleccionado}"></option></select><button class="btn secondary" type="submit">Filtrar</button></form></div><table><thead><tr><th>Código</th><th>Fecha emisión</th><th>Paciente</th><th>Tipo</th><th>Método</th><th>Subtotal</th><th>Total</th><th>Estado</th><th>Acciones</th></tr></thead><tbody><tr th:each="comprobante : ${comprobantes}"><td th:text="${comprobante.codcomprobante}"></td><td th:text="${comprobante.fechaEmision}"></td><td th:text="${comprobante.paciente != null ? comprobante.paciente.nombrePaciente + ' ' + comprobante.paciente.apellidoPaciente : '-'}"></td><td th:text="${comprobante.tipoComprobante}"></td><td th:text="${comprobante.metodoPago}"></td><td th:text="${comprobante.subtotal}"></td><td th:text="${comprobante.montoTotal}"></td><td th:text="${comprobante.estado}"></td><td><a class="btn small warning" th:href="@{/comprobantes/editar/{id}(id=${comprobante.codcomprobante})}">Editar</a> <a class="btn small success" th:href="@{/comprobantes/cancelar/{id}(id=${comprobante.codcomprobante})}">Cancelado</a> <a class="btn small secondary" th:href="@{/comprobantes/pendiente/{id}(id=${comprobante.codcomprobante})}">Pendiente</a> <a class="btn small danger" th:href="@{/comprobantes/eliminar/{id}(id=${comprobante.codcomprobante})}" onclick="return confirm('¿Eliminar comprobante?')">Eliminar</a></td></tr></tbody></table>
+    </section>
+
+</main>
+
+</body>
+</html>

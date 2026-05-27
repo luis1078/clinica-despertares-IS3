@@ -1,9 +1,10 @@
 package Entity.Emuns;
 
 public enum RolUsuarioEnum {
-    ADMIN,
+    CAJERO,
     MEDICO,
     FARMACEUTICO,
     BIOLOGO,
-    RADIOLOGO
+    RADIOLOGO,
+    ENFERMERA
 }

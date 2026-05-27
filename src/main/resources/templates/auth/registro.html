@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Registro - Clínica Despertares</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+
+<body>
+
+<main class="login-page">
+
+    <section class="login-card register-card">
+
+        <div class="login-logo">
+            <div class="login-logo-icon">✚</div>
+            <h1>Crear cuenta</h1>
+            <span>Clínica Despertares</span>
+        </div>
+
+        <div th:if="${mensaje}" class="alert success" th:text="${mensaje}"></div>
+        <div th:if="${error}" class="alert error" th:text="${error}"></div>
+
+        <form th:action="@{/registro}" th:object="${usuario}" method="post" class="auth-form-grid">
+
+            <div class="form-group">
+                <label>Correo</label>
+                <input type="email" th:field="*{correo}" placeholder="correo@clinica.com" maxlength="50" required>
+            </div>
+
+            <div class="form-group">
+                <label>Usuario</label>
+                <input type="text" th:field="*{username}" placeholder="Ingrese un usuario" maxlength="50" required>
+            </div>
+
+            <div class="form-group">
+                <label>Contraseña</label>
+                <input type="password" th:field="*{password}" placeholder="Ingrese una contraseña" maxlength="100" required>
+            </div>
+
+            <div class="form-group">
+                <label>Confirmar contraseña</label>
+                <input type="password" name="confirmarPassword" placeholder="Repita la contraseña" maxlength="100" required>
+            </div>
+
+            <div class="form-group">
+                <label>Rol</label>
+                <select th:field="*{rol}" required>
+                    <option value="">Seleccione un rol</option>
+                    <option th:each="rol : ${roles}" th:value="${rol}" th:text="${rol}"></option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Médico asociado</label>
+                <select name="idMedico">
+                    <option value="">No aplica</option>
+                    <option th:each="medico : ${medicos}"
+                            th:value="${medico.idMedico}"
+                            th:text="${medico.nombreMedico + ' ' + medico.apellidoMedico + ' - ' + medico.especialidad}">
+                    </option>
+                </select>
+            </div>
+
+            <div class="form-group full">
+                <button type="submit" class="btn-login-main">Registrar cuenta</button>
+            </div>
+
+        </form>
+
+        <div class="register-option">
+            <span>¿Ya tienes una cuenta?</span>
+            <a th:href="@{/login}">Iniciar sesión</a>
+        </div>
+
+    </section>
+
+</main>
+
+</body>
+</html>

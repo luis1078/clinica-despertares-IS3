@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Pacientes</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+
+<body class="app-body">
+
+<div th:replace="~{fragments/header :: header}"></div>
+
+<main class="dashboard-body">
+
+    <div th:replace="~{fragments/sidebar :: sidebar}"></div>
+
+    <section class="content-card">
+        <h1>Gestión de Pacientes</h1>
+    <div class="alert" th:if="${mensaje}" th:text="${mensaje}"></div>
+    <div class="actions">
+        <a class="btn" th:href="@{/pacientes/nuevo}">Nuevo paciente</a>
+        <form th:action="@{/pacientes}" method="get" class="inline-form">
+            <input type="text" name="nombre" placeholder="Buscar por nombre" th:value="${nombre}">
+            <button class="btn secondary" type="submit">Buscar</button>
+        </form>
+    </div>
+    <table>
+        <thead><tr><th>DNI</th><th>Paciente</th><th>Teléfono</th><th>Correo</th><th>Género</th><th>Acciones</th></tr></thead>
+        <tbody>
+        <tr th:each="paciente : ${pacientes}">
+            <td th:text="${paciente.dnipaciente}"></td>
+            <td th:text="${paciente.nombrePaciente + ' ' + paciente.apellidoPaciente}"></td>
+            <td th:text="${paciente.telefono}"></td>
+            <td th:text="${paciente.correoElectronico}"></td>
+            <td th:text="${paciente.genero}"></td>
+            <td>
+                <a class="btn small warning" th:href="@{/pacientes/editar/{id}(id=${paciente.dnipaciente})}">Editar</a>
+                <a class="btn small danger" th:href="@{/pacientes/eliminar/{id}(id=${paciente.dnipaciente})}" onclick="return confirm('¿Eliminar paciente?')">Eliminar</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    </section>
+
+</main>
+
+</body>
+</html>

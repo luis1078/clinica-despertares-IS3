@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Acceso denegado</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+
+<body class="app-body">
+
+<div th:replace="~{fragments/header :: header}"></div>
+
+<main class="dashboard-body">
+    <div th:replace="~{fragments/sidebar :: sidebar}"></div>
+
+    <section class="content-card">
+        <h1>Acceso denegado</h1>
+        <div class="alert error">
+            No tienes permisos para ingresar a esta opción del sistema.
+        </div>
+        <a th:href="@{/}" class="btn secondary">Volver al inicio</a>
+    </section>
+</main>
+
+</body>
+</html>

@@ -17,15 +17,14 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Table(name = "comprobantepago", schema = "public")
-
 public class ComprobantePagoEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     @Column(name = "codcomprobante")
     private Long codcomprobante;
 
-    @Column(name = "fechaEmision", nullable = false)
+    @Column(name = "fechaemision", nullable = false)
     private LocalDate fechaEmision;
 
     @Enumerated(EnumType.STRING)
@@ -36,7 +35,7 @@ public class ComprobantePagoEntity {
     private BigDecimal subtotal;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "metodopago",length = 20, nullable = false)
+    @Column(name = "metodopago", length = 20, nullable = false)
     private MetodoPagoEnum metodoPago;
 
     @Enumerated(EnumType.STRING)
@@ -52,5 +51,4 @@ public class ComprobantePagoEntity {
 
     @OneToMany(mappedBy = "comprobantePago")
     private List<DetalleComprobanteEntity> detalleComprobantes;
-
 }

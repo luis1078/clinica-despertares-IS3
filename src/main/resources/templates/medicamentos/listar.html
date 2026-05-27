@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Medicamentos</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+
+<body class="app-body">
+
+<div th:replace="~{fragments/header :: header}"></div>
+
+<main class="dashboard-body">
+
+    <div th:replace="~{fragments/sidebar :: sidebar}"></div>
+
+    <section class="content-card">
+        <h1>Gestión de Farmacia</h1><div class="alert" th:if="${mensaje}" th:text="${mensaje}"></div><div class="actions"><a class="btn" th:href="@{/medicamentos/nuevo}">Nuevo medicamento</a><form th:action="@{/medicamentos}" method="get" class="inline-form"><input type="text" name="nombre" placeholder="Buscar medicamento" th:value="${nombre}"><input type="number" name="stockMinimo" placeholder="Stock menor a" th:value="${stockMinimo}"><button class="btn secondary" type="submit">Filtrar</button></form></div><table><thead><tr><th>Código</th><th>Nombre</th><th>Tipo</th><th>Vencimiento</th><th>Stock</th><th>Proveedor</th><th>Actualizar stock</th><th>Acciones</th></tr></thead><tbody><tr th:each="medicamento : ${medicamentos}"><td th:text="${medicamento.codMedicamento}"></td><td th:text="${medicamento.nombreMedicamento}"></td><td th:text="${medicamento.tipoMedicamento}"></td><td th:text="${medicamento.fechaVencimiento}"></td><td th:text="${medicamento.stockInventario}"></td><td th:text="${medicamento.proveedor != null ? medicamento.proveedor.nombreProveedor : '-'}"></td><td><form th:action="@{/medicamentos/stock/{id}(id=${medicamento.codMedicamento})}" method="post" class="inline-form"><input type="number" name="nuevaCantidad" min="0" required><button class="btn small secondary" type="submit">Actualizar</button></form></td><td><a class="btn small warning" th:href="@{/medicamentos/editar/{id}(id=${medicamento.codMedicamento})}">Editar</a> <a class="btn small danger" th:href="@{/medicamentos/eliminar/{id}(id=${medicamento.codMedicamento})}" onclick="return confirm('¿Eliminar medicamento?')">Eliminar</a></td></tr></tbody></table>
+    </section>
+
+</main>
+
+</body>
+</html>

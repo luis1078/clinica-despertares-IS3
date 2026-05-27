@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario Médico</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+
+<body class="app-body">
+
+<div th:replace="~{fragments/header :: header}"></div>
+
+<main class="dashboard-body">
+
+    <div th:replace="~{fragments/sidebar :: sidebar}"></div>
+
+    <section class="content-card">
+        <h1>Formulario de Médico</h1>
+<form th:action="@{/medicos/guardar}" th:object="${medico}" method="post" class="form-grid">
+<input type="hidden" th:field="*{idMedico}">
+<div class="form-group"><label>Nombre</label><input type="text" th:field="*{nombreMedico}" required></div>
+<div class="form-group"><label>Apellido</label><input type="text" th:field="*{apellidoMedico}" required></div>
+<div class="form-group"><label>Teléfono</label><input type="text" th:field="*{telefono}" maxlength="9" required></div>
+<div class="form-group"><label>CMP</label><input type="text" th:field="*{cmpMedico}" maxlength="8" required></div>
+<div class="form-group"><label>Especialidad</label><input type="text" th:field="*{especialidad}" required></div>
+<div class="form-group"><label>Horario de atención</label><input type="text" th:field="*{horarioAtencion}" placeholder="Ej. 08:00 - 14:00" required></div>
+<div class="form-group full"><button class="btn success" type="submit">Guardar</button><a class="btn secondary" th:href="@{/medicos}">Cancelar</a></div>
+</form>
+    </section>
+
+</main>
+
+</body>
+</html>

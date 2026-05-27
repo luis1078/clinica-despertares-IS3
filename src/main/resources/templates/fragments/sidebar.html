@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<aside th:fragment="sidebar" class="app-sidebar">
+
+    <nav class="sidebar-nav">
+
+        <a class="sidebar-item"
+           th:if="${session.rolUsuario == 'CAJERO' or session.rolUsuario == 'ENFERMERA' or session.rolUsuario == 'MEDICO'}"
+           th:href="@{/pacientes}">
+            <span>👤</span>
+            <p>Pacientes</p>
+        </a>
+
+        <a class="sidebar-item"
+           th:if="${session.rolUsuario == 'ENFERMERA' or session.rolUsuario == 'MEDICO'}"
+           th:href="@{/citas}">
+            <span>📅</span>
+            <p>Citas médicas</p>
+        </a>
+
+        <a class="sidebar-item"
+           th:if="${session.rolUsuario == 'ENFERMERA' or session.rolUsuario == 'MEDICO'}"
+           th:href="@{/historias}">
+            <span>📋</span>
+            <p>Historias médicas</p>
+        </a>
+
+        <a class="sidebar-item"
+           th:if="${session.rolUsuario == 'MEDICO'}"
+           th:href="@{/diagnosticos}">
+            <span>🩺</span>
+            <p>Diagnósticos</p>
+        </a>
+
+        <a class="sidebar-item"
+           th:if="${session.rolUsuario == 'MEDICO'}"
+           th:href="@{/tratamientos}">
+            <span>💉</span>
+            <p>Tratamientos</p>
+        </a>
+
+        <a class="sidebar-item"
+           th:if="${session.rolUsuario == 'CAJERO'}"
+           th:href="@{/comprobantes}">
+            <span>💳</span>
+            <p>Pagos</p>
+        </a>
+
+        <a class="sidebar-item"
+           th:if="${session.rolUsuario == 'CAJERO'}"
+           th:href="@{/detalle-comprobantes}">
+            <span>🧾</span>
+            <p>Detalle de pagos</p>
+        </a>
+
+        <a class="sidebar-item"
+           th:if="${session.rolUsuario == 'FARMACEUTICO'}"
+           th:href="@{/medicamentos}">
+            <span>💊</span>
+            <p>Medicamentos</p>
+        </a>
+
+        <a class="sidebar-item"
+           th:if="${session.rolUsuario == 'FARMACEUTICO'}"
+           th:href="@{/proveedores}">
+            <span>🚚</span>
+            <p>Proveedores</p>
+        </a>
+
+        <a class="sidebar-item"
+           th:if="${session.rolUsuario == 'MEDICO' or session.rolUsuario == 'BIOLOGO' or session.rolUsuario == 'RADIOLOGO'}"
+           th:href="@{/examenes}">
+            <span>🧪</span>
+            <p>Exámenes médicos</p>
+        </a>
+
+        <a class="sidebar-item"
+           th:if="${session.rolUsuario == 'BIOLOGO'}"
+           th:href="@{/laboratorio}">
+            <span>🔬</span>
+            <p>Laboratorio</p>
+        </a>
+
+        <a class="sidebar-item"
+           th:if="${session.rolUsuario == 'RADIOLOGO'}"
+           th:href="@{/imagenes}">
+            <span>🩻</span>
+            <p>Imágenes diagnósticas</p>
+        </a>
+
+        <a class="sidebar-item sidebar-admin"
+           th:if="${session.rolUsuario == 'MEDICO'}"
+           th:href="@{/usuarios}">
+            <span>🔐</span>
+            <p>Modificar usuarios</p>
+        </a>
+
+    </nav>
+
+</aside>
+
+</body>
+</html>

@@ -14,8 +14,7 @@ public interface IComprobantePagoRepository extends JpaRepository<ComprobantePag
 
     List<ComprobantePagoEntity>findByPaciente_Dnipaciente(String dniPaciente);
 
-    List<ComprobantePagoEntity>
-    findByFechaEmision(LocalDate fechaEmision);
+    List<ComprobantePagoEntity> findByFechaEmision(LocalDate fechaEmision);
 
     List<ComprobantePagoEntity>findByEstado(EstadoPagoEnum estado);
 

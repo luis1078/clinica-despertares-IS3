@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario Usuario</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+
+<body class="app-body">
+
+<div th:replace="~{fragments/header :: header}"></div>
+
+<main class="dashboard-body">
+
+    <div th:replace="~{fragments/sidebar :: sidebar}"></div>
+
+    <section class="content-card">
+        <h1>Formulario de Usuario</h1><form th:action="@{/usuarios/guardar}" th:object="${usuario}" method="post" class="form-grid"><input type="hidden" th:field="*{idUsuario}"><div class="form-group"><label>Correo</label><input type="email" th:field="*{correo}" required></div><div class="form-group"><label>Username</label><input type="text" th:field="*{username}" required></div><div class="form-group"><label>Password</label><input type="password" th:field="*{password}" required></div><div class="form-group"><label>Rol</label><select th:field="*{rol}" required><option value="">Seleccione</option><option th:each="rol : ${roles}" th:value="${rol}" th:text="${rol}"></option></select></div><div class="form-group"><label>Estado</label><select th:field="*{estado}"><option th:value="true">Activo</option><option th:value="false">Inactivo</option></select></div><div class="form-group"><label>Médico asociado</label><select name="idMedico"><option value="">Sin médico</option><option th:each="medico : ${medicos}" th:value="${medico.idMedico}" th:text="${medico.nombreMedico + ' ' + medico.apellidoMedico}" th:selected="${usuario.medico != null and usuario.medico.idMedico == medico.idMedico}"></option></select></div><div class="form-group full"><button class="btn success" type="submit">Guardar</button><a class="btn secondary" th:href="@{/usuarios}">Cancelar</a></div></form>
+    </section>
+
+</main>
+
+</body>
+</html>

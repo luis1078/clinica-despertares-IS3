@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Médicos</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+
+<body class="app-body">
+
+<div th:replace="~{fragments/header :: header}"></div>
+
+<main class="dashboard-body">
+
+    <div th:replace="~{fragments/sidebar :: sidebar}"></div>
+
+    <section class="content-card">
+        <h1>Gestión de Médicos</h1><div class="alert" th:if="${mensaje}" th:text="${mensaje}"></div>
+<div class="actions"><a class="btn" th:href="@{/medicos/nuevo}">Nuevo médico</a><form th:action="@{/medicos}" method="get" class="inline-form"><input type="text" name="nombre" placeholder="Buscar por nombre" th:value="${nombre}"><button class="btn secondary" type="submit">Buscar</button></form></div>
+<table><thead><tr><th>ID</th><th>Médico</th><th>CMP</th><th>Especialidad</th><th>Teléfono</th><th>Horario</th><th>Acciones</th></tr></thead><tbody>
+<tr th:each="medico : ${medicos}"><td th:text="${medico.idMedico}"></td><td th:text="${medico.nombreMedico + ' ' + medico.apellidoMedico}"></td><td th:text="${medico.cmpMedico}"></td><td th:text="${medico.especialidad}"></td><td th:text="${medico.telefono}"></td><td th:text="${medico.horarioAtencion}"></td><td><a class="btn small warning" th:href="@{/medicos/editar/{id}(id=${medico.idMedico})}">Editar</a> <a class="btn small danger" th:href="@{/medicos/eliminar/{id}(id=${medico.idMedico})}" onclick="return confirm('¿Eliminar médico?')">Eliminar</a></td></tr>
+</tbody></table>
+    </section>
+
+</main>
+
+</body>
+</html>

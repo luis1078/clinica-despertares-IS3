@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario Medicamento</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+
+<body class="app-body">
+
+<div th:replace="~{fragments/header :: header}"></div>
+
+<main class="dashboard-body">
+
+    <div th:replace="~{fragments/sidebar :: sidebar}"></div>
+
+    <section class="content-card">
+        <h1>Formulario de Medicamento</h1><form th:action="@{/medicamentos/guardar}" th:object="${medicamento}" method="post" class="form-grid"><input type="hidden" th:field="*{codMedicamento}"><div class="form-group"><label>Proveedor</label><select name="rucProveedor" required><option value="">Seleccione</option><option th:each="proveedor : ${proveedores}" th:value="${proveedor.rucProveedor}" th:text="${proveedor.rucProveedor + ' - ' + proveedor.nombreProveedor}" th:selected="${medicamento.proveedor != null and medicamento.proveedor.rucProveedor == proveedor.rucProveedor}"></option></select></div><div class="form-group"><label>Nombre medicamento</label><input type="text" th:field="*{nombreMedicamento}" required></div><div class="form-group"><label>Tipo medicamento</label><input type="text" th:field="*{tipoMedicamento}" required></div><div class="form-group"><label>Fecha vencimiento</label><input type="date" th:field="*{fechaVencimiento}" required></div><div class="form-group"><label>Stock inventario</label><input type="number" th:field="*{stockInventario}" min="0" required></div><div class="form-group full"><label>Descripción</label><textarea th:field="*{descripcionMedicamento}" required></textarea></div><div class="form-group full"><button class="btn success" type="submit">Guardar</button><a class="btn secondary" th:href="@{/medicamentos}">Cancelar</a></div></form>
+    </section>
+
+</main>
+
+</body>
+</html>

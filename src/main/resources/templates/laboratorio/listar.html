@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Laboratorio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+
+<body class="app-body">
+
+<div th:replace="~{fragments/header :: header}"></div>
+
+<main class="dashboard-body">
+
+    <div th:replace="~{fragments/sidebar :: sidebar}"></div>
+
+    <section class="content-card">
+        <h1>Gestión de Exámenes de Laboratorio</h1><div class="alert" th:if="${mensaje}" th:text="${mensaje}"></div><div class="actions"><a class="btn" th:href="@{/laboratorio/nuevo}">Nuevo examen de laboratorio</a></div><table><thead><tr><th>Código</th><th>Muestra</th><th>Fecha examen</th><th>Fecha resultado</th><th>Estado</th><th>Resultado</th><th>Valor referencia</th><th>Unidad</th><th>Acciones</th></tr></thead><tbody><tr th:each="examen : ${examenes}"><td th:text="${examen.codExamenMedico}"></td><td th:text="${examen.nombreMuestra}"></td><td th:text="${examen.fechaExamen}"></td><td th:text="${examen.fechaResultado}"></td><td th:text="${examen.estadoExamenMedico}"></td><td th:text="${examen.descripcionResultado}"></td><td th:text="${examen.valorReferencia}"></td><td th:text="${examen.unidadMedida}"></td><td><a class="btn small warning" th:href="@{/laboratorio/editar/{id}(id=${examen.codExamenMedico})}">Editar resultado</a> <a class="btn small danger" th:href="@{/laboratorio/eliminar/{id}(id=${examen.codExamenMedico})}" onclick="return confirm('¿Eliminar examen?')">Eliminar</a></td></tr></tbody></table>
+    </section>
+
+</main>
+
+</body>
+</html>

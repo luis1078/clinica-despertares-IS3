@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Historias Médicas</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+
+<body class="app-body">
+
+<div th:replace="~{fragments/header :: header}"></div>
+
+<main class="dashboard-body">
+
+    <div th:replace="~{fragments/sidebar :: sidebar}"></div>
+
+    <section class="content-card">
+        <h1>Gestión de Historias Médicas</h1><div class="alert" th:if="${mensaje}" th:text="${mensaje}"></div><div class="actions"><a class="btn" th:href="@{/historias/nuevo}">Nueva historia médica</a></div><table><thead><tr><th>Código</th><th>Fecha creación</th><th>Paciente</th><th>Antecedentes personales</th><th>Antecedentes familiares</th><th>Acciones</th></tr></thead><tbody><tr th:each="historia : ${historias}"><td th:text="${historia.codHistoriaMedica}"></td><td th:text="${historia.fechaCreacion}"></td><td th:text="${historia.paciente != null ? historia.paciente.nombrePaciente + ' ' + historia.paciente.apellidoPaciente : '-'}"></td><td th:text="${historia.antecedentesPersonales}"></td><td th:text="${historia.antecedentesFamiliares}"></td><td><a class="btn small warning" th:href="@{/historias/editar/{id}(id=${historia.codHistoriaMedica})}">Editar</a> <a class="btn small danger" th:href="@{/historias/eliminar/{id}(id=${historia.codHistoriaMedica})}" onclick="return confirm('¿Eliminar historia médica?')">Eliminar</a></td></tr></tbody></table>
+    </section>
+
+</main>
+
+</body>
+</html>

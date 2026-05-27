@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Diagnósticos</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+
+<body class="app-body">
+
+<div th:replace="~{fragments/header :: header}"></div>
+
+<main class="dashboard-body">
+
+    <div th:replace="~{fragments/sidebar :: sidebar}"></div>
+
+    <section class="content-card">
+        <h1>Gestión de Diagnósticos</h1><div class="alert" th:if="${mensaje}" th:text="${mensaje}"></div><div class="actions"><a class="btn" th:href="@{/diagnosticos/nuevo}">Nuevo diagnóstico</a></div><table><thead><tr><th>ID</th><th>Fecha</th><th>Gravedad</th><th>Historia</th><th>Descripción</th><th>Acciones</th></tr></thead><tbody><tr th:each="diagnostico : ${diagnosticos}"><td th:text="${diagnostico.idDiagnostico}"></td><td th:text="${diagnostico.fechaDiagnostico}"></td><td th:text="${diagnostico.gravedadDiagnostico}"></td><td th:text="${diagnostico.historiaMedica != null ? diagnostico.historiaMedica.codHistoriaMedica : '-'}"></td><td th:text="${diagnostico.descripcionDiagnostico}"></td><td><a class="btn small warning" th:href="@{/diagnosticos/editar/{id}(id=${diagnostico.idDiagnostico})}">Editar</a> <a class="btn small danger" th:href="@{/diagnosticos/eliminar/{id}(id=${diagnostico.idDiagnostico})}" onclick="return confirm('¿Eliminar diagnóstico?')">Eliminar</a></td></tr></tbody></table>
+    </section>
+
+</main>
+
+</body>
+</html>

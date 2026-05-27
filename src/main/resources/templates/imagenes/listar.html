@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Imágenes Diagnósticas</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+
+<body class="app-body">
+
+<div th:replace="~{fragments/header :: header}"></div>
+
+<main class="dashboard-body">
+
+    <div th:replace="~{fragments/sidebar :: sidebar}"></div>
+
+    <section class="content-card">
+        <h1>Gestión de Imágenes Diagnósticas</h1><div class="alert" th:if="${mensaje}" th:text="${mensaje}"></div><div class="actions"><a class="btn" th:href="@{/imagenes/nuevo}">Nueva imagen diagnóstica</a></div><table><thead><tr><th>Código</th><th>Imagen</th><th>Región</th><th>Fecha examen</th><th>Fecha resultado</th><th>Estado</th><th>Contraste</th><th>Informe</th><th>Acciones</th></tr></thead><tbody><tr th:each="imagen : ${imagenes}"><td th:text="${imagen.codExamenMedico}"></td><td th:text="${imagen.nombreImagen}"></td><td th:text="${imagen.regionCuerpo}"></td><td th:text="${imagen.fechaExamen}"></td><td th:text="${imagen.fechaResultado}"></td><td th:text="${imagen.estadoExamenMedico}"></td><td th:text="${imagen.usaContraste ? 'Sí' : 'No'}"></td><td th:text="${imagen.informeMedico}"></td><td><a class="btn small warning" th:href="@{/imagenes/editar/{id}(id=${imagen.codExamenMedico})}">Editar resultado</a> <a class="btn small danger" th:href="@{/imagenes/eliminar/{id}(id=${imagen.codExamenMedico})}" onclick="return confirm('¿Eliminar imagen?')">Eliminar</a></td></tr></tbody></table>
+    </section>
+
+</main>
+
+</body>
+</html>

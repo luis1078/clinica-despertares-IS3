@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<div th:fragment="header">
+    <header class="app-header">
+
+        <a th:href="@{/}" class="header-logo">
+            <span class="header-logo-icon">✚</span>
+            <span>Clínica Despertares</span>
+        </a>
+
+        <div class="header-user-area">
+
+            <div class="user-mini-card" th:if="${session.usuarioLogueado != null}">
+                <div class="user-role-icon">
+                    <span th:if="${session.rolUsuario == 'MEDICO'}">🩺</span>
+                    <span th:if="${session.rolUsuario == 'CAJERO'}">💳</span>
+                    <span th:if="${session.rolUsuario == 'ENFERMERA'}">🏥</span>
+                    <span th:if="${session.rolUsuario == 'FARMACEUTICO'}">💊</span>
+                    <span th:if="${session.rolUsuario == 'BIOLOGO'}">🔬</span>
+                    <span th:if="${session.rolUsuario == 'RADIOLOGO'}">🩻</span>
+                </div>
+
+                <div class="user-mini-data">
+                    <strong th:text="${session.nombreUsuario}">Usuario</strong>
+                    <small th:text="${session.rolUsuario}">ROL</small>
+                </div>
+            </div>
+
+            <a th:if="${session.usuarioLogueado != null}"
+               th:href="@{/logout}"
+               class="btn-logout">
+                Salir
+            </a>
+
+        </div>
+
+    </header>
+</div>
+
+</body>
+</html>
