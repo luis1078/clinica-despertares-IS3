@@ -58,21 +58,21 @@ public class UsuarioController {
         return "usuarios/formulario";
     }
 
-    @GetMapping("/activar/{idUsuario}")
+    @PostMapping("/activar/{idUsuario}")
     public String activar(@PathVariable Long idUsuario, RedirectAttributes redirectAttributes) {
         usuarioService.activarUsuario(idUsuario);
         redirectAttributes.addFlashAttribute("mensaje", "Usuario activado correctamente.");
         return "redirect:/usuarios";
     }
 
-    @GetMapping("/desactivar/{idUsuario}")
+    @PostMapping("/desactivar/{idUsuario}")
     public String desactivar(@PathVariable Long idUsuario, RedirectAttributes redirectAttributes) {
         usuarioService.desactivarUsuario(idUsuario);
         redirectAttributes.addFlashAttribute("mensaje", "Usuario desactivado correctamente.");
         return "redirect:/usuarios";
     }
 
-    @GetMapping("/eliminar/{idUsuario}")
+    @PostMapping("/eliminar/{idUsuario}")
     public String eliminar(@PathVariable Long idUsuario, RedirectAttributes redirectAttributes) {
         usuarioService.eliminar(idUsuario);
         redirectAttributes.addFlashAttribute("mensaje", "Usuario eliminado correctamente.");

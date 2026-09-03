@@ -36,6 +36,9 @@ public class MedicamentoEntity {
     @Column (name = "stockinventario", nullable = false)
     private int stockInventario = 0;
 
+    @Column(name = "cantidadminima", nullable = false, columnDefinition = "integer default 0")
+    private int cantidadMinima = 0;
+
     //define la FK de proveedor, es el dueño de la relación entre Proveedor y Medicamento.
     @ManyToOne
     @JoinColumn(name = "rucproveedor") //aca se usa la PK de la tabla Proveedor, que seria FK
@@ -44,5 +47,9 @@ public class MedicamentoEntity {
     //define relación
     @OneToMany(mappedBy = "medicamento")
     private List<DetalleTratamientoEntity> detalleTratamientos;
+
+    public boolean isStockBajo() {
+        return stockInventario <= cantidadMinima;
+    }
 
 }

@@ -14,7 +14,7 @@
         </a>
 
         <a class="sidebar-item"
-           th:if="${session.rolUsuario == 'ENFERMERA' or session.rolUsuario == 'MEDICO'}"
+           th:if="${session.rolUsuario == 'ENFERMERA' or session.rolUsuario == 'MEDICO' or session.rolUsuario == 'CAJERO'}"
            th:href="@{/citas}">
             <span>📅</span>
             <p>Citas médicas</p>
@@ -37,7 +37,7 @@
         <a class="sidebar-item"
            th:if="${session.rolUsuario == 'MEDICO'}"
            th:href="@{/tratamientos}">
-            <span>💉</span>
+            <span>💊</span>
             <p>Tratamientos</p>
         </a>
 
@@ -45,7 +45,7 @@
            th:if="${session.rolUsuario == 'CAJERO'}"
            th:href="@{/comprobantes}">
             <span>💳</span>
-            <p>Pagos</p>
+            <p>Comprobantes</p>
         </a>
 
         <a class="sidebar-item"
@@ -77,23 +77,23 @@
         </a>
 
         <a class="sidebar-item"
-           th:if="${session.rolUsuario == 'BIOLOGO'}"
+           th:if="${session.rolUsuario == 'BIOLOGO' or session.rolUsuario == 'MEDICO'}"
            th:href="@{/laboratorio}">
             <span>🔬</span>
             <p>Laboratorio</p>
         </a>
 
         <a class="sidebar-item"
-           th:if="${session.rolUsuario == 'RADIOLOGO'}"
+           th:if="${session.rolUsuario == 'RADIOLOGO' or session.rolUsuario == 'MEDICO'}"
            th:href="@{/imagenes}">
-            <span>🩻</span>
+            <span>🖼️</span>
             <p>Imágenes diagnósticas</p>
         </a>
 
         <a class="sidebar-item sidebar-admin"
            th:if="${session.rolUsuario == 'MEDICO'}"
            th:href="@{/usuarios}">
-            <span>🔐</span>
+            <span>👥</span>
             <p>Modificar usuarios</p>
         </a>
 

@@ -57,6 +57,15 @@ public class ExamenLaboratorioServiceImpl implements IExamenLaboratorioService {
     }
 
     @Override
+    public List<ExamenLaboratorioEntity> buscarExamenes(String texto) {
+        if (texto == null || texto.trim().isEmpty()) {
+            return examenLaboratorioRepository.findAll();
+        }
+
+        return examenLaboratorioRepository.buscarPorTexto(texto.trim());
+    }
+
+    @Override
     public ExamenLaboratorioEntity registrarExamenLaboratorio(Long idDiagnostico, ExamenLaboratorioEntity examenLaboratorio) {
         DiagnosticoEntity diagnostico = diagnosticoRepository.findById(idDiagnostico)
                 .orElseThrow(() -> new EntityNotFoundException("No existe el diagnóstico con ID: " + idDiagnostico));

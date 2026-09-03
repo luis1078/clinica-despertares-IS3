@@ -3,6 +3,7 @@ package Service.ServiceImpl;
 import Entity.UsuarioEntity;
 import Repository.IUsuarioRepository;
 import Service.IUsuarioService;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,9 +13,11 @@ import java.util.Optional;
 public class UsuarioServiceImpl implements IUsuarioService {
 
     private final IUsuarioRepository usuarioRepository;
+    private final PasswordEncoder passwordEncoder;
 
-    public UsuarioServiceImpl(IUsuarioRepository usuarioRepository) {
+    public UsuarioServiceImpl(IUsuarioRepository usuarioRepository, PasswordEncoder passwordEncoder) {
         this.usuarioRepository = usuarioRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -29,6 +32,19 @@ public class UsuarioServiceImpl implements IUsuarioService {
 
     @Override
     public UsuarioEntity guardar(UsuarioEntity usuario) {
+        if (usuario.getIdUsuario() != null) {
+            UsuarioEntity existente = usuarioRepository.findById(usuario.getIdUsuario())
+                    .orElseThrow(() -> new IllegalArgumentException("No existe el usuario con ID: " + usuario.getIdUsuario()));
+
+            if (usuario.getPassword() == null || usuario.getPassword().isBlank()) {
+                usuario.setPassword(existente.getPassword());
+            } else {
+                usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
+            }
+        } else {
+            usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
+        }
+
         return usuarioRepository.save(usuario);
     }
 
@@ -73,6 +89,7 @@ public class UsuarioServiceImpl implements IUsuarioService {
         }
 
         usuario.setEstado(true);
+        usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
         return usuarioRepository.save(usuario);
     }
 
@@ -86,7 +103,7 @@ public class UsuarioServiceImpl implements IUsuarioService {
 
         return usuarioEncontrado
                 .filter(UsuarioEntity::isEstado)
-                .filter(usuario -> usuario.getPassword().equals(password));
+                .filter(usuario -> passwordEncoder.matches(password, usuario.getPassword()));
     }
 
     @Override

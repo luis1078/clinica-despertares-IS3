@@ -63,7 +63,7 @@ public class DiagnosticoController {
         return "diagnosticos/formulario";
     }
 
-    @GetMapping("/eliminar/{idDiagnostico}")
+    @PostMapping("/eliminar/{idDiagnostico}")
     public String eliminar(@PathVariable Long idDiagnostico, RedirectAttributes redirectAttributes) {
         diagnosticoService.eliminar(idDiagnostico);
         redirectAttributes.addFlashAttribute("mensaje", "Diagnóstico eliminado correctamente.");

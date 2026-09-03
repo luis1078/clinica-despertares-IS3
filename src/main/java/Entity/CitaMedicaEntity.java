@@ -1,5 +1,6 @@
 package Entity;
 
+import Entity.Converter.EstadoCitaConverter;
 import Entity.Emuns.EstadoCitaEnum;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -28,7 +29,7 @@ public class CitaMedicaEntity {
     @Column(name = "horacita", nullable = false)
     private LocalTime horaCita;
 
-    @Enumerated(EnumType.STRING)
+    @Convert(converter = EstadoCitaConverter.class)
     @Column(name = "estadocita", nullable = false)
     private EstadoCitaEnum estadoCita;
 

@@ -3,6 +3,8 @@ package Controller;
 import Entity.MedicamentoEntity;
 import Service.IMedicamentoService;
 import Service.IProveedorService;
+import Util.RolHelper;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -15,71 +17,121 @@ public class MedicamentoController {
     private final IMedicamentoService medicamentoService;
     private final IProveedorService proveedorService;
 
-    public MedicamentoController(IMedicamentoService medicamentoService, IProveedorService proveedorService) {
+    public MedicamentoController(IMedicamentoService medicamentoService,
+                                 IProveedorService proveedorService) {
         this.medicamentoService = medicamentoService;
         this.proveedorService = proveedorService;
     }
 
     @GetMapping
-    public String listar(@RequestParam(value = "nombre", required = false) String nombre,
+    public String listar(@RequestParam(value = "buscar", required = false) String buscar,
                          @RequestParam(value = "stockMinimo", required = false) Integer stockMinimo,
-                         Model model) {
+                         Model model,
+                         HttpSession session,
+                         RedirectAttributes redirectAttributes) {
+
+        if (!RolHelper.tieneRol(session, "FARMACEUTICO", "CAJERO")) {
+            return RolHelper.denegar(redirectAttributes, "No tiene permisos para consultar medicamentos.");
+        }
+
         if (stockMinimo != null) {
             model.addAttribute("medicamentos", medicamentoService.listarPorStockMenorA(stockMinimo));
-        } else if (nombre != null && !nombre.isBlank()) {
-            model.addAttribute("medicamentos", medicamentoService.buscarPorNombre(nombre));
         } else {
-            model.addAttribute("medicamentos", medicamentoService.listarTodos());
+            model.addAttribute("medicamentos", medicamentoService.buscarMedicamentos(buscar));
         }
-        model.addAttribute("nombre", nombre);
+
+        model.addAttribute("buscar", buscar);
         model.addAttribute("stockMinimo", stockMinimo);
+
         return "medicamentos/listar";
     }
 
     @GetMapping("/nuevo")
-    public String nuevo(Model model) {
+    public String nuevo(Model model,
+                        HttpSession session,
+                        RedirectAttributes redirectAttributes) {
+
+        if (!RolHelper.tieneRol(session, "FARMACEUTICO")) {
+            return RolHelper.denegar(redirectAttributes, "Solo el farmacéutico puede registrar medicamentos.");
+        }
+
         model.addAttribute("medicamento", new MedicamentoEntity());
         model.addAttribute("proveedores", proveedorService.listarTodos());
+
         return "medicamentos/formulario";
     }
 
     @PostMapping("/guardar")
     public String guardar(@ModelAttribute("medicamento") MedicamentoEntity medicamento,
                           @RequestParam("rucProveedor") String rucProveedor,
+                          HttpSession session,
                           RedirectAttributes redirectAttributes) {
+
+        if (!RolHelper.tieneRol(session, "FARMACEUTICO")) {
+            return RolHelper.denegar(redirectAttributes, "No tiene permisos para guardar medicamentos.");
+        }
+
         if (medicamento.getCodMedicamento() == null) {
             medicamentoService.registrarMedicamento(rucProveedor, medicamento);
         } else {
             medicamento.setProveedor(proveedorService.buscarPorId(rucProveedor)
                     .orElseThrow(() -> new IllegalArgumentException("No existe el proveedor: " + rucProveedor)));
+
             medicamentoService.guardar(medicamento);
         }
+
         redirectAttributes.addFlashAttribute("mensaje", "Medicamento guardado correctamente.");
+
         return "redirect:/medicamentos";
     }
 
     @PostMapping("/stock/{codMedicamento}")
     public String actualizarStock(@PathVariable Long codMedicamento,
                                   @RequestParam("nuevaCantidad") int nuevaCantidad,
+                                  HttpSession session,
                                   RedirectAttributes redirectAttributes) {
+
+        if (!RolHelper.tieneRol(session, "FARMACEUTICO")) {
+            return RolHelper.denegar(redirectAttributes, "No tiene permisos para actualizar stock.");
+        }
+
         medicamentoService.actualizarStock(codMedicamento, nuevaCantidad);
         redirectAttributes.addFlashAttribute("mensaje", "Stock actualizado correctamente.");
+
         return "redirect:/medicamentos";
     }
 
     @GetMapping("/editar/{codMedicamento}")
-    public String editar(@PathVariable Long codMedicamento, Model model) {
+    public String editar(@PathVariable Long codMedicamento,
+                         Model model,
+                         HttpSession session,
+                         RedirectAttributes redirectAttributes) {
+
+        if (!RolHelper.tieneRol(session, "FARMACEUTICO")) {
+            return RolHelper.denegar(redirectAttributes, "No tiene permisos para editar medicamentos.");
+        }
+
         MedicamentoEntity medicamento = medicamentoService.buscarPorId(codMedicamento)
                 .orElseThrow(() -> new IllegalArgumentException("No existe el medicamento: " + codMedicamento));
+
         model.addAttribute("medicamento", medicamento);
         model.addAttribute("proveedores", proveedorService.listarTodos());
+
         return "medicamentos/formulario";
     }
 
-    @GetMapping("/eliminar/{codMedicamento}")
-    public String eliminar(@PathVariable Long codMedicamento, RedirectAttributes redirectAttributes) {
+    @PostMapping("/eliminar/{codMedicamento}")
+    public String eliminar(@PathVariable Long codMedicamento,
+                           HttpSession session,
+                           RedirectAttributes redirectAttributes) {
+
+        if (!RolHelper.tieneRol(session, "FARMACEUTICO")) {
+            return RolHelper.denegar(redirectAttributes, "No tiene permisos para eliminar medicamentos.");
+        }
+
         medicamentoService.eliminar(codMedicamento);
         redirectAttributes.addFlashAttribute("mensaje", "Medicamento eliminado correctamente.");
+
         return "redirect:/medicamentos";
     }
 }

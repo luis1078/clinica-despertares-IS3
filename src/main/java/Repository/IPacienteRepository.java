@@ -9,9 +9,19 @@ import java.util.Optional;
 
 @Repository
 public interface IPacienteRepository extends JpaRepository<PacienteEntity, String> {
+
     Optional<PacienteEntity> findByCorreoElectronico(String correoElectronico);
 
     List<PacienteEntity> findByNombrePacienteContainingIgnoreCase(String nombrePaciente);
+
+    List<PacienteEntity>
+    findByDnipacienteContainingIgnoreCaseOrNombrePacienteContainingIgnoreCaseOrApellidoPacienteContainingIgnoreCaseOrCorreoElectronicoContainingIgnoreCaseOrTelefonoContainingIgnoreCase(
+            String dniPaciente,
+            String nombrePaciente,
+            String apellidoPaciente,
+            String correoElectronico,
+            String telefono
+    );
 
     boolean existsByCorreoElectronico(String correoElectronico);
 

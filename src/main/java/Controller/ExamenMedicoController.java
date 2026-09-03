@@ -60,7 +60,7 @@ public class ExamenMedicoController {
         return "examenes/formulario";
     }
 
-    @GetMapping("/proceso/{codExamenMedico}")
+    @PostMapping("/proceso/{codExamenMedico}")
     public String proceso(@PathVariable Long codExamenMedico,
                           RedirectAttributes redirectAttributes) {
         try {
@@ -77,14 +77,14 @@ public class ExamenMedicoController {
         return "redirect:/examenes";
     }
 
-    @GetMapping("/finalizar/{codExamenMedico}")
+    @PostMapping("/finalizar/{codExamenMedico}")
     public String finalizar(@PathVariable Long codExamenMedico, RedirectAttributes redirectAttributes) {
         examenMedicoService.marcarFinalizado(codExamenMedico);
         redirectAttributes.addFlashAttribute("mensaje", "Examen marcado como finalizado.");
         return "redirect:/examenes";
     }
 
-    @GetMapping("/eliminar/{codExamenMedico}")
+    @PostMapping("/eliminar/{codExamenMedico}")
     public String eliminar(@PathVariable Long codExamenMedico, RedirectAttributes redirectAttributes) {
         examenMedicoService.eliminar(codExamenMedico);
         redirectAttributes.addFlashAttribute("mensaje", "Examen eliminado correctamente.");

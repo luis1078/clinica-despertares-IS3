@@ -16,7 +16,79 @@
     <div th:replace="~{fragments/sidebar :: sidebar}"></div>
 
     <section class="content-card">
-        <h1>Formulario de Imagen Diagnóstica</h1><form th:action="@{/imagenes/guardar}" th:object="${imagen}" method="post" class="form-grid"><input type="hidden" th:field="*{codExamenMedico}"><div class="form-group"><label>Diagnóstico</label><select name="idDiagnostico" required><option value="">Seleccione</option><option th:each="diagnostico : ${diagnosticos}" th:value="${diagnostico.idDiagnostico}" th:text="${'Diagnóstico ' + diagnostico.idDiagnostico + ' - ' + diagnostico.gravedadDiagnostico}" th:selected="${imagen.diagnostico != null and imagen.diagnostico.idDiagnostico == diagnostico.idDiagnostico}"></option></select></div><div class="form-group"><label>Fecha examen</label><input type="date" th:field="*{fechaExamen}" required></div><div class="form-group"><label>Fecha resultado</label><input type="date" th:field="*{fechaResultado}"></div><div class="form-group"><label>Estado</label><select th:field="*{estadoExamenMedico}" required><option value="">Seleccione</option><option th:each="estado : ${estados}" th:value="${estado}" th:text="${estado}"></option></select></div><div class="form-group"><label>Nombre imagen</label><input type="text" th:field="*{nombreImagen}" required></div><div class="form-group"><label>Región del cuerpo</label><input type="text" th:field="*{regionCuerpo}" required></div><div class="form-group"><label>Usa contraste</label><select th:field="*{usaContraste}"><option th:value="true">Sí</option><option th:value="false">No</option></select></div><div class="form-group"><label>Tipo contraste</label><input type="text" th:field="*{tipoContraste}"></div><div class="form-group full"><label>Informe médico</label><textarea th:field="*{informeMedico}" required></textarea></div><div class="form-group full"><label>Observaciones</label><textarea th:field="*{observaciones}"></textarea></div><div class="form-group full"><button class="btn success" type="submit">Guardar</button><a class="btn secondary" th:href="@{/imagenes}">Cancelar</a></div></form>
+        <h1>Formulario de Imagen Diagnóstica</h1>
+
+        <form th:action="@{/imagenes/guardar}" th:object="${imagen}" method="post" class="form-grid"><input type="hidden" name="_csrf" th:value="${csrfToken}">
+            <input type="hidden" th:field="*{codExamenMedico}">
+
+            <div class="form-group">
+                <label>Diagnóstico</label>
+                <select name="idDiagnostico" required>
+                    <option value="">Seleccione</option>
+                    <option th:each="diagnostico : ${diagnosticos}"
+                            th:value="${diagnostico.idDiagnostico}"
+                            th:text="${diagnostico.historiaMedica != null and diagnostico.historiaMedica.paciente != null ? diagnostico.historiaMedica.paciente.nombrePaciente + ' ' + diagnostico.historiaMedica.paciente.apellidoPaciente + ' - ' + diagnostico.historiaMedica.paciente.dnipaciente : 'Sin paciente'}"
+                            th:selected="${imagen.diagnostico != null and imagen.diagnostico.idDiagnostico == diagnostico.idDiagnostico}">
+                    </option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Fecha examen</label>
+                <input type="date" th:field="*{fechaExamen}" required>
+            </div>
+
+            <div class="form-group">
+                <label>Fecha resultado</label>
+                <input type="date" th:field="*{fechaResultado}">
+            </div>
+
+            <div class="form-group">
+                <label>Estado</label>
+                <select th:field="*{estadoExamenMedico}" required>
+                    <option value="">Seleccione</option>
+                    <option th:each="estado : ${estados}" th:value="${estado}" th:text="${estado}"></option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Nombre imagen</label>
+                <input type="text" th:field="*{nombreImagen}" required>
+            </div>
+
+            <div class="form-group">
+                <label>Región del cuerpo</label>
+                <input type="text" th:field="*{regionCuerpo}" required>
+            </div>
+
+            <div class="form-group">
+                <label>Usa contraste</label>
+                <select th:field="*{usaContraste}">
+                    <option th:value="true">Sí</option>
+                    <option th:value="false">No</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Tipo contraste</label>
+                <input type="text" th:field="*{tipoContraste}">
+            </div>
+
+            <div class="form-group full">
+                <label>Informe médico</label>
+                <textarea th:field="*{informeMedico}" required></textarea>
+            </div>
+
+            <div class="form-group full">
+                <label>Observaciones</label>
+                <textarea th:field="*{observaciones}"></textarea>
+            </div>
+
+            <div class="form-group full">
+                <button class="btn success" type="submit">Guardar</button>
+                <a class="btn secondary" th:href="@{/imagenes}">Cancelar</a>
+            </div>
+        </form>
     </section>
 
 </main>

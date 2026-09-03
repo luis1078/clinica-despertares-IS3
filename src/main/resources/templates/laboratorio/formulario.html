@@ -16,7 +16,71 @@
     <div th:replace="~{fragments/sidebar :: sidebar}"></div>
 
     <section class="content-card">
-        <h1>Formulario de Examen de Laboratorio</h1><form th:action="@{/laboratorio/guardar}" th:object="${examen}" method="post" class="form-grid"><input type="hidden" th:field="*{codExamenMedico}"><div class="form-group"><label>Diagnóstico</label><select name="idDiagnostico" required><option value="">Seleccione</option><option th:each="diagnostico : ${diagnosticos}" th:value="${diagnostico.idDiagnostico}" th:text="${'Diagnóstico ' + diagnostico.idDiagnostico + ' - ' + diagnostico.gravedadDiagnostico}" th:selected="${examen.diagnostico != null and examen.diagnostico.idDiagnostico == diagnostico.idDiagnostico}"></option></select></div><div class="form-group"><label>Fecha examen</label><input type="date" th:field="*{fechaExamen}" required></div><div class="form-group"><label>Fecha resultado</label><input type="date" th:field="*{fechaResultado}"></div><div class="form-group"><label>Estado</label><select th:field="*{estadoExamenMedico}" required><option value="">Seleccione</option><option th:each="estado : ${estados}" th:value="${estado}" th:text="${estado}"></option></select></div><div class="form-group"><label>Nombre muestra</label><input type="text" th:field="*{nombreMuestra}" required></div><div class="form-group"><label>Valor referencia</label><input type="number" step="0.01" th:field="*{valorReferencia}"></div><div class="form-group"><label>Unidad medida</label><input type="text" th:field="*{unidadMedida}"></div><div class="form-group full"><label>Descripción resultado</label><textarea th:field="*{descripcionResultado}" required></textarea></div><div class="form-group full"><label>Observaciones</label><textarea th:field="*{observaciones}"></textarea></div><div class="form-group full"><button class="btn success" type="submit">Guardar</button><a class="btn secondary" th:href="@{/laboratorio}">Cancelar</a></div></form>
+        <h1>Formulario de Examen de Laboratorio</h1>
+
+        <form th:action="@{/laboratorio/guardar}" th:object="${examen}" method="post" class="form-grid"><input type="hidden" name="_csrf" th:value="${csrfToken}">
+            <input type="hidden" th:field="*{codExamenMedico}">
+
+            <div class="form-group">
+                <label>Diagnóstico</label>
+                <select name="idDiagnostico" required>
+                    <option value="">Seleccione</option>
+                    <option th:each="diagnostico : ${diagnosticos}"
+                            th:value="${diagnostico.idDiagnostico}"
+                            th:text="${diagnostico.historiaMedica != null and diagnostico.historiaMedica.paciente != null ? diagnostico.historiaMedica.paciente.nombrePaciente + ' ' + diagnostico.historiaMedica.paciente.apellidoPaciente + ' - ' + diagnostico.historiaMedica.paciente.dnipaciente : 'Sin paciente'}"
+                            th:selected="${examen.diagnostico != null and examen.diagnostico.idDiagnostico == diagnostico.idDiagnostico}">
+                    </option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Fecha examen</label>
+                <input type="date" th:field="*{fechaExamen}" required>
+            </div>
+
+            <div class="form-group">
+                <label>Fecha resultado</label>
+                <input type="date" th:field="*{fechaResultado}">
+            </div>
+
+            <div class="form-group">
+                <label>Estado</label>
+                <select th:field="*{estadoExamenMedico}" required>
+                    <option value="">Seleccione</option>
+                    <option th:each="estado : ${estados}" th:value="${estado}" th:text="${estado}"></option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Nombre muestra</label>
+                <input type="text" th:field="*{nombreMuestra}" required>
+            </div>
+
+            <div class="form-group">
+                <label>Valor referencia</label>
+                <input type="number" step="0.01" th:field="*{valorReferencia}">
+            </div>
+
+            <div class="form-group">
+                <label>Unidad medida</label>
+                <input type="text" th:field="*{unidadMedida}">
+            </div>
+
+            <div class="form-group full">
+                <label>Descripción resultado</label>
+                <textarea th:field="*{descripcionResultado}" required></textarea>
+            </div>
+
+            <div class="form-group full">
+                <label>Observaciones</label>
+                <textarea th:field="*{observaciones}"></textarea>
+            </div>
+
+            <div class="form-group full">
+                <button class="btn success" type="submit">Guardar</button>
+                <a class="btn secondary" th:href="@{/laboratorio}">Cancelar</a>
+            </div>
+        </form>
     </section>
 
 </main>

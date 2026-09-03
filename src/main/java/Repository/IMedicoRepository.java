@@ -14,7 +14,7 @@ public interface IMedicoRepository extends JpaRepository<MedicoEntity, Long> {
 
     List<MedicoEntity> findByEspecialidad(String especialidad);
 
-    List<MedicoEntity>findByNombreMedicoContainingIgnoreCase(String nombreMedico);
+    List<MedicoEntity> findByNombreMedicoContainingIgnoreCase(String nombreMedico);
 
     boolean existsByCmpMedico(String cmpMedico);
 

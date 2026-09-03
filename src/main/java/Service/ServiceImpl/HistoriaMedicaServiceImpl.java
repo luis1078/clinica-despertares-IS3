@@ -45,6 +45,21 @@ public class HistoriaMedicaServiceImpl implements IHistoriaMedicaService {
     }
 
     @Override
+    public List<HistoriaMedicaEntity> buscarHistorias(String texto) {
+        if (texto == null || texto.trim().isEmpty()) {
+            return historiaMedicaRepository.findAll();
+        }
+
+        String busqueda = texto.trim();
+        return historiaMedicaRepository
+                .findByPaciente_DnipacienteContainingIgnoreCaseOrPaciente_NombrePacienteContainingIgnoreCaseOrPaciente_ApellidoPacienteContainingIgnoreCase(
+                        busqueda,
+                        busqueda,
+                        busqueda
+                );
+    }
+
+    @Override
     public Optional<HistoriaMedicaEntity> buscarPorDniPaciente(String dniPaciente) {
         return historiaMedicaRepository.findByPaciente_Dnipaciente(dniPaciente);
     }
@@ -56,6 +71,7 @@ public class HistoriaMedicaServiceImpl implements IHistoriaMedicaService {
 
     @Override
     public HistoriaMedicaEntity crearHistoriaMedica(String dniPaciente, HistoriaMedicaEntity historiaMedica) {
+
         PacienteEntity paciente = pacienteRepository.findById(dniPaciente)
                 .orElseThrow(() -> new EntityNotFoundException("No existe el paciente con DNI: " + dniPaciente));
 
@@ -68,11 +84,14 @@ public class HistoriaMedicaServiceImpl implements IHistoriaMedicaService {
         }
 
         historiaMedica.setPaciente(paciente);
+
         return historiaMedicaRepository.save(historiaMedica);
     }
 
     @Override
-    public HistoriaMedicaEntity actualizarHistoriaMedica(Long codHistoriaMedica, HistoriaMedicaEntity datosActualizados) {
+    public HistoriaMedicaEntity actualizarHistoriaMedica(Long codHistoriaMedica,
+                                                         HistoriaMedicaEntity datosActualizados) {
+
         HistoriaMedicaEntity historia = historiaMedicaRepository.findById(codHistoriaMedica)
                 .orElseThrow(() -> new EntityNotFoundException("No existe la historia médica con código: " + codHistoriaMedica));
 

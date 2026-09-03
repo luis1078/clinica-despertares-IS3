@@ -32,8 +32,9 @@ public class DetalleTratamientoController {
     }
 
     @GetMapping("/nuevo")
-    public String nuevo(Model model) {
+    public String nuevo(@RequestParam(value = "idTratamiento", required = false) Long idTratamiento, Model model) {
         model.addAttribute("detalle", new DetalleTratamientoEntity());
+        model.addAttribute("tratamientoSeleccionado", idTratamiento);
         cargarCombos(model);
         return "detalle-tratamientos/formulario";
     }
@@ -70,7 +71,7 @@ public class DetalleTratamientoController {
         return "detalle-tratamientos/formulario";
     }
 
-    @GetMapping("/eliminar/{idDetalleTratamiento}")
+    @PostMapping("/eliminar/{idDetalleTratamiento}")
     public String eliminar(@PathVariable Long idDetalleTratamiento, RedirectAttributes redirectAttributes) {
         detalleTratamientoService.eliminar(idDetalleTratamiento);
         redirectAttributes.addFlashAttribute("mensaje", "Detalle de tratamiento eliminado correctamente.");

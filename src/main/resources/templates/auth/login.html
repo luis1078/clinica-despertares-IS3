@@ -3,15 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Iniciar sesión - Clínica Despertares</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
-
 <body>
 
-<main class="login-page">
-
-    <section class="login-card">
+<div class="login-page">
+    <div class="login-card">
 
         <div class="login-logo">
             <div class="login-logo-icon">✚</div>
@@ -22,30 +19,39 @@
         <div th:if="${mensaje}" class="alert success" th:text="${mensaje}"></div>
         <div th:if="${error}" class="alert error" th:text="${error}"></div>
 
-        <form th:action="@{/login}" method="post" class="login-form">
+        <form th:action="@{/login}" method="post" class="login-form"><input type="hidden" name="_csrf" th:value="${csrfToken}">
 
             <div class="form-group">
-                <label>Usuario o correo</label>
-                <input type="text" name="username" placeholder="Ingrese su usuario o correo" required>
+                <label for="username">Usuario o correo</label>
+                <input id="username"
+                       type="text"
+                       name="username"
+                       placeholder="Ingrese su usuario o correo"
+                       required>
             </div>
 
             <div class="form-group">
-                <label>Contraseña</label>
-                <input type="password" name="password" placeholder="Ingrese su contraseña" required>
+                <label for="password">Contraseña</label>
+                <input id="password"
+                       type="password"
+                       name="password"
+                       placeholder="Ingrese su contraseña"
+                       required>
             </div>
 
-            <button type="submit" class="btn-login-main">Iniciar sesión</button>
+            <button type="submit" class="btn-login-main">
+                Iniciar sesión
+            </button>
 
         </form>
 
         <div class="register-option">
-            <span>¿No tienes una cuenta?</span>
+            ¿No tienes una cuenta?
             <a th:href="@{/registro}">Registrarse</a>
         </div>
 
-    </section>
-
-</main>
+    </div>
+</div>
 
 </body>
 </html>

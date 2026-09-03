@@ -17,7 +17,7 @@
 
     <section class="content-card">
         <h1>Formulario de Paciente</h1>
-    <form th:action="@{/pacientes/guardar}" th:object="${paciente}" method="post" class="form-grid">
+    <form th:action="@{/pacientes/guardar}" th:object="${paciente}" method="post" class="form-grid"><input type="hidden" name="_csrf" th:value="${csrfToken}">
         <div class="form-group"><label>DNI</label><input type="text" th:field="*{dnipaciente}" maxlength="8" required></div>
         <div class="form-group"><label>Nombre</label><input type="text" th:field="*{nombrePaciente}" required></div>
         <div class="form-group"><label>Apellido</label><input type="text" th:field="*{apellidoPaciente}" required></div>

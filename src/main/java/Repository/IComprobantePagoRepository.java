@@ -8,14 +8,12 @@ import org.springframework.stereotype.Repository;
 import java.time.LocalDate;
 import java.util.List;
 
-
 @Repository
 public interface IComprobantePagoRepository extends JpaRepository<ComprobantePagoEntity, Long> {
 
-    List<ComprobantePagoEntity>findByPaciente_Dnipaciente(String dniPaciente);
+    List<ComprobantePagoEntity> findByPaciente_Dnipaciente(String dniPaciente);
 
     List<ComprobantePagoEntity> findByFechaEmision(LocalDate fechaEmision);
 
-    List<ComprobantePagoEntity>findByEstado(EstadoPagoEnum estado);
-
+    List<ComprobantePagoEntity> findByEstado(EstadoPagoEnum estado);
 }

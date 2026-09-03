@@ -1,14 +1,17 @@
 package Service.ServiceImpl;
 
 import Entity.ComprobantePagoEntity;
+import Entity.DetalleComprobanteEntity;
 import Entity.Emuns.EstadoPagoEnum;
 import Entity.PacienteEntity;
 import Repository.IComprobantePagoRepository;
+import Repository.IDetalleComprobanteRepository;
 import Repository.IPacienteRepository;
 import Service.IComprobantePagoService;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
@@ -18,11 +21,14 @@ public class ComprobantePagoServiceImpl implements IComprobantePagoService {
 
     private final IComprobantePagoRepository comprobantePagoRepository;
     private final IPacienteRepository pacienteRepository;
+    private final IDetalleComprobanteRepository detalleComprobanteRepository;
 
     public ComprobantePagoServiceImpl(IComprobantePagoRepository comprobantePagoRepository,
-                                      IPacienteRepository pacienteRepository) {
+                                      IPacienteRepository pacienteRepository,
+                                      IDetalleComprobanteRepository detalleComprobanteRepository) {
         this.comprobantePagoRepository = comprobantePagoRepository;
         this.pacienteRepository = pacienteRepository;
+        this.detalleComprobanteRepository = detalleComprobanteRepository;
     }
 
     @Override
@@ -37,6 +43,7 @@ public class ComprobantePagoServiceImpl implements IComprobantePagoService {
 
     @Override
     public ComprobantePagoEntity guardar(ComprobantePagoEntity comprobantePago) {
+        recalcularMontos(comprobantePago);
         return comprobantePagoRepository.save(comprobantePago);
     }
 
@@ -62,6 +69,7 @@ public class ComprobantePagoServiceImpl implements IComprobantePagoService {
 
     @Override
     public ComprobantePagoEntity registrarComprobante(String dniPaciente, ComprobantePagoEntity comprobantePago) {
+
         PacienteEntity paciente = pacienteRepository.findById(dniPaciente)
                 .orElseThrow(() -> new EntityNotFoundException("No existe el paciente con DNI: " + dniPaciente));
 
@@ -74,25 +82,47 @@ public class ComprobantePagoServiceImpl implements IComprobantePagoService {
         }
 
         comprobantePago.setPaciente(paciente);
+        recalcularMontos(comprobantePago);
+
         return comprobantePagoRepository.save(comprobantePago);
     }
 
     @Override
     public ComprobantePagoEntity cancelarComprobante(Long codComprobante) {
+
         ComprobantePagoEntity comprobante = obtenerComprobante(codComprobante);
         comprobante.setEstado(EstadoPagoEnum.CANCELADO);
+
         return comprobantePagoRepository.save(comprobante);
     }
 
     @Override
     public ComprobantePagoEntity marcarComoFaltaPagar(Long codComprobante) {
+
         ComprobantePagoEntity comprobante = obtenerComprobante(codComprobante);
         comprobante.setEstado(EstadoPagoEnum.FALTA_PAGAR);
+
         return comprobantePagoRepository.save(comprobante);
     }
 
     private ComprobantePagoEntity obtenerComprobante(Long codComprobante) {
+
         return comprobantePagoRepository.findById(codComprobante)
                 .orElseThrow(() -> new EntityNotFoundException("No existe el comprobante con código: " + codComprobante));
+    }
+
+    private void recalcularMontos(ComprobantePagoEntity comprobantePago) {
+        BigDecimal total = BigDecimal.ZERO;
+
+        if (comprobantePago.getCodcomprobante() != null) {
+            total = detalleComprobanteRepository.findByComprobantePago_Codcomprobante(comprobantePago.getCodcomprobante())
+                    .stream()
+                    .map(DetalleComprobanteEntity::getSubtotal)
+                    .filter(subtotal -> subtotal != null)
+                    .reduce(BigDecimal.ZERO, BigDecimal::add);
+        }
+
+        comprobantePago.setSubtotal(total);
+        comprobantePago.setMontoTotal(total);
     }
 }

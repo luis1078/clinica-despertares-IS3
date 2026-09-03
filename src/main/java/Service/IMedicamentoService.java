@@ -20,6 +20,8 @@ public interface IMedicamentoService {
 
     List<MedicamentoEntity> buscarPorNombre(String nombreMedicamento);
 
+    List<MedicamentoEntity> buscarMedicamentos(String texto);
+
     List<MedicamentoEntity> listarPorStockMenorA(int stockInventario);
 
     List<MedicamentoEntity> listarPorFechaVencimientoAntesDe(LocalDate fecha);

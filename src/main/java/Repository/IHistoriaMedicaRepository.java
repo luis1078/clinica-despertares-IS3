@@ -11,7 +11,13 @@ import java.util.Optional;
 @Repository
 public interface IHistoriaMedicaRepository extends JpaRepository<HistoriaMedicaEntity, Long> {
 
-    Optional<HistoriaMedicaEntity>findByPaciente_Dnipaciente(String dniPaciente);
+    Optional<HistoriaMedicaEntity> findByPaciente_Dnipaciente(String dniPaciente);
 
-    List<HistoriaMedicaEntity>findByFechaCreacion(LocalDate fechaCreacion);
+    List<HistoriaMedicaEntity> findByFechaCreacion(LocalDate fechaCreacion);
+
+    List<HistoriaMedicaEntity> findByPaciente_DnipacienteContainingIgnoreCaseOrPaciente_NombrePacienteContainingIgnoreCaseOrPaciente_ApellidoPacienteContainingIgnoreCase(
+            String dniPaciente,
+            String nombrePaciente,
+            String apellidoPaciente
+    );
 }

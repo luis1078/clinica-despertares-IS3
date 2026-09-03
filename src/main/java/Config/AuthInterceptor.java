@@ -1,16 +1,20 @@
 package Config;
 
+import Util.CsrfTokenHelper;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.io.IOException;
 import java.util.Set;
 
 @Component
 public class AuthInterceptor implements HandlerInterceptor {
+
+    private static final Set<String> METODOS_MUTANTES = Set.of("POST", "PUT", "DELETE", "PATCH");
 
     @Override
     public boolean preHandle(HttpServletRequest request,
@@ -20,13 +24,22 @@ public class AuthInterceptor implements HandlerInterceptor {
         String uri = request.getRequestURI();
 
         if (esRutaPublica(uri)) {
+            if (esMetodoMutante(request) && !tokenCsrfValido(request)) {
+                response.sendRedirect("/acceso-denegado");
+                return false;
+            }
             return true;
         }
 
         HttpSession session = request.getSession(false);
 
         if (session == null || session.getAttribute("usuarioLogueado") == null) {
-            response.sendRedirect("/");
+            response.sendRedirect("/login");
+            return false;
+        }
+
+        if (esMetodoMutante(request) && !tokenCsrfValido(request)) {
+            response.sendRedirect("/acceso-denegado");
             return false;
         }
 
@@ -38,6 +51,44 @@ public class AuthInterceptor implements HandlerInterceptor {
         }
 
         return true;
+    }
+
+    @Override
+    public void postHandle(HttpServletRequest request,
+                           HttpServletResponse response,
+                           Object handler,
+                           ModelAndView modelAndView) {
+
+        if (modelAndView == null || !modelAndView.hasView()) {
+            return;
+        }
+
+        String viewName = modelAndView.getViewName();
+        if (viewName != null && viewName.startsWith("redirect:")) {
+            return;
+        }
+
+        // Se fuerza la creación de sesión (si no existía) porque cualquier vista pública
+        // puede traer un formulario que necesita token CSRF, y no todos los controllers
+        // piden HttpSession como parámetro (p. ej. GET /registro).
+        HttpSession session = request.getSession(true);
+        modelAndView.addObject("csrfToken", CsrfTokenHelper.obtenerOCrearToken(session));
+    }
+
+    private boolean esMetodoMutante(HttpServletRequest request) {
+        return METODOS_MUTANTES.contains(request.getMethod());
+    }
+
+    private boolean tokenCsrfValido(HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        if (session == null) {
+            return false;
+        }
+
+        String tokenSesion = (String) session.getAttribute(CsrfTokenHelper.ATRIBUTO_SESION);
+        String tokenRequest = request.getParameter(CsrfTokenHelper.PARAMETRO_REQUEST);
+
+        return tokenSesion != null && tokenSesion.equals(tokenRequest);
     }
 
     private boolean esRutaPublica(String uri) {
@@ -62,11 +113,19 @@ public class AuthInterceptor implements HandlerInterceptor {
             return esRol(rol, "MEDICO");
         }
 
-        if (uri.startsWith("/pacientes")) {
+        if (uri.equals("/pacientes") || uri.equals("/pacientes/")) {
             return esRol(rol, "CAJERO", "ENFERMERA", "MEDICO");
         }
 
+        if (uri.startsWith("/pacientes")) {
+            return esRol(rol, "ENFERMERA", "MEDICO");
+        }
+
         if (uri.startsWith("/medicos")) {
+            return esRol(rol, "CAJERO", "ENFERMERA", "MEDICO");
+        }
+
+        if (uri.equals("/citas") || uri.equals("/citas/")) {
             return esRol(rol, "CAJERO", "ENFERMERA", "MEDICO");
         }
 
@@ -90,7 +149,13 @@ public class AuthInterceptor implements HandlerInterceptor {
             return esRol(rol, "CAJERO");
         }
 
-        if (uri.startsWith("/medicamentos") || uri.startsWith("/proveedores")) {
+        if (uri.startsWith("/medicamentos")) {
+            // El listado también lo puede consultar CAJERO; MedicamentoController
+            // ya restringe las acciones de escritura solo a FARMACEUTICO.
+            return esRol(rol, "FARMACEUTICO", "CAJERO");
+        }
+
+        if (uri.startsWith("/proveedores")) {
             return esRol(rol, "FARMACEUTICO");
         }
 
@@ -98,8 +163,16 @@ public class AuthInterceptor implements HandlerInterceptor {
             return esRol(rol, "MEDICO", "BIOLOGO", "RADIOLOGO");
         }
 
+        if (uri.equals("/laboratorio") || uri.equals("/laboratorio/")) {
+            return esRol(rol, "BIOLOGO", "MEDICO");
+        }
+
         if (uri.startsWith("/laboratorio")) {
             return esRol(rol, "BIOLOGO");
+        }
+
+        if (uri.equals("/imagenes") || uri.equals("/imagenes/")) {
+            return esRol(rol, "RADIOLOGO", "MEDICO");
         }
 
         if (uri.startsWith("/imagenes")) {

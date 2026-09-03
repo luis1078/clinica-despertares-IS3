@@ -3,23 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <title>Citas Médicas</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
+<body>
 
-<body class="app-body">
+<div class="dashboard-shell">
 
-<div th:replace="~{fragments/header :: header}"></div>
+    <div th:replace="~{fragments/header :: header}"></div>
 
-<main class="dashboard-body">
+    <div class="dashboard-body">
 
-    <div th:replace="~{fragments/sidebar :: sidebar}"></div>
+        <div th:replace="~{fragments/sidebar :: sidebar}"></div>
 
-    <section class="content-card">
-        <h1>Gestión de Citas Médicas</h1><div class="alert" th:if="${mensaje}" th:text="${mensaje}"></div><div class="actions"><a class="btn" th:href="@{/citas/nuevo}">Nueva cita</a><form th:action="@{/citas}" method="get" class="inline-form"><select name="estado"><option value="">Todos</option><option th:each="estado : ${estados}" th:value="${estado}" th:text="${estado}" th:selected="${estado == estadoSeleccionado}"></option></select><button class="btn secondary" type="submit">Filtrar</button></form></div><table><thead><tr><th>Código</th><th>Fecha</th><th>Hora</th><th>Paciente</th><th>Médico</th><th>Estado</th><th>Motivo</th><th>Reprogramar</th><th>Acciones</th></tr></thead><tbody><tr th:each="cita : ${citas}"><td th:text="${cita.codCitaMedica}"></td><td th:text="${cita.fechaCita}"></td><td th:text="${cita.horaCita}"></td><td th:text="${cita.paciente != null ? cita.paciente.nombrePaciente + ' ' + cita.paciente.apellidoPaciente : '-'}"></td><td th:text="${cita.medico != null ? cita.medico.nombreMedico + ' ' + cita.medico.apellidoMedico : '-'}"></td><td th:text="${cita.estadoCita}"></td><td th:text="${cita.motivoConsulta}"></td><td><form th:action="@{/citas/reprogramar/{id}(id=${cita.codCitaMedica})}" method="post" class="inline-form"><input type="date" name="nuevaFecha" required><input type="time" name="nuevaHora" required><button class="btn small secondary" type="submit">Reprogramar</button></form></td><td><a class="btn small warning" th:href="@{/citas/editar/{id}(id=${cita.codCitaMedica})}">Editar</a> <a class="btn small success" th:href="@{/citas/finalizar/{id}(id=${cita.codCitaMedica})}">Finalizar</a> <a class="btn small secondary" th:href="@{/citas/cancelar/{id}(id=${cita.codCitaMedica})}">Cancelar</a> <a class="btn small danger" th:href="@{/citas/eliminar/{id}(id=${cita.codCitaMedica})}" onclick="return confirm('¿Eliminar cita?')">Eliminar</a></td></tr></tbody></table>
-    </section>
+        <main class="content-card">
 
-</main>
+            <div class="actions">
+                <h1>Gestión de Citas Médicas</h1>
+
+                <a th:if="${session.rolUsuario == 'MEDICO' or session.rolUsuario == 'ENFERMERA'}"
+                   th:href="@{/citas/nuevo}"
+                   class="btn">
+                    Nueva cita
+                </a>
+            </div>
+
+            <div th:if="${mensaje}" class="alert success" th:text="${mensaje}"></div>
+            <div th:if="${error}" class="alert error" th:text="${error}"></div>
+
+            <form th:action="@{/citas}" method="get" class="inline-form actions">
+                <input type="text" name="buscar" th:value="${buscar}" placeholder="Buscar por paciente, DNI, médico, fecha, estado o motivo">
+                <select name="estado">
+                    <option value="">Todos los estados</option>
+                    <option th:each="estado : ${estados}" th:value="${estado.name()}" th:text="${estado.etiqueta}" th:selected="${estado == estadoSeleccionado}"></option>
+                </select>
+                <button type="submit" class="btn">Buscar</button>
+                <a th:href="@{/citas}" class="btn secondary">Limpiar</a>
+            </form>
+
+            <table>
+                <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Fecha</th>
+                    <th>Hora</th>
+                    <th>Paciente</th>
+                    <th>Médico</th>
+                    <th>Estado</th>
+                    <th>Motivo</th>
+                    <th th:if="${session.rolUsuario != 'CAJERO'}">Acciones</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr th:each="cita : ${citas}">
+                    <td th:text="${cita.codCitaMedica}">1</td>
+                    <td th:text="${cita.fechaCita}">2026-01-01</td>
+                    <td th:text="${cita.horaCita}">08:00</td>
+                    <td th:text="${cita.paciente != null ? cita.paciente.nombrePaciente + ' ' + cita.paciente.apellidoPaciente : 'Sin paciente'}">Paciente</td>
+                    <td th:text="${cita.medico != null ? cita.medico.nombreMedico + ' ' + cita.medico.apellidoMedico : 'Sin médico'}">Médico</td>
+                    <td th:text="${cita.estadoCita != null ? cita.estadoCita.etiqueta : '-'}">Pendiente</td>
+                    <td th:text="${cita.motivoConsulta}">Motivo</td>
+
+                    <td th:if="${session.rolUsuario != 'CAJERO'}">
+                        <a th:if="${session.rolUsuario == 'MEDICO' or session.rolUsuario == 'ENFERMERA'}"
+                           th:href="@{/citas/editar/{id}(id=${cita.codCitaMedica})}"
+                           class="btn small">
+                            Editar
+                        </a>
+
+                        <form th:if="${session.rolUsuario == 'MEDICO' or session.rolUsuario == 'ENFERMERA'}"
+                              th:action="@{/citas/cancelar/{id}(id=${cita.codCitaMedica})}"
+                              method="post"
+                              class="inline-action"><input type="hidden" name="_csrf" th:value="${csrfToken}">
+                            <button type="submit" class="btn small warning">Cancelar</button>
+                        </form>
+
+                        <form th:if="${session.rolUsuario == 'MEDICO'}"
+                              th:action="@{/citas/finalizar/{id}(id=${cita.codCitaMedica})}"
+                              method="post"
+                              class="inline-action"><input type="hidden" name="_csrf" th:value="${csrfToken}">
+                            <button type="submit" class="btn small success">Finalizar</button>
+                        </form>
+                    </td>
+                </tr>
+
+                <tr th:if="${#lists.isEmpty(citas)}">
+                    <td th:attr="colspan=${session.rolUsuario == 'CAJERO' ? 7 : 8}" class="empty-row">No se encontraron citas médicas.</td>
+                </tr>
+                </tbody>
+            </table>
+
+        </main>
+
+    </div>
+</div>
 
 </body>
 </html>

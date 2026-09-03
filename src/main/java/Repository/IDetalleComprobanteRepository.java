@@ -8,11 +8,13 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface IDetalleComprobanteRepository extends JpaRepository<DetalleComprobanteEntity, Long>{
+public interface IDetalleComprobanteRepository extends JpaRepository<DetalleComprobanteEntity, Long> {
 
-    List<DetalleComprobanteEntity>findByComprobantePago_Codcomprobante(Long codComprobante);
+    List<DetalleComprobanteEntity> findByComprobantePago_Codcomprobante(Long codComprobante);
 
-    List<DetalleComprobanteEntity>findByTipoItem(TipoItemEnum tipoItem);
+    List<DetalleComprobanteEntity> findByTipoItem(TipoItemEnum tipoItem);
 
     List<DetalleComprobanteEntity> findByIdReferencia(Long idReferencia);
+
+    boolean existsByTipoItemAndIdReferencia(TipoItemEnum tipoItem, Long idReferencia);
 }

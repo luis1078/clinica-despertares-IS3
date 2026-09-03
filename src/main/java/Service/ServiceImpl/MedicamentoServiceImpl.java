@@ -55,6 +55,23 @@ public class MedicamentoServiceImpl implements IMedicamentoService {
     }
 
     @Override
+    public List<MedicamentoEntity> buscarMedicamentos(String texto) {
+
+        if (texto == null || texto.trim().isEmpty()) {
+            return medicamentoRepository.findAll();
+        }
+
+        String busqueda = texto.trim();
+
+        return medicamentoRepository
+                .findByNombreMedicamentoContainingIgnoreCaseOrDescripcionMedicamentoContainingIgnoreCaseOrTipoMedicamentoContainingIgnoreCase(
+                        busqueda,
+                        busqueda,
+                        busqueda
+                );
+    }
+
+    @Override
     public List<MedicamentoEntity> listarPorStockMenorA(int stockInventario) {
         return medicamentoRepository.findByStockInventarioLessThan(stockInventario);
     }
@@ -71,15 +88,18 @@ public class MedicamentoServiceImpl implements IMedicamentoService {
 
     @Override
     public MedicamentoEntity registrarMedicamento(String rucProveedor, MedicamentoEntity medicamento) {
+
         ProveedorEntity proveedor = proveedorRepository.findById(rucProveedor)
                 .orElseThrow(() -> new EntityNotFoundException("No existe el proveedor con RUC: " + rucProveedor));
 
         medicamento.setProveedor(proveedor);
+
         return medicamentoRepository.save(medicamento);
     }
 
     @Override
     public MedicamentoEntity actualizarStock(Long codMedicamento, int nuevaCantidad) {
+
         if (nuevaCantidad < 0) {
             throw new IllegalArgumentException("El stock no puede ser negativo.");
         }
@@ -92,6 +112,7 @@ public class MedicamentoServiceImpl implements IMedicamentoService {
 
     @Override
     public MedicamentoEntity descontarStock(Long codMedicamento, int cantidad) {
+
         if (cantidad <= 0) {
             throw new IllegalArgumentException("La cantidad a descontar debe ser mayor a cero.");
         }

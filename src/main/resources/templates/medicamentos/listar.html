@@ -3,23 +3,108 @@
 <head>
     <meta charset="UTF-8">
     <title>Medicamentos</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
+<body>
 
-<body class="app-body">
+<div class="dashboard-shell">
 
-<div th:replace="~{fragments/header :: header}"></div>
+    <div th:replace="~{fragments/header :: header}"></div>
 
-<main class="dashboard-body">
+    <div class="dashboard-body">
 
-    <div th:replace="~{fragments/sidebar :: sidebar}"></div>
+        <div th:replace="~{fragments/sidebar :: sidebar}"></div>
 
-    <section class="content-card">
-        <h1>Gestión de Farmacia</h1><div class="alert" th:if="${mensaje}" th:text="${mensaje}"></div><div class="actions"><a class="btn" th:href="@{/medicamentos/nuevo}">Nuevo medicamento</a><form th:action="@{/medicamentos}" method="get" class="inline-form"><input type="text" name="nombre" placeholder="Buscar medicamento" th:value="${nombre}"><input type="number" name="stockMinimo" placeholder="Stock menor a" th:value="${stockMinimo}"><button class="btn secondary" type="submit">Filtrar</button></form></div><table><thead><tr><th>Código</th><th>Nombre</th><th>Tipo</th><th>Vencimiento</th><th>Stock</th><th>Proveedor</th><th>Actualizar stock</th><th>Acciones</th></tr></thead><tbody><tr th:each="medicamento : ${medicamentos}"><td th:text="${medicamento.codMedicamento}"></td><td th:text="${medicamento.nombreMedicamento}"></td><td th:text="${medicamento.tipoMedicamento}"></td><td th:text="${medicamento.fechaVencimiento}"></td><td th:text="${medicamento.stockInventario}"></td><td th:text="${medicamento.proveedor != null ? medicamento.proveedor.nombreProveedor : '-'}"></td><td><form th:action="@{/medicamentos/stock/{id}(id=${medicamento.codMedicamento})}" method="post" class="inline-form"><input type="number" name="nuevaCantidad" min="0" required><button class="btn small secondary" type="submit">Actualizar</button></form></td><td><a class="btn small warning" th:href="@{/medicamentos/editar/{id}(id=${medicamento.codMedicamento})}">Editar</a> <a class="btn small danger" th:href="@{/medicamentos/eliminar/{id}(id=${medicamento.codMedicamento})}" onclick="return confirm('¿Eliminar medicamento?')">Eliminar</a></td></tr></tbody></table>
-    </section>
+        <main class="content-card">
 
-</main>
+            <div class="actions">
+                <h1>Gestión de Medicamentos</h1>
+
+                <a th:if="${session.rolUsuario == 'FARMACEUTICO'}"
+                   th:href="@{/medicamentos/nuevo}"
+                   class="btn">
+                    Nuevo medicamento
+                </a>
+            </div>
+
+            <div th:if="${mensaje}" class="alert success" th:text="${mensaje}"></div>
+            <div th:if="${error}" class="alert error" th:text="${error}"></div>
+
+            <form th:action="@{/medicamentos}" method="get" class="inline-form actions">
+                <input type="text"
+                       name="buscar"
+                       th:value="${buscar}"
+                       placeholder="Buscar por nombre, descripción o tipo">
+
+                <input type="number"
+                       name="stockMinimo"
+                       th:value="${stockMinimo}"
+                       min="0"
+                       placeholder="Stock menor a">
+
+                <button type="submit" class="btn">Buscar</button>
+                <a th:href="@{/medicamentos}" class="btn secondary">Limpiar</a>
+            </form>
+
+            <table>
+                <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Medicamento</th>
+                    <th>Descripción</th>
+                    <th>Tipo</th>
+                    <th>Vencimiento</th>
+                    <th>Stock</th>
+                    <th>Cantidad mínima</th>
+                    <th>Proveedor</th>
+                    <th th:if="${session.rolUsuario == 'FARMACEUTICO'}">Acciones</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr th:each="medicamento : ${medicamentos}">
+                    <td th:text="${medicamento.codMedicamento}">1</td>
+                    <td th:text="${medicamento.nombreMedicamento}">Medicamento</td>
+                    <td th:text="${medicamento.descripcionMedicamento}">Descripción</td>
+                    <td th:text="${medicamento.tipoMedicamento}">Tipo</td>
+                    <td th:text="${medicamento.fechaVencimiento}">2026-01-01</td>
+                    <td class="stock-cell">
+                        <span class="stock-badge"
+                              th:classappend="${medicamento.stockBajo ? ' stock-low' : ' stock-ok'}"
+                              th:text="${medicamento.stockInventario}">
+                            0
+                        </span>
+                        <span th:if="${medicamento.stockBajo}" class="stock-status">Stock bajo</span>
+                    </td>
+                    <td th:text="${medicamento.cantidadMinima}">0</td>
+                    <td th:text="${medicamento.proveedor != null ? medicamento.proveedor.nombreProveedor : 'Sin proveedor'}">
+                        Proveedor
+                    </td>
+
+                    <td th:if="${session.rolUsuario == 'FARMACEUTICO'}">
+                        <a th:href="@{/medicamentos/editar/{id}(id=${medicamento.codMedicamento})}" class="btn small">
+                            Editar
+                        </a>
+
+                        <form th:action="@{/medicamentos/eliminar/{id}(id=${medicamento.codMedicamento})}"
+                              method="post"
+                              class="inline-action"
+                              onsubmit="return confirm('¿Deseas eliminar este medicamento?');"><input type="hidden" name="_csrf" th:value="${csrfToken}">
+                            <button type="submit" class="btn small danger">Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+
+                <tr th:if="${#lists.isEmpty(medicamentos)}">
+                    <td th:colspan="${session.rolUsuario == 'FARMACEUTICO' ? 9 : 8}" class="empty-row">No se encontraron medicamentos.</td>
+                </tr>
+                </tbody>
+            </table>
+
+        </main>
+
+    </div>
+</div>
 
 </body>
 </html>

@@ -1,49 +1,43 @@
 <!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Pacientes</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" th:href="@{/css/styles.css}">
-</head>
-
-<body class="app-body">
-
-<div th:replace="~{fragments/header :: header}"></div>
-
-<main class="dashboard-body">
-
-    <div th:replace="~{fragments/sidebar :: sidebar}"></div>
-
-    <section class="content-card">
-        <h1>Gestión de Pacientes</h1>
-    <div class="alert" th:if="${mensaje}" th:text="${mensaje}"></div>
-    <div class="actions">
-        <a class="btn" th:href="@{/pacientes/nuevo}">Nuevo paciente</a>
-        <form th:action="@{/pacientes}" method="get" class="inline-form">
-            <input type="text" name="nombre" placeholder="Buscar por nombre" th:value="${nombre}">
-            <button class="btn secondary" type="submit">Buscar</button>
-        </form>
+<head><meta charset="UTF-8"><title>Pacientes</title><link rel="stylesheet" th:href="@{/css/styles.css}"></head>
+<body>
+<div class="dashboard-shell">
+    <div th:replace="~{fragments/header :: header}"></div>
+    <div class="dashboard-body">
+        <div th:replace="~{fragments/sidebar :: sidebar}"></div>
+        <main class="content-card">
+            <div class="actions"><h1>Gestión de Pacientes</h1><a th:if="${session.rolUsuario == 'ENFERMERA' or session.rolUsuario == 'MEDICO'}" th:href="@{/pacientes/nuevo}" class="btn">Nuevo paciente</a></div>
+            <div th:if="${mensaje}" class="alert success" th:text="${mensaje}"></div>
+            <div th:if="${error}" class="alert error" th:text="${error}"></div>
+            <form th:action="@{/pacientes}" method="get" class="inline-form actions">
+                <input type="text" name="buscar" th:value="${buscar}" placeholder="Buscar por DNI, nombre, apellido, correo o teléfono">
+                <button type="submit" class="btn">Buscar</button><a th:href="@{/pacientes}" class="btn secondary">Limpiar</a>
+            </form>
+            <table>
+                <thead><tr><th>DNI</th><th>Paciente</th><th>Teléfono</th><th>Correo</th><th>Género</th><th>Tipo sangre</th><th th:if="${session.rolUsuario != 'CAJERO'}">Acciones</th></tr></thead>
+                <tbody>
+                <tr th:each="paciente : ${pacientes}">
+                    <td th:text="${paciente.dnipaciente}">12345678</td>
+                    <td th:text="${paciente.nombrePaciente + ' ' + paciente.apellidoPaciente}">Paciente</td>
+                    <td th:text="${paciente.telefono}">999999999</td>
+                    <td th:text="${paciente.correoElectronico}">correo</td>
+                    <td th:text="${paciente.genero}">Género</td>
+                    <td th:text="${paciente.tipoSangre}">O+</td>
+                    <td th:if="${session.rolUsuario != 'CAJERO'}">
+                        <a th:href="@{/pacientes/editar/{dni}(dni=${paciente.dnipaciente})}" class="btn small">Editar</a>
+                        <a th:href="@{/historias/nuevo(dniPaciente=${paciente.dnipaciente})}" class="btn small success" th:if="${paciente.historiaMedica == null and (session.rolUsuario == 'ENFERMERA' or session.rolUsuario == 'MEDICO')}">Crear historia</a>
+                        <a th:href="@{/historias}" class="btn small secondary" th:if="${paciente.historiaMedica != null}">Ver historia</a>
+                        <form th:action="@{/pacientes/eliminar/{dni}(dni=${paciente.dnipaciente})}" method="post" class="inline-action" onsubmit="return confirm('¿Deseas eliminar este paciente?');"><input type="hidden" name="_csrf" th:value="${csrfToken}">
+                            <button type="submit" class="btn small danger">Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+                <tr th:if="${#lists.isEmpty(pacientes)}"><td th:attr="colspan=${session.rolUsuario == 'CAJERO' ? 6 : 7}" class="empty-row">No se encontraron pacientes.</td></tr>
+                </tbody>
+            </table>
+        </main>
     </div>
-    <table>
-        <thead><tr><th>DNI</th><th>Paciente</th><th>Teléfono</th><th>Correo</th><th>Género</th><th>Acciones</th></tr></thead>
-        <tbody>
-        <tr th:each="paciente : ${pacientes}">
-            <td th:text="${paciente.dnipaciente}"></td>
-            <td th:text="${paciente.nombrePaciente + ' ' + paciente.apellidoPaciente}"></td>
-            <td th:text="${paciente.telefono}"></td>
-            <td th:text="${paciente.correoElectronico}"></td>
-            <td th:text="${paciente.genero}"></td>
-            <td>
-                <a class="btn small warning" th:href="@{/pacientes/editar/{id}(id=${paciente.dnipaciente})}">Editar</a>
-                <a class="btn small danger" th:href="@{/pacientes/eliminar/{id}(id=${paciente.dnipaciente})}" onclick="return confirm('¿Eliminar paciente?')">Eliminar</a>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-    </section>
-
-</main>
-
+</div>
 </body>
 </html>

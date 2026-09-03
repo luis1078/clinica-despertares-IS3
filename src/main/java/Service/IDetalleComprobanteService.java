@@ -22,9 +22,15 @@ public interface IDetalleComprobanteService {
 
     List<DetalleComprobanteEntity> listarPorIdReferencia(Long idReferencia);
 
-    DetalleComprobanteEntity registrarDetallePorCita(Long codComprobante, Long codCitaMedica, DetalleComprobanteEntity detalleComprobante);
+    DetalleComprobanteEntity registrarDetallePorCita(Long codComprobante,
+                                                     Long codCitaMedica,
+                                                     DetalleComprobanteEntity detalleComprobante);
 
-    DetalleComprobanteEntity registrarDetallePorExamen(Long codComprobante, Long codExamenMedico, DetalleComprobanteEntity detalleComprobante);
+    DetalleComprobanteEntity registrarDetallePorExamen(Long codComprobante,
+                                                       Long codExamenMedico,
+                                                       DetalleComprobanteEntity detalleComprobante);
 
-    DetalleComprobanteEntity registrarDetallePorMedicamento(Long codComprobante, Long codMedicamento, DetalleComprobanteEntity detalleComprobante);
+    DetalleComprobanteEntity registrarDetallePorMedicamento(Long codComprobante,
+                                                            Long codMedicamento,
+                                                            DetalleComprobanteEntity detalleComprobante);
 }

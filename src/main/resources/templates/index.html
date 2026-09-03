@@ -2,67 +2,116 @@
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Clínica Despertares</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <title>Panel - Clínica Despertares</title>
     <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
+<body>
 
-<body class="app-body">
-
-<main th:if="${session.usuarioLogueado == null}" class="login-page">
-
-    <section class="login-card">
-
-        <div class="login-logo">
-            <div class="login-logo-icon">✚</div>
-            <h1>Clínica Despertares</h1>
-            <span>Sistema de gestión clínica</span>
-        </div>
-
-        <div th:if="${mensaje}" class="alert success" th:text="${mensaje}"></div>
-        <div th:if="${error}" class="alert error" th:text="${error}"></div>
-
-        <form th:action="@{/login}" method="post" class="login-form">
-
-            <div class="form-group">
-                <label>Usuario o correo</label>
-                <input type="text" name="username" placeholder="Ingrese su usuario o correo" required>
-            </div>
-
-            <div class="form-group">
-                <label>Contraseña</label>
-                <input type="password" name="password" placeholder="Ingrese su contraseña" required>
-            </div>
-
-            <button type="submit" class="btn-login-main">
-                Iniciar sesión
-            </button>
-
-        </form>
-
-        <div class="register-option">
-            <span>¿No tienes una cuenta?</span>
-            <a th:href="@{/registro}">Registrarse</a>
-        </div>
-
-    </section>
-
-</main>
-
-<div th:if="${session.usuarioLogueado != null}" class="dashboard-shell">
+<div class="dashboard-shell">
 
     <div th:replace="~{fragments/header :: header}"></div>
 
-    <main class="dashboard-body">
+    <div class="dashboard-body">
 
         <div th:replace="~{fragments/sidebar :: sidebar}"></div>
 
-        <section class="workspace-panel">
-        </section>
+        <main class="workspace-panel">
 
-    </main>
+            <section class="welcome-panel">
+                <h1>Bienvenido a Clínica Despertares</h1>
+                <p>
+                    Panel principal del sistema de gestión clínica.
+                    Usa el menú lateral para acceder a las opciones permitidas para tu rol.
+                </p>
+            </section>
 
+            <section class="module-grid">
+
+                <a th:if="${session.rolUsuario == 'CAJERO' or session.rolUsuario == 'ENFERMERA' or session.rolUsuario == 'MEDICO'}"
+                   th:href="@{/pacientes}"
+                   class="module-card">
+                    <div class="module-icon">👤</div>
+                    <h3>Pacientes</h3>
+                    <p>Registro y consulta de información de pacientes.</p>
+                </a>
+
+                <a th:if="${session.rolUsuario == 'ENFERMERA' or session.rolUsuario == 'MEDICO' or session.rolUsuario == 'CAJERO'}"
+                   th:href="@{/citas}"
+                   class="module-card">
+                    <div class="module-icon">📅</div>
+                    <h3>Citas médicas</h3>
+                    <p>Gestión de citas, reprogramaciones y estados.</p>
+                </a>
+
+                <a th:if="${session.rolUsuario == 'ENFERMERA' or session.rolUsuario == 'MEDICO'}"
+                   th:href="@{/historias}"
+                   class="module-card">
+                    <div class="module-icon">📋</div>
+                    <h3>Historias médicas</h3>
+                    <p>Consulta y actualización clínica según permisos.</p>
+                </a>
+
+                <a th:if="${session.rolUsuario == 'CAJERO'}"
+                   th:href="@{/comprobantes}"
+                   class="module-card">
+                    <div class="module-icon">💳</div>
+                    <h3>Comprobantes</h3>
+                    <p>Control de pagos por citas, exámenes y medicamentos.</p>
+                </a>
+
+                <a th:if="${session.rolUsuario == 'CAJERO'}"
+                   th:href="@{/detalle-comprobantes}"
+                   class="module-card">
+                    <div class="module-icon">🧾</div>
+                    <h3>Detalle de pagos</h3>
+                    <p>Registro de ítems que componen cada comprobante.</p>
+                </a>
+
+                <a th:if="${session.rolUsuario == 'FARMACEUTICO'}"
+                   th:href="@{/medicamentos}"
+                   class="module-card">
+                    <div class="module-icon">💊</div>
+                    <h3>Medicamentos</h3>
+                    <p>Búsqueda, stock e inventario de medicamentos.</p>
+                </a>
+
+                <a th:if="${session.rolUsuario == 'MEDICO' or session.rolUsuario == 'BIOLOGO' or session.rolUsuario == 'RADIOLOGO'}"
+                   th:href="@{/examenes}"
+                   class="module-card">
+                    <div class="module-icon">🧪</div>
+                    <h3>Exámenes médicos</h3>
+                    <p>Solicitudes y seguimiento de exámenes clínicos.</p>
+                </a>
+
+                <a th:if="${session.rolUsuario == 'BIOLOGO' or session.rolUsuario == 'MEDICO'}"
+                   th:href="@{/laboratorio}"
+                   class="module-card">
+                    <div class="module-icon">🔬</div>
+                    <h3>Laboratorio</h3>
+                    <p>Gestión de exámenes y resultados de laboratorio.</p>
+                </a>
+
+                <a th:if="${session.rolUsuario == 'RADIOLOGO' or session.rolUsuario == 'MEDICO'}"
+                   th:href="@{/imagenes}"
+                   class="module-card">
+                    <div class="module-icon">🖼️</div>
+                    <h3>Imágenes diagnósticas</h3>
+                    <p>Registro y consulta de imágenes diagnósticas.</p>
+                </a>
+
+                <a th:if="${session.rolUsuario == 'MEDICO'}"
+                   th:href="@{/usuarios}"
+                   class="module-card">
+                    <div class="module-icon">👥</div>
+                    <h3>Usuarios</h3>
+                    <p>Modificación y administración de usuarios.</p>
+                </a>
+
+            </section>
+
+        </main>
+
+    </div>
 </div>
 
 </body>

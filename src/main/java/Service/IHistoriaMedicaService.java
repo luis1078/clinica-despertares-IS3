@@ -16,6 +16,8 @@ public interface IHistoriaMedicaService {
 
     void eliminar(Long codHistoriaMedica);
 
+    List<HistoriaMedicaEntity> buscarHistorias(String texto);
+
     Optional<HistoriaMedicaEntity> buscarPorDniPaciente(String dniPaciente);
 
     List<HistoriaMedicaEntity> listarPorFechaCreacion(LocalDate fechaCreacion);

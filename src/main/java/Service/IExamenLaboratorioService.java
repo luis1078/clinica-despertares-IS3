@@ -19,6 +19,8 @@ public interface IExamenLaboratorioService {
 
     List<ExamenLaboratorioEntity> listarPorUnidadMedida(String unidadMedida);
 
+    List<ExamenLaboratorioEntity> buscarExamenes(String texto);
+
     ExamenLaboratorioEntity registrarExamenLaboratorio(Long idDiagnostico, ExamenLaboratorioEntity examenLaboratorio);
 
     ExamenLaboratorioEntity registrarResultadoLaboratorio(Long codExamenMedico, ExamenLaboratorioEntity datosResultado);

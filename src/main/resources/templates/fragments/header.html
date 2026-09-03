@@ -16,10 +16,11 @@
                 <div class="user-role-icon">
                     <span th:if="${session.rolUsuario == 'MEDICO'}">🩺</span>
                     <span th:if="${session.rolUsuario == 'CAJERO'}">💳</span>
-                    <span th:if="${session.rolUsuario == 'ENFERMERA'}">🏥</span>
+                    <span th:if="${session.rolUsuario == 'ENFERMERA'}">💉</span>
                     <span th:if="${session.rolUsuario == 'FARMACEUTICO'}">💊</span>
-                    <span th:if="${session.rolUsuario == 'BIOLOGO'}">🔬</span>
-                    <span th:if="${session.rolUsuario == 'RADIOLOGO'}">🩻</span>
+                    <span th:if="${session.rolUsuario == 'BIOLOGO'}">🧪</span>
+                    <span th:if="${session.rolUsuario == 'RADIOLOGO'}">🖼️</span>
+                    <span th:if="${session.rolUsuario == null}">👤</span>
                 </div>
 
                 <div class="user-mini-data">
@@ -35,7 +36,6 @@
             </a>
 
         </div>
-
     </header>
 </div>
 

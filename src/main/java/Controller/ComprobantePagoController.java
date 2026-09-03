@@ -6,6 +6,8 @@ import Entity.Emuns.MetodoPagoEnum;
 import Entity.Emuns.TipoComprobanteEnum;
 import Service.IComprobantePagoService;
 import Service.IPacienteService;
+import Util.RolHelper;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -18,17 +20,23 @@ public class ComprobantePagoController {
     private final IComprobantePagoService comprobantePagoService;
     private final IPacienteService pacienteService;
 
-    public ComprobantePagoController(IComprobantePagoService comprobantePagoService, IPacienteService pacienteService) {
+    public ComprobantePagoController(IComprobantePagoService comprobantePagoService,
+                                     IPacienteService pacienteService) {
         this.comprobantePagoService = comprobantePagoService;
         this.pacienteService = pacienteService;
     }
 
     @GetMapping
-    public String listar(@RequestParam(value = "estado", required = false) EstadoPagoEnum estado, Model model) {
-        model.addAttribute("comprobantes", estado == null
-                ? comprobantePagoService.listarTodos()
-                : comprobantePagoService.listarPorEstado(estado));
+    public String listar(@RequestParam(value = "estado", required = false) EstadoPagoEnum estado,
+                         Model model,
+                         HttpSession session,
+                         RedirectAttributes redirectAttributes) {
 
+        if (!RolHelper.tieneRol(session, "CAJERO")) {
+            return RolHelper.denegar(redirectAttributes, "No tiene permisos para consultar comprobantes.");
+        }
+
+        model.addAttribute("comprobantes", estado == null ? comprobantePagoService.listarTodos() : comprobantePagoService.listarPorEstado(estado));
         model.addAttribute("estados", EstadoPagoEnum.values());
         model.addAttribute("estadoSeleccionado", estado);
 
@@ -36,54 +44,110 @@ public class ComprobantePagoController {
     }
 
     @GetMapping("/nuevo")
-    public String nuevo(Model model) {
+    public String nuevo(Model model,
+                        HttpSession session,
+                        RedirectAttributes redirectAttributes) {
+
+        if (!RolHelper.tieneRol(session, "CAJERO")) {
+            return RolHelper.denegar(redirectAttributes, "Solo el cajero puede registrar comprobantes de pago.");
+        }
+
         model.addAttribute("comprobante", new ComprobantePagoEntity());
         cargarCombos(model);
+
         return "comprobantes/formulario";
     }
 
     @PostMapping("/guardar")
     public String guardar(@ModelAttribute("comprobante") ComprobantePagoEntity comprobante,
                           @RequestParam("dniPaciente") String dniPaciente,
+                          HttpSession session,
                           RedirectAttributes redirectAttributes) {
+
+        if (!RolHelper.tieneRol(session, "CAJERO")) {
+            return RolHelper.denegar(redirectAttributes, "No tiene permisos para guardar comprobantes de pago.");
+        }
+
         if (comprobante.getCodcomprobante() == null) {
             comprobantePagoService.registrarComprobante(dniPaciente, comprobante);
         } else {
-            comprobante.setPaciente(pacienteService.buscarPorId(dniPaciente)
+            ComprobantePagoEntity comprobanteExistente = comprobantePagoService.buscarPorId(comprobante.getCodcomprobante())
+                    .orElseThrow(() -> new IllegalArgumentException("No existe el comprobante: " + comprobante.getCodcomprobante()));
+            comprobanteExistente.setFechaEmision(comprobante.getFechaEmision());
+            comprobanteExistente.setTipoComprobante(comprobante.getTipoComprobante());
+            comprobanteExistente.setMetodoPago(comprobante.getMetodoPago());
+            comprobanteExistente.setEstado(comprobante.getEstado());
+            comprobanteExistente.setPaciente(pacienteService.buscarPorId(dniPaciente)
                     .orElseThrow(() -> new IllegalArgumentException("No existe el paciente: " + dniPaciente)));
-            comprobantePagoService.guardar(comprobante);
+            comprobantePagoService.guardar(comprobanteExistente);
         }
+
         redirectAttributes.addFlashAttribute("mensaje", "Comprobante guardado correctamente.");
+
         return "redirect:/comprobantes";
     }
 
     @GetMapping("/editar/{codComprobante}")
-    public String editar(@PathVariable Long codComprobante, Model model) {
+    public String editar(@PathVariable Long codComprobante,
+                         Model model,
+                         HttpSession session,
+                         RedirectAttributes redirectAttributes) {
+
+        if (!RolHelper.tieneRol(session, "CAJERO")) {
+            return RolHelper.denegar(redirectAttributes, "No tiene permisos para editar comprobantes de pago.");
+        }
+
         ComprobantePagoEntity comprobante = comprobantePagoService.buscarPorId(codComprobante)
                 .orElseThrow(() -> new IllegalArgumentException("No existe el comprobante: " + codComprobante));
+
         model.addAttribute("comprobante", comprobante);
         cargarCombos(model);
+
         return "comprobantes/formulario";
     }
 
-    @GetMapping("/cancelar/{codComprobante}")
-    public String cancelar(@PathVariable Long codComprobante, RedirectAttributes redirectAttributes) {
+    @PostMapping("/cancelar/{codComprobante}")
+    public String cancelar(@PathVariable Long codComprobante,
+                           HttpSession session,
+                           RedirectAttributes redirectAttributes) {
+
+        if (!RolHelper.tieneRol(session, "CAJERO")) {
+            return RolHelper.denegar(redirectAttributes, "No tiene permisos para cancelar comprobantes.");
+        }
+
         comprobantePagoService.cancelarComprobante(codComprobante);
         redirectAttributes.addFlashAttribute("mensaje", "Comprobante marcado como cancelado.");
+
         return "redirect:/comprobantes";
     }
 
-    @GetMapping("/pendiente/{codComprobante}")
-    public String pendiente(@PathVariable Long codComprobante, RedirectAttributes redirectAttributes) {
+    @PostMapping("/pendiente/{codComprobante}")
+    public String pendiente(@PathVariable Long codComprobante,
+                            HttpSession session,
+                            RedirectAttributes redirectAttributes) {
+
+        if (!RolHelper.tieneRol(session, "CAJERO")) {
+            return RolHelper.denegar(redirectAttributes, "No tiene permisos para cambiar el estado del comprobante.");
+        }
+
         comprobantePagoService.marcarComoFaltaPagar(codComprobante);
         redirectAttributes.addFlashAttribute("mensaje", "Comprobante marcado como falta pagar.");
+
         return "redirect:/comprobantes";
     }
 
-    @GetMapping("/eliminar/{codComprobante}")
-    public String eliminar(@PathVariable Long codComprobante, RedirectAttributes redirectAttributes) {
+    @PostMapping("/eliminar/{codComprobante}")
+    public String eliminar(@PathVariable Long codComprobante,
+                           HttpSession session,
+                           RedirectAttributes redirectAttributes) {
+
+        if (!RolHelper.tieneRol(session, "CAJERO")) {
+            return RolHelper.denegar(redirectAttributes, "No tiene permisos para eliminar comprobantes.");
+        }
+
         comprobantePagoService.eliminar(codComprobante);
         redirectAttributes.addFlashAttribute("mensaje", "Comprobante eliminado correctamente.");
+
         return "redirect:/comprobantes";
     }
 

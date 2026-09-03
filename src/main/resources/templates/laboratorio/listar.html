@@ -16,7 +16,79 @@
     <div th:replace="~{fragments/sidebar :: sidebar}"></div>
 
     <section class="content-card">
-        <h1>Gestión de Exámenes de Laboratorio</h1><div class="alert" th:if="${mensaje}" th:text="${mensaje}"></div><div class="actions"><a class="btn" th:href="@{/laboratorio/nuevo}">Nuevo examen de laboratorio</a></div><table><thead><tr><th>Código</th><th>Muestra</th><th>Fecha examen</th><th>Fecha resultado</th><th>Estado</th><th>Resultado</th><th>Valor referencia</th><th>Unidad</th><th>Acciones</th></tr></thead><tbody><tr th:each="examen : ${examenes}"><td th:text="${examen.codExamenMedico}"></td><td th:text="${examen.nombreMuestra}"></td><td th:text="${examen.fechaExamen}"></td><td th:text="${examen.fechaResultado}"></td><td th:text="${examen.estadoExamenMedico}"></td><td th:text="${examen.descripcionResultado}"></td><td th:text="${examen.valorReferencia}"></td><td th:text="${examen.unidadMedida}"></td><td><a class="btn small warning" th:href="@{/laboratorio/editar/{id}(id=${examen.codExamenMedico})}">Editar resultado</a> <a class="btn small danger" th:href="@{/laboratorio/eliminar/{id}(id=${examen.codExamenMedico})}" onclick="return confirm('¿Eliminar examen?')">Eliminar</a></td></tr></tbody></table>
+        <div class="actions">
+            <h1>Gestión de Exámenes de Laboratorio</h1>
+
+            <a class="btn"
+               th:if="${session.rolUsuario == 'BIOLOGO'}"
+               th:href="@{/laboratorio/nuevo}">
+                Nuevo examen de laboratorio
+            </a>
+        </div>
+
+        <div class="alert success" th:if="${mensaje}" th:text="${mensaje}"></div>
+        <div class="alert error" th:if="${error}" th:text="${error}"></div>
+
+        <form th:action="@{/laboratorio}" method="get" class="inline-form actions">
+            <input type="text"
+                   name="buscar"
+                   th:value="${buscar}"
+                   placeholder="Buscar por paciente, DNI, muestra, resultado o unidad">
+
+            <button class="btn" type="submit">Buscar</button>
+            <a class="btn secondary" th:href="@{/laboratorio}">Limpiar</a>
+        </form>
+
+        <table>
+            <thead>
+            <tr>
+                <th>Código</th>
+                <th>Paciente</th>
+                <th>Muestra</th>
+                <th>Fecha examen</th>
+                <th>Fecha resultado</th>
+                <th>Estado</th>
+                <th>Resultado</th>
+                <th>Valor referencia</th>
+                <th>Unidad</th>
+                <th th:if="${session.rolUsuario == 'BIOLOGO'}">Acciones</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr th:each="examen : ${examenes}">
+                <td th:text="${examen.codExamenMedico}">1</td>
+                <td th:text="${examen.diagnostico != null and examen.diagnostico.historiaMedica != null and examen.diagnostico.historiaMedica.paciente != null ? examen.diagnostico.historiaMedica.paciente.nombrePaciente + ' ' + examen.diagnostico.historiaMedica.paciente.apellidoPaciente + ' - ' + examen.diagnostico.historiaMedica.paciente.dnipaciente : 'Sin paciente'}">
+                    Paciente
+                </td>
+                <td th:text="${examen.nombreMuestra}">Muestra</td>
+                <td th:text="${examen.fechaExamen}">2026-01-01</td>
+                <td th:text="${examen.fechaResultado}">2026-01-02</td>
+                <td th:text="${examen.estadoExamenMedico}">PENDIENTE</td>
+                <td th:text="${examen.descripcionResultado}">Resultado</td>
+                <td th:text="${examen.valorReferencia}">0</td>
+                <td th:text="${examen.unidadMedida}">Unidad</td>
+                <td th:if="${session.rolUsuario == 'BIOLOGO'}">
+                    <a class="btn small warning"
+                       th:href="@{/laboratorio/editar/{id}(id=${examen.codExamenMedico})}">
+                        Editar resultado
+                    </a>
+                    <form th:action="@{/laboratorio/eliminar/{id}(id=${examen.codExamenMedico})}"
+                          method="post"
+                          class="inline-action"
+                          onsubmit="return confirm('¿Eliminar examen?');"><input type="hidden" name="_csrf" th:value="${csrfToken}">
+                        <button type="submit" class="btn small danger">Eliminar</button>
+                    </form>
+                </td>
+            </tr>
+
+            <tr th:if="${#lists.isEmpty(examenes)}">
+                <td th:colspan="${session.rolUsuario == 'BIOLOGO' ? 10 : 9}" class="empty-row">
+                    No se encontraron exámenes de laboratorio.
+                </td>
+            </tr>
+            </tbody>
+        </table>
     </section>
 
 </main>

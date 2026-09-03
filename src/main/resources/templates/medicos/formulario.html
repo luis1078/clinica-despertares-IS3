@@ -17,7 +17,7 @@
 
     <section class="content-card">
         <h1>Formulario de Médico</h1>
-<form th:action="@{/medicos/guardar}" th:object="${medico}" method="post" class="form-grid">
+<form th:action="@{/medicos/guardar}" th:object="${medico}" method="post" class="form-grid"><input type="hidden" name="_csrf" th:value="${csrfToken}">
 <input type="hidden" th:field="*{idMedico}">
 <div class="form-group"><label>Nombre</label><input type="text" th:field="*{nombreMedico}" required></div>
 <div class="form-group"><label>Apellido</label><input type="text" th:field="*{apellidoMedico}" required></div>

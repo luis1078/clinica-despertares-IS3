@@ -18,6 +18,8 @@ public interface ICitaMedicaService {
 
     void eliminar(Long codCitaMedica);
 
+    List<CitaMedicaEntity> buscarCitas(String texto, EstadoCitaEnum estadoCita);
+
     List<CitaMedicaEntity> listarPorFecha(LocalDate fechaCita);
 
     List<CitaMedicaEntity> listarPorMedico(Long idMedico);

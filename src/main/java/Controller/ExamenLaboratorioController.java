@@ -23,8 +23,10 @@ public class ExamenLaboratorioController {
     }
 
     @GetMapping
-    public String listar(Model model) {
-        model.addAttribute("examenes", examenLaboratorioService.listarTodos());
+    public String listar(@RequestParam(value = "buscar", required = false) String buscar,
+                         Model model) {
+        model.addAttribute("examenes", examenLaboratorioService.buscarExamenes(buscar));
+        model.addAttribute("buscar", buscar);
         return "laboratorio/listar";
     }
 
@@ -58,7 +60,7 @@ public class ExamenLaboratorioController {
         return "laboratorio/formulario";
     }
 
-    @GetMapping("/eliminar/{codExamenMedico}")
+    @PostMapping("/eliminar/{codExamenMedico}")
     public String eliminar(@PathVariable Long codExamenMedico, RedirectAttributes redirectAttributes) {
         examenLaboratorioService.eliminar(codExamenMedico);
         redirectAttributes.addFlashAttribute("mensaje", "Examen de laboratorio eliminado correctamente.");

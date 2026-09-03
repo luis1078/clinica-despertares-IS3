@@ -2,24 +2,77 @@
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Detalle Comprobantes</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Detalle de Comprobantes</title>
     <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
-
-<body class="app-body">
+<body>
 
 <div th:replace="~{fragments/header :: header}"></div>
 
-<main class="dashboard-body">
-
+<div class="layout">
     <div th:replace="~{fragments/sidebar :: sidebar}"></div>
 
-    <section class="content-card">
-        <h1>Detalle de Comprobantes</h1><div class="alert" th:if="${mensaje}" th:text="${mensaje}"></div><div class="actions"><a class="btn" th:href="@{/detalle-comprobantes/nuevo}">Nuevo detalle</a></div><table><thead><tr><th>ID</th><th>Comprobante</th><th>Tipo ítem</th><th>ID referencia</th><th>Descripción</th><th>Cantidad</th><th>Precio</th><th>Subtotal</th><th>Acciones</th></tr></thead><tbody><tr th:each="detalle : ${detalles}"><td th:text="${detalle.iddetalle}"></td><td th:text="${detalle.comprobantePago != null ? detalle.comprobantePago.codcomprobante : '-'}"></td><td th:text="${detalle.tipoItem}"></td><td th:text="${detalle.idReferencia}"></td><td th:text="${detalle.descripcionDetalle}"></td><td th:text="${detalle.cantidad}"></td><td th:text="${detalle.precioUnitario}"></td><td th:text="${detalle.subtotal}"></td><td><a class="btn small warning" th:href="@{/detalle-comprobantes/editar/{id}(id=${detalle.iddetalle})}">Editar</a> <a class="btn small danger" th:href="@{/detalle-comprobantes/eliminar/{id}(id=${detalle.iddetalle})}" onclick="return confirm('¿Eliminar detalle?')">Eliminar</a></td></tr></tbody></table>
-    </section>
+    <main class="content">
+        <div class="page-header">
+            <div>
+                <h1>Detalle de Comprobantes</h1>
+                <p>Registra servicios, exámenes o medicamentos dentro de un comprobante.</p>
+            </div>
 
-</main>
+            <a th:href="@{/detalle-comprobantes/nuevo}" class="btn btn-primary">Nuevo detalle</a>
+        </div>
+
+        <div th:if="${mensaje}" class="alert alert-success" th:text="${mensaje}"></div>
+        <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
+
+        <section class="table-card">
+            <table>
+                <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Comprobante</th>
+                    <th>Tipo ítem</th>
+                    <th>ID referencia</th>
+                    <th>Descripción</th>
+                    <th>Cantidad</th>
+                    <th>Precio</th>
+                    <th>Subtotal</th>
+                    <th>Acciones</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr th:each="detalle : ${detalles}">
+                    <td th:text="${detalle.iddetalle}">1</td>
+                    <td th:text="${detalle.comprobantePago != null ? detalle.comprobantePago.codcomprobante : 'Sin comprobante'}">1</td>
+                    <td th:text="${detalle.tipoItem}">MEDICAMENTO</td>
+                    <td th:text="${detalle.idReferencia}">1</td>
+                    <td th:text="${detalle.descripcionDetalle}">Detalle</td>
+                    <td th:text="${detalle.cantidad}">1</td>
+                    <td th:text="${detalle.precioUnitario}">0.00</td>
+                    <td th:text="${detalle.subtotal}">0.00</td>
+
+                    <td class="actions">
+                        <a th:href="@{/detalle-comprobantes/editar/{id}(id=${detalle.iddetalle})}"
+                           class="link-action">Editar</a>
+
+                        <form th:action="@{/detalle-comprobantes/eliminar/{id}(id=${detalle.iddetalle})}"
+                              method="post"
+                              class="inline-action"
+                              onsubmit="return confirm('¿Deseas eliminar este detalle? Si es medicamento, se devolverá el stock.');"><input type="hidden" name="_csrf" th:value="${csrfToken}">
+                            <button type="submit" class="link-danger-button">Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+
+                <tr th:if="${#lists.isEmpty(detalles)}">
+                    <td colspan="9" class="empty-row">No se encontraron detalles de comprobante.</td>
+                </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+</div>
 
 </body>
 </html>

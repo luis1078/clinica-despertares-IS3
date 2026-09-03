@@ -65,21 +65,21 @@ public class TratamientoController {
         return "tratamientos/formulario";
     }
 
-    @GetMapping("/finalizar/{idTratamiento}")
+    @PostMapping("/finalizar/{idTratamiento}")
     public String finalizar(@PathVariable Long idTratamiento, RedirectAttributes redirectAttributes) {
         tratamientoService.finalizarTratamiento(idTratamiento);
         redirectAttributes.addFlashAttribute("mensaje", "Tratamiento finalizado correctamente.");
         return "redirect:/tratamientos";
     }
 
-    @GetMapping("/suspender/{idTratamiento}")
+    @PostMapping("/suspender/{idTratamiento}")
     public String suspender(@PathVariable Long idTratamiento, RedirectAttributes redirectAttributes) {
         tratamientoService.suspenderTratamiento(idTratamiento);
         redirectAttributes.addFlashAttribute("mensaje", "Tratamiento suspendido correctamente.");
         return "redirect:/tratamientos";
     }
 
-    @GetMapping("/eliminar/{idTratamiento}")
+    @PostMapping("/eliminar/{idTratamiento}")
     public String eliminar(@PathVariable Long idTratamiento, RedirectAttributes redirectAttributes) {
         tratamientoService.eliminar(idTratamiento);
         redirectAttributes.addFlashAttribute("mensaje", "Tratamiento eliminado correctamente.");

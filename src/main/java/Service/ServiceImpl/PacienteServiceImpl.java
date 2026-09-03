@@ -48,6 +48,18 @@ public class PacienteServiceImpl implements IPacienteService {
     }
 
     @Override
+    public List<PacienteEntity> buscarPacientes(String texto) {
+        if (texto == null || texto.trim().isEmpty()) {
+            return pacienteRepository.findAll();
+        }
+        String busqueda = texto.trim();
+        return pacienteRepository
+                .findByDnipacienteContainingIgnoreCaseOrNombrePacienteContainingIgnoreCaseOrApellidoPacienteContainingIgnoreCaseOrCorreoElectronicoContainingIgnoreCaseOrTelefonoContainingIgnoreCase(
+                        busqueda, busqueda, busqueda, busqueda, busqueda
+                );
+    }
+
+    @Override
     public boolean existePorCorreoElectronico(String correoElectronico) {
         return pacienteRepository.existsByCorreoElectronico(correoElectronico);
     }

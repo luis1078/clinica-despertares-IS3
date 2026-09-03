@@ -23,8 +23,10 @@ public class ImagenDiagnosticaController {
     }
 
     @GetMapping
-    public String listar(Model model) {
-        model.addAttribute("imagenes", imagenDiagnosticaService.listarTodos());
+    public String listar(@RequestParam(value = "buscar", required = false) String buscar,
+                         Model model) {
+        model.addAttribute("imagenes", imagenDiagnosticaService.buscarImagenes(buscar));
+        model.addAttribute("buscar", buscar);
         return "imagenes/listar";
     }
 
@@ -58,7 +60,7 @@ public class ImagenDiagnosticaController {
         return "imagenes/formulario";
     }
 
-    @GetMapping("/eliminar/{codExamenMedico}")
+    @PostMapping("/eliminar/{codExamenMedico}")
     public String eliminar(@PathVariable Long codExamenMedico, RedirectAttributes redirectAttributes) {
         imagenDiagnosticaService.eliminar(codExamenMedico);
         redirectAttributes.addFlashAttribute("mensaje", "Imagen diagnóstica eliminada correctamente.");

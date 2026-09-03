@@ -2,24 +2,120 @@
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Comprobantes</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Comprobantes de Pago</title>
     <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
-
-<body class="app-body">
+<body>
 
 <div th:replace="~{fragments/header :: header}"></div>
 
-<main class="dashboard-body">
-
+<div class="layout">
     <div th:replace="~{fragments/sidebar :: sidebar}"></div>
 
-    <section class="content-card">
-        <h1>Gestión de Comprobantes de Pago</h1><div class="alert" th:if="${mensaje}" th:text="${mensaje}"></div><div class="actions"><a class="btn" th:href="@{/comprobantes/nuevo}">Nuevo comprobante</a><a class="btn secondary" th:href="@{/detalle-comprobantes}">Detalle de comprobante</a><form th:action="@{/comprobantes}" method="get" class="inline-form"><select name="estado"><option value="">Todos</option><option th:each="estado : ${estados}" th:value="${estado}" th:text="${estado}" th:selected="${estado == estadoSeleccionado}"></option></select><button class="btn secondary" type="submit">Filtrar</button></form></div><table><thead><tr><th>Código</th><th>Fecha emisión</th><th>Paciente</th><th>Tipo</th><th>Método</th><th>Subtotal</th><th>Total</th><th>Estado</th><th>Acciones</th></tr></thead><tbody><tr th:each="comprobante : ${comprobantes}"><td th:text="${comprobante.codcomprobante}"></td><td th:text="${comprobante.fechaEmision}"></td><td th:text="${comprobante.paciente != null ? comprobante.paciente.nombrePaciente + ' ' + comprobante.paciente.apellidoPaciente : '-'}"></td><td th:text="${comprobante.tipoComprobante}"></td><td th:text="${comprobante.metodoPago}"></td><td th:text="${comprobante.subtotal}"></td><td th:text="${comprobante.montoTotal}"></td><td th:text="${comprobante.estado}"></td><td><a class="btn small warning" th:href="@{/comprobantes/editar/{id}(id=${comprobante.codcomprobante})}">Editar</a> <a class="btn small success" th:href="@{/comprobantes/cancelar/{id}(id=${comprobante.codcomprobante})}">Cancelado</a> <a class="btn small secondary" th:href="@{/comprobantes/pendiente/{id}(id=${comprobante.codcomprobante})}">Pendiente</a> <a class="btn small danger" th:href="@{/comprobantes/eliminar/{id}(id=${comprobante.codcomprobante})}" onclick="return confirm('¿Eliminar comprobante?')">Eliminar</a></td></tr></tbody></table>
-    </section>
+    <main class="content">
+        <div class="page-header">
+            <div>
+                <h1>Comprobantes de Pago</h1>
+                <p>Control de pagos generados por citas, exámenes y medicamentos.</p>
+            </div>
 
-</main>
+            <a th:if="${session.rolUsuario == 'CAJERO'}"
+               th:href="@{/comprobantes/nuevo}"
+               class="btn btn-primary">Nuevo comprobante</a>
+        </div>
+
+        <div th:if="${mensaje}" class="alert alert-success" th:text="${mensaje}"></div>
+        <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
+
+        <form th:action="@{/comprobantes}" method="get" class="filter-card">
+            <div class="field">
+                <label>Estado</label>
+                <select name="estado">
+                    <option value="">Todos</option>
+                    <option th:each="estado : ${estados}"
+                            th:value="${estado}"
+                            th:text="${estado}"
+                            th:selected="${estado == estadoSeleccionado}">
+                    </option>
+                </select>
+            </div>
+
+            <div class="filter-actions">
+                <button type="submit" class="btn btn-primary">Filtrar</button>
+                <a th:href="@{/comprobantes}" class="btn btn-secondary">Limpiar</a>
+            </div>
+        </form>
+
+        <section class="table-card">
+            <table>
+                <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Fecha</th>
+                    <th>Paciente</th>
+                    <th>Tipo</th>
+                    <th>Método</th>
+                    <th>Estado</th>
+                    <th>Subtotal</th>
+                    <th>Total</th>
+                    <th>Acciones</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr th:each="comprobante : ${comprobantes}">
+                    <td th:text="${comprobante.codcomprobante}">1</td>
+                    <td th:text="${comprobante.fechaEmision}">2026-01-01</td>
+                    <td th:text="${comprobante.paciente != null ? comprobante.paciente.nombrePaciente + ' ' + comprobante.paciente.apellidoPaciente : 'Sin paciente'}">
+                        Paciente
+                    </td>
+                    <td th:text="${comprobante.tipoComprobante}">BOLETA</td>
+                    <td th:text="${comprobante.metodoPago}">EFECTIVO</td>
+                    <td th:text="${comprobante.estado}">FALTA_PAGAR</td>
+                    <td th:text="${comprobante.subtotal}">0.00</td>
+                    <td th:text="${comprobante.montoTotal}">0.00</td>
+
+                    <td class="actions">
+                        <a th:if="${session.rolUsuario == 'CAJERO'}"
+                           th:href="@{/comprobantes/editar/{id}(id=${comprobante.codcomprobante})}"
+                           class="link-action">Editar</a>
+
+                        <a th:if="${session.rolUsuario == 'CAJERO'}"
+                           th:href="@{/detalle-comprobantes/nuevo(codComprobante=${comprobante.codcomprobante})}"
+                           class="link-action">Agregar detalle</a>
+
+                        <form th:if="${session.rolUsuario == 'CAJERO'}"
+                              th:action="@{/comprobantes/pendiente/{id}(id=${comprobante.codcomprobante})}"
+                              method="post"
+                              class="inline-action"><input type="hidden" name="_csrf" th:value="${csrfToken}">
+                            <button type="submit" class="link-button">Pendiente</button>
+                        </form>
+
+                        <form th:if="${session.rolUsuario == 'CAJERO'}"
+                              th:action="@{/comprobantes/cancelar/{id}(id=${comprobante.codcomprobante})}"
+                              method="post"
+                              class="inline-action"><input type="hidden" name="_csrf" th:value="${csrfToken}">
+                            <button type="submit" class="link-button">Cancelar</button>
+                        </form>
+
+                        <form th:if="${session.rolUsuario == 'CAJERO'}"
+                              th:action="@{/comprobantes/eliminar/{id}(id=${comprobante.codcomprobante})}"
+                              method="post"
+                              class="inline-action"
+                              onsubmit="return confirm('¿Deseas eliminar este comprobante?');"><input type="hidden" name="_csrf" th:value="${csrfToken}">
+                            <button type="submit" class="link-danger-button">Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+
+                <tr th:if="${#lists.isEmpty(comprobantes)}">
+                    <td colspan="9" class="empty-row">No se encontraron comprobantes.</td>
+                </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+</div>
 
 </body>
 </html>

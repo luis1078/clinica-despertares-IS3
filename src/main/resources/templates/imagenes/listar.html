@@ -16,7 +16,79 @@
     <div th:replace="~{fragments/sidebar :: sidebar}"></div>
 
     <section class="content-card">
-        <h1>Gestión de Imágenes Diagnósticas</h1><div class="alert" th:if="${mensaje}" th:text="${mensaje}"></div><div class="actions"><a class="btn" th:href="@{/imagenes/nuevo}">Nueva imagen diagnóstica</a></div><table><thead><tr><th>Código</th><th>Imagen</th><th>Región</th><th>Fecha examen</th><th>Fecha resultado</th><th>Estado</th><th>Contraste</th><th>Informe</th><th>Acciones</th></tr></thead><tbody><tr th:each="imagen : ${imagenes}"><td th:text="${imagen.codExamenMedico}"></td><td th:text="${imagen.nombreImagen}"></td><td th:text="${imagen.regionCuerpo}"></td><td th:text="${imagen.fechaExamen}"></td><td th:text="${imagen.fechaResultado}"></td><td th:text="${imagen.estadoExamenMedico}"></td><td th:text="${imagen.usaContraste ? 'Sí' : 'No'}"></td><td th:text="${imagen.informeMedico}"></td><td><a class="btn small warning" th:href="@{/imagenes/editar/{id}(id=${imagen.codExamenMedico})}">Editar resultado</a> <a class="btn small danger" th:href="@{/imagenes/eliminar/{id}(id=${imagen.codExamenMedico})}" onclick="return confirm('¿Eliminar imagen?')">Eliminar</a></td></tr></tbody></table>
+        <div class="actions">
+            <h1>Gestión de Imágenes Diagnósticas</h1>
+
+            <a class="btn"
+               th:if="${session.rolUsuario == 'RADIOLOGO'}"
+               th:href="@{/imagenes/nuevo}">
+                Nueva imagen diagnóstica
+            </a>
+        </div>
+
+        <div class="alert success" th:if="${mensaje}" th:text="${mensaje}"></div>
+        <div class="alert error" th:if="${error}" th:text="${error}"></div>
+
+        <form th:action="@{/imagenes}" method="get" class="inline-form actions">
+            <input type="text"
+                   name="buscar"
+                   th:value="${buscar}"
+                   placeholder="Buscar por paciente, DNI, imagen, región o informe">
+
+            <button class="btn" type="submit">Buscar</button>
+            <a class="btn secondary" th:href="@{/imagenes}">Limpiar</a>
+        </form>
+
+        <table>
+            <thead>
+            <tr>
+                <th>Código</th>
+                <th>Paciente</th>
+                <th>Imagen</th>
+                <th>Región</th>
+                <th>Fecha examen</th>
+                <th>Fecha resultado</th>
+                <th>Estado</th>
+                <th>Contraste</th>
+                <th>Informe</th>
+                <th th:if="${session.rolUsuario == 'RADIOLOGO'}">Acciones</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr th:each="imagen : ${imagenes}">
+                <td th:text="${imagen.codExamenMedico}">1</td>
+                <td th:text="${imagen.diagnostico != null and imagen.diagnostico.historiaMedica != null and imagen.diagnostico.historiaMedica.paciente != null ? imagen.diagnostico.historiaMedica.paciente.nombrePaciente + ' ' + imagen.diagnostico.historiaMedica.paciente.apellidoPaciente + ' - ' + imagen.diagnostico.historiaMedica.paciente.dnipaciente : 'Sin paciente'}">
+                    Paciente
+                </td>
+                <td th:text="${imagen.nombreImagen}">Imagen</td>
+                <td th:text="${imagen.regionCuerpo}">Región</td>
+                <td th:text="${imagen.fechaExamen}">2026-01-01</td>
+                <td th:text="${imagen.fechaResultado}">2026-01-02</td>
+                <td th:text="${imagen.estadoExamenMedico}">PENDIENTE</td>
+                <td th:text="${imagen.usaContraste ? 'Sí' : 'No'}">No</td>
+                <td th:text="${imagen.informeMedico}">Informe</td>
+                <td th:if="${session.rolUsuario == 'RADIOLOGO'}">
+                    <a class="btn small warning"
+                       th:href="@{/imagenes/editar/{id}(id=${imagen.codExamenMedico})}">
+                        Editar resultado
+                    </a>
+                    <form th:action="@{/imagenes/eliminar/{id}(id=${imagen.codExamenMedico})}"
+                          method="post"
+                          class="inline-action"
+                          onsubmit="return confirm('¿Eliminar imagen?');"><input type="hidden" name="_csrf" th:value="${csrfToken}">
+                        <button type="submit" class="btn small danger">Eliminar</button>
+                    </form>
+                </td>
+            </tr>
+
+            <tr th:if="${#lists.isEmpty(imagenes)}">
+                <td th:colspan="${session.rolUsuario == 'RADIOLOGO' ? 10 : 9}" class="empty-row">
+                    No se encontraron imágenes diagnósticas.
+                </td>
+            </tr>
+            </tbody>
+        </table>
     </section>
 
 </main>

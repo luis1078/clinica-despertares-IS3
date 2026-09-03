@@ -22,21 +22,20 @@ public class CitaMedicaController {
     private final IPacienteService pacienteService;
     private final IMedicoService medicoService;
 
-    public CitaMedicaController(ICitaMedicaService citaMedicaService,
-                                IPacienteService pacienteService,
-                                IMedicoService medicoService) {
+    public CitaMedicaController(ICitaMedicaService citaMedicaService, IPacienteService pacienteService, IMedicoService medicoService) {
         this.citaMedicaService = citaMedicaService;
         this.pacienteService = pacienteService;
         this.medicoService = medicoService;
     }
 
     @GetMapping
-    public String listar(@RequestParam(value = "estado", required = false) EstadoCitaEnum estado, Model model) {
-        model.addAttribute("citas", estado == null
-                ? citaMedicaService.listarTodos()
-                : citaMedicaService.listarPorEstado(estado));
+    public String listar(@RequestParam(value = "estado", required = false) EstadoCitaEnum estado,
+                         @RequestParam(value = "buscar", required = false) String buscar,
+                         Model model) {
+        model.addAttribute("citas", citaMedicaService.buscarCitas(buscar, estado));
         model.addAttribute("estados", EstadoCitaEnum.values());
         model.addAttribute("estadoSeleccionado", estado);
+        model.addAttribute("buscar", buscar);
         return "citas/listar";
     }
 
@@ -51,24 +50,33 @@ public class CitaMedicaController {
     public String guardar(@ModelAttribute("cita") CitaMedicaEntity cita,
                           @RequestParam("dniPaciente") String dniPaciente,
                           @RequestParam("idMedico") Long idMedico,
-                          RedirectAttributes redirectAttributes) {
-        if (cita.getCodCitaMedica() == null) {
-            citaMedicaService.registrarCitaMedica(dniPaciente, idMedico, cita);
-        } else {
-            CitaMedicaEntity citaExistente = citaMedicaService.buscarPorId(cita.getCodCitaMedica())
-                    .orElseThrow(() -> new IllegalArgumentException("No existe la cita médica: " + cita.getCodCitaMedica()));
-            citaExistente.setFechaCita(cita.getFechaCita());
-            citaExistente.setHoraCita(cita.getHoraCita());
-            citaExistente.setMotivoConsulta(cita.getMotivoConsulta());
-            citaExistente.setEstadoCita(cita.getEstadoCita());
-            citaExistente.setPaciente(pacienteService.buscarPorId(dniPaciente)
-                    .orElseThrow(() -> new IllegalArgumentException("No existe el paciente: " + dniPaciente)));
-            citaExistente.setMedico(medicoService.buscarPorId(idMedico)
-                    .orElseThrow(() -> new IllegalArgumentException("No existe el médico: " + idMedico)));
-            citaMedicaService.guardar(citaExistente);
+                          RedirectAttributes redirectAttributes,
+                          Model model) {
+        try {
+            if (cita.getCodCitaMedica() == null) {
+                citaMedicaService.registrarCitaMedica(dniPaciente, idMedico, cita);
+                redirectAttributes.addFlashAttribute("mensaje", "Cita médica registrada correctamente. Se generó el comprobante de pago automáticamente.");
+            } else {
+                CitaMedicaEntity citaExistente = citaMedicaService.buscarPorId(cita.getCodCitaMedica())
+                        .orElseThrow(() -> new IllegalArgumentException("No existe la cita médica: " + cita.getCodCitaMedica()));
+                citaExistente.setFechaCita(cita.getFechaCita());
+                citaExistente.setHoraCita(cita.getHoraCita());
+                citaExistente.setMotivoConsulta(cita.getMotivoConsulta());
+                citaExistente.setEstadoCita(cita.getEstadoCita());
+                citaExistente.setPaciente(pacienteService.buscarPorId(dniPaciente)
+                        .orElseThrow(() -> new IllegalArgumentException("No existe el paciente: " + dniPaciente)));
+                citaExistente.setMedico(medicoService.buscarPorId(idMedico)
+                        .orElseThrow(() -> new IllegalArgumentException("No existe el médico: " + idMedico)));
+                citaMedicaService.guardar(citaExistente);
+                redirectAttributes.addFlashAttribute("mensaje", "Cita médica actualizada correctamente.");
+            }
+            return "redirect:/citas";
+        } catch (RuntimeException ex) {
+            model.addAttribute("error", ex.getMessage());
+            model.addAttribute("cita", cita);
+            cargarCombos(model);
+            return "citas/formulario";
         }
-        redirectAttributes.addFlashAttribute("mensaje", "Cita médica guardada correctamente.");
-        return "redirect:/citas";
     }
 
     @GetMapping("/editar/{codCitaMedica}")
@@ -80,17 +88,25 @@ public class CitaMedicaController {
         return "citas/formulario";
     }
 
-    @GetMapping("/cancelar/{codCitaMedica}")
+    @PostMapping("/cancelar/{codCitaMedica}")
     public String cancelar(@PathVariable Long codCitaMedica, RedirectAttributes redirectAttributes) {
-        citaMedicaService.cancelarCitaMedica(codCitaMedica);
-        redirectAttributes.addFlashAttribute("mensaje", "Cita médica cancelada correctamente.");
+        try {
+            citaMedicaService.cancelarCitaMedica(codCitaMedica);
+            redirectAttributes.addFlashAttribute("mensaje", "Cita médica cancelada correctamente.");
+        } catch (RuntimeException ex) {
+            redirectAttributes.addFlashAttribute("error", ex.getMessage());
+        }
         return "redirect:/citas";
     }
 
-    @GetMapping("/finalizar/{codCitaMedica}")
+    @PostMapping("/finalizar/{codCitaMedica}")
     public String finalizar(@PathVariable Long codCitaMedica, RedirectAttributes redirectAttributes) {
-        citaMedicaService.finalizarCitaMedica(codCitaMedica);
-        redirectAttributes.addFlashAttribute("mensaje", "Cita médica finalizada correctamente.");
+        try {
+            citaMedicaService.finalizarCitaMedica(codCitaMedica);
+            redirectAttributes.addFlashAttribute("mensaje", "Cita médica finalizada correctamente.");
+        } catch (RuntimeException ex) {
+            redirectAttributes.addFlashAttribute("error", ex.getMessage());
+        }
         return "redirect:/citas";
     }
 
@@ -104,7 +120,7 @@ public class CitaMedicaController {
         return "redirect:/citas";
     }
 
-    @GetMapping("/eliminar/{codCitaMedica}")
+    @PostMapping("/eliminar/{codCitaMedica}")
     public String eliminar(@PathVariable Long codCitaMedica, RedirectAttributes redirectAttributes) {
         citaMedicaService.eliminar(codCitaMedica);
         redirectAttributes.addFlashAttribute("mensaje", "Cita médica eliminada correctamente.");

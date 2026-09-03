@@ -21,6 +21,8 @@ public interface IImagenDiagnosticaService {
 
     List<ImagenDiagnosticaEntity> buscarPorNombreImagen(String nombreImagen);
 
+    List<ImagenDiagnosticaEntity> buscarImagenes(String texto);
+
     ImagenDiagnosticaEntity registrarImagenDiagnostica(Long idDiagnostico, ImagenDiagnosticaEntity imagenDiagnostica);
 
     ImagenDiagnosticaEntity registrarResultadoImagenDiagnostica(Long codExamenMedico, ImagenDiagnosticaEntity datosResultado);

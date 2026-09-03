@@ -3,23 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <title>Historias Médicas</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
+<body>
 
-<body class="app-body">
+<div class="dashboard-shell">
 
-<div th:replace="~{fragments/header :: header}"></div>
+    <div th:replace="~{fragments/header :: header}"></div>
 
-<main class="dashboard-body">
+    <div class="dashboard-body">
 
-    <div th:replace="~{fragments/sidebar :: sidebar}"></div>
+        <div th:replace="~{fragments/sidebar :: sidebar}"></div>
 
-    <section class="content-card">
-        <h1>Gestión de Historias Médicas</h1><div class="alert" th:if="${mensaje}" th:text="${mensaje}"></div><div class="actions"><a class="btn" th:href="@{/historias/nuevo}">Nueva historia médica</a></div><table><thead><tr><th>Código</th><th>Fecha creación</th><th>Paciente</th><th>Antecedentes personales</th><th>Antecedentes familiares</th><th>Acciones</th></tr></thead><tbody><tr th:each="historia : ${historias}"><td th:text="${historia.codHistoriaMedica}"></td><td th:text="${historia.fechaCreacion}"></td><td th:text="${historia.paciente != null ? historia.paciente.nombrePaciente + ' ' + historia.paciente.apellidoPaciente : '-'}"></td><td th:text="${historia.antecedentesPersonales}"></td><td th:text="${historia.antecedentesFamiliares}"></td><td><a class="btn small warning" th:href="@{/historias/editar/{id}(id=${historia.codHistoriaMedica})}">Editar</a> <a class="btn small danger" th:href="@{/historias/eliminar/{id}(id=${historia.codHistoriaMedica})}" onclick="return confirm('¿Eliminar historia médica?')">Eliminar</a></td></tr></tbody></table>
-    </section>
+        <main class="content-card">
 
-</main>
+            <div class="actions">
+                <h1>Historias Médicas</h1>
+
+                <a th:if="${session.rolUsuario == 'MEDICO' or session.rolUsuario == 'ENFERMERA'}"
+                   th:href="@{/historias/nuevo}"
+                   class="btn">
+                    Nueva historia
+                </a>
+            </div>
+
+            <div th:if="${mensaje}" class="alert success" th:text="${mensaje}"></div>
+            <div th:if="${error}" class="alert error" th:text="${error}"></div>
+
+            <form th:action="@{/historias}" method="get" class="inline-form">
+                <input type="text" name="q" th:value="${busqueda}" placeholder="Buscar por paciente o DNI">
+                <button type="submit" class="btn secondary">Buscar</button>
+                <a th:href="@{/historias}" class="btn secondary">Limpiar</a>
+            </form>
+
+            <table>
+                <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Fecha</th>
+                    <th>Paciente</th>
+                    <th>Antecedentes personales</th>
+                    <th>Antecedentes familiares</th>
+                    <th>Intervenciones</th>
+                    <th th:if="${session.rolUsuario == 'MEDICO'}">Acciones</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr th:each="historia : ${historias}">
+                    <td th:text="${historia.codHistoriaMedica}">1</td>
+                    <td th:text="${historia.fechaCreacion}">2026-01-01</td>
+                    <td th:text="${historia.paciente != null ? historia.paciente.nombrePaciente + ' ' + historia.paciente.apellidoPaciente : 'Sin paciente'}">
+                        Paciente
+                    </td>
+                    <td th:text="${historia.antecedentesPersonales}">Antecedentes</td>
+                    <td th:text="${historia.antecedentesFamiliares}">Antecedentes</td>
+                    <td th:text="${historia.intervencionesQuirurgicas}">Intervenciones</td>
+
+                    <td th:if="${session.rolUsuario == 'MEDICO'}">
+                        <a th:href="@{/historias/editar/{id}(id=${historia.codHistoriaMedica})}" class="btn small">
+                            Editar
+                        </a>
+                    </td>
+                </tr>
+
+                <tr th:if="${#lists.isEmpty(historias)}">
+                    <td th:attr="colspan=${session.rolUsuario == 'MEDICO' ? 7 : 6}" class="empty-row">No se encontraron historias médicas.</td>
+                </tr>
+                </tbody>
+            </table>
+
+        </main>
+
+    </div>
+</div>
 
 </body>
 </html>

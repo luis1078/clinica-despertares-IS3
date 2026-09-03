@@ -19,11 +19,9 @@ public class PacienteController {
     }
 
     @GetMapping
-    public String listar(@RequestParam(value = "nombre", required = false) String nombre, Model model) {
-        model.addAttribute("pacientes", nombre == null || nombre.isBlank()
-                ? pacienteService.listarTodos()
-                : pacienteService.buscarPorNombre(nombre));
-        model.addAttribute("nombre", nombre);
+    public String listar(@RequestParam(value = "buscar", required = false) String buscar, Model model) {
+        model.addAttribute("pacientes", pacienteService.buscarPacientes(buscar));
+        model.addAttribute("buscar", buscar);
         return "pacientes/listar";
     }
 
@@ -50,7 +48,7 @@ public class PacienteController {
         return "pacientes/formulario";
     }
 
-    @GetMapping("/eliminar/{dniPaciente}")
+    @PostMapping("/eliminar/{dniPaciente}")
     public String eliminar(@PathVariable String dniPaciente, RedirectAttributes redirectAttributes) {
         pacienteService.eliminar(dniPaciente);
         redirectAttributes.addFlashAttribute("mensaje", "Paciente eliminado correctamente.");

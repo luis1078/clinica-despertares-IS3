@@ -19,6 +19,8 @@ public interface IPacienteService {
 
     List<PacienteEntity> buscarPorNombre(String nombrePaciente);
 
+    List<PacienteEntity> buscarPacientes(String texto);
+
     boolean existePorCorreoElectronico(String correoElectronico);
 
     boolean existePorTelefono(String telefono);

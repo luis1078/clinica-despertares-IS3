@@ -62,6 +62,15 @@ public class ImagenDiagnosticaServiceImpl implements IImagenDiagnosticaService {
     }
 
     @Override
+    public List<ImagenDiagnosticaEntity> buscarImagenes(String texto) {
+        if (texto == null || texto.trim().isEmpty()) {
+            return imagenDiagnosticaRepository.findAll();
+        }
+
+        return imagenDiagnosticaRepository.buscarPorTexto(texto.trim());
+    }
+
+    @Override
     public ImagenDiagnosticaEntity registrarImagenDiagnostica(Long idDiagnostico,
                                                              ImagenDiagnosticaEntity imagenDiagnostica) {
         DiagnosticoEntity diagnostico = diagnosticoRepository.findById(idDiagnostico)

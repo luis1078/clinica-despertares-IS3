@@ -9,7 +9,8 @@ import java.util.Optional;
 
 @Repository
 public interface IProveedorRepository extends JpaRepository<ProveedorEntity, String> {
-    Optional<ProveedorEntity> findByNombreProveedor (String nombreProveedor);
+
+    Optional<ProveedorEntity> findByNombreProveedor(String nombreProveedor);
 
     List<ProveedorEntity> findByNombreProveedorContainingIgnoreCase(String nombreProveedor);
 

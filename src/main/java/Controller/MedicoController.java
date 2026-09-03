@@ -47,7 +47,7 @@ public class MedicoController {
         return "medicos/formulario";
     }
 
-    @GetMapping("/eliminar/{idMedico}")
+    @PostMapping("/eliminar/{idMedico}")
     public String eliminar(@PathVariable Long idMedico, RedirectAttributes redirectAttributes) {
         medicoService.eliminar(idMedico);
         redirectAttributes.addFlashAttribute("mensaje", "Médico eliminado correctamente.");

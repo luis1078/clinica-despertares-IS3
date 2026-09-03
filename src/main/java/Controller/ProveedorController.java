@@ -47,7 +47,7 @@ public class ProveedorController {
         return "proveedores/formulario";
     }
 
-    @GetMapping("/eliminar/{rucProveedor}")
+    @PostMapping("/eliminar/{rucProveedor}")
     public String eliminar(@PathVariable String rucProveedor, RedirectAttributes redirectAttributes) {
         proveedorService.eliminar(rucProveedor);
         redirectAttributes.addFlashAttribute("mensaje", "Proveedor eliminado correctamente.");

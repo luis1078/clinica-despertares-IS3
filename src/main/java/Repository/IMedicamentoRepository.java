@@ -10,9 +10,17 @@ import java.util.Optional;
 
 @Repository
 public interface IMedicamentoRepository extends JpaRepository<MedicamentoEntity, Long> {
+
     Optional<MedicamentoEntity> findByNombreMedicamento(String nombreMedicamento);
 
     List<MedicamentoEntity> findByNombreMedicamentoContainingIgnoreCase(String nombreMedicamento);
+
+    List<MedicamentoEntity>
+    findByNombreMedicamentoContainingIgnoreCaseOrDescripcionMedicamentoContainingIgnoreCaseOrTipoMedicamentoContainingIgnoreCase(
+            String nombreMedicamento,
+            String descripcionMedicamento,
+            String tipoMedicamento
+    );
 
     List<MedicamentoEntity> findByStockInventarioLessThan(int stockInventario);
 
