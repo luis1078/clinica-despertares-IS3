@@ -73,6 +73,10 @@ public class AuthInterceptor implements HandlerInterceptor {
         // piden HttpSession como parámetro (p. ej. GET /registro).
         HttpSession session = request.getSession(true);
         modelAndView.addObject("csrfToken", CsrfTokenHelper.obtenerOCrearToken(session));
+
+        // #request ya no está disponible por defecto en las plantillas (Thymeleaf 3.1+),
+        // así que se expone la URI actual aquí para que el sidebar marque el ítem activo.
+        modelAndView.addObject("currentUri", request.getRequestURI());
     }
 
     private boolean esMetodoMutante(HttpServletRequest request) {
