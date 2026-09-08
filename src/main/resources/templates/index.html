@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8"><script>try{var t=localStorage.getItem('tema');if(t){document.documentElement.setAttribute('data-theme',t);}}catch(e){}</script>
     <title>Panel - Clínica Despertares</title>
     <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
@@ -25,12 +25,64 @@
                 </p>
             </section>
 
+            <section class="stats-grid">
+
+                <div class="stat-card" th:if="${session.rolUsuario == 'CAJERO' or session.rolUsuario == 'ENFERMERA' or session.rolUsuario == 'MEDICO'}">
+                    <div class="stat-icon" th:insert="~{fragments/icons :: calendario}"></div>
+                    <div>
+                        <p class="stat-value" th:text="${citasHoy}">0</p>
+                        <p class="stat-label">Citas de hoy</p>
+                    </div>
+                </div>
+
+                <div class="stat-card" th:if="${session.rolUsuario == 'CAJERO' or session.rolUsuario == 'ENFERMERA' or session.rolUsuario == 'MEDICO'}">
+                    <div class="stat-icon" th:insert="~{fragments/icons :: reloj}"></div>
+                    <div>
+                        <p class="stat-value" th:text="${citasPendientes}">0</p>
+                        <p class="stat-label">Citas pendientes</p>
+                    </div>
+                </div>
+
+                <div class="stat-card" th:if="${session.rolUsuario == 'CAJERO' or session.rolUsuario == 'ENFERMERA' or session.rolUsuario == 'MEDICO'}">
+                    <div class="stat-icon" th:insert="~{fragments/icons :: usuario}"></div>
+                    <div>
+                        <p class="stat-value" th:text="${pacientesTotal}">0</p>
+                        <p class="stat-label">Pacientes registrados</p>
+                    </div>
+                </div>
+
+                <div class="stat-card" th:if="${session.rolUsuario == 'CAJERO'}">
+                    <div class="stat-icon" th:insert="~{fragments/icons :: billete}"></div>
+                    <div>
+                        <p class="stat-value" th:text="${'S/ ' + #numbers.formatDecimal(cobradoMes, 1, 'COMMA', 2, 'POINT')}">S/ 0.00</p>
+                        <p class="stat-label">Cobrado este mes</p>
+                    </div>
+                </div>
+
+                <div class="stat-card" th:if="${session.rolUsuario == 'CAJERO'}">
+                    <div class="stat-icon alert" th:insert="~{fragments/icons :: recibo}"></div>
+                    <div>
+                        <p class="stat-value" th:text="${comprobantesPendientes}">0</p>
+                        <p class="stat-label">Comprobantes por cobrar</p>
+                    </div>
+                </div>
+
+                <div class="stat-card" th:if="${session.rolUsuario == 'FARMACEUTICO'}">
+                    <div class="stat-icon alert" th:insert="~{fragments/icons :: pastilla}"></div>
+                    <div>
+                        <p class="stat-value" th:text="${medicamentosStockBajo}">0</p>
+                        <p class="stat-label">Medicamentos con stock bajo</p>
+                    </div>
+                </div>
+
+            </section>
+
             <section class="module-grid">
 
                 <a th:if="${session.rolUsuario == 'CAJERO' or session.rolUsuario == 'ENFERMERA' or session.rolUsuario == 'MEDICO'}"
                    th:href="@{/pacientes}"
                    class="module-card">
-                    <div class="module-icon">👤</div>
+                    <div class="module-icon" th:insert="~{fragments/icons :: usuario}"></div>
                     <h3>Pacientes</h3>
                     <p>Registro y consulta de información de pacientes.</p>
                 </a>
@@ -38,7 +90,7 @@
                 <a th:if="${session.rolUsuario == 'ENFERMERA' or session.rolUsuario == 'MEDICO' or session.rolUsuario == 'CAJERO'}"
                    th:href="@{/citas}"
                    class="module-card">
-                    <div class="module-icon">📅</div>
+                    <div class="module-icon" th:insert="~{fragments/icons :: calendario}"></div>
                     <h3>Citas médicas</h3>
                     <p>Gestión de citas, reprogramaciones y estados.</p>
                 </a>
@@ -46,7 +98,7 @@
                 <a th:if="${session.rolUsuario == 'ENFERMERA' or session.rolUsuario == 'MEDICO'}"
                    th:href="@{/historias}"
                    class="module-card">
-                    <div class="module-icon">📋</div>
+                    <div class="module-icon" th:insert="~{fragments/icons :: portapapeles}"></div>
                     <h3>Historias médicas</h3>
                     <p>Consulta y actualización clínica según permisos.</p>
                 </a>
@@ -54,7 +106,7 @@
                 <a th:if="${session.rolUsuario == 'CAJERO'}"
                    th:href="@{/comprobantes}"
                    class="module-card">
-                    <div class="module-icon">💳</div>
+                    <div class="module-icon" th:insert="~{fragments/icons :: tarjeta}"></div>
                     <h3>Comprobantes</h3>
                     <p>Control de pagos por citas, exámenes y medicamentos.</p>
                 </a>
@@ -62,7 +114,7 @@
                 <a th:if="${session.rolUsuario == 'CAJERO'}"
                    th:href="@{/detalle-comprobantes}"
                    class="module-card">
-                    <div class="module-icon">🧾</div>
+                    <div class="module-icon" th:insert="~{fragments/icons :: recibo}"></div>
                     <h3>Detalle de pagos</h3>
                     <p>Registro de ítems que componen cada comprobante.</p>
                 </a>
@@ -70,7 +122,7 @@
                 <a th:if="${session.rolUsuario == 'FARMACEUTICO'}"
                    th:href="@{/medicamentos}"
                    class="module-card">
-                    <div class="module-icon">💊</div>
+                    <div class="module-icon" th:insert="~{fragments/icons :: pastilla}"></div>
                     <h3>Medicamentos</h3>
                     <p>Búsqueda, stock e inventario de medicamentos.</p>
                 </a>
@@ -78,7 +130,7 @@
                 <a th:if="${session.rolUsuario == 'MEDICO' or session.rolUsuario == 'BIOLOGO' or session.rolUsuario == 'RADIOLOGO'}"
                    th:href="@{/examenes}"
                    class="module-card">
-                    <div class="module-icon">🧪</div>
+                    <div class="module-icon" th:insert="~{fragments/icons :: frasco}"></div>
                     <h3>Exámenes médicos</h3>
                     <p>Solicitudes y seguimiento de exámenes clínicos.</p>
                 </a>
@@ -86,7 +138,7 @@
                 <a th:if="${session.rolUsuario == 'BIOLOGO' or session.rolUsuario == 'MEDICO'}"
                    th:href="@{/laboratorio}"
                    class="module-card">
-                    <div class="module-icon">🔬</div>
+                    <div class="module-icon" th:insert="~{fragments/icons :: microscopio}"></div>
                     <h3>Laboratorio</h3>
                     <p>Gestión de exámenes y resultados de laboratorio.</p>
                 </a>
@@ -94,7 +146,7 @@
                 <a th:if="${session.rolUsuario == 'RADIOLOGO' or session.rolUsuario == 'MEDICO'}"
                    th:href="@{/imagenes}"
                    class="module-card">
-                    <div class="module-icon">🖼️</div>
+                    <div class="module-icon" th:insert="~{fragments/icons :: imagen}"></div>
                     <h3>Imágenes diagnósticas</h3>
                     <p>Registro y consulta de imágenes diagnósticas.</p>
                 </a>
@@ -102,7 +154,7 @@
                 <a th:if="${session.rolUsuario == 'MEDICO'}"
                    th:href="@{/usuarios}"
                    class="module-card">
-                    <div class="module-icon">👥</div>
+                    <div class="module-icon" th:insert="~{fragments/icons :: grupo}"></div>
                     <h3>Usuarios</h3>
                     <p>Modificación y administración de usuarios.</p>
                 </a>

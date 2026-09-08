@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8"><script>try{var t=localStorage.getItem('tema');if(t){document.documentElement.setAttribute('data-theme',t);}}catch(e){}</script>
     <title>Registro - Clínica Despertares</title>
     <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
@@ -11,7 +11,7 @@
     <div class="login-card register-card">
 
         <div class="login-logo">
-            <div class="login-logo-icon">✚</div>
+            <div class="login-logo-icon" th:insert="~{fragments/icons :: cruz}"></div>
             <h1>Crear cuenta</h1>
             <span>Clínica Despertares</span>
         </div>

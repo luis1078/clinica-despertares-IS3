@@ -6,7 +6,7 @@
     <header class="app-header">
 
         <a th:href="@{/}" class="header-logo">
-            <span class="header-logo-icon">✚</span>
+            <span class="header-logo-icon" th:insert="~{fragments/icons :: cruz}"></span>
             <span>Clínica Despertares</span>
         </a>
 
@@ -14,13 +14,13 @@
 
             <div class="user-mini-card" th:if="${session.usuarioLogueado != null}">
                 <div class="user-role-icon">
-                    <span th:if="${session.rolUsuario == 'MEDICO'}">🩺</span>
-                    <span th:if="${session.rolUsuario == 'CAJERO'}">💳</span>
-                    <span th:if="${session.rolUsuario == 'ENFERMERA'}">💉</span>
-                    <span th:if="${session.rolUsuario == 'FARMACEUTICO'}">💊</span>
-                    <span th:if="${session.rolUsuario == 'BIOLOGO'}">🧪</span>
-                    <span th:if="${session.rolUsuario == 'RADIOLOGO'}">🖼️</span>
-                    <span th:if="${session.rolUsuario == null}">👤</span>
+                    <span th:if="${session.rolUsuario == 'MEDICO'}" th:insert="~{fragments/icons :: estetoscopio}"></span>
+                    <span th:if="${session.rolUsuario == 'CAJERO'}" th:insert="~{fragments/icons :: tarjeta}"></span>
+                    <span th:if="${session.rolUsuario == 'ENFERMERA'}" th:insert="~{fragments/icons :: jeringa}"></span>
+                    <span th:if="${session.rolUsuario == 'FARMACEUTICO'}" th:insert="~{fragments/icons :: pastilla}"></span>
+                    <span th:if="${session.rolUsuario == 'BIOLOGO'}" th:insert="~{fragments/icons :: frasco}"></span>
+                    <span th:if="${session.rolUsuario == 'RADIOLOGO'}" th:insert="~{fragments/icons :: imagen}"></span>
+                    <span th:if="${session.rolUsuario == null}" th:insert="~{fragments/icons :: usuario}"></span>
                 </div>
 
                 <div class="user-mini-data">
@@ -29,14 +29,55 @@
                 </div>
             </div>
 
+            <button type="button" id="theme-toggle" class="theme-toggle" aria-label="Cambiar tema" title="Cambiar tema">
+                <span class="icon-sol" th:insert="~{fragments/icons :: sol}"></span>
+                <span class="icon-luna" th:insert="~{fragments/icons :: luna}"></span>
+            </button>
+
             <a th:if="${session.usuarioLogueado != null}"
                th:href="@{/logout}"
                class="btn-logout">
+                <span th:insert="~{fragments/icons :: salir}"></span>
                 Salir
             </a>
 
         </div>
     </header>
+
+    <script>
+    (function () {
+        var boton = document.getElementById('theme-toggle');
+        if (!boton) { return; }
+
+        var iconoSol = boton.querySelector('.icon-sol');
+        var iconoLuna = boton.querySelector('.icon-luna');
+
+        function temaActual() {
+            var manual = document.documentElement.getAttribute('data-theme');
+            if (manual) { return manual; }
+            return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+
+        function actualizarIcono() {
+            var oscuro = temaActual() === 'dark';
+            iconoSol.hidden = !oscuro;
+            iconoLuna.hidden = oscuro;
+        }
+
+        actualizarIcono();
+
+        boton.addEventListener('click', function () {
+            var nuevoTema = temaActual() === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', nuevoTema);
+            try {
+                localStorage.setItem('tema', nuevoTema);
+            } catch (e) {
+                // localStorage puede no estar disponible (modo privado, etc.); no es crítico.
+            }
+            actualizarIcono();
+        });
+    })();
+    </script>
 </div>
 
 </body>

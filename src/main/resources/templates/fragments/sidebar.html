@@ -2,98 +2,98 @@
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 <body>
 
-<aside th:fragment="sidebar" class="app-sidebar">
+<aside th:fragment="sidebar" class="app-sidebar" th:with="uri=${currentUri}">
 
     <nav class="sidebar-nav">
 
-        <a class="sidebar-item"
+        <a class="sidebar-item" th:classappend="${uri != null and uri.startsWith('/pacientes')} ? 'active' : ''"
            th:if="${session.rolUsuario == 'CAJERO' or session.rolUsuario == 'ENFERMERA' or session.rolUsuario == 'MEDICO'}"
            th:href="@{/pacientes}">
-            <span>👤</span>
+            <span th:insert="~{fragments/icons :: usuario}"></span>
             <p>Pacientes</p>
         </a>
 
-        <a class="sidebar-item"
+        <a class="sidebar-item" th:classappend="${uri != null and uri.startsWith('/citas')} ? 'active' : ''"
            th:if="${session.rolUsuario == 'ENFERMERA' or session.rolUsuario == 'MEDICO' or session.rolUsuario == 'CAJERO'}"
            th:href="@{/citas}">
-            <span>📅</span>
+            <span th:insert="~{fragments/icons :: calendario}"></span>
             <p>Citas médicas</p>
         </a>
 
-        <a class="sidebar-item"
+        <a class="sidebar-item" th:classappend="${uri != null and uri.startsWith('/historias')} ? 'active' : ''"
            th:if="${session.rolUsuario == 'ENFERMERA' or session.rolUsuario == 'MEDICO'}"
            th:href="@{/historias}">
-            <span>📋</span>
+            <span th:insert="~{fragments/icons :: portapapeles}"></span>
             <p>Historias médicas</p>
         </a>
 
-        <a class="sidebar-item"
+        <a class="sidebar-item" th:classappend="${uri != null and uri.startsWith('/diagnosticos')} ? 'active' : ''"
            th:if="${session.rolUsuario == 'MEDICO'}"
            th:href="@{/diagnosticos}">
-            <span>🩺</span>
+            <span th:insert="~{fragments/icons :: estetoscopio}"></span>
             <p>Diagnósticos</p>
         </a>
 
-        <a class="sidebar-item"
+        <a class="sidebar-item" th:classappend="${uri != null and uri.startsWith('/tratamientos')} ? 'active' : ''"
            th:if="${session.rolUsuario == 'MEDICO'}"
            th:href="@{/tratamientos}">
-            <span>💊</span>
+            <span th:insert="~{fragments/icons :: pastilla}"></span>
             <p>Tratamientos</p>
         </a>
 
-        <a class="sidebar-item"
+        <a class="sidebar-item" th:classappend="${uri != null and uri.startsWith('/comprobantes')} ? 'active' : ''"
            th:if="${session.rolUsuario == 'CAJERO'}"
            th:href="@{/comprobantes}">
-            <span>💳</span>
+            <span th:insert="~{fragments/icons :: tarjeta}"></span>
             <p>Comprobantes</p>
         </a>
 
-        <a class="sidebar-item"
+        <a class="sidebar-item" th:classappend="${uri != null and uri.startsWith('/detalle-comprobantes')} ? 'active' : ''"
            th:if="${session.rolUsuario == 'CAJERO'}"
            th:href="@{/detalle-comprobantes}">
-            <span>🧾</span>
+            <span th:insert="~{fragments/icons :: recibo}"></span>
             <p>Detalle de pagos</p>
         </a>
 
-        <a class="sidebar-item"
+        <a class="sidebar-item" th:classappend="${uri != null and uri.startsWith('/medicamentos')} ? 'active' : ''"
            th:if="${session.rolUsuario == 'FARMACEUTICO'}"
            th:href="@{/medicamentos}">
-            <span>💊</span>
+            <span th:insert="~{fragments/icons :: pastilla}"></span>
             <p>Medicamentos</p>
         </a>
 
-        <a class="sidebar-item"
+        <a class="sidebar-item" th:classappend="${uri != null and uri.startsWith('/proveedores')} ? 'active' : ''"
            th:if="${session.rolUsuario == 'FARMACEUTICO'}"
            th:href="@{/proveedores}">
-            <span>🚚</span>
+            <span th:insert="~{fragments/icons :: camion}"></span>
             <p>Proveedores</p>
         </a>
 
-        <a class="sidebar-item"
+        <a class="sidebar-item" th:classappend="${uri != null and uri.startsWith('/examenes')} ? 'active' : ''"
            th:if="${session.rolUsuario == 'MEDICO' or session.rolUsuario == 'BIOLOGO' or session.rolUsuario == 'RADIOLOGO'}"
            th:href="@{/examenes}">
-            <span>🧪</span>
+            <span th:insert="~{fragments/icons :: frasco}"></span>
             <p>Exámenes médicos</p>
         </a>
 
-        <a class="sidebar-item"
+        <a class="sidebar-item" th:classappend="${uri != null and uri.startsWith('/laboratorio')} ? 'active' : ''"
            th:if="${session.rolUsuario == 'BIOLOGO' or session.rolUsuario == 'MEDICO'}"
            th:href="@{/laboratorio}">
-            <span>🔬</span>
+            <span th:insert="~{fragments/icons :: microscopio}"></span>
             <p>Laboratorio</p>
         </a>
 
-        <a class="sidebar-item"
+        <a class="sidebar-item" th:classappend="${uri != null and uri.startsWith('/imagenes')} ? 'active' : ''"
            th:if="${session.rolUsuario == 'RADIOLOGO' or session.rolUsuario == 'MEDICO'}"
            th:href="@{/imagenes}">
-            <span>🖼️</span>
+            <span th:insert="~{fragments/icons :: imagen}"></span>
             <p>Imágenes diagnósticas</p>
         </a>
 
-        <a class="sidebar-item sidebar-admin"
+        <a class="sidebar-item sidebar-admin" th:classappend="${uri != null and uri.startsWith('/usuarios')} ? ' active' : ''"
            th:if="${session.rolUsuario == 'MEDICO'}"
            th:href="@{/usuarios}">
-            <span>👥</span>
+            <span th:insert="~{fragments/icons :: grupo}"></span>
             <p>Modificar usuarios</p>
         </a>
 
