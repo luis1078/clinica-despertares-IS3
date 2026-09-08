@@ -7,6 +7,7 @@ import Service.IComprobantePagoService;
 import Service.IDetalleComprobanteService;
 import Service.IExamenMedicoService;
 import Service.IMedicamentoService;
+import Util.Pagina;
 import Util.RolHelper;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
@@ -37,7 +38,8 @@ public class DetalleComprobanteController {
     }
 
     @GetMapping
-    public String listar(Model model,
+    public String listar(@RequestParam(value = "pagina", defaultValue = "0") int numeroPagina,
+                         Model model,
                          HttpSession session,
                          RedirectAttributes redirectAttributes) {
 
@@ -45,7 +47,9 @@ public class DetalleComprobanteController {
             return RolHelper.denegar(redirectAttributes, "No tiene permisos para consultar detalles de comprobante.");
         }
 
-        model.addAttribute("detalles", detalleComprobanteService.listarTodos());
+        Pagina<DetalleComprobanteEntity> pagina = Pagina.de(detalleComprobanteService.listarTodos(), numeroPagina);
+        model.addAttribute("detalles", pagina.contenido());
+        model.addAttribute("pagina", pagina);
 
         return "detalle-comprobantes/listar";
     }

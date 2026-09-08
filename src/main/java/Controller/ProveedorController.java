@@ -2,10 +2,13 @@ package Controller;
 
 import Entity.ProveedorEntity;
 import Service.IProveedorService;
+import Util.Pagina;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/proveedores")
@@ -18,10 +21,15 @@ public class ProveedorController {
     }
 
     @GetMapping
-    public String listar(@RequestParam(value = "nombre", required = false) String nombre, Model model) {
-        model.addAttribute("proveedores", nombre == null || nombre.isBlank()
+    public String listar(@RequestParam(value = "nombre", required = false) String nombre,
+                         @RequestParam(value = "pagina", defaultValue = "0") int numeroPagina,
+                         Model model) {
+        List<ProveedorEntity> todos = nombre == null || nombre.isBlank()
                 ? proveedorService.listarTodos()
-                : proveedorService.buscarPorNombre(nombre));
+                : proveedorService.buscarPorNombre(nombre);
+        Pagina<ProveedorEntity> pagina = Pagina.de(todos, numeroPagina);
+        model.addAttribute("proveedores", pagina.contenido());
+        model.addAttribute("pagina", pagina);
         model.addAttribute("nombre", nombre);
         return "proveedores/listar";
     }

@@ -6,12 +6,15 @@ import Entity.Emuns.MetodoPagoEnum;
 import Entity.Emuns.TipoComprobanteEnum;
 import Service.IComprobantePagoService;
 import Service.IPacienteService;
+import Util.Pagina;
 import Util.RolHelper;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/comprobantes")
@@ -28,6 +31,7 @@ public class ComprobantePagoController {
 
     @GetMapping
     public String listar(@RequestParam(value = "estado", required = false) EstadoPagoEnum estado,
+                         @RequestParam(value = "pagina", defaultValue = "0") int numeroPagina,
                          Model model,
                          HttpSession session,
                          RedirectAttributes redirectAttributes) {
@@ -36,7 +40,10 @@ public class ComprobantePagoController {
             return RolHelper.denegar(redirectAttributes, "No tiene permisos para consultar comprobantes.");
         }
 
-        model.addAttribute("comprobantes", estado == null ? comprobantePagoService.listarTodos() : comprobantePagoService.listarPorEstado(estado));
+        List<ComprobantePagoEntity> todos = estado == null ? comprobantePagoService.listarTodos() : comprobantePagoService.listarPorEstado(estado);
+        Pagina<ComprobantePagoEntity> pagina = Pagina.de(todos, numeroPagina);
+        model.addAttribute("comprobantes", pagina.contenido());
+        model.addAttribute("pagina", pagina);
         model.addAttribute("estados", EstadoPagoEnum.values());
         model.addAttribute("estadoSeleccionado", estado);
 

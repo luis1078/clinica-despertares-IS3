@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8"><script>try{var t=localStorage.getItem('tema');if(t){document.documentElement.setAttribute('data-theme',t);}}catch(e){}</script>
     <title>Usuarios</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" th:href="@{/css/styles.css}">
@@ -17,6 +17,7 @@
 
     <section class="content-card">
         <h1>Gestión de Usuarios</h1><div class="alert" th:if="${mensaje}" th:text="${mensaje}"></div><div class="actions"><a class="btn" th:href="@{/usuarios/nuevo}">Nuevo usuario</a></div><table><thead><tr><th>ID</th><th>Username</th><th>Correo</th><th>Rol</th><th>Estado</th><th>Médico</th><th>Acciones</th></tr></thead><tbody><tr th:each="usuario : ${usuarios}"><td th:text="${usuario.idUsuario}"></td><td th:text="${usuario.username}"></td><td th:text="${usuario.correo}"></td><td th:text="${usuario.rol}"></td><td th:text="${usuario.estado ? 'Activo' : 'Inactivo'}"></td><td th:text="${usuario.medico != null ? usuario.medico.nombreMedico + ' ' + usuario.medico.apellidoMedico : '-'}"></td><td><a class="btn small warning" th:href="@{/usuarios/editar/{id}(id=${usuario.idUsuario})}">Editar</a> <form th:action="@{/usuarios/activar/{id}(id=${usuario.idUsuario})}" method="post" class="inline-action"><input type="hidden" name="_csrf" th:value="${csrfToken}"><button type="submit" class="btn small success">Activar</button></form> <form th:action="@{/usuarios/desactivar/{id}(id=${usuario.idUsuario})}" method="post" class="inline-action"><input type="hidden" name="_csrf" th:value="${csrfToken}"><button type="submit" class="btn small secondary">Desactivar</button></form> <form th:action="@{/usuarios/eliminar/{id}(id=${usuario.idUsuario})}" method="post" class="inline-action" onsubmit="return confirm('¿Eliminar usuario?');"><input type="hidden" name="_csrf" th:value="${csrfToken}"><button type="submit" class="btn small danger">Eliminar</button></form></td></tr></tbody></table>
+        <div th:replace="~{fragments/paginacion :: paginacion('/usuarios', ${pagina})}"></div>
     </section>
 
 </main>

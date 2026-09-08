@@ -3,6 +3,7 @@ package Controller;
 import Entity.Emuns.GeneroPacienteEnum;
 import Entity.PacienteEntity;
 import Service.IPacienteService;
+import Util.Pagina;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -19,8 +20,12 @@ public class PacienteController {
     }
 
     @GetMapping
-    public String listar(@RequestParam(value = "buscar", required = false) String buscar, Model model) {
-        model.addAttribute("pacientes", pacienteService.buscarPacientes(buscar));
+    public String listar(@RequestParam(value = "buscar", required = false) String buscar,
+                         @RequestParam(value = "pagina", defaultValue = "0") int numeroPagina,
+                         Model model) {
+        Pagina<PacienteEntity> pagina = Pagina.de(pacienteService.buscarPacientes(buscar), numeroPagina);
+        model.addAttribute("pacientes", pagina.contenido());
+        model.addAttribute("pagina", pagina);
         model.addAttribute("buscar", buscar);
         return "pacientes/listar";
     }

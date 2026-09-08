@@ -2,10 +2,13 @@ package Controller;
 
 import Entity.MedicoEntity;
 import Service.IMedicoService;
+import Util.Pagina;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/medicos")
@@ -18,10 +21,15 @@ public class MedicoController {
     }
 
     @GetMapping
-    public String listar(@RequestParam(value = "nombre", required = false) String nombre, Model model) {
-        model.addAttribute("medicos", nombre == null || nombre.isBlank()
+    public String listar(@RequestParam(value = "nombre", required = false) String nombre,
+                         @RequestParam(value = "pagina", defaultValue = "0") int numeroPagina,
+                         Model model) {
+        List<MedicoEntity> todos = nombre == null || nombre.isBlank()
                 ? medicoService.listarTodos()
-                : medicoService.buscarPorNombre(nombre));
+                : medicoService.buscarPorNombre(nombre);
+        Pagina<MedicoEntity> pagina = Pagina.de(todos, numeroPagina);
+        model.addAttribute("medicos", pagina.contenido());
+        model.addAttribute("pagina", pagina);
         model.addAttribute("nombre", nombre);
         return "medicos/listar";
     }

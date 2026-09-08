@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8"><script>try{var t=localStorage.getItem('tema');if(t){document.documentElement.setAttribute('data-theme',t);}}catch(e){}</script>
     <title>Detalle Tratamientos</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" th:href="@{/css/styles.css}">
@@ -17,6 +17,7 @@
 
     <section class="content-card">
         <h1>Detalle de Tratamientos</h1><div class="alert" th:if="${mensaje}" th:text="${mensaje}"></div><div class="actions"><a class="btn" th:href="@{/detalle-tratamientos/nuevo}">Nuevo detalle</a></div><table><thead><tr><th>ID</th><th>Tratamiento</th><th>Medicamento</th><th>Dosis</th><th>Frecuencia</th><th>Observaciones</th><th>Acciones</th></tr></thead><tbody><tr th:each="detalle : ${detalles}"><td th:text="${detalle.idDetalleTratamiento}"></td><td th:text="${detalle.tratamiento != null ? detalle.tratamiento.idTratamiento : '-'}"></td><td th:text="${detalle.medicamento != null ? detalle.medicamento.nombreMedicamento : '-'}"></td><td th:text="${detalle.dosisIndicada}"></td><td th:text="${detalle.frecuenciaDeToma}"></td><td th:text="${detalle.observaciones}"></td><td><a class="btn small warning" th:href="@{/detalle-tratamientos/editar/{id}(id=${detalle.idDetalleTratamiento})}">Editar</a> <form th:action="@{/detalle-tratamientos/eliminar/{id}(id=${detalle.idDetalleTratamiento})}" method="post" class="inline-action" onsubmit="return confirm('¿Eliminar detalle?');"><input type="hidden" name="_csrf" th:value="${csrfToken}"><button type="submit" class="btn small danger">Eliminar</button></form></td></tr></tbody></table>
+        <div th:replace="~{fragments/paginacion :: paginacion('/detalle-tratamientos', ${pagina})}"></div>
     </section>
 
 </main>

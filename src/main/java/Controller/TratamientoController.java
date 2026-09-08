@@ -4,6 +4,7 @@ import Entity.Emuns.EstadoTratamientoEnum;
 import Entity.TratamientoEntity;
 import Service.IHistoriaMedicaService;
 import Service.ITratamientoService;
+import Util.Pagina;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -22,8 +23,10 @@ public class TratamientoController {
     }
 
     @GetMapping
-    public String listar(Model model) {
-        model.addAttribute("tratamientos", tratamientoService.listarTodos());
+    public String listar(@RequestParam(value = "pagina", defaultValue = "0") int numeroPagina, Model model) {
+        Pagina<TratamientoEntity> pagina = Pagina.de(tratamientoService.listarTodos(), numeroPagina);
+        model.addAttribute("tratamientos", pagina.contenido());
+        model.addAttribute("pagina", pagina);
         return "tratamientos/listar";
     }
 

@@ -5,6 +5,7 @@ import Entity.Emuns.TipoExamenEnum;
 import Entity.ImagenDiagnosticaEntity;
 import Service.IDiagnosticoService;
 import Service.IImagenDiagnosticaService;
+import Util.Pagina;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -24,8 +25,11 @@ public class ImagenDiagnosticaController {
 
     @GetMapping
     public String listar(@RequestParam(value = "buscar", required = false) String buscar,
+                         @RequestParam(value = "pagina", defaultValue = "0") int numeroPagina,
                          Model model) {
-        model.addAttribute("imagenes", imagenDiagnosticaService.buscarImagenes(buscar));
+        Pagina<ImagenDiagnosticaEntity> pagina = Pagina.de(imagenDiagnosticaService.buscarImagenes(buscar), numeroPagina);
+        model.addAttribute("imagenes", pagina.contenido());
+        model.addAttribute("pagina", pagina);
         model.addAttribute("buscar", buscar);
         return "imagenes/listar";
     }

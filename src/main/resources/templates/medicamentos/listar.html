@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8"><script>try{var t=localStorage.getItem('tema');if(t){document.documentElement.setAttribute('data-theme',t);}}catch(e){}</script>
     <title>Medicamentos</title>
     <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
@@ -100,6 +100,8 @@
                 </tr>
                 </tbody>
             </table>
+
+            <div th:replace="~{fragments/paginacion :: paginacion('/medicamentos', ${pagina})}"></div>
 
         </main>
 

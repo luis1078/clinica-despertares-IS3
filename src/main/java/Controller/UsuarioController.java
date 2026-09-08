@@ -4,6 +4,7 @@ import Entity.Emuns.RolUsuarioEnum;
 import Entity.UsuarioEntity;
 import Service.IMedicoService;
 import Service.IUsuarioService;
+import Util.Pagina;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -22,8 +23,10 @@ public class UsuarioController {
     }
 
     @GetMapping
-    public String listar(Model model) {
-        model.addAttribute("usuarios", usuarioService.listarTodos());
+    public String listar(@RequestParam(value = "pagina", defaultValue = "0") int numeroPagina, Model model) {
+        Pagina<UsuarioEntity> pagina = Pagina.de(usuarioService.listarTodos(), numeroPagina);
+        model.addAttribute("usuarios", pagina.contenido());
+        model.addAttribute("pagina", pagina);
         return "usuarios/listar";
     }
 

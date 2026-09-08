@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<!--
+  Fragmento genérico de paginación. Se usa así desde cualquier listar.html:
+
+    <div th:replace="~{fragments/paginacion :: paginacion('/pacientes', ${pagina})}"></div>
+
+  Reconstruye el query string leyendo los parámetros de filtro directamente del
+  request actual (implicit "param"), así que sirve para cualquier módulo sin
+  importar qué combinación de filtros use (buscar, estado, q, nombre, stockMinimo).
+-->
+<nav th:fragment="paginacion(base, pagina)"
+     class="pagination"
+     th:if="${pagina.totalElementos() > 0}"
+     th:with="buscar=${param.buscar != null ? param.buscar[0] : null},
+              estado=${param.estado != null ? param.estado[0] : null},
+              q=${param.q != null ? param.q[0] : null},
+              nombre=${param.nombre != null ? param.nombre[0] : null},
+              stockMinimo=${param.stockMinimo != null ? param.stockMinimo[0] : null}">
+
+    <span class="page-info">
+        Página <strong th:text="${pagina.numero() + 1}">1</strong> de
+        <strong th:text="${pagina.totalPaginas()}">1</strong>
+        · <span th:text="${pagina.totalElementos()}">0</span> resultado(s)
+    </span>
+
+    <div class="page-controls">
+        <a class="page-btn" th:classappend="${!pagina.tieneAnterior()} ? ' disabled'"
+           th:href="@{${base}(pagina=${pagina.numero() - 1}, buscar=${buscar}, estado=${estado}, q=${q}, nombre=${nombre}, stockMinimo=${stockMinimo})}">
+            ‹ Anterior
+        </a>
+        <a class="page-btn" th:classappend="${!pagina.tieneSiguiente()} ? ' disabled'"
+           th:href="@{${base}(pagina=${pagina.numero() + 1}, buscar=${buscar}, estado=${estado}, q=${q}, nombre=${nombre}, stockMinimo=${stockMinimo})}">
+            Siguiente ›
+        </a>
+    </div>
+
+</nav>
+
+</body>
+</html>

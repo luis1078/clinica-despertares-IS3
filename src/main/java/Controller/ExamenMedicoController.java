@@ -5,6 +5,7 @@ import Entity.Emuns.TipoExamenEnum;
 import Entity.ExamenMedicoEntity;
 import Service.IDiagnosticoService;
 import Service.IExamenMedicoService;
+import Util.Pagina;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,8 +25,10 @@ public class ExamenMedicoController {
     }
 
     @GetMapping
-    public String listar(Model model) {
-        model.addAttribute("examenes", examenMedicoService.listarTodos());
+    public String listar(@RequestParam(value = "pagina", defaultValue = "0") int numeroPagina, Model model) {
+        Pagina<ExamenMedicoEntity> pagina = Pagina.de(examenMedicoService.listarTodos(), numeroPagina);
+        model.addAttribute("examenes", pagina.contenido());
+        model.addAttribute("pagina", pagina);
         return "examenes/listar";
     }
 

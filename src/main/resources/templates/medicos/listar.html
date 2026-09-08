@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8"><script>try{var t=localStorage.getItem('tema');if(t){document.documentElement.setAttribute('data-theme',t);}}catch(e){}</script>
     <title>Médicos</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" th:href="@{/css/styles.css}">
@@ -21,6 +21,7 @@
 <table><thead><tr><th>ID</th><th>Médico</th><th>CMP</th><th>Especialidad</th><th>Teléfono</th><th>Horario</th><th>Acciones</th></tr></thead><tbody>
 <tr th:each="medico : ${medicos}"><td th:text="${medico.idMedico}"></td><td th:text="${medico.nombreMedico + ' ' + medico.apellidoMedico}"></td><td th:text="${medico.cmpMedico}"></td><td th:text="${medico.especialidad}"></td><td th:text="${medico.telefono}"></td><td th:text="${medico.horarioAtencion}"></td><td><a class="btn small warning" th:href="@{/medicos/editar/{id}(id=${medico.idMedico})}">Editar</a> <form th:action="@{/medicos/eliminar/{id}(id=${medico.idMedico})}" method="post" class="inline-action" onsubmit="return confirm('¿Eliminar médico?');"><input type="hidden" name="_csrf" th:value="${csrfToken}"><button type="submit" class="btn small danger">Eliminar</button></form></td></tr>
 </tbody></table>
+        <div th:replace="~{fragments/paginacion :: paginacion('/medicos', ${pagina})}"></div>
     </section>
 
 </main>

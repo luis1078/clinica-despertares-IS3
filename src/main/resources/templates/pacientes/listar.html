@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
-<head><meta charset="UTF-8"><title>Pacientes</title><link rel="stylesheet" th:href="@{/css/styles.css}"></head>
+<head><meta charset="UTF-8"><script>try{var t=localStorage.getItem('tema');if(t){document.documentElement.setAttribute('data-theme',t);}}catch(e){}</script><title>Pacientes</title><link rel="stylesheet" th:href="@{/css/styles.css}"></head>
 <body>
 <div class="dashboard-shell">
     <div th:replace="~{fragments/header :: header}"></div>
@@ -36,6 +36,7 @@
                 <tr th:if="${#lists.isEmpty(pacientes)}"><td th:attr="colspan=${session.rolUsuario == 'CAJERO' ? 6 : 7}" class="empty-row">No se encontraron pacientes.</td></tr>
                 </tbody>
             </table>
+            <div th:replace="~{fragments/paginacion :: paginacion('/pacientes', ${pagina})}"></div>
         </main>
     </div>
 </div>

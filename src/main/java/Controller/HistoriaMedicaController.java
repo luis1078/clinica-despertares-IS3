@@ -3,6 +3,7 @@ package Controller;
 import Entity.HistoriaMedicaEntity;
 import Service.IHistoriaMedicaService;
 import Service.IPacienteService;
+import Util.Pagina;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,8 +23,12 @@ public class HistoriaMedicaController {
     }
 
     @GetMapping
-    public String listar(@RequestParam(value = "q", required = false) String q, Model model) {
-        model.addAttribute("historias", historiaMedicaService.buscarHistorias(q));
+    public String listar(@RequestParam(value = "q", required = false) String q,
+                         @RequestParam(value = "pagina", defaultValue = "0") int numeroPagina,
+                         Model model) {
+        Pagina<HistoriaMedicaEntity> pagina = Pagina.de(historiaMedicaService.buscarHistorias(q), numeroPagina);
+        model.addAttribute("historias", pagina.contenido());
+        model.addAttribute("pagina", pagina);
         model.addAttribute("busqueda", q);
         return "historias/listar";
     }

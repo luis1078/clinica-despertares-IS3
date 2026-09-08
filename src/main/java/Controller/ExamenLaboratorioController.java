@@ -5,6 +5,7 @@ import Entity.Emuns.TipoExamenEnum;
 import Entity.ExamenLaboratorioEntity;
 import Service.IDiagnosticoService;
 import Service.IExamenLaboratorioService;
+import Util.Pagina;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -24,8 +25,11 @@ public class ExamenLaboratorioController {
 
     @GetMapping
     public String listar(@RequestParam(value = "buscar", required = false) String buscar,
+                         @RequestParam(value = "pagina", defaultValue = "0") int numeroPagina,
                          Model model) {
-        model.addAttribute("examenes", examenLaboratorioService.buscarExamenes(buscar));
+        Pagina<ExamenLaboratorioEntity> pagina = Pagina.de(examenLaboratorioService.buscarExamenes(buscar), numeroPagina);
+        model.addAttribute("examenes", pagina.contenido());
+        model.addAttribute("pagina", pagina);
         model.addAttribute("buscar", buscar);
         return "laboratorio/listar";
     }

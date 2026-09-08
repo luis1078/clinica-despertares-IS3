@@ -4,6 +4,7 @@ import Entity.DetalleTratamientoEntity;
 import Service.IDetalleTratamientoService;
 import Service.IMedicamentoService;
 import Service.ITratamientoService;
+import Util.Pagina;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -26,8 +27,10 @@ public class DetalleTratamientoController {
     }
 
     @GetMapping
-    public String listar(Model model) {
-        model.addAttribute("detalles", detalleTratamientoService.listarTodos());
+    public String listar(@RequestParam(value = "pagina", defaultValue = "0") int numeroPagina, Model model) {
+        Pagina<DetalleTratamientoEntity> pagina = Pagina.de(detalleTratamientoService.listarTodos(), numeroPagina);
+        model.addAttribute("detalles", pagina.contenido());
+        model.addAttribute("pagina", pagina);
         return "detalle-tratamientos/listar";
     }
 

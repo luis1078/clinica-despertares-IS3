@@ -5,6 +5,7 @@ import Entity.Emuns.EstadoCitaEnum;
 import Service.ICitaMedicaService;
 import Service.IMedicoService;
 import Service.IPacienteService;
+import Util.Pagina;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,8 +32,11 @@ public class CitaMedicaController {
     @GetMapping
     public String listar(@RequestParam(value = "estado", required = false) EstadoCitaEnum estado,
                          @RequestParam(value = "buscar", required = false) String buscar,
+                         @RequestParam(value = "pagina", defaultValue = "0") int numeroPagina,
                          Model model) {
-        model.addAttribute("citas", citaMedicaService.buscarCitas(buscar, estado));
+        Pagina<CitaMedicaEntity> pagina = Pagina.de(citaMedicaService.buscarCitas(buscar, estado), numeroPagina);
+        model.addAttribute("citas", pagina.contenido());
+        model.addAttribute("pagina", pagina);
         model.addAttribute("estados", EstadoCitaEnum.values());
         model.addAttribute("estadoSeleccionado", estado);
         model.addAttribute("buscar", buscar);

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8"><script>try{var t=localStorage.getItem('tema');if(t){document.documentElement.setAttribute('data-theme',t);}}catch(e){}</script>
     <title>Diagnósticos</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" th:href="@{/css/styles.css}">
@@ -17,6 +17,7 @@
 
     <section class="content-card">
         <h1>Gestión de Diagnósticos</h1><div class="alert" th:if="${mensaje}" th:text="${mensaje}"></div><div class="actions"><a class="btn" th:href="@{/diagnosticos/nuevo}">Nuevo diagnóstico</a></div><table><thead><tr><th>ID</th><th>Fecha</th><th>Gravedad</th><th>Historia</th><th>Descripción</th><th>Acciones</th></tr></thead><tbody><tr th:each="diagnostico : ${diagnosticos}"><td th:text="${diagnostico.idDiagnostico}"></td><td th:text="${diagnostico.fechaDiagnostico}"></td><td th:text="${diagnostico.gravedadDiagnostico}"></td><td th:text="${diagnostico.historiaMedica != null ? diagnostico.historiaMedica.codHistoriaMedica : '-'}"></td><td th:text="${diagnostico.descripcionDiagnostico}"></td><td><a class="btn small warning" th:href="@{/diagnosticos/editar/{id}(id=${diagnostico.idDiagnostico})}">Editar</a> <form th:action="@{/diagnosticos/eliminar/{id}(id=${diagnostico.idDiagnostico})}" method="post" class="inline-action" onsubmit="return confirm('¿Eliminar diagnóstico?');"><input type="hidden" name="_csrf" th:value="${csrfToken}"><button type="submit" class="btn small danger">Eliminar</button></form></td></tr></tbody></table>
+        <div th:replace="~{fragments/paginacion :: paginacion('/diagnosticos', ${pagina})}"></div>
     </section>
 
 </main>

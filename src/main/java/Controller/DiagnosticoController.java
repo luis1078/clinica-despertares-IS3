@@ -4,6 +4,7 @@ import Entity.DiagnosticoEntity;
 import Entity.Emuns.GravedadDiagnosticoEnum;
 import Service.IDiagnosticoService;
 import Service.IHistoriaMedicaService;
+import Util.Pagina;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -22,8 +23,10 @@ public class DiagnosticoController {
     }
 
     @GetMapping
-    public String listar(Model model) {
-        model.addAttribute("diagnosticos", diagnosticoService.listarTodos());
+    public String listar(@RequestParam(value = "pagina", defaultValue = "0") int numeroPagina, Model model) {
+        Pagina<DiagnosticoEntity> pagina = Pagina.de(diagnosticoService.listarTodos(), numeroPagina);
+        model.addAttribute("diagnosticos", pagina.contenido());
+        model.addAttribute("pagina", pagina);
         return "diagnosticos/listar";
     }
 

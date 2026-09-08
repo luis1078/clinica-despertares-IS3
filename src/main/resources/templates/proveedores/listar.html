@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8"><script>try{var t=localStorage.getItem('tema');if(t){document.documentElement.setAttribute('data-theme',t);}}catch(e){}</script>
     <title>Proveedores</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" th:href="@{/css/styles.css}">
@@ -17,6 +17,7 @@
 
     <section class="content-card">
         <h1>Gestión de Proveedores</h1><div class="alert" th:if="${mensaje}" th:text="${mensaje}"></div><div class="actions"><a class="btn" th:href="@{/proveedores/nuevo}">Nuevo proveedor</a><form th:action="@{/proveedores}" method="get" class="inline-form"><input type="text" name="nombre" placeholder="Buscar por nombre" th:value="${nombre}"><button class="btn secondary" type="submit">Buscar</button></form></div><table><thead><tr><th>RUC</th><th>Proveedor</th><th>Correo</th><th>Contacto</th><th>Dirección</th><th>Acciones</th></tr></thead><tbody><tr th:each="proveedor : ${proveedores}"><td th:text="${proveedor.rucProveedor}"></td><td th:text="${proveedor.nombreProveedor}"></td><td th:text="${proveedor.correoProveedor}"></td><td th:text="${proveedor.numeroContacto}"></td><td th:text="${proveedor.direccion}"></td><td><a class="btn small warning" th:href="@{/proveedores/editar/{id}(id=${proveedor.rucProveedor})}">Editar</a> <form th:action="@{/proveedores/eliminar/{id}(id=${proveedor.rucProveedor})}" method="post" class="inline-action" onsubmit="return confirm('¿Eliminar proveedor?');"><input type="hidden" name="_csrf" th:value="${csrfToken}"><button type="submit" class="btn small danger">Eliminar</button></form></td></tr></tbody></table>
+        <div th:replace="~{fragments/paginacion :: paginacion('/proveedores', ${pagina})}"></div>
     </section>
 
 </main>
