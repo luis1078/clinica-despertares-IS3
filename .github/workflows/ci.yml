@@ -1,0 +1,48 @@
+name: CI
+
+# Compila el proyecto y corre toda la suite de tests (incluido el que levanta
+# el contexto completo de Spring Boot contra una base real) en cada push o
+# pull request sobre la rama principal.
+on:
+  push:
+    branches: [ Branch-IS3 ]
+  pull_request:
+    branches: [ Branch-IS3 ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    # Mismo usuario/clave/BD que trae application.properties por defecto para
+    # desarrollo local, así los tests no necesitan variables de entorno extra.
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_DB: postgres
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: password
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd="pg_isready -U postgres"
+          --health-interval=5s
+          --health-timeout=5s
+          --health-retries=10
+
+    steps:
+      - name: Descargar el código
+        uses: actions/checkout@v4
+
+      - name: Configurar JDK 21 (Temurin)
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: maven
+
+      - name: Dar permiso de ejecución al Maven Wrapper
+        run: chmod +x mvnw
+
+      - name: Compilar y correr los tests
+        run: ./mvnw -B clean verify
