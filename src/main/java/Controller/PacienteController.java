@@ -2,6 +2,7 @@ package Controller;
 
 import Entity.Emuns.GeneroPacienteEnum;
 import Entity.PacienteEntity;
+import Service.IHistorialClinicoService;
 import Service.IPacienteService;
 import Util.Pagina;
 import org.springframework.stereotype.Controller;
@@ -14,9 +15,11 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class PacienteController {
 
     private final IPacienteService pacienteService;
+    private final IHistorialClinicoService historialClinicoService;
 
-    public PacienteController(IPacienteService pacienteService) {
+    public PacienteController(IPacienteService pacienteService, IHistorialClinicoService historialClinicoService) {
         this.pacienteService = pacienteService;
+        this.historialClinicoService = historialClinicoService;
     }
 
     @GetMapping
@@ -58,5 +61,11 @@ public class PacienteController {
         pacienteService.eliminar(dniPaciente);
         redirectAttributes.addFlashAttribute("mensaje", "Paciente eliminado correctamente.");
         return "redirect:/pacientes";
+    }
+
+    @GetMapping("/{dniPaciente}/historial")
+    public String historial(@PathVariable String dniPaciente, Model model) {
+        model.addAttribute("historial", historialClinicoService.construirHistorial(dniPaciente));
+        return "pacientes/historial";
     }
 }

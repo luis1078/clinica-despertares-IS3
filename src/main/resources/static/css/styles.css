@@ -1154,3 +1154,254 @@ tbody tr:hover {
         align-items: stretch;
     }
 }
+
+/* ======================================================
+   HISTORIAL CLÍNICO (línea de tiempo por paciente)
+====================================================== */
+
+.patient-header {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    background: var(--azul-suave);
+    border: 1px solid var(--azul-borde-suave);
+    border-radius: var(--radio);
+    padding: 18px 20px;
+    margin-bottom: 18px;
+}
+
+.patient-avatar {
+    flex: none;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: var(--blanco);
+    color: var(--azul);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.patient-avatar svg {
+    width: 24px;
+    height: 24px;
+}
+
+.patient-meta {
+    margin: 0 0 4px;
+    color: var(--texto-suave);
+    font-size: 0.88rem;
+    font-weight: 500;
+}
+
+.patient-allergy {
+    margin: 6px 0 0;
+    color: var(--rojo);
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.clinical-card {
+    background: var(--blanco);
+    border: 1px solid var(--borde);
+    border-radius: var(--radio);
+    padding: 16px 18px;
+    margin-bottom: 18px;
+}
+
+.clinical-card h3 {
+    margin: 0 0 10px;
+    font-size: 0.95rem;
+    color: var(--texto);
+}
+
+.clinical-card p {
+    margin: 0 0 8px;
+    color: var(--texto-suave);
+    font-size: 0.87rem;
+    line-height: 1.5;
+}
+
+.clinical-card p:last-child {
+    margin-bottom: 0;
+}
+
+.timeline-title {
+    margin: 4px 0 14px;
+    font-size: 1rem;
+    color: var(--texto);
+}
+
+.timeline {
+    position: relative;
+    padding-left: 26px;
+}
+
+.timeline::before {
+    content: "";
+    position: absolute;
+    left: 13px;
+    top: 6px;
+    bottom: 6px;
+    width: 2px;
+    background: var(--borde);
+}
+
+.timeline-item {
+    position: relative;
+    display: flex;
+    margin-bottom: 18px;
+}
+
+.timeline-item:last-child {
+    margin-bottom: 0;
+}
+
+.timeline-marker {
+    position: absolute;
+    left: -26px;
+    top: 0;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--azul-suave);
+    color: var(--azul);
+    border: 2px solid var(--blanco);
+    box-shadow: 0 0 0 2px var(--borde);
+}
+
+.timeline-marker svg {
+    width: 14px;
+    height: 14px;
+}
+
+.timeline-marker.marker-verde { background: var(--verde-suave); color: var(--verde-texto); }
+.timeline-marker.marker-rojo { background: var(--rojo-suave); color: var(--rojo); }
+.timeline-marker.marker-ambar { background: var(--ambar-suave); color: var(--ambar-texto); }
+.timeline-marker.marker-azul { background: var(--azul-suave); color: var(--azul); }
+.timeline-marker.marker-gris { background: var(--fondo); color: var(--gris); }
+
+.timeline-content {
+    flex: 1;
+    background: var(--blanco);
+    border: 1px solid var(--borde);
+    border-radius: var(--radio-sm);
+    padding: 12px 14px;
+    box-shadow: var(--sombra-suave);
+    margin-left: 12px;
+}
+
+.timeline-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 6px;
+    flex-wrap: wrap;
+}
+
+.timeline-date {
+    color: var(--gris);
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+.timeline-content h4 {
+    margin: 0 0 4px;
+    font-size: 0.95rem;
+    color: var(--texto);
+}
+
+.timeline-sub {
+    margin: 0;
+    color: var(--texto-suave);
+    font-size: 0.85rem;
+}
+
+.timeline-details {
+    margin: 8px 0 0;
+    padding-left: 18px;
+    color: var(--texto-suave);
+    font-size: 0.82rem;
+    line-height: 1.5;
+}
+
+.badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 999px;
+    font-size: 0.74rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    white-space: nowrap;
+}
+
+.badge-verde { background: var(--verde-suave); color: var(--verde-texto); }
+.badge-rojo { background: var(--rojo-suave); color: var(--rojo); }
+.badge-ambar { background: var(--ambar-suave); color: var(--ambar-texto); }
+.badge-azul { background: var(--azul-suave); color: var(--azul); }
+.badge-gris { background: var(--fondo); color: var(--gris); }
+
+.alert.warning {
+    background: var(--ambar-suave);
+    color: var(--ambar-texto);
+}
+
+.alert.warning a {
+    color: inherit;
+    font-weight: 700;
+    text-decoration: underline;
+    margin-left: 6px;
+}
+
+@media (max-width: 620px) {
+    .patient-header {
+        flex-direction: column;
+    }
+
+    .timeline-content {
+        margin-left: 8px;
+    }
+}
+
+/* ======================================================
+   GRÁFICOS DEL PANEL PRINCIPAL (Chart.js)
+====================================================== */
+
+.charts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 14px;
+    margin-bottom: 20px;
+}
+
+.chart-card {
+    background: var(--blanco);
+    border: 1px solid var(--borde);
+    border-radius: var(--radio);
+    padding: 16px 18px;
+    box-shadow: var(--sombra-suave);
+}
+
+.chart-card h3 {
+    margin: 0 0 12px;
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: var(--texto);
+}
+
+.chart-card-body {
+    position: relative;
+    height: 220px;
+}
+
+.chart-card-body canvas {
+    width: 100% !important;
+    height: 100% !important;
+}

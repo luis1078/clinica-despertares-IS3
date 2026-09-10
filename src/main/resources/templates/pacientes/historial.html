@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"><script>try{var t=localStorage.getItem('tema');if(t){document.documentElement.setAttribute('data-theme',t);}}catch(e){}</script><title>Historial clínico</title><link rel="stylesheet" th:href="@{/css/styles.css}"><script th:src="@{/js/vendor/turbo.es2017-umd.min.js}"></script></head>
+<body>
+<div class="dashboard-shell">
+    <div th:replace="~{fragments/header :: header}"></div>
+    <div class="dashboard-body">
+        <div th:replace="~{fragments/sidebar :: sidebar}"></div>
+        <main class="content-card" th:with="p=${historial.paciente}, h=${historial.historiaMedica}">
+            <div class="actions">
+                <h1 th:text="'Historial clínico · ' + ${p.nombrePaciente} + ' ' + ${p.apellidoPaciente}">Historial clínico</h1>
+                <a th:href="@{/pacientes}" class="btn secondary">&larr; Volver a pacientes</a>
+            </div>
+
+            <div class="patient-header">
+                <div class="patient-avatar" th:insert="~{fragments/icons :: usuario}"></div>
+                <div class="patient-header-info">
+                    <p class="patient-meta">
+                        <span th:text="'DNI ' + ${p.dnipaciente}">DNI</span> ·
+                        <span th:text="${p.edad} + ' años'">30 años</span> ·
+                        <span th:text="${p.genero}">Género</span> ·
+                        <span th:text="'Sangre ' + ${p.tipoSangre}">Sangre O+</span>
+                    </p>
+                    <p class="patient-meta">
+                        <span th:text="${p.telefono}">999999999</span> ·
+                        <span th:text="${p.correoElectronico}">correo@ejemplo.com</span>
+                        <span th:if="${p.direccion}" th:text="' · ' + ${p.direccion}"></span>
+                    </p>
+                    <p class="patient-allergy" th:if="${p.alergias}">
+                        <strong>Alergias:</strong> <span th:text="${p.alergias}"></span>
+                    </p>
+                </div>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon" th:insert="~{fragments/icons :: calendario}"></div>
+                    <div><p class="stat-value" th:text="${historial.totalCitas}">0</p><p class="stat-label">Citas registradas</p></div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" th:insert="~{fragments/icons :: estetoscopio}"></div>
+                    <div><p class="stat-value" th:text="${historial.totalDiagnosticos}">0</p><p class="stat-label">Diagnósticos</p></div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" th:insert="~{fragments/icons :: pastilla}"></div>
+                    <div><p class="stat-value" th:text="${historial.totalTratamientosActivos}">0</p><p class="stat-label">Tratamientos activos</p></div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" th:classappend="${historial.totalPendiente.signum() > 0 ? ' alert' : ''}" th:insert="~{fragments/icons :: billete}"></div>
+                    <div><p class="stat-value" th:text="'S/ ' + ${historial.totalPendiente}">S/ 0</p><p class="stat-label">Pendiente de pago</p></div>
+                </div>
+            </div>
+
+            <div th:if="${h == null}" class="alert warning">
+                Este paciente todavía no tiene una historia médica creada: no se mostrarán antecedentes, diagnósticos ni tratamientos, solo sus citas y pagos.
+                <a th:if="${session.rolUsuario == 'ENFERMERA' or session.rolUsuario == 'MEDICO'}"
+                   th:href="@{/historias/nuevo(dniPaciente=${p.dnipaciente})}">Crear historia médica</a>
+            </div>
+
+            <div class="clinical-card"
+                 th:if="${h != null and (h.antecedentesPersonales != null or h.antecedentesFamiliares != null or h.intervencionesQuirurgicas != null)}">
+                <h3>Antecedentes</h3>
+                <p th:if="${h.antecedentesPersonales != null}"><strong>Personales:</strong> <span th:text="${h.antecedentesPersonales}"></span></p>
+                <p th:if="${h.antecedentesFamiliares != null}"><strong>Familiares:</strong> <span th:text="${h.antecedentesFamiliares}"></span></p>
+                <p th:if="${h.intervencionesQuirurgicas != null}"><strong>Intervenciones quirúrgicas:</strong> <span th:text="${h.intervencionesQuirurgicas}"></span></p>
+            </div>
+
+            <h3 class="timeline-title">Línea de tiempo</h3>
+
+            <div class="timeline" th:if="${not #lists.isEmpty(historial.eventos)}">
+                <div class="timeline-item" th:each="evento : ${historial.eventos}">
+                    <div class="timeline-marker" th:classappend="${'marker-' + evento.estadoColor}">
+                        <span th:insert="~{fragments/icons :: ${evento.icono}}"></span>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-top">
+                            <span class="timeline-date">
+                                <span th:text="${#temporals.format(evento.fecha, 'dd MMM yyyy')}">01 ene 2026</span>
+                                <span th:if="${evento.hora != null}" th:text="' · ' + ${#temporals.format(evento.hora, 'HH:mm')}"></span>
+                            </span>
+                            <span class="badge" th:classappend="${'badge-' + evento.estadoColor}" th:text="${evento.estadoTexto}">Estado</span>
+                        </div>
+                        <h4 th:text="${evento.titulo}">Título</h4>
+                        <p class="timeline-sub" th:text="${evento.subtitulo}">Subtítulo</p>
+                        <ul class="timeline-details" th:if="${not #lists.isEmpty(evento.detalles)}">
+                            <li th:each="d : ${evento.detalles}" th:text="${d}"></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <p class="empty-row" th:if="${#lists.isEmpty(historial.eventos)}">
+                Este paciente todavía no tiene citas, diagnósticos, tratamientos ni pagos registrados.
+            </p>
+        </main>
+    </div>
+</div>
+</body>
+</html>

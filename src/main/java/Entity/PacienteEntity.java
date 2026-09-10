@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.List;
 
 @Getter
@@ -56,4 +57,9 @@ public class PacienteEntity {
 
     @OneToMany(mappedBy = "paciente")
     private List<ComprobantePagoEntity> comprobantePagos;
+
+    /** Edad calculada a partir de la fecha de nacimiento; no es una columna, solo se usa en pantalla. */
+    public int getEdad() {
+        return Period.between(fechaNacimiento, LocalDate.now()).getYears();
+    }
 }

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
-<head><meta charset="UTF-8"><script>try{var t=localStorage.getItem('tema');if(t){document.documentElement.setAttribute('data-theme',t);}}catch(e){}</script><title>Pacientes</title><link rel="stylesheet" th:href="@{/css/styles.css}"></head>
+<head><meta charset="UTF-8"><script>try{var t=localStorage.getItem('tema');if(t){document.documentElement.setAttribute('data-theme',t);}}catch(e){}</script><title>Pacientes</title><link rel="stylesheet" th:href="@{/css/styles.css}"><script th:src="@{/js/vendor/turbo.es2017-umd.min.js}"></script></head>
 <body>
 <div class="dashboard-shell">
     <div th:replace="~{fragments/header :: header}"></div>
@@ -27,7 +27,7 @@
                     <td th:if="${session.rolUsuario != 'CAJERO'}">
                         <a th:href="@{/pacientes/editar/{dni}(dni=${paciente.dnipaciente})}" class="btn small">Editar</a>
                         <a th:href="@{/historias/nuevo(dniPaciente=${paciente.dnipaciente})}" class="btn small success" th:if="${paciente.historiaMedica == null and (session.rolUsuario == 'ENFERMERA' or session.rolUsuario == 'MEDICO')}">Crear historia</a>
-                        <a th:href="@{/historias}" class="btn small secondary" th:if="${paciente.historiaMedica != null}">Ver historia</a>
+                        <a th:href="@{/pacientes/{dni}/historial(dni=${paciente.dnipaciente})}" class="btn small secondary">Ver historial</a>
                         <form th:action="@{/pacientes/eliminar/{dni}(dni=${paciente.dnipaciente})}" method="post" class="inline-action" onsubmit="return confirm('¿Deseas eliminar este paciente?');"><input type="hidden" name="_csrf" th:value="${csrfToken}">
                             <button type="submit" class="btn small danger">Eliminar</button>
                         </form>
