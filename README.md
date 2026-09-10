@@ -1,6 +1,40 @@
 # Clínica Despertares
 
-Sistema de gestión clínica (Spring Boot 3.5 + Thymeleaf + PostgreSQL).
+[![CI](https://github.com/luis1078/clinica-despertares-IS3/actions/workflows/ci.yml/badge.svg)](https://github.com/luis1078/clinica-despertares-IS3/actions/workflows/ci.yml)
+![Java](https://img.shields.io/badge/Java-21-orange)
+![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.5-brightgreen)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-blue)
+
+Sistema de gestión clínica (Spring Boot 3.5 + Thymeleaf + PostgreSQL): historias
+clínicas, citas, diagnósticos, tratamientos, exámenes de laboratorio e
+imágenes, comprobantes de pago, inventario de medicamentos y control de
+acceso por rol para seis perfiles de personal distintos.
+
+## Funcionalidades
+
+- **Historial clínico unificado**: línea de tiempo por paciente que combina
+  citas, diagnósticos, exámenes, tratamientos y pagos en un solo lugar
+  (`Service/HistorialClinicoServiceImpl`).
+- **Panel principal con gráficos** (Chart.js): indicadores y gráficos propios
+  para cada rol — citas por día/estado para el personal clínico, ingresos y
+  comprobantes para caja, diagnósticos por gravedad para el médico, stock de
+  medicamentos para farmacia.
+- **Control de acceso por rol**: `CAJERO`, `MEDICO`, `ENFERMERA`,
+  `FARMACEUTICO`, `BIOLOGO`, `RADIOLOGO`, cada uno con su propio subconjunto
+  de menú y permisos (`Config/AuthInterceptor.java`).
+- CRUD completo de los 15 módulos del dominio, todos con búsqueda y paginación.
+- Modo oscuro con detección automática del sistema + toggle manual persistido.
+- Contraseñas con hash, protección CSRF en toda escritura, y borrados por POST.
+- Datos de ejemplo al arrancar con la base vacía (`Config/DataSeeder.java`).
+- Suite de tests (JUnit 5 + Mockito) corriendo en CI en cada push.
+
+## Capturas
+
+<img src="docs/screenshots/dashboard-cajero.png" alt="Panel principal con gráficos, vista de rol Cajero" width="800">
+
+<img src="docs/screenshots/historial-clinico.png" alt="Historial clínico de un paciente en línea de tiempo" width="800">
+
+*(Si no las ves: ver [docs/screenshots/README.md](docs/screenshots/README.md) para generarlas.)*
 
 ## Opción A — Todo con Docker (recomendado)
 
