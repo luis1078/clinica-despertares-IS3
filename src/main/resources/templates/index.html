@@ -4,7 +4,7 @@
     <meta charset="UTF-8"><script>try{var t=localStorage.getItem('tema');if(t){document.documentElement.setAttribute('data-theme',t);}}catch(e){}</script>
     <title>Panel - Clínica Despertares</title>
     <link rel="stylesheet" th:href="@{/css/styles.css}">
-</head>
+<script th:src="@{/js/vendor/turbo.es2017-umd.min.js}"></script></head>
 <body>
 
 <div class="dashboard-shell">
@@ -73,6 +73,40 @@
                         <p class="stat-value" th:text="${medicamentosStockBajo}">0</p>
                         <p class="stat-label">Medicamentos con stock bajo</p>
                     </div>
+                </div>
+
+            </section>
+
+            <section class="charts-grid">
+
+                <div class="chart-card" th:if="${session.rolUsuario == 'CAJERO' or session.rolUsuario == 'ENFERMERA' or session.rolUsuario == 'MEDICO'}">
+                    <h3 th:text="${citasPorDia.titulo}">Citas de los últimos 7 días</h3>
+                    <div class="chart-card-body"><canvas id="chart-citas-dia"></canvas></div>
+                </div>
+
+                <div class="chart-card" th:if="${session.rolUsuario == 'CAJERO' or session.rolUsuario == 'ENFERMERA' or session.rolUsuario == 'MEDICO'}">
+                    <h3 th:text="${citasPorEstado.titulo}">Citas por estado</h3>
+                    <div class="chart-card-body"><canvas id="chart-citas-estado"></canvas></div>
+                </div>
+
+                <div class="chart-card" th:if="${session.rolUsuario == 'CAJERO'}">
+                    <h3 th:text="${ingresosPorDia.titulo}">Ingresos de los últimos 7 días</h3>
+                    <div class="chart-card-body"><canvas id="chart-ingresos-dia"></canvas></div>
+                </div>
+
+                <div class="chart-card" th:if="${session.rolUsuario == 'CAJERO'}">
+                    <h3 th:text="${comprobantesPorEstado.titulo}">Comprobantes por estado</h3>
+                    <div class="chart-card-body"><canvas id="chart-comprobantes-estado"></canvas></div>
+                </div>
+
+                <div class="chart-card" th:if="${session.rolUsuario == 'MEDICO'}">
+                    <h3 th:text="${diagnosticosPorGravedad.titulo}">Diagnósticos por gravedad</h3>
+                    <div class="chart-card-body"><canvas id="chart-diagnosticos-gravedad"></canvas></div>
+                </div>
+
+                <div class="chart-card" th:if="${session.rolUsuario == 'FARMACEUTICO'}">
+                    <h3 th:text="${medicamentosPorStock.titulo}">Medicamentos por estado de stock</h3>
+                    <div class="chart-card-body"><canvas id="chart-medicamentos-stock"></canvas></div>
                 </div>
 
             </section>
@@ -165,6 +199,78 @@
 
     </div>
 </div>
+
+<script th:src="@{/js/vendor/chart.umd.min.js}"></script>
+<script th:src="@{/js/dashboard-charts.js}"></script>
+<script th:inline="javascript">
+// Sin DOMContentLoaded a propósito: este script va al final del body, así que
+// el DOM (canvases incluidos) ya está listo cuando llega aquí — tanto en una
+// carga normal como en cada re-ejecución que hace Turbo al visitar "/" de
+// nuevo (Turbo no dispara DOMContentLoaded en esas visitas).
+//
+// Lo que sí hace falta esperar es chart.umd.min.js y dashboard-charts.js:
+// cuando Turbo intercepta una visita (por ejemplo el redirect tras iniciar
+// sesión) reinyecta los <script> del body a mano en vez de dejar que el
+// parser HTML los procese, y un <script src> creado así se ejecuta de forma
+// asíncrona por defecto — sin garantía de que termine antes que este script
+// inline. En una carga normal del navegador nunca pasa (los <script> del
+// parser se ejecutan en orden), pero tras un login vía Turbo sí, y
+// ClinicaCharts queda sin definir. Por eso se reintenta unos milisegundos
+// hasta que tanto Chart como ClinicaCharts existan.
+(function () {
+    var configuraciones = [
+        {
+            id: 'chart-citas-dia', tipo: 'bar',
+            etiquetas: /*[[${citasPorDia.etiquetas}]]*/ [],
+            valores: /*[[${citasPorDia.valores}]]*/ [],
+            colores: function () { return ClinicaCharts.color('--azul'); }
+        },
+        {
+            id: 'chart-citas-estado', tipo: 'doughnut',
+            etiquetas: /*[[${citasPorEstado.etiquetas}]]*/ [],
+            valores: /*[[${citasPorEstado.valores}]]*/ [],
+            colores: function () { return [ClinicaCharts.color('--ambar'), ClinicaCharts.color('--verde'), ClinicaCharts.color('--rojo')]; }
+        },
+        {
+            id: 'chart-ingresos-dia', tipo: 'bar',
+            etiquetas: /*[[${ingresosPorDia.etiquetas}]]*/ [],
+            valores: /*[[${ingresosPorDia.valores}]]*/ [],
+            colores: function () { return ClinicaCharts.color('--verde'); }
+        },
+        {
+            id: 'chart-comprobantes-estado', tipo: 'doughnut',
+            etiquetas: /*[[${comprobantesPorEstado.etiquetas}]]*/ [],
+            valores: /*[[${comprobantesPorEstado.valores}]]*/ [],
+            colores: function () { return [ClinicaCharts.color('--verde'), ClinicaCharts.color('--rojo')]; }
+        },
+        {
+            id: 'chart-diagnosticos-gravedad', tipo: 'doughnut',
+            etiquetas: /*[[${diagnosticosPorGravedad.etiquetas}]]*/ [],
+            valores: /*[[${diagnosticosPorGravedad.valores}]]*/ [],
+            colores: function () { return [ClinicaCharts.color('--verde'), ClinicaCharts.color('--ambar'), ClinicaCharts.color('--rojo')]; }
+        },
+        {
+            id: 'chart-medicamentos-stock', tipo: 'doughnut',
+            etiquetas: /*[[${medicamentosPorStock.etiquetas}]]*/ [],
+            valores: /*[[${medicamentosPorStock.valores}]]*/ [],
+            colores: function () { return [ClinicaCharts.color('--verde'), ClinicaCharts.color('--rojo')]; }
+        }
+    ];
+
+    function intentarRenderizar(intentosRestantes) {
+        if (typeof window.ClinicaCharts !== 'undefined' && typeof window.Chart !== 'undefined') {
+            window.ClinicaCharts.iniciar(configuraciones);
+            return;
+        }
+        if (intentosRestantes <= 0) {
+            return;
+        }
+        setTimeout(function () { intentarRenderizar(intentosRestantes - 1); }, 20);
+    }
+
+    intentarRenderizar(50);
+})();
+</script>
 
 </body>
 </html>

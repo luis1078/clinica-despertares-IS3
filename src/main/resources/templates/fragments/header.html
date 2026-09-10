@@ -75,6 +75,9 @@
                 // localStorage puede no estar disponible (modo privado, etc.); no es crítico.
             }
             actualizarIcono();
+            // Los gráficos de Chart.js (si los hay en la página) leen los colores
+            // de las variables CSS al crearse y no se actualizan solos.
+            document.dispatchEvent(new CustomEvent('tema-cambiado'));
         });
     })();
     </script>
