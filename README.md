@@ -108,6 +108,149 @@ La app queda en **http://localhost:8080**.
 | `DB_USERNAME` | `postgres` |
 | `DB_PASSWORD` | `password` |
 
+## Requerimientos del sistema
+
+Fuente: `01 Informe.pdf` (rama `Branch-IS3`), sección 5.2 "Requerimientos" del *Sistema de Gestión Clínica Despertares (SGCD) – Versión 1.0*. La columna **Estado** indica cómo está cada punto en el código actual:
+
+✅ implementado · 🟡 parcial · ❌ no implementado · ⚪ depende del despliegue o no se puede verificar en el código.
+
+> **Nota sobre el informe:** la sección 5.2.5.1 solo enumera **RF023–RF027** (imágenes diagnósticas); faltan RF001–RF022. El resto de la funcionalidad del informe está descrita como casos de uso del sistema (**CUS01–CUS54**, sección 5.2.8.2), que se listan abajo como requerimientos funcionales por paquete.
+
+### Requerimientos funcionales (RF)
+
+| Código | Requerimiento | Estado | Observación |
+|---|---|:-:|---|
+| RF023 | Registrar, desde la interfaz del médico, la solicitud de estudios por imágenes. | ✅ | Solicitud de examen médico desde un diagnóstico (`/examenes`). |
+| RF024 | Vincular las imágenes y el informe radiológico al historial del paciente. | 🟡 | El informe queda enlazado (examen → diagnóstico → historia) y aparece en el historial; no hay archivos de imagen. |
+| RF025 | El radiólogo registra la interpretación y los resultados de las imágenes. | ✅ | Campo `informeMedico` en `/imagenes` (solo RADIOLOGO). |
+| RF026 | Almacenar de forma segura los archivos digitales de las imágenes. | ❌ | No hay carga de archivos. |
+| RF027 | Consultar y visualizar los informes de imágenes por paciente. | ✅ | Listado `/imagenes` e historial clínico unificado. |
+
+### Casos de uso del sistema (CUS)
+
+**PAQ01 – Gestión de Cita Médica**
+
+| Código | Caso de uso | Estado | Observación |
+|---|---|:-:|---|
+| CUS01 | Consultar paciente | ✅ | Búsqueda y paginación en `/pacientes`. |
+| CUS02 | Registrar nuevo paciente | ✅ | |
+| CUS03 | Actualizar datos del paciente | ✅ | |
+| CUS04 | Agendar cita médica | ✅ | Valida que el médico esté libre. |
+| CUS05 | Asignar médico | ✅ | Se elige al agendar. |
+| CUS06 | Imprimir boucher de pago | 🟡 | El comprobante se genera solo; no hay impresión. |
+| CUS07 | Cancelar cita médica | ✅ | |
+| CUS08 | Reprogramar cita | ✅ | |
+| CUS09 | Realizar control de triaje | ❌ | No existe módulo de triaje. |
+| CUS10 | Registrar signos vitales | ❌ | |
+
+**PAQ02 – Gestión de Historia Médica**
+
+| Código | Caso de uso | Estado | Observación |
+|---|---|:-:|---|
+| CUS11 | Registrar historial médico | ✅ | Una historia por paciente. |
+| CUS12 | Registrar diagnóstico | ✅ | |
+| CUS13 | Registrar tratamiento | ✅ | |
+| CUS14 | Consultar historia médica | ✅ | Historial clínico unificado. |
+| CUS15 | Consultar diagnóstico | ✅ | |
+| CUS16 | Consultar tratamiento | ✅ | |
+| CUS17 | Actualizar historia médica | ✅ | Solo MEDICO. |
+| CUS18 | Solicitar exámenes médicos | ✅ | |
+| CUS19 | Generar boucher por exámenes | ✅ | Comprobante automático al solicitar el examen. |
+| CUS20 | Recetar medicamentos | 🟡 | Medicamentos en el detalle del tratamiento; no hay receta digital. |
+
+**PAQ03 – Gestión de Comprobante de Pago**
+
+| Código | Caso de uso | Estado | Observación |
+|---|---|:-:|---|
+| CUS21 | Registrar comprobante de pago | ✅ | Boleta o factura (sin emisión electrónica). |
+| CUS22 | Consultar cita médica programada | ✅ | CAJERO ve el listado de citas. |
+| CUS23 | Registrar transacción de venta (POS) | ❌ | Sin integración POS. |
+| CUS24 | Registrar pago | 🟡 | Se marca el comprobante como pagado. |
+| CUS25 | Consultar comprobante de cita médica | ✅ | Detalles por tipo de ítem `CITA`. |
+| CUS26 | Consultar boucher por examen médico | ✅ | Ítem `EXAMEN`. |
+| CUS27 | Consultar comprobante por medicamentos | ✅ | Ítem `MEDICAMENTO`. |
+| CUS28 | Apertura de caja | ❌ | |
+| CUS29 | Cierre de caja | ❌ | |
+
+**PAQ04 – Gestión de Farmacia**
+
+| Código | Caso de uso | Estado | Observación |
+|---|---|:-:|---|
+| CUS30 | Registrar receta médica | ❌ | No hay módulo de recetas. |
+| CUS31 | Registrar medicamentos | ✅ | Solo FARMACEUTICO. |
+| CUS32 | Actualizar stock | ✅ | |
+| CUS33 | Despachar medicamentos pagados | 🟡 | El stock se descuenta al añadirlo al comprobante, sin comprobar que esté pagado. |
+| CUS34 | Solicitar boucher de pago cancelado | ❌ | |
+| CUS35 | Registrar despacho de medicamento | 🟡 | Mismo mecanismo que CUS33. |
+| CUS36 | Consultar stock de medicamentos | ✅ | |
+| CUS37 | Alertar stock mínimo | 🟡 | Indicador de stock bajo en el panel y el listado; sin notificación. |
+
+**PAQ05 – Gestión de Exámenes de Laboratorio**
+
+| Código | Caso de uso | Estado | Observación |
+|---|---|:-:|---|
+| CUS38 | Registrar solicitud de examen de laboratorio | ✅ | |
+| CUS39 | Solicitar boucher de examen | ❌ | No se comprueba el pago antes de procesar. |
+| CUS40 | Asignar exámenes extras | 🟡 | Se pueden solicitar más exámenes sobre el mismo diagnóstico. |
+| CUS41 | Registrar examen de laboratorio | ✅ | |
+| CUS42 | Registrar resultado | ✅ | Resultado, valor de referencia y unidad. |
+| CUS43 | Vincular a historia médica | ✅ | Vía diagnóstico; aparece en el historial. |
+| CUS44 | Proporcionar examen (reporte impreso) | ❌ | |
+| CUS45 | Consultar resultados por paciente | ✅ | Historial clínico unificado. |
+| CUS46 | Explicar resultado al paciente | ❌ | |
+
+**PAQ06 – Gestión de Imágenes Diagnósticas**
+
+| Código | Caso de uso | Estado | Observación |
+|---|---|:-:|---|
+| CUS47 | Registrar solicitud de imagen | ✅ | |
+| CUS48 | Solicitar comprobante por examen | ❌ | No se comprueba el pago. |
+| CUS49 | Registrar tipo de imagen médica | ✅ | Región del cuerpo y uso de contraste. |
+| CUS50 | Registrar resultado (archivos de imagen) | ❌ | No hay carga de archivos. |
+| CUS51 | Redactar resultado | ✅ | Informe del radiólogo. |
+| CUS52 | Vincular a historia médica | ✅ | |
+| CUS53 | Consultar imágenes por paciente | ✅ | |
+| CUS54 | Explicar resultado al paciente | ❌ | |
+
+### Reglas de negocio (RN)
+
+| Código | Regla | Estado | Observación |
+|---|---|:-:|---|
+| RN001 | El paciente debe estar registrado antes de agendar una cita o generar un comprobante. | ✅ | |
+| RN002 | Evoluciones, diagnósticos e imágenes de la historia no se pueden eliminar. | 🟡 | Las historias no se eliminan, pero diagnósticos e imágenes sí tienen opción de eliminar. |
+| RN003 | Total del comprobante = consulta + exámenes + medicamentos (precio × cantidad). | ✅ | Se recalcula al añadir o quitar ítems. |
+| RN004 | El stock se descuenta según la cantidad entregada en el comprobante. | ✅ | Y se devuelve al editar o borrar el ítem. |
+| RN005 | Identificador: DNI de 8 dígitos, o hasta 12 caracteres para CE o pasaporte; no nulo. | 🟡 | Solo DNI (columna de 8 caracteres); no hay CE ni pasaporte ni validación de formato. |
+| RN006 | La fecha y hora de una cita nueva deben ser iguales o posteriores al momento actual. | ❌ | No se validan fechas pasadas. |
+| RN007 | El paciente pasa a consulta solo si la enfermera registró antes el triaje. | ❌ | No existe el triaje. |
+| RN008 | Los resultados se anexan a la historia solo después de que el biólogo o radiólogo los valida y firma. | ❌ | No hay validación ni firma. |
+
+### Requerimientos no funcionales (RNF)
+
+| Código | Tipo | Requerimiento | Estado | Observación |
+|---|---|---|:-:|---|
+| RNF001 | Seguridad | Autenticación obligatoria con contraseña encriptada. | ✅ | Sesión obligatoria y BCrypt. |
+| RNF002 | Disponibilidad | Operativo 24/7. | ⚪ | Depende del hosting. |
+| RNF003 | Seguridad / Autorización | Roles y permisos estrictos por tipo de usuario. | 🟡 | Ver [Limitaciones conocidas](#limitaciones-conocidas). |
+| RNF004 | Legal | Cumplir la Ley N° 29733 (y el RGPD si aplica). | ❌ | Sin medidas específicas (consentimiento, auditoría de accesos, cifrado de datos). |
+| RNF005 | Portabilidad | Ejecutarse en Windows, Linux y macOS. | ✅ | Aplicación web; además se puede levantar con Docker. |
+| RNF006 | Rendimiento | Respuesta y carga en menos de 3 s. | ⚪ | No medido; hay compresión HTTP y caché de estáticos. |
+| RNF007 | Usabilidad | Interfaz gráfica intuitiva. | ✅ | Menú por rol, búsqueda, paginación y modo oscuro. |
+| RNF008 | Confiabilidad | Backups automáticos, diarios e incrementales. | ❌ | Solo un volumen persistente de Docker. |
+| RNF009 | Compatibilidad | Funcionar en Chrome, Firefox y Edge recientes. | ⚪ | No hay pruebas multinavegador. |
+| RNF010 | Escalabilidad | Soportar el crecimiento de pacientes y médicos. | 🟡 | La paginación se hace en memoria después de cargar todos los registros. |
+
+### Interfaces externas (sección 5.2.5.3)
+
+| Interfaz | Requerimiento | Estado |
+|---|---|:-:|
+| Usuario | Diseño limpio azul/celeste, barra lateral con íconos, barra superior con usuario y rol, buscador general y notificaciones, tablas con paginación y filtros. | 🟡 Falta el buscador general y las notificaciones. |
+| Hardware | Impresoras térmicas (tickets), impresoras A4 (recetas, informes) y terminales POS. | ❌ |
+| Software | Navegadores modernos y PostgreSQL. | ✅ |
+| Software | Facturación electrónica (SUNAT/PSE) y pasarela de pagos Izipay. | ❌ |
+| Comunicación | HTTPS obligatorio. | ⚪ Depende del despliegue (la app no fuerza HTTPS). |
+| Comunicación | API RESTful con JSON. | ❌ La app renderiza en servidor (Thymeleaf); no expone API REST. |
+
 ## Roles, permisos y flujos
 
 No se usa Spring Security: la autenticación es por sesión HTTP y los permisos se aplican en tres capas.
