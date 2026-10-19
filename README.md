@@ -108,6 +108,76 @@ La app queda en **http://localhost:8080**.
 | `DB_USERNAME` | `postgres` |
 | `DB_PASSWORD` | `password` |
 
-## Roles del sistema
+## Roles, permisos y flujos
 
-`CAJERO`, `MEDICO`, `ENFERMERA`, `FARMACEUTICO`, `BIOLOGO`, `RADIOLOGO` — cada uno ve un subconjunto distinto del menú según permisos definidos en `Config/AuthInterceptor.java`.
+No se usa Spring Security: la autenticación es por sesión HTTP y los permisos se aplican en tres capas.
+
+| Capa | Dónde | Qué hace |
+|---|---|---|
+| Interceptor global | `Config/AuthInterceptor.java` | Sin sesión → `/login`. Exige token CSRF en todo POST/PUT/DELETE/PATCH. Autoriza por **prefijo de URL** y rol; si no, → `/acceso-denegado`. |
+| Comprobación en controlador | `Util/RolHelper.tieneRol(...)` | Solo en `MedicamentoController`, `ComprobantePagoController` y `DetalleComprobanteController` (`HistoriaMedicaController` tiene su propia versión). |
+| Plantillas | `fragments/sidebar.html`, `index.html`, `*/listar.html` | Ocultan menús, botones y columnas de "Acciones" según `session.rolUsuario`. |
+
+- **Login** con username o correo; solo entran usuarios con `estado = true`. Contraseñas con hash (`PasswordEncoder`).
+- **Rutas públicas:** `/`, `/login`, `/registro`, `/acceso-denegado`, `/error` y estáticos.
+- **Registro público** (`/registro`): se elige el rol; si es `MEDICO`, hay que asociar un médico existente.
+
+### Roles
+
+`CAJERO`, `MEDICO`, `ENFERMERA`, `FARMACEUTICO`, `BIOLOGO`, `RADIOLOGO` (`Entity/Emuns/RolUsuarioEnum.java`). No hay rol ADMIN: **`MEDICO` administra los usuarios**.
+
+### Matriz de permisos (interceptor)
+
+| Módulo / ruta | CAJERO | MEDICO | ENFERMERA | FARMAC. | BIÓLOGO | RADIÓLOGO |
+|---|:-:|:-:|:-:|:-:|:-:|:-:|
+| `/pacientes` (listado) | 👁 | ✅ | ✅ | | | |
+| `/pacientes/**` (crear, editar, historial) | | ✅ | ✅ | | | |
+| `/medicos` | ✅ | ✅ | ✅ | | | |
+| `/citas` (listado) | 👁 | ✅ | ✅ | | | |
+| `/citas/**` (crear, cancelar, reprogramar, finalizar) | | ✅ | ✅ | | | |
+| `/historias` | | ✅ | ✅ | | | |
+| `/diagnosticos` | | ✅ | | | ✅ | ✅ |
+| `/tratamientos`, `/detalle-tratamientos` | | ✅ | | ✅ | | |
+| `/comprobantes`, `/detalle-comprobantes` | ✅ | | | | | |
+| `/medicamentos` | 👁 | | | ✅ | | |
+| `/proveedores` | | | | ✅ | | |
+| `/examenes` | | ✅ | | | ✅ | ✅ |
+| `/laboratorio` | | 👁 | | | ✅ | |
+| `/imagenes` | | 👁 | | | | ✅ |
+| `/usuarios` | | ✅ | | | | |
+
+👁 = solo listado · ✅ = acceso completo a la ruta.
+
+Reglas adicionales dentro de los módulos:
+
+- **Historias:** crear → MEDICO o ENFERMERA; editar → solo MEDICO; eliminar → deshabilitado.
+- **Medicamentos:** crear, editar, actualizar stock y eliminar → solo FARMACEUTICO; CAJERO solo consulta.
+- **Comprobantes y detalles:** todo exclusivo de CAJERO (verificado también en el controlador).
+
+### Funciones por rol
+
+- **CAJERO** — caja: ve pacientes y citas (sin acciones); gestiona comprobantes (crear, editar, marcar pagado/pendiente, eliminar) y sus detalles (ítems de cita, examen o medicamento). Panel: cobrado del mes, comprobantes pendientes, ingresos de 7 días, comprobantes por estado.
+- **ENFERMERA** — admisión: registra pacientes y crea su historia médica; agenda, reprograma y cancela citas; consulta el historial clínico unificado.
+- **MEDICO** — clínico y administrador: todo lo de ENFERMERA, más editar historias, diagnósticos, tratamientos (con sus medicamentos), solicitud de exámenes, consulta de laboratorio e imágenes, finalizar citas (en la interfaz) y gestión de usuarios (crear, editar, activar, desactivar, eliminar). Panel: diagnósticos por gravedad.
+- **FARMACEUTICO** — inventario: medicamentos (stock, vencimientos) y proveedores; acceso a tratamientos. Panel: medicamentos con stock bajo.
+- **BIOLOGO** — exámenes de laboratorio y exámenes médicos.
+- **RADIOLOGO** — imágenes diagnósticas y exámenes médicos.
+
+### Flujos de negocio
+
+1. **Admisión:** ENFERMERA o MEDICO registra al paciente y le crea su **historia médica** (una sola por paciente).
+2. **Cita:** se valida que el médico esté libre en esa fecha y hora (las canceladas no cuentan) y queda `PENDIENTE`. Se **genera automáticamente un comprobante** (boleta, `FALTA_PAGAR`, monto de consulta) para el CAJERO. Estados: `PENDIENTE → FINALIZADA | CANCELADA`; reprogramar la devuelve a `PENDIENTE`.
+3. **Diagnóstico:** el MEDICO lo registra sobre la historia, con gravedad `LEVE`, `MODERADO` o `GRAVE`.
+4. **Examen:** se solicita desde un diagnóstico, entra `PENDIENTE` y también **genera un comprobante automático**. BIOLOGO o RADIOLOGO lo avanzan: `PENDIENTE → EN_PROCESO → FINALIZADO` (al finalizar se guarda la fecha de resultado).
+5. **Tratamiento:** el MEDICO lo crea `ACTIVO` y le añade medicamentos; después pasa a `FINALIZADO` o `SUSPENDIDO`.
+6. **Cobro:** el CAJERO añade ítems al comprobante. Un ítem de medicamento **descuenta stock** (falla si no alcanza y lo devuelve al editar o borrar); no se permiten ítems duplicados para la misma referencia. Al terminar, marca el comprobante `CANCELADO` (pagado).
+7. **Historial clínico unificado** (`/pacientes/{dni}/historial`): línea de tiempo con citas, diagnósticos, exámenes, tratamientos y pagos del paciente.
+
+### Limitaciones conocidas
+
+1. **Registro con cualquier rol:** `/registro` es público y permite elegir `MEDICO`, el rol que administra usuarios (basta con asociarse a un médico existente).
+2. **Restricciones solo en la interfaz:** `CitaMedicaController`, `ExamenMedicoController`, `DiagnosticoController`, `TratamientoController` y los de laboratorio e imágenes no verifican el rol en el código. Por ejemplo, una ENFERMERA puede finalizar citas enviando el POST directamente, y BIOLOGO o RADIOLOGO pueden crear o eliminar diagnósticos.
+3. **Rutas sin regla quedan abiertas:** `tienePermiso` termina en `return true`, así que una ruta nueva sin regla la puede usar cualquier usuario con sesión.
+4. **Menú y permisos no coinciden:** hay accesos sin entrada de menú (CAJERO → medicamentos, FARMACEUTICO → tratamientos, BIOLOGO/RADIOLOGO → diagnósticos; `/medicos` no aparece en el menú de ningún rol).
+5. **`/logout` por GET**, sin token CSRF.
+6. **El rol se fija al iniciar sesión:** desactivar a un usuario o cambiarle el rol no le afecta hasta que vuelva a iniciar sesión.
