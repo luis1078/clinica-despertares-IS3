@@ -1,0 +1,727 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="QA.FTC03_TratamientosComprobantesInventarioTest" time="1.113" tests="21" errors="0" skipped="1" failures="5" flakes="0">
+  <properties>
+    <property name="java.specification.version" value="21"/>
+    <property name="sun.jnu.encoding" value="UTF-8"/>
+    <property name="java.class.path" value="/home/runner/work/clinica-despertares-IS3/clinica-despertares-IS3/target/test-classes:/home/runner/work/clinica-despertares-IS3/clinica-despertares-IS3/target/classes:/home/runner/.m2/repository/org/springframework/boot/spring-boot-starter-data-jpa/3.5.14/spring-boot-starter-data-jpa-3.5.14.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot-starter/3.5.14/spring-boot-starter-3.5.14.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot/3.5.14/spring-boot-3.5.14.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot-autoconfigure/3.5.14/spring-boot-autoconfigure-3.5.14.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot-starter-logging/3.5.14/spring-boot-starter-logging-3.5.14.jar:/home/runner/.m2/repository/ch/qos/logback/logback-classic/1.5.32/logback-classic-1.5.32.jar:/home/runner/.m2/repository/ch/qos/logback/logback-core/1.5.32/logback-core-1.5.32.jar:/home/runner/.m2/repository/org/apache/logging/log4j/log4j-to-slf4j/2.24.3/log4j-to-slf4j-2.24.3.jar:/home/runner/.m2/repository/org/apache/logging/log4j/log4j-api/2.24.3/log4j-api-2.24.3.jar:/home/runner/.m2/repository/org/slf4j/jul-to-slf4j/2.0.17/jul-to-slf4j-2.0.17.jar:/home/runner/.m2/repository/jakarta/annotation/jakarta.annotation-api/2.1.1/jakarta.annotation-api-2.1.1.jar:/home/runner/.m2/repository/org/yaml/snakeyaml/2.4/snakeyaml-2.4.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot-starter-jdbc/3.5.14/spring-boot-starter-jdbc-3.5.14.jar:/home/runner/.m2/repository/com/zaxxer/HikariCP/6.3.3/HikariCP-6.3.3.jar:/home/runner/.m2/repository/org/springframework/spring-jdbc/6.2.18/spring-jdbc-6.2.18.jar:/home/runner/.m2/repository/org/hibernate/orm/hibernate-core/6.6.49.Final/hibernate-core-6.6.49.Final.jar:/home/runner/.m2/repository/jakarta/persistence/jakarta.persistence-api/3.1.0/jakarta.persistence-api-3.1.0.jar:/home/runner/.m2/repository/jakarta/transaction/jakarta.transaction-api/2.0.1/jakarta.transaction-api-2.0.1.jar:/home/runner/.m2/repository/org/jboss/logging/jboss-logging/3.6.3.Final/jboss-logging-3.6.3.Final.jar:/home/runner/.m2/repository/org/hibernate/common/hibernate-commons-annotations/7.0.3.Final/hibernate-commons-annotations-7.0.3.Final.jar:/home/runner/.m2/repository/io/smallrye/jandex/3.2.0/jandex-3.2.0.jar:/home/runner/.m2/repository/com/fasterxml/classmate/1.7.3/classmate-1.7.3.jar:/home/runner/.m2/repository/net/bytebuddy/byte-buddy/1.17.8/byte-buddy-1.17.8.jar:/home/runner/.m2/repository/org/glassfish/jaxb/jaxb-runtime/4.0.6/jaxb-runtime-4.0.6.jar:/home/runner/.m2/repository/org/glassfish/jaxb/jaxb-core/4.0.6/jaxb-core-4.0.6.jar:/home/runner/.m2/repository/org/eclipse/angus/angus-activation/2.0.3/angus-activation-2.0.3.jar:/home/runner/.m2/repository/org/glassfish/jaxb/txw2/4.0.6/txw2-4.0.6.jar:/home/runner/.m2/repository/com/sun/istack/istack-commons-runtime/4.1.2/istack-commons-runtime-4.1.2.jar:/home/runner/.m2/repository/jakarta/inject/jakarta.inject-api/2.0.1/jakarta.inject-api-2.0.1.jar:/home/runner/.m2/repository/org/antlr/antlr4-runtime/4.13.0/antlr4-runtime-4.13.0.jar:/home/runner/.m2/repository/org/springframework/data/spring-data-jpa/3.5.11/spring-data-jpa-3.5.11.jar:/home/runner/.m2/repository/org/springframework/data/spring-data-commons/3.5.11/spring-data-commons-3.5.11.jar:/home/runner/.m2/repository/org/springframework/spring-orm/6.2.18/spring-orm-6.2.18.jar:/home/runner/.m2/repository/org/springframework/spring-context/6.2.18/spring-context-6.2.18.jar:/home/runner/.m2/repository/org/springframework/spring-aop/6.2.18/spring-aop-6.2.18.jar:/home/runner/.m2/repository/org/springframework/spring-tx/6.2.18/spring-tx-6.2.18.jar:/home/runner/.m2/repository/org/springframework/spring-beans/6.2.18/spring-beans-6.2.18.jar:/home/runner/.m2/repository/org/slf4j/slf4j-api/2.0.17/slf4j-api-2.0.17.jar:/home/runner/.m2/repository/org/springframework/spring-aspects/6.2.18/spring-aspects-6.2.18.jar:/home/runner/.m2/repository/org/aspectj/aspectjweaver/1.9.25.1/aspectjweaver-1.9.25.1.jar:/home/runner/.m2/repository/org/projectlombok/lombok/1.18.46/lombok-1.18.46.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot-starter-thymeleaf/3.5.14/spring-boot-starter-thymeleaf-3.5.14.jar:/home/runner/.m2/repository/org/thymeleaf/thymeleaf-spring6/3.1.5.RELEASE/thymeleaf-spring6-3.1.5.RELEASE.jar:/home/runner/.m2/repository/org/thymeleaf/thymeleaf/3.1.5.RELEASE/thymeleaf-3.1.5.RELEASE.jar:/home/runner/.m2/repository/org/attoparser/attoparser/2.0.7.RELEASE/attoparser-2.0.7.RELEASE.jar:/home/runner/.m2/repository/org/unbescape/unbescape/1.1.6.RELEASE/unbescape-1.1.6.RELEASE.jar:/home/runner/.m2/repository/org/springframework/security/spring-security-crypto/6.5.10/spring-security-crypto-6.5.10.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot-starter-web/3.5.14/spring-boot-starter-web-3.5.14.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot-starter-json/3.5.14/spring-boot-starter-json-3.5.14.jar:/home/runner/.m2/repository/com/fasterxml/jackson/core/jackson-databind/2.21.2/jackson-databind-2.21.2.jar:/home/runner/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.21/jackson-annotations-2.21.jar:/home/runner/.m2/repository/com/fasterxml/jackson/core/jackson-core/2.21.2/jackson-core-2.21.2.jar:/home/runner/.m2/repository/com/fasterxml/jackson/datatype/jackson-datatype-jdk8/2.21.2/jackson-datatype-jdk8-2.21.2.jar:/home/runner/.m2/repository/com/fasterxml/jackson/datatype/jackson-datatype-jsr310/2.21.2/jackson-datatype-jsr310-2.21.2.jar:/home/runner/.m2/repository/com/fasterxml/jackson/module/jackson-module-parameter-names/2.21.2/jackson-module-parameter-names-2.21.2.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot-starter-tomcat/3.5.14/spring-boot-starter-tomcat-3.5.14.jar:/home/runner/.m2/repository/org/apache/tomcat/embed/tomcat-embed-core/10.1.54/tomcat-embed-core-10.1.54.jar:/home/runner/.m2/repository/org/apache/tomcat/embed/tomcat-embed-el/10.1.54/tomcat-embed-el-10.1.54.jar:/home/runner/.m2/repository/org/apache/tomcat/embed/tomcat-embed-websocket/10.1.54/tomcat-embed-websocket-10.1.54.jar:/home/runner/.m2/repository/org/springframework/spring-web/6.2.18/spring-web-6.2.18.jar:/home/runner/.m2/repository/io/micrometer/micrometer-observation/1.15.11/micrometer-observation-1.15.11.jar:/home/runner/.m2/repository/io/micrometer/micrometer-commons/1.15.11/micrometer-commons-1.15.11.jar:/home/runner/.m2/repository/org/springframework/spring-webmvc/6.2.18/spring-webmvc-6.2.18.jar:/home/runner/.m2/repository/org/springframework/spring-expression/6.2.18/spring-expression-6.2.18.jar:/home/runner/.m2/repository/org/postgresql/postgresql/42.7.10/postgresql-42.7.10.jar:/home/runner/.m2/repository/org/checkerframework/checker-qual/3.52.0/checker-qual-3.52.0.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot-starter-test/3.5.14/spring-boot-starter-test-3.5.14.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot-test/3.5.14/spring-boot-test-3.5.14.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot-test-autoconfigure/3.5.14/spring-boot-test-autoconfigure-3.5.14.jar:/home/runner/.m2/repository/com/jayway/jsonpath/json-path/2.9.0/json-path-2.9.0.jar:/home/runner/.m2/repository/jakarta/xml/bind/jakarta.xml.bind-api/4.0.4/jakarta.xml.bind-api-4.0.4.jar:/home/runner/.m2/repository/jakarta/activation/jakarta.activation-api/2.1.4/jakarta.activation-api-2.1.4.jar:/home/runner/.m2/repository/net/minidev/json-smart/2.5.2/json-smart-2.5.2.jar:/home/runner/.m2/repository/net/minidev/accessors-smart/2.5.2/accessors-smart-2.5.2.jar:/home/runner/.m2/repository/org/ow2/asm/asm/9.7.1/asm-9.7.1.jar:/home/runner/.m2/repository/org/assertj/assertj-core/3.27.7/assertj-core-3.27.7.jar:/home/runner/.m2/repository/org/awaitility/awaitility/4.2.2/awaitility-4.2.2.jar:/home/runner/.m2/repository/org/hamcrest/hamcrest/3.0/hamcrest-3.0.jar:/home/runner/.m2/repository/org/junit/jupiter/junit-jupiter/5.12.2/junit-jupiter-5.12.2.jar:/home/runner/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.12.2/junit-jupiter-api-5.12.2.jar:/home/runner/.m2/repository/org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.jar:/home/runner/.m2/repository/org/junit/platform/junit-platform-commons/1.12.2/junit-platform-commons-1.12.2.jar:/home/runner/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/home/runner/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.12.2/junit-jupiter-params-5.12.2.jar:/home/runner/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.12.2/junit-jupiter-engine-5.12.2.jar:/home/runner/.m2/repository/org/junit/platform/junit-platform-engine/1.12.2/junit-platform-engine-1.12.2.jar:/home/runner/.m2/repository/org/mockito/mockito-core/5.17.0/mockito-core-5.17.0.jar:/home/runner/.m2/repository/net/bytebuddy/byte-buddy-agent/1.17.8/byte-buddy-agent-1.17.8.jar:/home/runner/.m2/repository/org/objenesis/objenesis/3.3/objenesis-3.3.jar:/home/runner/.m2/repository/org/mockito/mockito-junit-jupiter/5.17.0/mockito-junit-jupiter-5.17.0.jar:/home/runner/.m2/repository/org/skyscreamer/jsonassert/1.5.3/jsonassert-1.5.3.jar:/home/runner/.m2/repository/com/vaadin/external/google/android-json/0.0.20131108.vaadin1/android-json-0.0.20131108.vaadin1.jar:/home/runner/.m2/repository/org/springframework/spring-core/6.2.18/spring-core-6.2.18.jar:/home/runner/.m2/repository/org/springframework/spring-jcl/6.2.18/spring-jcl-6.2.18.jar:/home/runner/.m2/repository/org/springframework/spring-test/6.2.18/spring-test-6.2.18.jar:/home/runner/.m2/repository/org/xmlunit/xmlunit-core/2.10.4/xmlunit-core-2.10.4.jar:"/>
+    <property name="java.vm.vendor" value="Eclipse Adoptium"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="java.vendor.url" value="https://adoptium.net/"/>
+    <property name="user.timezone" value="Etc/UTC"/>
+    <property name="org.jboss.logging.provider" value="slf4j"/>
+    <property name="os.name" value="Linux"/>
+    <property name="java.vm.specification.version" value="21"/>
+    <property name="APPLICATION_NAME" value="clinica_Despertares"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="sun.boot.library.path" value="/usr/lib/jvm/temurin-21-jdk-amd64/lib"/>
+    <property name="sun.java.command" value="/home/runner/work/clinica-despertares-IS3/clinica-despertares-IS3/target/surefire/surefirebooter-20261116163900224_3.jar /home/runner/work/clinica-despertares-IS3/clinica-despertares-IS3/target/surefire 2026-11-16T16-39-00_010-jvmRun1 surefire-20261116163900224_1tmp surefire_0-20261116163900224_2tmp"/>
+    <property name="jdk.debug" value="release"/>
+    <property name="surefire.test.class.path" value="/home/runner/work/clinica-despertares-IS3/clinica-despertares-IS3/target/test-classes:/home/runner/work/clinica-despertares-IS3/clinica-despertares-IS3/target/classes:/home/runner/.m2/repository/org/springframework/boot/spring-boot-starter-data-jpa/3.5.14/spring-boot-starter-data-jpa-3.5.14.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot-starter/3.5.14/spring-boot-starter-3.5.14.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot/3.5.14/spring-boot-3.5.14.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot-autoconfigure/3.5.14/spring-boot-autoconfigure-3.5.14.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot-starter-logging/3.5.14/spring-boot-starter-logging-3.5.14.jar:/home/runner/.m2/repository/ch/qos/logback/logback-classic/1.5.32/logback-classic-1.5.32.jar:/home/runner/.m2/repository/ch/qos/logback/logback-core/1.5.32/logback-core-1.5.32.jar:/home/runner/.m2/repository/org/apache/logging/log4j/log4j-to-slf4j/2.24.3/log4j-to-slf4j-2.24.3.jar:/home/runner/.m2/repository/org/apache/logging/log4j/log4j-api/2.24.3/log4j-api-2.24.3.jar:/home/runner/.m2/repository/org/slf4j/jul-to-slf4j/2.0.17/jul-to-slf4j-2.0.17.jar:/home/runner/.m2/repository/jakarta/annotation/jakarta.annotation-api/2.1.1/jakarta.annotation-api-2.1.1.jar:/home/runner/.m2/repository/org/yaml/snakeyaml/2.4/snakeyaml-2.4.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot-starter-jdbc/3.5.14/spring-boot-starter-jdbc-3.5.14.jar:/home/runner/.m2/repository/com/zaxxer/HikariCP/6.3.3/HikariCP-6.3.3.jar:/home/runner/.m2/repository/org/springframework/spring-jdbc/6.2.18/spring-jdbc-6.2.18.jar:/home/runner/.m2/repository/org/hibernate/orm/hibernate-core/6.6.49.Final/hibernate-core-6.6.49.Final.jar:/home/runner/.m2/repository/jakarta/persistence/jakarta.persistence-api/3.1.0/jakarta.persistence-api-3.1.0.jar:/home/runner/.m2/repository/jakarta/transaction/jakarta.transaction-api/2.0.1/jakarta.transaction-api-2.0.1.jar:/home/runner/.m2/repository/org/jboss/logging/jboss-logging/3.6.3.Final/jboss-logging-3.6.3.Final.jar:/home/runner/.m2/repository/org/hibernate/common/hibernate-commons-annotations/7.0.3.Final/hibernate-commons-annotations-7.0.3.Final.jar:/home/runner/.m2/repository/io/smallrye/jandex/3.2.0/jandex-3.2.0.jar:/home/runner/.m2/repository/com/fasterxml/classmate/1.7.3/classmate-1.7.3.jar:/home/runner/.m2/repository/net/bytebuddy/byte-buddy/1.17.8/byte-buddy-1.17.8.jar:/home/runner/.m2/repository/org/glassfish/jaxb/jaxb-runtime/4.0.6/jaxb-runtime-4.0.6.jar:/home/runner/.m2/repository/org/glassfish/jaxb/jaxb-core/4.0.6/jaxb-core-4.0.6.jar:/home/runner/.m2/repository/org/eclipse/angus/angus-activation/2.0.3/angus-activation-2.0.3.jar:/home/runner/.m2/repository/org/glassfish/jaxb/txw2/4.0.6/txw2-4.0.6.jar:/home/runner/.m2/repository/com/sun/istack/istack-commons-runtime/4.1.2/istack-commons-runtime-4.1.2.jar:/home/runner/.m2/repository/jakarta/inject/jakarta.inject-api/2.0.1/jakarta.inject-api-2.0.1.jar:/home/runner/.m2/repository/org/antlr/antlr4-runtime/4.13.0/antlr4-runtime-4.13.0.jar:/home/runner/.m2/repository/org/springframework/data/spring-data-jpa/3.5.11/spring-data-jpa-3.5.11.jar:/home/runner/.m2/repository/org/springframework/data/spring-data-commons/3.5.11/spring-data-commons-3.5.11.jar:/home/runner/.m2/repository/org/springframework/spring-orm/6.2.18/spring-orm-6.2.18.jar:/home/runner/.m2/repository/org/springframework/spring-context/6.2.18/spring-context-6.2.18.jar:/home/runner/.m2/repository/org/springframework/spring-aop/6.2.18/spring-aop-6.2.18.jar:/home/runner/.m2/repository/org/springframework/spring-tx/6.2.18/spring-tx-6.2.18.jar:/home/runner/.m2/repository/org/springframework/spring-beans/6.2.18/spring-beans-6.2.18.jar:/home/runner/.m2/repository/org/slf4j/slf4j-api/2.0.17/slf4j-api-2.0.17.jar:/home/runner/.m2/repository/org/springframework/spring-aspects/6.2.18/spring-aspects-6.2.18.jar:/home/runner/.m2/repository/org/aspectj/aspectjweaver/1.9.25.1/aspectjweaver-1.9.25.1.jar:/home/runner/.m2/repository/org/projectlombok/lombok/1.18.46/lombok-1.18.46.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot-starter-thymeleaf/3.5.14/spring-boot-starter-thymeleaf-3.5.14.jar:/home/runner/.m2/repository/org/thymeleaf/thymeleaf-spring6/3.1.5.RELEASE/thymeleaf-spring6-3.1.5.RELEASE.jar:/home/runner/.m2/repository/org/thymeleaf/thymeleaf/3.1.5.RELEASE/thymeleaf-3.1.5.RELEASE.jar:/home/runner/.m2/repository/org/attoparser/attoparser/2.0.7.RELEASE/attoparser-2.0.7.RELEASE.jar:/home/runner/.m2/repository/org/unbescape/unbescape/1.1.6.RELEASE/unbescape-1.1.6.RELEASE.jar:/home/runner/.m2/repository/org/springframework/security/spring-security-crypto/6.5.10/spring-security-crypto-6.5.10.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot-starter-web/3.5.14/spring-boot-starter-web-3.5.14.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot-starter-json/3.5.14/spring-boot-starter-json-3.5.14.jar:/home/runner/.m2/repository/com/fasterxml/jackson/core/jackson-databind/2.21.2/jackson-databind-2.21.2.jar:/home/runner/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.21/jackson-annotations-2.21.jar:/home/runner/.m2/repository/com/fasterxml/jackson/core/jackson-core/2.21.2/jackson-core-2.21.2.jar:/home/runner/.m2/repository/com/fasterxml/jackson/datatype/jackson-datatype-jdk8/2.21.2/jackson-datatype-jdk8-2.21.2.jar:/home/runner/.m2/repository/com/fasterxml/jackson/datatype/jackson-datatype-jsr310/2.21.2/jackson-datatype-jsr310-2.21.2.jar:/home/runner/.m2/repository/com/fasterxml/jackson/module/jackson-module-parameter-names/2.21.2/jackson-module-parameter-names-2.21.2.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot-starter-tomcat/3.5.14/spring-boot-starter-tomcat-3.5.14.jar:/home/runner/.m2/repository/org/apache/tomcat/embed/tomcat-embed-core/10.1.54/tomcat-embed-core-10.1.54.jar:/home/runner/.m2/repository/org/apache/tomcat/embed/tomcat-embed-el/10.1.54/tomcat-embed-el-10.1.54.jar:/home/runner/.m2/repository/org/apache/tomcat/embed/tomcat-embed-websocket/10.1.54/tomcat-embed-websocket-10.1.54.jar:/home/runner/.m2/repository/org/springframework/spring-web/6.2.18/spring-web-6.2.18.jar:/home/runner/.m2/repository/io/micrometer/micrometer-observation/1.15.11/micrometer-observation-1.15.11.jar:/home/runner/.m2/repository/io/micrometer/micrometer-commons/1.15.11/micrometer-commons-1.15.11.jar:/home/runner/.m2/repository/org/springframework/spring-webmvc/6.2.18/spring-webmvc-6.2.18.jar:/home/runner/.m2/repository/org/springframework/spring-expression/6.2.18/spring-expression-6.2.18.jar:/home/runner/.m2/repository/org/postgresql/postgresql/42.7.10/postgresql-42.7.10.jar:/home/runner/.m2/repository/org/checkerframework/checker-qual/3.52.0/checker-qual-3.52.0.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot-starter-test/3.5.14/spring-boot-starter-test-3.5.14.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot-test/3.5.14/spring-boot-test-3.5.14.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot-test-autoconfigure/3.5.14/spring-boot-test-autoconfigure-3.5.14.jar:/home/runner/.m2/repository/com/jayway/jsonpath/json-path/2.9.0/json-path-2.9.0.jar:/home/runner/.m2/repository/jakarta/xml/bind/jakarta.xml.bind-api/4.0.4/jakarta.xml.bind-api-4.0.4.jar:/home/runner/.m2/repository/jakarta/activation/jakarta.activation-api/2.1.4/jakarta.activation-api-2.1.4.jar:/home/runner/.m2/repository/net/minidev/json-smart/2.5.2/json-smart-2.5.2.jar:/home/runner/.m2/repository/net/minidev/accessors-smart/2.5.2/accessors-smart-2.5.2.jar:/home/runner/.m2/repository/org/ow2/asm/asm/9.7.1/asm-9.7.1.jar:/home/runner/.m2/repository/org/assertj/assertj-core/3.27.7/assertj-core-3.27.7.jar:/home/runner/.m2/repository/org/awaitility/awaitility/4.2.2/awaitility-4.2.2.jar:/home/runner/.m2/repository/org/hamcrest/hamcrest/3.0/hamcrest-3.0.jar:/home/runner/.m2/repository/org/junit/jupiter/junit-jupiter/5.12.2/junit-jupiter-5.12.2.jar:/home/runner/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.12.2/junit-jupiter-api-5.12.2.jar:/home/runner/.m2/repository/org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.jar:/home/runner/.m2/repository/org/junit/platform/junit-platform-commons/1.12.2/junit-platform-commons-1.12.2.jar:/home/runner/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/home/runner/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.12.2/junit-jupiter-params-5.12.2.jar:/home/runner/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.12.2/junit-jupiter-engine-5.12.2.jar:/home/runner/.m2/repository/org/junit/platform/junit-platform-engine/1.12.2/junit-platform-engine-1.12.2.jar:/home/runner/.m2/repository/org/mockito/mockito-core/5.17.0/mockito-core-5.17.0.jar:/home/runner/.m2/repository/net/bytebuddy/byte-buddy-agent/1.17.8/byte-buddy-agent-1.17.8.jar:/home/runner/.m2/repository/org/objenesis/objenesis/3.3/objenesis-3.3.jar:/home/runner/.m2/repository/org/mockito/mockito-junit-jupiter/5.17.0/mockito-junit-jupiter-5.17.0.jar:/home/runner/.m2/repository/org/skyscreamer/jsonassert/1.5.3/jsonassert-1.5.3.jar:/home/runner/.m2/repository/com/vaadin/external/google/android-json/0.0.20131108.vaadin1/android-json-0.0.20131108.vaadin1.jar:/home/runner/.m2/repository/org/springframework/spring-core/6.2.18/spring-core-6.2.18.jar:/home/runner/.m2/repository/org/springframework/spring-jcl/6.2.18/spring-jcl-6.2.18.jar:/home/runner/.m2/repository/org/springframework/spring-test/6.2.18/spring-test-6.2.18.jar:/home/runner/.m2/repository/org/xmlunit/xmlunit-core/2.10.4/xmlunit-core-2.10.4.jar:"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="user.home" value="/home/runner"/>
+    <property name="user.language" value="en"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.version.date" value="2026-10-20"/>
+    <property name="java.home" value="/usr/lib/jvm/temurin-21-jdk-amd64"/>
+    <property name="file.separator" value="/"/>
+    <property name="basedir" value="/home/runner/work/clinica-despertares-IS3/clinica-despertares-IS3"/>
+    <property name="java.vm.compressedOopsMode" value="Zero based"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="FILE_LOG_CHARSET" value="UTF-8"/>
+    <property name="java.awt.headless" value="true"/>
+    <property name="surefire.real.class.path" value="/home/runner/work/clinica-despertares-IS3/clinica-despertares-IS3/target/surefire/surefirebooter-20261116163900224_3.jar"/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="java.runtime.version" value="21.0.13+9-LTS"/>
+    <property name="user.name" value="runner"/>
+    <property name="stdout.encoding" value="UTF-8"/>
+    <property name="path.separator" value=":"/>
+    <property name="os.version" value="7.0.0-1019-azure"/>
+    <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
+    <property name="file.encoding" value="UTF-8"/>
+    <property name="java.vm.name" value="OpenJDK 64-Bit Server VM"/>
+    <property name="java.vendor.version" value="Temurin-21.0.13+9"/>
+    <property name="localRepository" value="/home/runner/.m2/repository"/>
+    <property name="java.vendor.url.bug" value="https://github.com/adoptium/adoptium-support/issues"/>
+    <property name="java.io.tmpdir" value="/tmp"/>
+    <property name="com.zaxxer.hikari.pool_number" value="1"/>
+    <property name="java.version" value="21.0.13"/>
+    <property name="user.dir" value="/home/runner/work/clinica-despertares-IS3/clinica-despertares-IS3"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="PID" value="3111"/>
+    <property name="CONSOLE_LOG_CHARSET" value="UTF-8"/>
+    <property name="native.encoding" value="UTF-8"/>
+    <property name="java.library.path" value="/usr/java/packages/lib:/usr/lib64:/lib64:/lib:/usr/lib"/>
+    <property name="java.vm.info" value="mixed mode, sharing"/>
+    <property name="stderr.encoding" value="UTF-8"/>
+    <property name="java.vendor" value="Eclipse Adoptium"/>
+    <property name="java.vm.version" value="21.0.13+9-LTS"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="java.class.version" value="65.0"/>
+    <property name="maven.test.failure.ignore" value="true"/>
+    <property name="LOGGED_APPLICATION_NAME" value="[clinica_Despertares] "/>
+  </properties>
+  <testcase name="ftc033" classname="Tratamientos, comprobantes de pago e inventario de medicamentos (FTC033–FTC053)" time="0.08"/>
+  <testcase name="ftc034" classname="Tratamientos, comprobantes de pago e inventario de medicamentos (FTC033–FTC053)" time="0.05">
+    <failure message="Multiple Failures (1 failure)&#10;	org.opentest4j.AssertionFailedError: Un tratamiento FINALIZADO no debería poder suspenderse (quedó SUSPENDIDO) ==&gt; expected: &lt;FINALIZADO&gt; but was: &lt;SUSPENDIDO&gt;" type="org.opentest4j.MultipleFailuresError"><![CDATA[org.opentest4j.MultipleFailuresError: 
+Multiple Failures (1 failure)
+	org.opentest4j.AssertionFailedError: Un tratamiento FINALIZADO no debería poder suspenderse (quedó SUSPENDIDO) ==> expected: <FINALIZADO> but was: <SUSPENDIDO>
+	at org.junit.jupiter.api.AssertAll.assertAll(AssertAll.java:80)
+	at org.junit.jupiter.api.AssertAll.assertAll(AssertAll.java:44)
+	at org.junit.jupiter.api.AssertAll.assertAll(AssertAll.java:38)
+	at org.junit.jupiter.api.Assertions.assertAll(Assertions.java:2944)
+	at QA.FTC03_TratamientosComprobantesInventarioTest.ftc034(FTC03_TratamientosComprobantesInventarioTest.java:65)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	Suppressed: org.opentest4j.AssertionFailedError: Un tratamiento FINALIZADO no debería poder suspenderse (quedó SUSPENDIDO) ==> expected: <FINALIZADO> but was: <SUSPENDIDO>
+		at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+		at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+		at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+		at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:182)
+		at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:1156)
+		at QA.FTC03_TratamientosComprobantesInventarioTest.lambda$ftc034$9(FTC03_TratamientosComprobantesInventarioTest.java:68)
+		at org.junit.jupiter.api.AssertAll.lambda$assertAll$0(AssertAll.java:68)
+		at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+		at java.base/java.util.Spliterators$ArraySpliterator.forEachRemaining(Spliterators.java:1024)
+		at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
+		at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
+		at java.base/java.util.stream.ReduceOps$ReduceOp.evaluateSequential(ReduceOps.java:921)
+		at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+		at java.base/java.util.stream.ReferencePipeline.collect(ReferencePipeline.java:682)
+		at org.junit.jupiter.api.AssertAll.assertAll(AssertAll.java:77)
+		... 7 more
+]]></failure>
+    <system-out><![CDATA[
+MockHttpServletRequest:
+      HTTP Method = POST
+      Request URI = /tratamientos/finalizar/2
+       Parameters = {_csrf=[token-qa-is3]}
+          Headers = []
+             Body = null
+    Session Attrs = {rolUsuario=MEDICO, csrfToken=token-qa-is3, usuarioLogueado=Entity.UsuarioEntity@2e0be061, org.springframework.web.servlet.support.SessionFlashMapManager.FLASH_MAPS=[FlashMap [attributes={mensaje=Tratamiento finalizado correctamente.}, targetRequestPath=/tratamientos, targetRequestParams={}]], nombreUsuario=qa_medico}
+
+Handler:
+             Type = Controller.TratamientoController
+           Method = Controller.TratamientoController#finalizar(Long, RedirectAttributes)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = redirect:/tratamientos
+             View = null
+            Model = null
+
+FlashMap:
+        Attribute = mensaje
+            value = Tratamiento finalizado correctamente.
+
+MockHttpServletResponse:
+           Status = 302
+    Error message = null
+          Headers = [Content-Language:"en", Location:"/tratamientos"]
+     Content type = null
+             Body = 
+    Forwarded URL = null
+   Redirected URL = /tratamientos
+          Cookies = []
+
+MockHttpServletRequest:
+      HTTP Method = POST
+      Request URI = /tratamientos/suspender/3
+       Parameters = {_csrf=[token-qa-is3]}
+          Headers = []
+             Body = null
+    Session Attrs = {rolUsuario=MEDICO, csrfToken=token-qa-is3, usuarioLogueado=Entity.UsuarioEntity@2e0be061, org.springframework.web.servlet.support.SessionFlashMapManager.FLASH_MAPS=[FlashMap [attributes={mensaje=Tratamiento finalizado correctamente.}, targetRequestPath=/tratamientos, targetRequestParams={}], FlashMap [attributes={mensaje=Tratamiento suspendido correctamente.}, targetRequestPath=/tratamientos, targetRequestParams={}]], nombreUsuario=qa_medico}
+
+Handler:
+             Type = Controller.TratamientoController
+           Method = Controller.TratamientoController#suspender(Long, RedirectAttributes)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = redirect:/tratamientos
+             View = null
+            Model = null
+
+FlashMap:
+        Attribute = mensaje
+            value = Tratamiento suspendido correctamente.
+
+MockHttpServletResponse:
+           Status = 302
+    Error message = null
+          Headers = [Content-Language:"en", Location:"/tratamientos"]
+     Content type = null
+             Body = 
+    Forwarded URL = null
+   Redirected URL = /tratamientos
+          Cookies = []
+
+MockHttpServletRequest:
+      HTTP Method = POST
+      Request URI = /tratamientos/suspender/2
+       Parameters = {_csrf=[token-qa-is3]}
+          Headers = []
+             Body = null
+    Session Attrs = {rolUsuario=MEDICO, csrfToken=token-qa-is3, usuarioLogueado=Entity.UsuarioEntity@2e0be061, org.springframework.web.servlet.support.SessionFlashMapManager.FLASH_MAPS=[FlashMap [attributes={mensaje=Tratamiento finalizado correctamente.}, targetRequestPath=/tratamientos, targetRequestParams={}], FlashMap [attributes={mensaje=Tratamiento suspendido correctamente.}, targetRequestPath=/tratamientos, targetRequestParams={}], FlashMap [attributes={mensaje=Tratamiento suspendido correctamente.}, targetRequestPath=/tratamientos, targetRequestParams={}]], nombreUsuario=qa_medico}
+
+Handler:
+             Type = Controller.TratamientoController
+           Method = Controller.TratamientoController#suspender(Long, RedirectAttributes)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = redirect:/tratamientos
+             View = null
+            Model = null
+
+FlashMap:
+        Attribute = mensaje
+            value = Tratamiento suspendido correctamente.
+
+MockHttpServletResponse:
+           Status = 302
+    Error message = null
+          Headers = [Content-Language:"en", Location:"/tratamientos"]
+     Content type = null
+             Body = 
+    Forwarded URL = null
+   Redirected URL = /tratamientos
+          Cookies = []
+]]></system-out>
+  </testcase>
+  <testcase name="ftc035" classname="Tratamientos, comprobantes de pago e inventario de medicamentos (FTC033–FTC053)" time="0.091">
+    <failure message="Multiple Failures (2 failures)&#10;	org.opentest4j.AssertionFailedError: FARMACEUTICO pudo abrir el formulario de tratamientos (vista: tratamientos/formulario) ==&gt; expected: &lt;true&gt; but was: &lt;false&gt;&#10;	org.opentest4j.AssertionFailedError: El tratamiento fue eliminado con POST /tratamientos/eliminar/{id} ==&gt; expected: &lt;true&gt; but was: &lt;false&gt;" type="org.opentest4j.MultipleFailuresError"><![CDATA[org.opentest4j.MultipleFailuresError: 
+Multiple Failures (2 failures)
+	org.opentest4j.AssertionFailedError: FARMACEUTICO pudo abrir el formulario de tratamientos (vista: tratamientos/formulario) ==> expected: <true> but was: <false>
+	org.opentest4j.AssertionFailedError: El tratamiento fue eliminado con POST /tratamientos/eliminar/{id} ==> expected: <true> but was: <false>
+	at org.junit.jupiter.api.AssertAll.assertAll(AssertAll.java:80)
+	at org.junit.jupiter.api.AssertAll.assertAll(AssertAll.java:44)
+	at org.junit.jupiter.api.AssertAll.assertAll(AssertAll.java:38)
+	at org.junit.jupiter.api.Assertions.assertAll(Assertions.java:2944)
+	at QA.FTC03_TratamientosComprobantesInventarioTest.ftc035(FTC03_TratamientosComprobantesInventarioTest.java:80)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	Suppressed: org.opentest4j.AssertionFailedError: FARMACEUTICO pudo abrir el formulario de tratamientos (vista: tratamientos/formulario) ==> expected: <true> but was: <false>
+		at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+		at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+		at org.junit.jupiter.api.AssertTrue.failNotTrue(AssertTrue.java:63)
+		at org.junit.jupiter.api.AssertTrue.assertTrue(AssertTrue.java:36)
+		at org.junit.jupiter.api.Assertions.assertTrue(Assertions.java:214)
+		at QA.FTC03_TratamientosComprobantesInventarioTest.lambda$ftc035$10(FTC03_TratamientosComprobantesInventarioTest.java:81)
+		at org.junit.jupiter.api.AssertAll.lambda$assertAll$0(AssertAll.java:68)
+		at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+		at java.base/java.util.Spliterators$ArraySpliterator.forEachRemaining(Spliterators.java:1024)
+		at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
+		at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
+		at java.base/java.util.stream.ReduceOps$ReduceOp.evaluateSequential(ReduceOps.java:921)
+		at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+		at java.base/java.util.stream.ReferencePipeline.collect(ReferencePipeline.java:682)
+		at org.junit.jupiter.api.AssertAll.assertAll(AssertAll.java:77)
+		... 7 more
+	Suppressed: org.opentest4j.AssertionFailedError: El tratamiento fue eliminado con POST /tratamientos/eliminar/{id} ==> expected: <true> but was: <false>
+		at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+		at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+		at org.junit.jupiter.api.AssertTrue.failNotTrue(AssertTrue.java:63)
+		at org.junit.jupiter.api.AssertTrue.assertTrue(AssertTrue.java:36)
+		at org.junit.jupiter.api.Assertions.assertTrue(Assertions.java:214)
+		at QA.FTC03_TratamientosComprobantesInventarioTest.lambda$ftc035$11(FTC03_TratamientosComprobantesInventarioTest.java:82)
+		at org.junit.jupiter.api.AssertAll.lambda$assertAll$0(AssertAll.java:68)
+		at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+		at java.base/java.util.Spliterators$ArraySpliterator.forEachRemaining(Spliterators.java:1024)
+		at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
+		at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
+		at java.base/java.util.stream.ReduceOps$ReduceOp.evaluateSequential(ReduceOps.java:921)
+		at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+		at java.base/java.util.stream.ReferencePipeline.collect(ReferencePipeline.java:682)
+		at org.junit.jupiter.api.AssertAll.assertAll(AssertAll.java:77)
+		... 7 more
+]]></failure>
+    <system-out><![CDATA[
+MockHttpServletRequest:
+      HTTP Method = GET
+      Request URI = /tratamientos/nuevo
+       Parameters = {}
+          Headers = []
+             Body = null
+    Session Attrs = {rolUsuario=FARMACEUTICO, csrfToken=token-qa-is3, usuarioLogueado=Entity.UsuarioEntity@43db54e5, nombreUsuario=qa_farmaceutico}
+
+Handler:
+             Type = Controller.TratamientoController
+           Method = Controller.TratamientoController#nuevo(Model)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = tratamientos/formulario
+             View = null
+        Attribute = tratamiento
+            value = Entity.TratamientoEntity@1e95875b
+           errors = []
+        Attribute = historias
+            value = [Entity.HistoriaMedicaEntity@3aa8d024, Entity.HistoriaMedicaEntity@4e91d85c, Entity.HistoriaMedicaEntity@2ffa37e6, Entity.HistoriaMedicaEntity@11c78014, Entity.HistoriaMedicaEntity@497b47e6, Entity.HistoriaMedicaEntity@2986169b]
+        Attribute = estados
+            value = [ACTIVO, FINALIZADO, SUSPENDIDO]
+        Attribute = csrfToken
+            value = token-qa-is3
+        Attribute = currentUri
+            value = /tratamientos/nuevo
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 200
+    Error message = null
+          Headers = [Content-Language:"en", Content-Type:"text/html;charset=UTF-8"]
+     Content type = text/html;charset=UTF-8
+             Body = <!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8"><script>try{var t=localStorage.getItem('tema');if(t){document.documentElement.setAttribute('data-theme',t);}}catch(e){}</script>
+    <title>Formulario Tratamiento</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/css/styles-b0b9db80416e29c17c730f72838d4cfb.css">
+<script src="/js/vendor/turbo.es2017-umd.min-f3b0ef926ea0676b0af5f7c5f88e2eea.js"></script></head>
+
+<body class="app-body">
+
+<div>
+    <header class="app-header">
+
+        <a href="/" class="header-logo">
+            <span class="header-logo-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+    <path d="M12 4v16M4 12h16"/>
+</svg></span>
+            <span>Clínica Despertares</span>
+        </a>
+
+        <div class="header-user-area">
+
+            <div class="user-mini-card">
+                <div class="user-role-icon">
+                    
+                    
+                    
+                    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="4" y="9.3" width="16" height="5.4" rx="2.7" transform="rotate(45 12 12)"/>
+    <line x1="12" y1="6.3" x2="12" y2="17.7" transform="rotate(45 12 12)"/>
+</svg></span>
+                    
+                    
+                    
+                </div>
+
+                <div class="user-mini-data">
+                    <strong>qa_farmaceutico</strong>
+                    <small>FARMACEUTICO</small>
+                </div>
+            </div>
+
+            <button type="button" id="theme-toggle" class="theme-toggle" aria-label="Cambiar tema" title="Cambiar tema">
+                <span class="icon-sol"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="4.2"/>
+    <path d="M12 3v2.4M12 18.6V21M4.2 12H2M22 12h-2.2M5.6 5.6l1.6 1.6M16.8 16.8l1.6 1.6M18.4 5.6l-1.6 1.6M7.2 16.8l-1.6 1.6"/>
+</svg></span>
+                <span class="icon-luna"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M20 14.3A8.5 8.5 0 1 1 9.7 4a6.6 6.6 0 0 0 10.3 10.3z"/>
+</svg></span>
+            </button>
+
+            <a href="/logout"
+               class="btn-logout">
+                <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M9 4.2H5.6a1.6 1.6 0 0 0-1.6 1.6v12.4a1.6 1.6 0 0 0 1.6 1.6H9"/>
+    <path d="M14 8l4 4-4 4M18 12H9"/>
+</svg></span>
+                Salir
+            </a>
+
+        </div>
+    </header>
+
+    <script>
+    (function () {
+        var boton = document.getElementById('theme-toggle');
+        if (!boton) { return; }
+
+        var iconoSol = boton.querySelector('.icon-sol');
+        var iconoLuna = boton.querySelector('.icon-luna');
+
+        function temaActual() {
+            var manual = document.documentElement.getAttribute('data-theme');
+            if (manual) { return manual; }
+            return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+
+        function actualizarIcono() {
+            var oscuro = temaActual() === 'dark';
+            iconoSol.hidden = !oscuro;
+            iconoLuna.hidden = oscuro;
+        }
+
+        actualizarIcono();
+
+        boton.addEventListener('click', function () {
+            var nuevoTema = temaActual() === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', nuevoTema);
+            try {
+                localStorage.setItem('tema', nuevoTema);
+            } catch (e) {
+                // localStorage puede no estar disponible (modo privado, etc.); no es crítico.
+            }
+            actualizarIcono();
+            // Los gráficos de Chart.js (si los hay en la página) leen los colores
+            // de las variables CSS al crearse y no se actualizan solos.
+            document.dispatchEvent(new CustomEvent('tema-cambiado'));
+        });
+    })();
+    </script>
+</div>
+
+<main class="dashboard-body">
+
+    <aside class="app-sidebar">
+
+    <nav class="sidebar-nav">
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        <a class="sidebar-item" href="/medicamentos">
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="4" y="9.3" width="16" height="5.4" rx="2.7" transform="rotate(45 12 12)"/>
+    <line x1="12" y1="6.3" x2="12" y2="17.7" transform="rotate(45 12 12)"/>
+</svg></span>
+            <p>Medicamentos</p>
+        </a>
+
+        <a class="sidebar-item" href="/proveedores">
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="2.3" y="7" width="11" height="9" rx="1.3"/>
+    <path d="M13.3 10h3.6l3.1 3.3V16h-2.3"/>
+    <circle cx="7" cy="17.3" r="1.6"/>
+    <circle cx="16.3" cy="17.3" r="1.6"/>
+</svg></span>
+            <p>Proveedores</p>
+        </a>
+
+        
+
+        
+
+        
+
+        
+
+    </nav>
+
+</aside>
+
+    <section class="content-card">
+        <h1>Formulario de Tratamiento</h1><form action="/tratamientos/guardar" method="post" class="form-grid"><input type="hidden" name="_csrf" value="token-qa-is3"><input type="hidden" id="idTratamiento" name="idTratamiento" value=""><div class="form-group"><label>Historia médica</label><select name="codHistoriaMedica" required><option value="">Seleccione</option><option value="1">Paciente Qa422985 - 30422986</option><option value="2">Paciente Qa422987 - 30422988</option><option value="3">Paciente Qa422992 - 30422993</option><option value="4">Paciente Qa422998 - 30422999</option><option value="5">Paciente Qa423001 - 30423002</option><option value="6">Paciente Qa423003 - 30423004</option></select></div><div class="form-group"><label>Tipo tratamiento</label><input type="text" required id="tipoTratamiento" name="tipoTratamiento" value=""></div><div class="form-group"><label>Fecha inicio</label><input type="date" required id="fechaInicio" name="fechaInicio" value=""></div><div class="form-group"><label>Fecha fin</label><input type="date" required id="fechaFin" name="fechaFin" value=""></div><div class="form-group"><label>Estado</label><select required id="estadoTratamiento" name="estadoTratamiento"><option value="">Seleccione</option><option value="ACTIVO">ACTIVO</option><option value="FINALIZADO">FINALIZADO</option><option value="SUSPENDIDO">SUSPENDIDO</option></select></div><div class="form-group full"><label>Descripción</label><textarea required id="descripcionTratamiento" name="descripcionTratamiento"></textarea></div><div class="form-group full"><button class="btn success" type="submit">Guardar</button><a class="btn secondary" href="/tratamientos">Cancelar</a></div></form>
+    </section>
+
+</main>
+
+</body>
+</html>
+
+    Forwarded URL = null
+   Redirected URL = null
+          Cookies = []
+
+MockHttpServletRequest:
+      HTTP Method = POST
+      Request URI = /tratamientos/eliminar/4
+       Parameters = {_csrf=[token-qa-is3]}
+          Headers = []
+             Body = null
+    Session Attrs = {rolUsuario=MEDICO, csrfToken=token-qa-is3, usuarioLogueado=Entity.UsuarioEntity@34b385dc, org.springframework.web.servlet.support.SessionFlashMapManager.FLASH_MAPS=[FlashMap [attributes={mensaje=Tratamiento eliminado correctamente.}, targetRequestPath=/tratamientos, targetRequestParams={}]], nombreUsuario=qa_medico}
+
+Handler:
+             Type = Controller.TratamientoController
+           Method = Controller.TratamientoController#eliminar(Long, RedirectAttributes)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = redirect:/tratamientos
+             View = null
+            Model = null
+
+FlashMap:
+        Attribute = mensaje
+            value = Tratamiento eliminado correctamente.
+
+MockHttpServletResponse:
+           Status = 302
+    Error message = null
+          Headers = [Content-Language:"en", Location:"/tratamientos"]
+     Content type = null
+             Body = 
+    Forwarded URL = null
+   Redirected URL = /tratamientos
+          Cookies = []
+]]></system-out>
+  </testcase>
+  <testcase name="ftc036" classname="Tratamientos, comprobantes de pago e inventario de medicamentos (FTC033–FTC053)" time="0.025"/>
+  <testcase name="ftc037" classname="Tratamientos, comprobantes de pago e inventario de medicamentos (FTC033–FTC053)" time="0.005"/>
+  <testcase name="ftc038" classname="Tratamientos, comprobantes de pago e inventario de medicamentos (FTC033–FTC053)" time="0.079"/>
+  <testcase name="ftc039" classname="Tratamientos, comprobantes de pago e inventario de medicamentos (FTC033–FTC053)" time="0.084"/>
+  <testcase name="ftc040" classname="Tratamientos, comprobantes de pago e inventario de medicamentos (FTC033–FTC053)" time="0.08"/>
+  <testcase name="ftc041" classname="Tratamientos, comprobantes de pago e inventario de medicamentos (FTC033–FTC053)" time="0.046"/>
+  <testcase name="ftc042" classname="Tratamientos, comprobantes de pago e inventario de medicamentos (FTC033–FTC053)" time="0.019">
+    <system-out><![CDATA[[QA] FTC042 estado tras pagar: CANCELADO (el sistema usa CANCELADO como equivalente a 'Pagado')
+]]></system-out>
+  </testcase>
+  <testcase name="ftc043" classname="Tratamientos, comprobantes de pago e inventario de medicamentos (FTC033–FTC053)" time="0.006">
+    <failure message="No existe integración con POS ni registro de transacciones aprobadas/rechazadas ==&gt; expected: &lt;true&gt; but was: &lt;false&gt;" type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: No existe integración con POS ni registro de transacciones aprobadas/rechazadas ==> expected: <true> but was: <false>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertTrue.failNotTrue(AssertTrue.java:63)
+	at org.junit.jupiter.api.AssertTrue.assertTrue(AssertTrue.java:36)
+	at org.junit.jupiter.api.Assertions.assertTrue(Assertions.java:214)
+	at QA.FTC03_TratamientosComprobantesInventarioTest.ftc043(FTC03_TratamientosComprobantesInventarioTest.java:235)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+]]></failure>
+  </testcase>
+  <testcase name="ftc044" classname="Tratamientos, comprobantes de pago e inventario de medicamentos (FTC033–FTC053)" time="0.186"/>
+  <testcase name="ftc045" classname="Tratamientos, comprobantes de pago e inventario de medicamentos (FTC033–FTC053)" time="0.027"/>
+  <testcase name="ftc046" classname="Tratamientos, comprobantes de pago e inventario de medicamentos (FTC033–FTC053)" time="0.049"/>
+  <testcase name="ftc047" classname="Tratamientos, comprobantes de pago e inventario de medicamentos (FTC033–FTC053)" time="0.025"/>
+  <testcase name="ftc048" classname="Tratamientos, comprobantes de pago e inventario de medicamentos (FTC033–FTC053)" time="0.036"/>
+  <testcase name="ftc049" classname="Tratamientos, comprobantes de pago e inventario de medicamentos (FTC033–FTC053)" time="0.059"/>
+  <testcase name="ftc050" classname="Tratamientos, comprobantes de pago e inventario de medicamentos (FTC033–FTC053)" time="0.004">
+    <failure message="No existe módulo de despacho de medicamentos por tratamiento ==&gt; expected: &lt;true&gt; but was: &lt;false&gt;" type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: No existe módulo de despacho de medicamentos por tratamiento ==> expected: <true> but was: <false>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertTrue.failNotTrue(AssertTrue.java:63)
+	at org.junit.jupiter.api.AssertTrue.assertTrue(AssertTrue.java:36)
+	at org.junit.jupiter.api.Assertions.assertTrue(Assertions.java:214)
+	at QA.FTC03_TratamientosComprobantesInventarioTest.ftc050(FTC03_TratamientosComprobantesInventarioTest.java:345)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+]]></failure>
+  </testcase>
+  <testcase name="ftc051" classname="Tratamientos, comprobantes de pago e inventario de medicamentos (FTC033–FTC053)" time="0.0">
+    <skipped type="org.opentest4j.TestAbortedException"><![CDATA[org.opentest4j.TestAbortedException: Assumption failed: Bloqueado: depende de FTC050 (despacho no implementado)
+	at org.junit.jupiter.api.Assumptions.throwAssumptionFailed(Assumptions.java:321)
+	at org.junit.jupiter.api.Assumptions.assumeTrue(Assumptions.java:120)
+	at QA.FTC03_TratamientosComprobantesInventarioTest.ftc051(FTC03_TratamientosComprobantesInventarioTest.java:351)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+]]></skipped>
+  </testcase>
+  <testcase name="ftc052" classname="Tratamientos, comprobantes de pago e inventario de medicamentos (FTC033–FTC053)" time="0.052"/>
+  <testcase name="ftc053" classname="Tratamientos, comprobantes de pago e inventario de medicamentos (FTC033–FTC053)" time="0.066">
+    <failure message="Multiple Failures (2 failures)&#10;	org.opentest4j.AssertionFailedError: Al editar 5→8 el stock debía bajar a 12 y quedó en 15 ==&gt; expected: &lt;12&gt; but was: &lt;15&gt;&#10;	org.opentest4j.AssertionFailedError: Al editar 8→2 el stock debía subir a 18 y quedó en 15 ==&gt; expected: &lt;18&gt; but was: &lt;15&gt;" type="org.opentest4j.MultipleFailuresError"><![CDATA[org.opentest4j.MultipleFailuresError: 
+Multiple Failures (2 failures)
+	org.opentest4j.AssertionFailedError: Al editar 5→8 el stock debía bajar a 12 y quedó en 15 ==> expected: <12> but was: <15>
+	org.opentest4j.AssertionFailedError: Al editar 8→2 el stock debía subir a 18 y quedó en 15 ==> expected: <18> but was: <15>
+	at org.junit.jupiter.api.AssertAll.assertAll(AssertAll.java:80)
+	at org.junit.jupiter.api.AssertAll.assertAll(AssertAll.java:44)
+	at org.junit.jupiter.api.AssertAll.assertAll(AssertAll.java:38)
+	at org.junit.jupiter.api.Assertions.assertAll(Assertions.java:2944)
+	at QA.FTC03_TratamientosComprobantesInventarioTest.ftc053(FTC03_TratamientosComprobantesInventarioTest.java:386)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	Suppressed: org.opentest4j.AssertionFailedError: Al editar 5→8 el stock debía bajar a 12 y quedó en 15 ==> expected: <12> but was: <15>
+		at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+		at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+		at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+		at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:150)
+		at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:563)
+		at QA.FTC03_TratamientosComprobantesInventarioTest.lambda$ftc053$72(FTC03_TratamientosComprobantesInventarioTest.java:388)
+		at org.junit.jupiter.api.AssertAll.lambda$assertAll$0(AssertAll.java:68)
+		at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+		at java.base/java.util.Spliterators$ArraySpliterator.forEachRemaining(Spliterators.java:1024)
+		at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
+		at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
+		at java.base/java.util.stream.ReduceOps$ReduceOp.evaluateSequential(ReduceOps.java:921)
+		at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+		at java.base/java.util.stream.ReferencePipeline.collect(ReferencePipeline.java:682)
+		at org.junit.jupiter.api.AssertAll.assertAll(AssertAll.java:77)
+		... 7 more
+	Suppressed: org.opentest4j.AssertionFailedError: Al editar 8→2 el stock debía subir a 18 y quedó en 15 ==> expected: <18> but was: <15>
+		at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+		at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+		at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+		at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:150)
+		at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:563)
+		at QA.FTC03_TratamientosComprobantesInventarioTest.lambda$ftc053$73(FTC03_TratamientosComprobantesInventarioTest.java:389)
+		at org.junit.jupiter.api.AssertAll.lambda$assertAll$0(AssertAll.java:68)
+		at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+		at java.base/java.util.Spliterators$ArraySpliterator.forEachRemaining(Spliterators.java:1024)
+		at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
+		at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
+		at java.base/java.util.stream.ReduceOps$ReduceOp.evaluateSequential(ReduceOps.java:921)
+		at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+		at java.base/java.util.stream.ReferencePipeline.collect(ReferencePipeline.java:682)
+		at org.junit.jupiter.api.AssertAll.assertAll(AssertAll.java:77)
+		... 7 more
+]]></failure>
+    <system-out><![CDATA[
+MockHttpServletRequest:
+      HTTP Method = POST
+      Request URI = /detalle-comprobantes/guardar
+       Parameters = {_csrf=[token-qa-is3], codComprobante=[21], tipoItem=[MEDICAMENTO], codMedicamento=[20], descripcionDetalle=[Detalle MEDICAMENTO], cantidad=[5], precioUnitario=[2.00]}
+          Headers = []
+             Body = null
+    Session Attrs = {rolUsuario=CAJERO, csrfToken=token-qa-is3, usuarioLogueado=Entity.UsuarioEntity@111114a5, org.springframework.web.servlet.support.SessionFlashMapManager.FLASH_MAPS=[FlashMap [attributes={mensaje=Detalle de comprobante guardado correctamente.}, targetRequestPath=/detalle-comprobantes, targetRequestParams={}]], nombreUsuario=qa_cajero}
+
+Handler:
+             Type = Controller.DetalleComprobanteController
+           Method = Controller.DetalleComprobanteController#guardar(DetalleComprobanteEntity, Long, TipoItemEnum, Long, Long, Long, HttpSession, RedirectAttributes)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = redirect:/detalle-comprobantes
+             View = null
+            Model = null
+
+FlashMap:
+        Attribute = mensaje
+            value = Detalle de comprobante guardado correctamente.
+
+MockHttpServletResponse:
+           Status = 302
+    Error message = null
+          Headers = [Content-Language:"en", Location:"/detalle-comprobantes"]
+     Content type = null
+             Body = 
+    Forwarded URL = null
+   Redirected URL = /detalle-comprobantes
+          Cookies = []
+
+MockHttpServletRequest:
+      HTTP Method = POST
+      Request URI = /detalle-comprobantes/guardar
+       Parameters = {_csrf=[token-qa-is3], iddetalle=[22], codComprobante=[21], tipoItem=[MEDICAMENTO], codMedicamento=[20], descripcionDetalle=[Detalle editado], cantidad=[8], precioUnitario=[2.00]}
+          Headers = []
+             Body = null
+    Session Attrs = {rolUsuario=CAJERO, csrfToken=token-qa-is3, usuarioLogueado=Entity.UsuarioEntity@43937937, org.springframework.web.servlet.support.SessionFlashMapManager.FLASH_MAPS=[FlashMap [attributes={mensaje=Detalle de comprobante guardado correctamente.}, targetRequestPath=/detalle-comprobantes, targetRequestParams={}]], nombreUsuario=qa_cajero}
+
+Handler:
+             Type = Controller.DetalleComprobanteController
+           Method = Controller.DetalleComprobanteController#guardar(DetalleComprobanteEntity, Long, TipoItemEnum, Long, Long, Long, HttpSession, RedirectAttributes)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = redirect:/detalle-comprobantes
+             View = null
+            Model = null
+
+FlashMap:
+        Attribute = mensaje
+            value = Detalle de comprobante guardado correctamente.
+
+MockHttpServletResponse:
+           Status = 302
+    Error message = null
+          Headers = [Content-Language:"en", Location:"/detalle-comprobantes"]
+     Content type = null
+             Body = 
+    Forwarded URL = null
+   Redirected URL = /detalle-comprobantes
+          Cookies = []
+
+MockHttpServletRequest:
+      HTTP Method = POST
+      Request URI = /detalle-comprobantes/guardar
+       Parameters = {_csrf=[token-qa-is3], iddetalle=[22], codComprobante=[21], tipoItem=[MEDICAMENTO], codMedicamento=[20], descripcionDetalle=[Detalle editado], cantidad=[2], precioUnitario=[2.00]}
+          Headers = []
+             Body = null
+    Session Attrs = {rolUsuario=CAJERO, csrfToken=token-qa-is3, usuarioLogueado=Entity.UsuarioEntity@518ed7f6, org.springframework.web.servlet.support.SessionFlashMapManager.FLASH_MAPS=[FlashMap [attributes={mensaje=Detalle de comprobante guardado correctamente.}, targetRequestPath=/detalle-comprobantes, targetRequestParams={}]], nombreUsuario=qa_cajero}
+
+Handler:
+             Type = Controller.DetalleComprobanteController
+           Method = Controller.DetalleComprobanteController#guardar(DetalleComprobanteEntity, Long, TipoItemEnum, Long, Long, Long, HttpSession, RedirectAttributes)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = redirect:/detalle-comprobantes
+             View = null
+            Model = null
+
+FlashMap:
+        Attribute = mensaje
+            value = Detalle de comprobante guardado correctamente.
+
+MockHttpServletResponse:
+           Status = 302
+    Error message = null
+          Headers = [Content-Language:"en", Location:"/detalle-comprobantes"]
+     Content type = null
+             Body = 
+    Forwarded URL = null
+   Redirected URL = /detalle-comprobantes
+          Cookies = []
+]]></system-out>
+  </testcase>
+</testsuite>

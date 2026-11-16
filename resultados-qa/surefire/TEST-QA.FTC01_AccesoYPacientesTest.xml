@@ -1,0 +1,1229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="QA.FTC01_AccesoYPacientesTest" time="22.513" tests="10" errors="0" skipped="0" failures="1" flakes="0">
+  <properties>
+    <property name="java.specification.version" value="21"/>
+    <property name="sun.jnu.encoding" value="UTF-8"/>
+    <property name="java.class.path" value="/home/runner/work/clinica-despertares-IS3/clinica-despertares-IS3/target/test-classes:/home/runner/work/clinica-despertares-IS3/clinica-despertares-IS3/target/classes:/home/runner/.m2/repository/org/springframework/boot/spring-boot-starter-data-jpa/3.5.14/spring-boot-starter-data-jpa-3.5.14.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot-starter/3.5.14/spring-boot-starter-3.5.14.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot/3.5.14/spring-boot-3.5.14.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot-autoconfigure/3.5.14/spring-boot-autoconfigure-3.5.14.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot-starter-logging/3.5.14/spring-boot-starter-logging-3.5.14.jar:/home/runner/.m2/repository/ch/qos/logback/logback-classic/1.5.32/logback-classic-1.5.32.jar:/home/runner/.m2/repository/ch/qos/logback/logback-core/1.5.32/logback-core-1.5.32.jar:/home/runner/.m2/repository/org/apache/logging/log4j/log4j-to-slf4j/2.24.3/log4j-to-slf4j-2.24.3.jar:/home/runner/.m2/repository/org/apache/logging/log4j/log4j-api/2.24.3/log4j-api-2.24.3.jar:/home/runner/.m2/repository/org/slf4j/jul-to-slf4j/2.0.17/jul-to-slf4j-2.0.17.jar:/home/runner/.m2/repository/jakarta/annotation/jakarta.annotation-api/2.1.1/jakarta.annotation-api-2.1.1.jar:/home/runner/.m2/repository/org/yaml/snakeyaml/2.4/snakeyaml-2.4.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot-starter-jdbc/3.5.14/spring-boot-starter-jdbc-3.5.14.jar:/home/runner/.m2/repository/com/zaxxer/HikariCP/6.3.3/HikariCP-6.3.3.jar:/home/runner/.m2/repository/org/springframework/spring-jdbc/6.2.18/spring-jdbc-6.2.18.jar:/home/runner/.m2/repository/org/hibernate/orm/hibernate-core/6.6.49.Final/hibernate-core-6.6.49.Final.jar:/home/runner/.m2/repository/jakarta/persistence/jakarta.persistence-api/3.1.0/jakarta.persistence-api-3.1.0.jar:/home/runner/.m2/repository/jakarta/transaction/jakarta.transaction-api/2.0.1/jakarta.transaction-api-2.0.1.jar:/home/runner/.m2/repository/org/jboss/logging/jboss-logging/3.6.3.Final/jboss-logging-3.6.3.Final.jar:/home/runner/.m2/repository/org/hibernate/common/hibernate-commons-annotations/7.0.3.Final/hibernate-commons-annotations-7.0.3.Final.jar:/home/runner/.m2/repository/io/smallrye/jandex/3.2.0/jandex-3.2.0.jar:/home/runner/.m2/repository/com/fasterxml/classmate/1.7.3/classmate-1.7.3.jar:/home/runner/.m2/repository/net/bytebuddy/byte-buddy/1.17.8/byte-buddy-1.17.8.jar:/home/runner/.m2/repository/org/glassfish/jaxb/jaxb-runtime/4.0.6/jaxb-runtime-4.0.6.jar:/home/runner/.m2/repository/org/glassfish/jaxb/jaxb-core/4.0.6/jaxb-core-4.0.6.jar:/home/runner/.m2/repository/org/eclipse/angus/angus-activation/2.0.3/angus-activation-2.0.3.jar:/home/runner/.m2/repository/org/glassfish/jaxb/txw2/4.0.6/txw2-4.0.6.jar:/home/runner/.m2/repository/com/sun/istack/istack-commons-runtime/4.1.2/istack-commons-runtime-4.1.2.jar:/home/runner/.m2/repository/jakarta/inject/jakarta.inject-api/2.0.1/jakarta.inject-api-2.0.1.jar:/home/runner/.m2/repository/org/antlr/antlr4-runtime/4.13.0/antlr4-runtime-4.13.0.jar:/home/runner/.m2/repository/org/springframework/data/spring-data-jpa/3.5.11/spring-data-jpa-3.5.11.jar:/home/runner/.m2/repository/org/springframework/data/spring-data-commons/3.5.11/spring-data-commons-3.5.11.jar:/home/runner/.m2/repository/org/springframework/spring-orm/6.2.18/spring-orm-6.2.18.jar:/home/runner/.m2/repository/org/springframework/spring-context/6.2.18/spring-context-6.2.18.jar:/home/runner/.m2/repository/org/springframework/spring-aop/6.2.18/spring-aop-6.2.18.jar:/home/runner/.m2/repository/org/springframework/spring-tx/6.2.18/spring-tx-6.2.18.jar:/home/runner/.m2/repository/org/springframework/spring-beans/6.2.18/spring-beans-6.2.18.jar:/home/runner/.m2/repository/org/slf4j/slf4j-api/2.0.17/slf4j-api-2.0.17.jar:/home/runner/.m2/repository/org/springframework/spring-aspects/6.2.18/spring-aspects-6.2.18.jar:/home/runner/.m2/repository/org/aspectj/aspectjweaver/1.9.25.1/aspectjweaver-1.9.25.1.jar:/home/runner/.m2/repository/org/projectlombok/lombok/1.18.46/lombok-1.18.46.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot-starter-thymeleaf/3.5.14/spring-boot-starter-thymeleaf-3.5.14.jar:/home/runner/.m2/repository/org/thymeleaf/thymeleaf-spring6/3.1.5.RELEASE/thymeleaf-spring6-3.1.5.RELEASE.jar:/home/runner/.m2/repository/org/thymeleaf/thymeleaf/3.1.5.RELEASE/thymeleaf-3.1.5.RELEASE.jar:/home/runner/.m2/repository/org/attoparser/attoparser/2.0.7.RELEASE/attoparser-2.0.7.RELEASE.jar:/home/runner/.m2/repository/org/unbescape/unbescape/1.1.6.RELEASE/unbescape-1.1.6.RELEASE.jar:/home/runner/.m2/repository/org/springframework/security/spring-security-crypto/6.5.10/spring-security-crypto-6.5.10.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot-starter-web/3.5.14/spring-boot-starter-web-3.5.14.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot-starter-json/3.5.14/spring-boot-starter-json-3.5.14.jar:/home/runner/.m2/repository/com/fasterxml/jackson/core/jackson-databind/2.21.2/jackson-databind-2.21.2.jar:/home/runner/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.21/jackson-annotations-2.21.jar:/home/runner/.m2/repository/com/fasterxml/jackson/core/jackson-core/2.21.2/jackson-core-2.21.2.jar:/home/runner/.m2/repository/com/fasterxml/jackson/datatype/jackson-datatype-jdk8/2.21.2/jackson-datatype-jdk8-2.21.2.jar:/home/runner/.m2/repository/com/fasterxml/jackson/datatype/jackson-datatype-jsr310/2.21.2/jackson-datatype-jsr310-2.21.2.jar:/home/runner/.m2/repository/com/fasterxml/jackson/module/jackson-module-parameter-names/2.21.2/jackson-module-parameter-names-2.21.2.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot-starter-tomcat/3.5.14/spring-boot-starter-tomcat-3.5.14.jar:/home/runner/.m2/repository/org/apache/tomcat/embed/tomcat-embed-core/10.1.54/tomcat-embed-core-10.1.54.jar:/home/runner/.m2/repository/org/apache/tomcat/embed/tomcat-embed-el/10.1.54/tomcat-embed-el-10.1.54.jar:/home/runner/.m2/repository/org/apache/tomcat/embed/tomcat-embed-websocket/10.1.54/tomcat-embed-websocket-10.1.54.jar:/home/runner/.m2/repository/org/springframework/spring-web/6.2.18/spring-web-6.2.18.jar:/home/runner/.m2/repository/io/micrometer/micrometer-observation/1.15.11/micrometer-observation-1.15.11.jar:/home/runner/.m2/repository/io/micrometer/micrometer-commons/1.15.11/micrometer-commons-1.15.11.jar:/home/runner/.m2/repository/org/springframework/spring-webmvc/6.2.18/spring-webmvc-6.2.18.jar:/home/runner/.m2/repository/org/springframework/spring-expression/6.2.18/spring-expression-6.2.18.jar:/home/runner/.m2/repository/org/postgresql/postgresql/42.7.10/postgresql-42.7.10.jar:/home/runner/.m2/repository/org/checkerframework/checker-qual/3.52.0/checker-qual-3.52.0.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot-starter-test/3.5.14/spring-boot-starter-test-3.5.14.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot-test/3.5.14/spring-boot-test-3.5.14.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot-test-autoconfigure/3.5.14/spring-boot-test-autoconfigure-3.5.14.jar:/home/runner/.m2/repository/com/jayway/jsonpath/json-path/2.9.0/json-path-2.9.0.jar:/home/runner/.m2/repository/jakarta/xml/bind/jakarta.xml.bind-api/4.0.4/jakarta.xml.bind-api-4.0.4.jar:/home/runner/.m2/repository/jakarta/activation/jakarta.activation-api/2.1.4/jakarta.activation-api-2.1.4.jar:/home/runner/.m2/repository/net/minidev/json-smart/2.5.2/json-smart-2.5.2.jar:/home/runner/.m2/repository/net/minidev/accessors-smart/2.5.2/accessors-smart-2.5.2.jar:/home/runner/.m2/repository/org/ow2/asm/asm/9.7.1/asm-9.7.1.jar:/home/runner/.m2/repository/org/assertj/assertj-core/3.27.7/assertj-core-3.27.7.jar:/home/runner/.m2/repository/org/awaitility/awaitility/4.2.2/awaitility-4.2.2.jar:/home/runner/.m2/repository/org/hamcrest/hamcrest/3.0/hamcrest-3.0.jar:/home/runner/.m2/repository/org/junit/jupiter/junit-jupiter/5.12.2/junit-jupiter-5.12.2.jar:/home/runner/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.12.2/junit-jupiter-api-5.12.2.jar:/home/runner/.m2/repository/org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.jar:/home/runner/.m2/repository/org/junit/platform/junit-platform-commons/1.12.2/junit-platform-commons-1.12.2.jar:/home/runner/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/home/runner/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.12.2/junit-jupiter-params-5.12.2.jar:/home/runner/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.12.2/junit-jupiter-engine-5.12.2.jar:/home/runner/.m2/repository/org/junit/platform/junit-platform-engine/1.12.2/junit-platform-engine-1.12.2.jar:/home/runner/.m2/repository/org/mockito/mockito-core/5.17.0/mockito-core-5.17.0.jar:/home/runner/.m2/repository/net/bytebuddy/byte-buddy-agent/1.17.8/byte-buddy-agent-1.17.8.jar:/home/runner/.m2/repository/org/objenesis/objenesis/3.3/objenesis-3.3.jar:/home/runner/.m2/repository/org/mockito/mockito-junit-jupiter/5.17.0/mockito-junit-jupiter-5.17.0.jar:/home/runner/.m2/repository/org/skyscreamer/jsonassert/1.5.3/jsonassert-1.5.3.jar:/home/runner/.m2/repository/com/vaadin/external/google/android-json/0.0.20131108.vaadin1/android-json-0.0.20131108.vaadin1.jar:/home/runner/.m2/repository/org/springframework/spring-core/6.2.18/spring-core-6.2.18.jar:/home/runner/.m2/repository/org/springframework/spring-jcl/6.2.18/spring-jcl-6.2.18.jar:/home/runner/.m2/repository/org/springframework/spring-test/6.2.18/spring-test-6.2.18.jar:/home/runner/.m2/repository/org/xmlunit/xmlunit-core/2.10.4/xmlunit-core-2.10.4.jar:"/>
+    <property name="java.vm.vendor" value="Eclipse Adoptium"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="java.vendor.url" value="https://adoptium.net/"/>
+    <property name="catalina.useNaming" value="false"/>
+    <property name="user.timezone" value="Etc/UTC"/>
+    <property name="org.jboss.logging.provider" value="slf4j"/>
+    <property name="os.name" value="Linux"/>
+    <property name="java.vm.specification.version" value="21"/>
+    <property name="APPLICATION_NAME" value="clinica_Despertares"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="sun.boot.library.path" value="/usr/lib/jvm/temurin-21-jdk-amd64/lib"/>
+    <property name="sun.java.command" value="/home/runner/work/clinica-despertares-IS3/clinica-despertares-IS3/target/surefire/surefirebooter-20261116163900224_3.jar /home/runner/work/clinica-despertares-IS3/clinica-despertares-IS3/target/surefire 2026-11-16T16-39-00_010-jvmRun1 surefire-20261116163900224_1tmp surefire_0-20261116163900224_2tmp"/>
+    <property name="jdk.debug" value="release"/>
+    <property name="surefire.test.class.path" value="/home/runner/work/clinica-despertares-IS3/clinica-despertares-IS3/target/test-classes:/home/runner/work/clinica-despertares-IS3/clinica-despertares-IS3/target/classes:/home/runner/.m2/repository/org/springframework/boot/spring-boot-starter-data-jpa/3.5.14/spring-boot-starter-data-jpa-3.5.14.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot-starter/3.5.14/spring-boot-starter-3.5.14.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot/3.5.14/spring-boot-3.5.14.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot-autoconfigure/3.5.14/spring-boot-autoconfigure-3.5.14.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot-starter-logging/3.5.14/spring-boot-starter-logging-3.5.14.jar:/home/runner/.m2/repository/ch/qos/logback/logback-classic/1.5.32/logback-classic-1.5.32.jar:/home/runner/.m2/repository/ch/qos/logback/logback-core/1.5.32/logback-core-1.5.32.jar:/home/runner/.m2/repository/org/apache/logging/log4j/log4j-to-slf4j/2.24.3/log4j-to-slf4j-2.24.3.jar:/home/runner/.m2/repository/org/apache/logging/log4j/log4j-api/2.24.3/log4j-api-2.24.3.jar:/home/runner/.m2/repository/org/slf4j/jul-to-slf4j/2.0.17/jul-to-slf4j-2.0.17.jar:/home/runner/.m2/repository/jakarta/annotation/jakarta.annotation-api/2.1.1/jakarta.annotation-api-2.1.1.jar:/home/runner/.m2/repository/org/yaml/snakeyaml/2.4/snakeyaml-2.4.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot-starter-jdbc/3.5.14/spring-boot-starter-jdbc-3.5.14.jar:/home/runner/.m2/repository/com/zaxxer/HikariCP/6.3.3/HikariCP-6.3.3.jar:/home/runner/.m2/repository/org/springframework/spring-jdbc/6.2.18/spring-jdbc-6.2.18.jar:/home/runner/.m2/repository/org/hibernate/orm/hibernate-core/6.6.49.Final/hibernate-core-6.6.49.Final.jar:/home/runner/.m2/repository/jakarta/persistence/jakarta.persistence-api/3.1.0/jakarta.persistence-api-3.1.0.jar:/home/runner/.m2/repository/jakarta/transaction/jakarta.transaction-api/2.0.1/jakarta.transaction-api-2.0.1.jar:/home/runner/.m2/repository/org/jboss/logging/jboss-logging/3.6.3.Final/jboss-logging-3.6.3.Final.jar:/home/runner/.m2/repository/org/hibernate/common/hibernate-commons-annotations/7.0.3.Final/hibernate-commons-annotations-7.0.3.Final.jar:/home/runner/.m2/repository/io/smallrye/jandex/3.2.0/jandex-3.2.0.jar:/home/runner/.m2/repository/com/fasterxml/classmate/1.7.3/classmate-1.7.3.jar:/home/runner/.m2/repository/net/bytebuddy/byte-buddy/1.17.8/byte-buddy-1.17.8.jar:/home/runner/.m2/repository/org/glassfish/jaxb/jaxb-runtime/4.0.6/jaxb-runtime-4.0.6.jar:/home/runner/.m2/repository/org/glassfish/jaxb/jaxb-core/4.0.6/jaxb-core-4.0.6.jar:/home/runner/.m2/repository/org/eclipse/angus/angus-activation/2.0.3/angus-activation-2.0.3.jar:/home/runner/.m2/repository/org/glassfish/jaxb/txw2/4.0.6/txw2-4.0.6.jar:/home/runner/.m2/repository/com/sun/istack/istack-commons-runtime/4.1.2/istack-commons-runtime-4.1.2.jar:/home/runner/.m2/repository/jakarta/inject/jakarta.inject-api/2.0.1/jakarta.inject-api-2.0.1.jar:/home/runner/.m2/repository/org/antlr/antlr4-runtime/4.13.0/antlr4-runtime-4.13.0.jar:/home/runner/.m2/repository/org/springframework/data/spring-data-jpa/3.5.11/spring-data-jpa-3.5.11.jar:/home/runner/.m2/repository/org/springframework/data/spring-data-commons/3.5.11/spring-data-commons-3.5.11.jar:/home/runner/.m2/repository/org/springframework/spring-orm/6.2.18/spring-orm-6.2.18.jar:/home/runner/.m2/repository/org/springframework/spring-context/6.2.18/spring-context-6.2.18.jar:/home/runner/.m2/repository/org/springframework/spring-aop/6.2.18/spring-aop-6.2.18.jar:/home/runner/.m2/repository/org/springframework/spring-tx/6.2.18/spring-tx-6.2.18.jar:/home/runner/.m2/repository/org/springframework/spring-beans/6.2.18/spring-beans-6.2.18.jar:/home/runner/.m2/repository/org/slf4j/slf4j-api/2.0.17/slf4j-api-2.0.17.jar:/home/runner/.m2/repository/org/springframework/spring-aspects/6.2.18/spring-aspects-6.2.18.jar:/home/runner/.m2/repository/org/aspectj/aspectjweaver/1.9.25.1/aspectjweaver-1.9.25.1.jar:/home/runner/.m2/repository/org/projectlombok/lombok/1.18.46/lombok-1.18.46.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot-starter-thymeleaf/3.5.14/spring-boot-starter-thymeleaf-3.5.14.jar:/home/runner/.m2/repository/org/thymeleaf/thymeleaf-spring6/3.1.5.RELEASE/thymeleaf-spring6-3.1.5.RELEASE.jar:/home/runner/.m2/repository/org/thymeleaf/thymeleaf/3.1.5.RELEASE/thymeleaf-3.1.5.RELEASE.jar:/home/runner/.m2/repository/org/attoparser/attoparser/2.0.7.RELEASE/attoparser-2.0.7.RELEASE.jar:/home/runner/.m2/repository/org/unbescape/unbescape/1.1.6.RELEASE/unbescape-1.1.6.RELEASE.jar:/home/runner/.m2/repository/org/springframework/security/spring-security-crypto/6.5.10/spring-security-crypto-6.5.10.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot-starter-web/3.5.14/spring-boot-starter-web-3.5.14.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot-starter-json/3.5.14/spring-boot-starter-json-3.5.14.jar:/home/runner/.m2/repository/com/fasterxml/jackson/core/jackson-databind/2.21.2/jackson-databind-2.21.2.jar:/home/runner/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.21/jackson-annotations-2.21.jar:/home/runner/.m2/repository/com/fasterxml/jackson/core/jackson-core/2.21.2/jackson-core-2.21.2.jar:/home/runner/.m2/repository/com/fasterxml/jackson/datatype/jackson-datatype-jdk8/2.21.2/jackson-datatype-jdk8-2.21.2.jar:/home/runner/.m2/repository/com/fasterxml/jackson/datatype/jackson-datatype-jsr310/2.21.2/jackson-datatype-jsr310-2.21.2.jar:/home/runner/.m2/repository/com/fasterxml/jackson/module/jackson-module-parameter-names/2.21.2/jackson-module-parameter-names-2.21.2.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot-starter-tomcat/3.5.14/spring-boot-starter-tomcat-3.5.14.jar:/home/runner/.m2/repository/org/apache/tomcat/embed/tomcat-embed-core/10.1.54/tomcat-embed-core-10.1.54.jar:/home/runner/.m2/repository/org/apache/tomcat/embed/tomcat-embed-el/10.1.54/tomcat-embed-el-10.1.54.jar:/home/runner/.m2/repository/org/apache/tomcat/embed/tomcat-embed-websocket/10.1.54/tomcat-embed-websocket-10.1.54.jar:/home/runner/.m2/repository/org/springframework/spring-web/6.2.18/spring-web-6.2.18.jar:/home/runner/.m2/repository/io/micrometer/micrometer-observation/1.15.11/micrometer-observation-1.15.11.jar:/home/runner/.m2/repository/io/micrometer/micrometer-commons/1.15.11/micrometer-commons-1.15.11.jar:/home/runner/.m2/repository/org/springframework/spring-webmvc/6.2.18/spring-webmvc-6.2.18.jar:/home/runner/.m2/repository/org/springframework/spring-expression/6.2.18/spring-expression-6.2.18.jar:/home/runner/.m2/repository/org/postgresql/postgresql/42.7.10/postgresql-42.7.10.jar:/home/runner/.m2/repository/org/checkerframework/checker-qual/3.52.0/checker-qual-3.52.0.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot-starter-test/3.5.14/spring-boot-starter-test-3.5.14.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot-test/3.5.14/spring-boot-test-3.5.14.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot-test-autoconfigure/3.5.14/spring-boot-test-autoconfigure-3.5.14.jar:/home/runner/.m2/repository/com/jayway/jsonpath/json-path/2.9.0/json-path-2.9.0.jar:/home/runner/.m2/repository/jakarta/xml/bind/jakarta.xml.bind-api/4.0.4/jakarta.xml.bind-api-4.0.4.jar:/home/runner/.m2/repository/jakarta/activation/jakarta.activation-api/2.1.4/jakarta.activation-api-2.1.4.jar:/home/runner/.m2/repository/net/minidev/json-smart/2.5.2/json-smart-2.5.2.jar:/home/runner/.m2/repository/net/minidev/accessors-smart/2.5.2/accessors-smart-2.5.2.jar:/home/runner/.m2/repository/org/ow2/asm/asm/9.7.1/asm-9.7.1.jar:/home/runner/.m2/repository/org/assertj/assertj-core/3.27.7/assertj-core-3.27.7.jar:/home/runner/.m2/repository/org/awaitility/awaitility/4.2.2/awaitility-4.2.2.jar:/home/runner/.m2/repository/org/hamcrest/hamcrest/3.0/hamcrest-3.0.jar:/home/runner/.m2/repository/org/junit/jupiter/junit-jupiter/5.12.2/junit-jupiter-5.12.2.jar:/home/runner/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.12.2/junit-jupiter-api-5.12.2.jar:/home/runner/.m2/repository/org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.jar:/home/runner/.m2/repository/org/junit/platform/junit-platform-commons/1.12.2/junit-platform-commons-1.12.2.jar:/home/runner/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/home/runner/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.12.2/junit-jupiter-params-5.12.2.jar:/home/runner/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.12.2/junit-jupiter-engine-5.12.2.jar:/home/runner/.m2/repository/org/junit/platform/junit-platform-engine/1.12.2/junit-platform-engine-1.12.2.jar:/home/runner/.m2/repository/org/mockito/mockito-core/5.17.0/mockito-core-5.17.0.jar:/home/runner/.m2/repository/net/bytebuddy/byte-buddy-agent/1.17.8/byte-buddy-agent-1.17.8.jar:/home/runner/.m2/repository/org/objenesis/objenesis/3.3/objenesis-3.3.jar:/home/runner/.m2/repository/org/mockito/mockito-junit-jupiter/5.17.0/mockito-junit-jupiter-5.17.0.jar:/home/runner/.m2/repository/org/skyscreamer/jsonassert/1.5.3/jsonassert-1.5.3.jar:/home/runner/.m2/repository/com/vaadin/external/google/android-json/0.0.20131108.vaadin1/android-json-0.0.20131108.vaadin1.jar:/home/runner/.m2/repository/org/springframework/spring-core/6.2.18/spring-core-6.2.18.jar:/home/runner/.m2/repository/org/springframework/spring-jcl/6.2.18/spring-jcl-6.2.18.jar:/home/runner/.m2/repository/org/springframework/spring-test/6.2.18/spring-test-6.2.18.jar:/home/runner/.m2/repository/org/xmlunit/xmlunit-core/2.10.4/xmlunit-core-2.10.4.jar:"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="user.home" value="/home/runner"/>
+    <property name="user.language" value="en"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.version.date" value="2026-10-20"/>
+    <property name="java.home" value="/usr/lib/jvm/temurin-21-jdk-amd64"/>
+    <property name="file.separator" value="/"/>
+    <property name="basedir" value="/home/runner/work/clinica-despertares-IS3/clinica-despertares-IS3"/>
+    <property name="java.vm.compressedOopsMode" value="Zero based"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="FILE_LOG_CHARSET" value="UTF-8"/>
+    <property name="java.awt.headless" value="true"/>
+    <property name="surefire.real.class.path" value="/home/runner/work/clinica-despertares-IS3/clinica-despertares-IS3/target/surefire/surefirebooter-20261116163900224_3.jar"/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="java.runtime.version" value="21.0.13+9-LTS"/>
+    <property name="user.name" value="runner"/>
+    <property name="stdout.encoding" value="UTF-8"/>
+    <property name="path.separator" value=":"/>
+    <property name="os.version" value="7.0.0-1019-azure"/>
+    <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
+    <property name="file.encoding" value="UTF-8"/>
+    <property name="java.vm.name" value="OpenJDK 64-Bit Server VM"/>
+    <property name="java.vendor.version" value="Temurin-21.0.13+9"/>
+    <property name="localRepository" value="/home/runner/.m2/repository"/>
+    <property name="java.vendor.url.bug" value="https://github.com/adoptium/adoptium-support/issues"/>
+    <property name="java.io.tmpdir" value="/tmp"/>
+    <property name="com.zaxxer.hikari.pool_number" value="2"/>
+    <property name="catalina.home" value="/tmp/tomcat.0.14613370781368535338"/>
+    <property name="java.version" value="21.0.13"/>
+    <property name="user.dir" value="/home/runner/work/clinica-despertares-IS3/clinica-despertares-IS3"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="PID" value="3111"/>
+    <property name="CONSOLE_LOG_CHARSET" value="UTF-8"/>
+    <property name="catalina.base" value="/tmp/tomcat.0.14613370781368535338"/>
+    <property name="native.encoding" value="UTF-8"/>
+    <property name="java.library.path" value="/usr/java/packages/lib:/usr/lib64:/lib64:/lib:/usr/lib"/>
+    <property name="java.vm.info" value="mixed mode, sharing"/>
+    <property name="stderr.encoding" value="UTF-8"/>
+    <property name="java.vendor" value="Eclipse Adoptium"/>
+    <property name="java.vm.version" value="21.0.13+9-LTS"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="java.class.version" value="65.0"/>
+    <property name="maven.test.failure.ignore" value="true"/>
+    <property name="LOGGED_APPLICATION_NAME" value="[clinica_Despertares] "/>
+  </properties>
+  <testcase name="ftc001" classname="Acceso al sistema, panel principal y pacientes (FTC001–FTC010)" time="0.275"/>
+  <testcase name="ftc002" classname="Acceso al sistema, panel principal y pacientes (FTC001–FTC010)" time="0.319"/>
+  <testcase name="ftc003" classname="Acceso al sistema, panel principal y pacientes (FTC001–FTC010)" time="0.027">
+    <system-out><![CDATA[[QA] FTC003 tiempo de expiración de sesión configurado: PT30M
+]]></system-out>
+  </testcase>
+  <testcase name="ftc004" classname="Acceso al sistema, panel principal y pacientes (FTC001–FTC010)" time="19.913"/>
+  <testcase name="ftc005" classname="Acceso al sistema, panel principal y pacientes (FTC001–FTC010)" time="0.01"/>
+  <testcase name="ftc006" classname="Acceso al sistema, panel principal y pacientes (FTC001–FTC010)" time="0.297"/>
+  <testcase name="ftc007" classname="Acceso al sistema, panel principal y pacientes (FTC001–FTC010)" time="1.505">
+    <failure message="Multiple Failures (1 failure)&#10;	org.opentest4j.AssertionFailedError: Paso 1: buscar &apos;maria&apos; (sin tilde) debería encontrar a &apos;María Torres423063&apos; — resultados: 1 ==&gt; expected: &lt;true&gt; but was: &lt;false&gt;" type="org.opentest4j.MultipleFailuresError"><![CDATA[org.opentest4j.MultipleFailuresError: 
+Multiple Failures (1 failure)
+	org.opentest4j.AssertionFailedError: Paso 1: buscar 'maria' (sin tilde) debería encontrar a 'María Torres423063' — resultados: 1 ==> expected: <true> but was: <false>
+	at org.junit.jupiter.api.AssertAll.assertAll(AssertAll.java:80)
+	at org.junit.jupiter.api.AssertAll.assertAll(AssertAll.java:44)
+	at org.junit.jupiter.api.AssertAll.assertAll(AssertAll.java:38)
+	at org.junit.jupiter.api.Assertions.assertAll(Assertions.java:2944)
+	at QA.FTC01_AccesoYPacientesTest.ftc007(FTC01_AccesoYPacientesTest.java:167)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	Suppressed: org.opentest4j.AssertionFailedError: Paso 1: buscar 'maria' (sin tilde) debería encontrar a 'María Torres423063' — resultados: 1 ==> expected: <true> but was: <false>
+		at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+		at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+		at org.junit.jupiter.api.AssertTrue.failNotTrue(AssertTrue.java:63)
+		at org.junit.jupiter.api.AssertTrue.assertTrue(AssertTrue.java:36)
+		at org.junit.jupiter.api.Assertions.assertTrue(Assertions.java:214)
+		at QA.FTC01_AccesoYPacientesTest.lambda$ftc007$13(FTC01_AccesoYPacientesTest.java:168)
+		at org.junit.jupiter.api.AssertAll.lambda$assertAll$0(AssertAll.java:68)
+		at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+		at java.base/java.util.Spliterators$ArraySpliterator.forEachRemaining(Spliterators.java:1024)
+		at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
+		at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
+		at java.base/java.util.stream.ReduceOps$ReduceOp.evaluateSequential(ReduceOps.java:921)
+		at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+		at java.base/java.util.stream.ReferencePipeline.collect(ReferencePipeline.java:682)
+		at org.junit.jupiter.api.AssertAll.assertAll(AssertAll.java:77)
+		... 7 more
+]]></failure>
+    <system-out><![CDATA[
+MockHttpServletRequest:
+      HTTP Method = GET
+      Request URI = /pacientes
+       Parameters = {buscar=[maria]}
+          Headers = []
+             Body = null
+    Session Attrs = {rolUsuario=ENFERMERA, csrfToken=token-qa-is3, usuarioLogueado=Entity.UsuarioEntity@48a67148, nombreUsuario=qa_enfermera}
+
+Handler:
+             Type = Controller.PacienteController
+           Method = Controller.PacienteController#listar(String, int, Model)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = pacientes/listar
+             View = null
+        Attribute = pacientes
+            value = [Entity.PacienteEntity@7019c257]
+        Attribute = pagina
+            value = Pagina[contenido=[Entity.PacienteEntity@7019c257], numero=0, tamano=10, totalElementos=1]
+           errors = []
+        Attribute = buscar
+            value = maria
+        Attribute = csrfToken
+            value = token-qa-is3
+        Attribute = currentUri
+            value = /pacientes
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 200
+    Error message = null
+          Headers = [Content-Language:"en", Content-Type:"text/html;charset=UTF-8"]
+     Content type = text/html;charset=UTF-8
+             Body = <!DOCTYPE html>
+<html lang="es">
+<head><meta charset="UTF-8"><script>try{var t=localStorage.getItem('tema');if(t){document.documentElement.setAttribute('data-theme',t);}}catch(e){}</script><title>Pacientes</title><link rel="stylesheet" href="/css/styles-b0b9db80416e29c17c730f72838d4cfb.css"><script src="/js/vendor/turbo.es2017-umd.min-f3b0ef926ea0676b0af5f7c5f88e2eea.js"></script></head>
+<body>
+<div class="dashboard-shell">
+    <div>
+    <header class="app-header">
+
+        <a href="/" class="header-logo">
+            <span class="header-logo-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+    <path d="M12 4v16M4 12h16"/>
+</svg></span>
+            <span>Clínica Despertares</span>
+        </a>
+
+        <div class="header-user-area">
+
+            <div class="user-mini-card">
+                <div class="user-role-icon">
+                    
+                    
+                    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M19.8 4.2l-2-2M17 4.6l2.4 2.4-9.6 9.6-3.6.9.9-3.6z"/>
+    <path d="M14.3 6.3l2 2M12.5 8.1l2 2"/>
+</svg></span>
+                    
+                    
+                    
+                    
+                </div>
+
+                <div class="user-mini-data">
+                    <strong>qa_enfermera</strong>
+                    <small>ENFERMERA</small>
+                </div>
+            </div>
+
+            <button type="button" id="theme-toggle" class="theme-toggle" aria-label="Cambiar tema" title="Cambiar tema">
+                <span class="icon-sol"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="4.2"/>
+    <path d="M12 3v2.4M12 18.6V21M4.2 12H2M22 12h-2.2M5.6 5.6l1.6 1.6M16.8 16.8l1.6 1.6M18.4 5.6l-1.6 1.6M7.2 16.8l-1.6 1.6"/>
+</svg></span>
+                <span class="icon-luna"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M20 14.3A8.5 8.5 0 1 1 9.7 4a6.6 6.6 0 0 0 10.3 10.3z"/>
+</svg></span>
+            </button>
+
+            <a href="/logout"
+               class="btn-logout">
+                <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M9 4.2H5.6a1.6 1.6 0 0 0-1.6 1.6v12.4a1.6 1.6 0 0 0 1.6 1.6H9"/>
+    <path d="M14 8l4 4-4 4M18 12H9"/>
+</svg></span>
+                Salir
+            </a>
+
+        </div>
+    </header>
+
+    <script>
+    (function () {
+        var boton = document.getElementById('theme-toggle');
+        if (!boton) { return; }
+
+        var iconoSol = boton.querySelector('.icon-sol');
+        var iconoLuna = boton.querySelector('.icon-luna');
+
+        function temaActual() {
+            var manual = document.documentElement.getAttribute('data-theme');
+            if (manual) { return manual; }
+            return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+
+        function actualizarIcono() {
+            var oscuro = temaActual() === 'dark';
+            iconoSol.hidden = !oscuro;
+            iconoLuna.hidden = oscuro;
+        }
+
+        actualizarIcono();
+
+        boton.addEventListener('click', function () {
+            var nuevoTema = temaActual() === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', nuevoTema);
+            try {
+                localStorage.setItem('tema', nuevoTema);
+            } catch (e) {
+                // localStorage puede no estar disponible (modo privado, etc.); no es crítico.
+            }
+            actualizarIcono();
+            // Los gráficos de Chart.js (si los hay en la página) leen los colores
+            // de las variables CSS al crearse y no se actualizan solos.
+            document.dispatchEvent(new CustomEvent('tema-cambiado'));
+        });
+    })();
+    </script>
+</div>
+    <div class="dashboard-body">
+        <aside class="app-sidebar">
+
+    <nav class="sidebar-nav">
+
+        <a class="sidebar-item active" href="/pacientes">
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="8.2" r="3.4"/>
+    <path d="M5 20c0-3.6 3.1-6 7-6s7 2.4 7 6"/>
+</svg></span>
+            <p>Pacientes</p>
+        </a>
+
+        <a class="sidebar-item" href="/citas">
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="3.5" y="5" width="17" height="15" rx="2.5"/>
+    <path d="M3.5 9.7h17"/>
+    <path d="M8 3v4M16 3v4"/>
+</svg></span>
+            <p>Citas médicas</p>
+        </a>
+
+        <a class="sidebar-item" href="/historias">
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="6" y="4.5" width="12" height="16" rx="2"/>
+    <path d="M9 4.5a1.5 1.5 0 0 1 1.5-1.5h3A1.5 1.5 0 0 1 15 4.5"/>
+    <path d="M9 8.7h6M9 12.2h6M9 15.7h4"/>
+</svg></span>
+            <p>Historias médicas</p>
+        </a>
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+    </nav>
+
+</aside>
+        <main class="content-card">
+            <div class="actions"><h1>Gestión de Pacientes</h1><a href="/pacientes/nuevo" class="btn">Nuevo paciente</a></div>
+            
+            
+            <form action="/pacientes" method="get" class="inline-form actions">
+                <input type="text" name="buscar" value="maria" placeholder="Buscar por DNI, nombre, apellido, correo o teléfono">
+                <button type="submit" class="btn">Buscar</button><a href="/pacientes" class="btn secondary">Limpiar</a>
+            </form>
+            <table>
+                <thead><tr><th>DNI</th><th>Paciente</th><th>Teléfono</th><th>Correo</th><th>Género</th><th>Tipo sangre</th><th>Acciones</th></tr></thead>
+                <tbody>
+                <tr>
+                    <td>71234561</td>
+                    <td>María González</td>
+                    <td>923456781</td>
+                    <td>maria.gonzalez@mail.com</td>
+                    <td>FEMENINO</td>
+                    <td>O+</td>
+                    <td>
+                        <a href="/pacientes/editar/71234561" class="btn small">Editar</a>
+                        <a href="/historias/nuevo?dniPaciente=71234561" class="btn small success">Crear historia</a>
+                        <a href="/pacientes/71234561/historial" class="btn small secondary">Ver historial</a>
+                        <form action="/pacientes/eliminar/71234561" method="post" class="inline-action" onsubmit="return confirm('¿Deseas eliminar este paciente?');"><input type="hidden" name="_csrf" value="token-qa-is3">
+                            <button type="submit" class="btn small danger">Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+                
+                </tbody>
+            </table>
+            <nav class="pagination">
+
+    <span class="page-info">
+        Página <strong>1</strong> de
+        <strong>1</strong>
+        · <span>1</span> resultado(s)
+    </span>
+
+    <div class="page-controls">
+        <a class="page-btn  disabled" href="/pacientes?pagina=-1&amp;buscar=maria&amp;estado=&amp;q=&amp;nombre=&amp;stockMinimo=">
+            ‹ Anterior
+        </a>
+        <a class="page-btn  disabled" href="/pacientes?pagina=1&amp;buscar=maria&amp;estado=&amp;q=&amp;nombre=&amp;stockMinimo=">
+            Siguiente ›
+        </a>
+    </div>
+
+</nav>
+        </main>
+    </div>
+</div>
+</body>
+</html>
+
+    Forwarded URL = null
+   Redirected URL = null
+          Cookies = []
+
+MockHttpServletRequest:
+      HTTP Method = GET
+      Request URI = /pacientes
+       Parameters = {buscar=[TORRES423063]}
+          Headers = []
+             Body = null
+    Session Attrs = {rolUsuario=ENFERMERA, csrfToken=token-qa-is3, usuarioLogueado=Entity.UsuarioEntity@48a67148, nombreUsuario=qa_enfermera}
+
+Handler:
+             Type = Controller.PacienteController
+           Method = Controller.PacienteController#listar(String, int, Model)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = pacientes/listar
+             View = null
+        Attribute = pacientes
+            value = [Entity.PacienteEntity@537109b7]
+        Attribute = pagina
+            value = Pagina[contenido=[Entity.PacienteEntity@537109b7], numero=0, tamano=10, totalElementos=1]
+           errors = []
+        Attribute = buscar
+            value = TORRES423063
+        Attribute = csrfToken
+            value = token-qa-is3
+        Attribute = currentUri
+            value = /pacientes
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 200
+    Error message = null
+          Headers = [Content-Language:"en", Content-Type:"text/html;charset=UTF-8"]
+     Content type = text/html;charset=UTF-8
+             Body = <!DOCTYPE html>
+<html lang="es">
+<head><meta charset="UTF-8"><script>try{var t=localStorage.getItem('tema');if(t){document.documentElement.setAttribute('data-theme',t);}}catch(e){}</script><title>Pacientes</title><link rel="stylesheet" href="/css/styles-b0b9db80416e29c17c730f72838d4cfb.css"><script src="/js/vendor/turbo.es2017-umd.min-f3b0ef926ea0676b0af5f7c5f88e2eea.js"></script></head>
+<body>
+<div class="dashboard-shell">
+    <div>
+    <header class="app-header">
+
+        <a href="/" class="header-logo">
+            <span class="header-logo-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+    <path d="M12 4v16M4 12h16"/>
+</svg></span>
+            <span>Clínica Despertares</span>
+        </a>
+
+        <div class="header-user-area">
+
+            <div class="user-mini-card">
+                <div class="user-role-icon">
+                    
+                    
+                    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M19.8 4.2l-2-2M17 4.6l2.4 2.4-9.6 9.6-3.6.9.9-3.6z"/>
+    <path d="M14.3 6.3l2 2M12.5 8.1l2 2"/>
+</svg></span>
+                    
+                    
+                    
+                    
+                </div>
+
+                <div class="user-mini-data">
+                    <strong>qa_enfermera</strong>
+                    <small>ENFERMERA</small>
+                </div>
+            </div>
+
+            <button type="button" id="theme-toggle" class="theme-toggle" aria-label="Cambiar tema" title="Cambiar tema">
+                <span class="icon-sol"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="4.2"/>
+    <path d="M12 3v2.4M12 18.6V21M4.2 12H2M22 12h-2.2M5.6 5.6l1.6 1.6M16.8 16.8l1.6 1.6M18.4 5.6l-1.6 1.6M7.2 16.8l-1.6 1.6"/>
+</svg></span>
+                <span class="icon-luna"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M20 14.3A8.5 8.5 0 1 1 9.7 4a6.6 6.6 0 0 0 10.3 10.3z"/>
+</svg></span>
+            </button>
+
+            <a href="/logout"
+               class="btn-logout">
+                <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M9 4.2H5.6a1.6 1.6 0 0 0-1.6 1.6v12.4a1.6 1.6 0 0 0 1.6 1.6H9"/>
+    <path d="M14 8l4 4-4 4M18 12H9"/>
+</svg></span>
+                Salir
+            </a>
+
+        </div>
+    </header>
+
+    <script>
+    (function () {
+        var boton = document.getElementById('theme-toggle');
+        if (!boton) { return; }
+
+        var iconoSol = boton.querySelector('.icon-sol');
+        var iconoLuna = boton.querySelector('.icon-luna');
+
+        function temaActual() {
+            var manual = document.documentElement.getAttribute('data-theme');
+            if (manual) { return manual; }
+            return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+
+        function actualizarIcono() {
+            var oscuro = temaActual() === 'dark';
+            iconoSol.hidden = !oscuro;
+            iconoLuna.hidden = oscuro;
+        }
+
+        actualizarIcono();
+
+        boton.addEventListener('click', function () {
+            var nuevoTema = temaActual() === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', nuevoTema);
+            try {
+                localStorage.setItem('tema', nuevoTema);
+            } catch (e) {
+                // localStorage puede no estar disponible (modo privado, etc.); no es crítico.
+            }
+            actualizarIcono();
+            // Los gráficos de Chart.js (si los hay en la página) leen los colores
+            // de las variables CSS al crearse y no se actualizan solos.
+            document.dispatchEvent(new CustomEvent('tema-cambiado'));
+        });
+    })();
+    </script>
+</div>
+    <div class="dashboard-body">
+        <aside class="app-sidebar">
+
+    <nav class="sidebar-nav">
+
+        <a class="sidebar-item active" href="/pacientes">
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="8.2" r="3.4"/>
+    <path d="M5 20c0-3.6 3.1-6 7-6s7 2.4 7 6"/>
+</svg></span>
+            <p>Pacientes</p>
+        </a>
+
+        <a class="sidebar-item" href="/citas">
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="3.5" y="5" width="17" height="15" rx="2.5"/>
+    <path d="M3.5 9.7h17"/>
+    <path d="M8 3v4M16 3v4"/>
+</svg></span>
+            <p>Citas médicas</p>
+        </a>
+
+        <a class="sidebar-item" href="/historias">
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="6" y="4.5" width="12" height="16" rx="2"/>
+    <path d="M9 4.5a1.5 1.5 0 0 1 1.5-1.5h3A1.5 1.5 0 0 1 15 4.5"/>
+    <path d="M9 8.7h6M9 12.2h6M9 15.7h4"/>
+</svg></span>
+            <p>Historias médicas</p>
+        </a>
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+    </nav>
+
+</aside>
+        <main class="content-card">
+            <div class="actions"><h1>Gestión de Pacientes</h1><a href="/pacientes/nuevo" class="btn">Nuevo paciente</a></div>
+            
+            
+            <form action="/pacientes" method="get" class="inline-form actions">
+                <input type="text" name="buscar" value="TORRES423063" placeholder="Buscar por DNI, nombre, apellido, correo o teléfono">
+                <button type="submit" class="btn">Buscar</button><a href="/pacientes" class="btn secondary">Limpiar</a>
+            </form>
+            <table>
+                <thead><tr><th>DNI</th><th>Paciente</th><th>Teléfono</th><th>Correo</th><th>Género</th><th>Tipo sangre</th><th>Acciones</th></tr></thead>
+                <tbody>
+                <tr>
+                    <td>30423064</td>
+                    <td>María Torres423063</td>
+                    <td>900423064</td>
+                    <td>qa423064@test.pe</td>
+                    <td>FEMENINO</td>
+                    <td>O+</td>
+                    <td>
+                        <a href="/pacientes/editar/30423064" class="btn small">Editar</a>
+                        <a href="/historias/nuevo?dniPaciente=30423064" class="btn small success">Crear historia</a>
+                        <a href="/pacientes/30423064/historial" class="btn small secondary">Ver historial</a>
+                        <form action="/pacientes/eliminar/30423064" method="post" class="inline-action" onsubmit="return confirm('¿Deseas eliminar este paciente?');"><input type="hidden" name="_csrf" value="token-qa-is3">
+                            <button type="submit" class="btn small danger">Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+                
+                </tbody>
+            </table>
+            <nav class="pagination">
+
+    <span class="page-info">
+        Página <strong>1</strong> de
+        <strong>1</strong>
+        · <span>1</span> resultado(s)
+    </span>
+
+    <div class="page-controls">
+        <a class="page-btn  disabled" href="/pacientes?pagina=-1&amp;buscar=TORRES423063&amp;estado=&amp;q=&amp;nombre=&amp;stockMinimo=">
+            ‹ Anterior
+        </a>
+        <a class="page-btn  disabled" href="/pacientes?pagina=1&amp;buscar=TORRES423063&amp;estado=&amp;q=&amp;nombre=&amp;stockMinimo=">
+            Siguiente ›
+        </a>
+    </div>
+
+</nav>
+        </main>
+    </div>
+</div>
+</body>
+</html>
+
+    Forwarded URL = null
+   Redirected URL = null
+          Cookies = []
+
+MockHttpServletRequest:
+      HTTP Method = GET
+      Request URI = /pacientes
+       Parameters = {buscar=[zzzz]}
+          Headers = []
+             Body = null
+    Session Attrs = {rolUsuario=ENFERMERA, csrfToken=token-qa-is3, usuarioLogueado=Entity.UsuarioEntity@48a67148, nombreUsuario=qa_enfermera}
+
+Handler:
+             Type = Controller.PacienteController
+           Method = Controller.PacienteController#listar(String, int, Model)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = pacientes/listar
+             View = null
+        Attribute = pacientes
+            value = []
+        Attribute = pagina
+            value = Pagina[contenido=[], numero=0, tamano=10, totalElementos=0]
+           errors = []
+        Attribute = buscar
+            value = zzzz
+        Attribute = csrfToken
+            value = token-qa-is3
+        Attribute = currentUri
+            value = /pacientes
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 200
+    Error message = null
+          Headers = [Content-Language:"en", Content-Type:"text/html;charset=UTF-8"]
+     Content type = text/html;charset=UTF-8
+             Body = <!DOCTYPE html>
+<html lang="es">
+<head><meta charset="UTF-8"><script>try{var t=localStorage.getItem('tema');if(t){document.documentElement.setAttribute('data-theme',t);}}catch(e){}</script><title>Pacientes</title><link rel="stylesheet" href="/css/styles-b0b9db80416e29c17c730f72838d4cfb.css"><script src="/js/vendor/turbo.es2017-umd.min-f3b0ef926ea0676b0af5f7c5f88e2eea.js"></script></head>
+<body>
+<div class="dashboard-shell">
+    <div>
+    <header class="app-header">
+
+        <a href="/" class="header-logo">
+            <span class="header-logo-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+    <path d="M12 4v16M4 12h16"/>
+</svg></span>
+            <span>Clínica Despertares</span>
+        </a>
+
+        <div class="header-user-area">
+
+            <div class="user-mini-card">
+                <div class="user-role-icon">
+                    
+                    
+                    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M19.8 4.2l-2-2M17 4.6l2.4 2.4-9.6 9.6-3.6.9.9-3.6z"/>
+    <path d="M14.3 6.3l2 2M12.5 8.1l2 2"/>
+</svg></span>
+                    
+                    
+                    
+                    
+                </div>
+
+                <div class="user-mini-data">
+                    <strong>qa_enfermera</strong>
+                    <small>ENFERMERA</small>
+                </div>
+            </div>
+
+            <button type="button" id="theme-toggle" class="theme-toggle" aria-label="Cambiar tema" title="Cambiar tema">
+                <span class="icon-sol"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="4.2"/>
+    <path d="M12 3v2.4M12 18.6V21M4.2 12H2M22 12h-2.2M5.6 5.6l1.6 1.6M16.8 16.8l1.6 1.6M18.4 5.6l-1.6 1.6M7.2 16.8l-1.6 1.6"/>
+</svg></span>
+                <span class="icon-luna"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M20 14.3A8.5 8.5 0 1 1 9.7 4a6.6 6.6 0 0 0 10.3 10.3z"/>
+</svg></span>
+            </button>
+
+            <a href="/logout"
+               class="btn-logout">
+                <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M9 4.2H5.6a1.6 1.6 0 0 0-1.6 1.6v12.4a1.6 1.6 0 0 0 1.6 1.6H9"/>
+    <path d="M14 8l4 4-4 4M18 12H9"/>
+</svg></span>
+                Salir
+            </a>
+
+        </div>
+    </header>
+
+    <script>
+    (function () {
+        var boton = document.getElementById('theme-toggle');
+        if (!boton) { return; }
+
+        var iconoSol = boton.querySelector('.icon-sol');
+        var iconoLuna = boton.querySelector('.icon-luna');
+
+        function temaActual() {
+            var manual = document.documentElement.getAttribute('data-theme');
+            if (manual) { return manual; }
+            return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+
+        function actualizarIcono() {
+            var oscuro = temaActual() === 'dark';
+            iconoSol.hidden = !oscuro;
+            iconoLuna.hidden = oscuro;
+        }
+
+        actualizarIcono();
+
+        boton.addEventListener('click', function () {
+            var nuevoTema = temaActual() === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', nuevoTema);
+            try {
+                localStorage.setItem('tema', nuevoTema);
+            } catch (e) {
+                // localStorage puede no estar disponible (modo privado, etc.); no es crítico.
+            }
+            actualizarIcono();
+            // Los gráficos de Chart.js (si los hay en la página) leen los colores
+            // de las variables CSS al crearse y no se actualizan solos.
+            document.dispatchEvent(new CustomEvent('tema-cambiado'));
+        });
+    })();
+    </script>
+</div>
+    <div class="dashboard-body">
+        <aside class="app-sidebar">
+
+    <nav class="sidebar-nav">
+
+        <a class="sidebar-item active" href="/pacientes">
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="8.2" r="3.4"/>
+    <path d="M5 20c0-3.6 3.1-6 7-6s7 2.4 7 6"/>
+</svg></span>
+            <p>Pacientes</p>
+        </a>
+
+        <a class="sidebar-item" href="/citas">
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="3.5" y="5" width="17" height="15" rx="2.5"/>
+    <path d="M3.5 9.7h17"/>
+    <path d="M8 3v4M16 3v4"/>
+</svg></span>
+            <p>Citas médicas</p>
+        </a>
+
+        <a class="sidebar-item" href="/historias">
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="6" y="4.5" width="12" height="16" rx="2"/>
+    <path d="M9 4.5a1.5 1.5 0 0 1 1.5-1.5h3A1.5 1.5 0 0 1 15 4.5"/>
+    <path d="M9 8.7h6M9 12.2h6M9 15.7h4"/>
+</svg></span>
+            <p>Historias médicas</p>
+        </a>
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+    </nav>
+
+</aside>
+        <main class="content-card">
+            <div class="actions"><h1>Gestión de Pacientes</h1><a href="/pacientes/nuevo" class="btn">Nuevo paciente</a></div>
+            
+            
+            <form action="/pacientes" method="get" class="inline-form actions">
+                <input type="text" name="buscar" value="zzzz" placeholder="Buscar por DNI, nombre, apellido, correo o teléfono">
+                <button type="submit" class="btn">Buscar</button><a href="/pacientes" class="btn secondary">Limpiar</a>
+            </form>
+            <table>
+                <thead><tr><th>DNI</th><th>Paciente</th><th>Teléfono</th><th>Correo</th><th>Género</th><th>Tipo sangre</th><th>Acciones</th></tr></thead>
+                <tbody>
+                
+                <tr><td class="empty-row" colspan="7">No se encontraron pacientes.</td></tr>
+                </tbody>
+            </table>
+            
+        </main>
+    </div>
+</div>
+</body>
+</html>
+
+    Forwarded URL = null
+   Redirected URL = null
+          Cookies = []
+
+MockHttpServletRequest:
+      HTTP Method = GET
+      Request URI = /pacientes
+       Parameters = {buscar=[]}
+          Headers = []
+             Body = null
+    Session Attrs = {rolUsuario=ENFERMERA, csrfToken=token-qa-is3, usuarioLogueado=Entity.UsuarioEntity@48a67148, nombreUsuario=qa_enfermera}
+
+Handler:
+             Type = Controller.PacienteController
+           Method = Controller.PacienteController#listar(String, int, Model)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = pacientes/listar
+             View = null
+        Attribute = pacientes
+            value = [Entity.PacienteEntity@266d49ab, Entity.PacienteEntity@67ab238c, Entity.PacienteEntity@2fdf104e, Entity.PacienteEntity@4162e1cc, Entity.PacienteEntity@7db4cae8, Entity.PacienteEntity@2a7961b2, Entity.PacienteEntity@1ac4fbd8, Entity.PacienteEntity@7c71ec5f, Entity.PacienteEntity@59fd0d10, Entity.PacienteEntity@5a95005e]
+        Attribute = pagina
+            value = Pagina[contenido=[Entity.PacienteEntity@266d49ab, Entity.PacienteEntity@67ab238c, Entity.PacienteEntity@2fdf104e, Entity.PacienteEntity@4162e1cc, Entity.PacienteEntity@7db4cae8, Entity.PacienteEntity@2a7961b2, Entity.PacienteEntity@1ac4fbd8, Entity.PacienteEntity@7c71ec5f, Entity.PacienteEntity@59fd0d10, Entity.PacienteEntity@5a95005e], numero=0, tamano=10, totalElementos=5041]
+           errors = []
+        Attribute = buscar
+            value = 
+        Attribute = csrfToken
+            value = token-qa-is3
+        Attribute = currentUri
+            value = /pacientes
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 200
+    Error message = null
+          Headers = [Content-Language:"en", Content-Type:"text/html;charset=UTF-8"]
+     Content type = text/html;charset=UTF-8
+             Body = <!DOCTYPE html>
+<html lang="es">
+<head><meta charset="UTF-8"><script>try{var t=localStorage.getItem('tema');if(t){document.documentElement.setAttribute('data-theme',t);}}catch(e){}</script><title>Pacientes</title><link rel="stylesheet" href="/css/styles-b0b9db80416e29c17c730f72838d4cfb.css"><script src="/js/vendor/turbo.es2017-umd.min-f3b0ef926ea0676b0af5f7c5f88e2eea.js"></script></head>
+<body>
+<div class="dashboard-shell">
+    <div>
+    <header class="app-header">
+
+        <a href="/" class="header-logo">
+            <span class="header-logo-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+    <path d="M12 4v16M4 12h16"/>
+</svg></span>
+            <span>Clínica Despertares</span>
+        </a>
+
+        <div class="header-user-area">
+
+            <div class="user-mini-card">
+                <div class="user-role-icon">
+                    
+                    
+                    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M19.8 4.2l-2-2M17 4.6l2.4 2.4-9.6 9.6-3.6.9.9-3.6z"/>
+    <path d="M14.3 6.3l2 2M12.5 8.1l2 2"/>
+</svg></span>
+                    
+                    
+                    
+                    
+                </div>
+
+                <div class="user-mini-data">
+                    <strong>qa_enfermera</strong>
+                    <small>ENFERMERA</small>
+                </div>
+            </div>
+
+            <button type="button" id="theme-toggle" class="theme-toggle" aria-label="Cambiar tema" title="Cambiar tema">
+                <span class="icon-sol"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="4.2"/>
+    <path d="M12 3v2.4M12 18.6V21M4.2 12H2M22 12h-2.2M5.6 5.6l1.6 1.6M16.8 16.8l1.6 1.6M18.4 5.6l-1.6 1.6M7.2 16.8l-1.6 1.6"/>
+</svg></span>
+                <span class="icon-luna"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M20 14.3A8.5 8.5 0 1 1 9.7 4a6.6 6.6 0 0 0 10.3 10.3z"/>
+</svg></span>
+            </button>
+
+            <a href="/logout"
+               class="btn-logout">
+                <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M9 4.2H5.6a1.6 1.6 0 0 0-1.6 1.6v12.4a1.6 1.6 0 0 0 1.6 1.6H9"/>
+    <path d="M14 8l4 4-4 4M18 12H9"/>
+</svg></span>
+                Salir
+            </a>
+
+        </div>
+    </header>
+
+    <script>
+    (function () {
+        var boton = document.getElementById('theme-toggle');
+        if (!boton) { return; }
+
+        var iconoSol = boton.querySelector('.icon-sol');
+        var iconoLuna = boton.querySelector('.icon-luna');
+
+        function temaActual() {
+            var manual = document.documentElement.getAttribute('data-theme');
+            if (manual) { return manual; }
+            return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+
+        function actualizarIcono() {
+            var oscuro = temaActual() === 'dark';
+            iconoSol.hidden = !oscuro;
+            iconoLuna.hidden = oscuro;
+        }
+
+        actualizarIcono();
+
+        boton.addEventListener('click', function () {
+            var nuevoTema = temaActual() === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', nuevoTema);
+            try {
+                localStorage.setItem('tema', nuevoTema);
+            } catch (e) {
+                // localStorage puede no estar disponible (modo privado, etc.); no es crítico.
+            }
+            actualizarIcono();
+            // Los gráficos de Chart.js (si los hay en la página) leen los colores
+            // de las variables CSS al crearse y no se actualizan solos.
+            document.dispatchEvent(new CustomEvent('tema-cambiado'));
+        });
+    })();
+    </script>
+</div>
+    <div class="dashboard-body">
+        <aside class="app-sidebar">
+
+    <nav class="sidebar-nav">
+
+        <a class="sidebar-item active" href="/pacientes">
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="8.2" r="3.4"/>
+    <path d="M5 20c0-3.6 3.1-6 7-6s7 2.4 7 6"/>
+</svg></span>
+            <p>Pacientes</p>
+        </a>
+
+        <a class="sidebar-item" href="/citas">
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="3.5" y="5" width="17" height="15" rx="2.5"/>
+    <path d="M3.5 9.7h17"/>
+    <path d="M8 3v4M16 3v4"/>
+</svg></span>
+            <p>Citas médicas</p>
+        </a>
+
+        <a class="sidebar-item" href="/historias">
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="6" y="4.5" width="12" height="16" rx="2"/>
+    <path d="M9 4.5a1.5 1.5 0 0 1 1.5-1.5h3A1.5 1.5 0 0 1 15 4.5"/>
+    <path d="M9 8.7h6M9 12.2h6M9 15.7h4"/>
+</svg></span>
+            <p>Historias médicas</p>
+        </a>
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+    </nav>
+
+</aside>
+        <main class="content-card">
+            <div class="actions"><h1>Gestión de Pacientes</h1><a href="/pacientes/nuevo" class="btn">Nuevo paciente</a></div>
+            
+            
+            <form action="/pacientes" method="get" class="inline-form actions">
+                <input type="text" name="buscar" value="" placeholder="Buscar por DNI, nombre, apellido, correo o teléfono">
+                <button type="submit" class="btn">Buscar</button><a href="/pacientes" class="btn secondary">Limpiar</a>
+            </form>
+            <table>
+                <thead><tr><th>DNI</th><th>Paciente</th><th>Teléfono</th><th>Correo</th><th>Género</th><th>Tipo sangre</th><th>Acciones</th></tr></thead>
+                <tbody>
+                <tr>
+                    <td>71234561</td>
+                    <td>María González</td>
+                    <td>923456781</td>
+                    <td>maria.gonzalez@mail.com</td>
+                    <td>FEMENINO</td>
+                    <td>O+</td>
+                    <td>
+                        <a href="/pacientes/editar/71234561" class="btn small">Editar</a>
+                        <a href="/historias/nuevo?dniPaciente=71234561" class="btn small success">Crear historia</a>
+                        <a href="/pacientes/71234561/historial" class="btn small secondary">Ver historial</a>
+                        <form action="/pacientes/eliminar/71234561" method="post" class="inline-action" onsubmit="return confirm('¿Deseas eliminar este paciente?');"><input type="hidden" name="_csrf" value="token-qa-is3">
+                            <button type="submit" class="btn small danger">Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+                <tr>
+                    <td>71234562</td>
+                    <td>Pedro Vargas</td>
+                    <td>923456782</td>
+                    <td>pedro.vargas@mail.com</td>
+                    <td>MASCULINO</td>
+                    <td>A+</td>
+                    <td>
+                        <a href="/pacientes/editar/71234562" class="btn small">Editar</a>
+                        <a href="/historias/nuevo?dniPaciente=71234562" class="btn small success">Crear historia</a>
+                        <a href="/pacientes/71234562/historial" class="btn small secondary">Ver historial</a>
+                        <form action="/pacientes/eliminar/71234562" method="post" class="inline-action" onsubmit="return confirm('¿Deseas eliminar este paciente?');"><input type="hidden" name="_csrf" value="token-qa-is3">
+                            <button type="submit" class="btn small danger">Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+                <tr>
+                    <td>71234563</td>
+                    <td>Ana Mendoza</td>
+                    <td>923456783</td>
+                    <td>ana.mendoza@mail.com</td>
+                    <td>FEMENINO</td>
+                    <td>B+</td>
+                    <td>
+                        <a href="/pacientes/editar/71234563" class="btn small">Editar</a>
+                        <a href="/historias/nuevo?dniPaciente=71234563" class="btn small success">Crear historia</a>
+                        <a href="/pacientes/71234563/historial" class="btn small secondary">Ver historial</a>
+                        <form action="/pacientes/eliminar/71234563" method="post" class="inline-action" onsubmit="return confirm('¿Deseas eliminar este paciente?');"><input type="hidden" name="_csrf" value="token-qa-is3">
+                            <button type="submit" class="btn small danger">Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+                <tr>
+                    <td>71234564</td>
+                    <td>Luis Chávez</td>
+                    <td>923456784</td>
+                    <td>luis.chavez@mail.com</td>
+                    <td>MASCULINO</td>
+                    <td>AB+</td>
+                    <td>
+                        <a href="/pacientes/editar/71234564" class="btn small">Editar</a>
+                        <a href="/historias/nuevo?dniPaciente=71234564" class="btn small success">Crear historia</a>
+                        <a href="/pacientes/71234564/historial" class="btn small secondary">Ver historial</a>
+                        <form action="/pacientes/eliminar/71234564" method="post" class="inline-action" onsubmit="return confirm('¿Deseas eliminar este paciente?');"><input type="hidden" name="_csrf" value="token-qa-is3">
+                            <button type="submit" class="btn small danger">Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+                <tr>
+                    <td>71234565</td>
+                    <td>Carmen Rojas</td>
+                    <td>923456785</td>
+                    <td>carmen.rojas@mail.com</td>
+                    <td>FEMENINO</td>
+                    <td>O-</td>
+                    <td>
+                        <a href="/pacientes/editar/71234565" class="btn small">Editar</a>
+                        <a href="/historias/nuevo?dniPaciente=71234565" class="btn small success">Crear historia</a>
+                        <a href="/pacientes/71234565/historial" class="btn small secondary">Ver historial</a>
+                        <form action="/pacientes/eliminar/71234565" method="post" class="inline-action" onsubmit="return confirm('¿Deseas eliminar este paciente?');"><input type="hidden" name="_csrf" value="token-qa-is3">
+                            <button type="submit" class="btn small danger">Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+                <tr>
+                    <td>71234566</td>
+                    <td>Diego Flores</td>
+                    <td>923456786</td>
+                    <td>diego.flores@mail.com</td>
+                    <td>MASCULINO</td>
+                    <td>A-</td>
+                    <td>
+                        <a href="/pacientes/editar/71234566" class="btn small">Editar</a>
+                        <a href="/historias/nuevo?dniPaciente=71234566" class="btn small success">Crear historia</a>
+                        <a href="/pacientes/71234566/historial" class="btn small secondary">Ver historial</a>
+                        <form action="/pacientes/eliminar/71234566" method="post" class="inline-action" onsubmit="return confirm('¿Deseas eliminar este paciente?');"><input type="hidden" name="_csrf" value="token-qa-is3">
+                            <button type="submit" class="btn small danger">Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+                <tr>
+                    <td>30423062</td>
+                    <td>Paciente Qa423061</td>
+                    <td>900423062</td>
+                    <td>qa423062@test.pe</td>
+                    <td>FEMENINO</td>
+                    <td>O+</td>
+                    <td>
+                        <a href="/pacientes/editar/30423062" class="btn small">Editar</a>
+                        <a href="/historias/nuevo?dniPaciente=30423062" class="btn small success">Crear historia</a>
+                        <a href="/pacientes/30423062/historial" class="btn small secondary">Ver historial</a>
+                        <form action="/pacientes/eliminar/30423062" method="post" class="inline-action" onsubmit="return confirm('¿Deseas eliminar este paciente?');"><input type="hidden" name="_csrf" value="token-qa-is3">
+                            <button type="submit" class="btn small danger">Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+                <tr>
+                    <td>30422973</td>
+                    <td>Sobrescrito Otro</td>
+                    <td>500422974</td>
+                    <td>otro422974@mail.pe</td>
+                    <td>MASCULINO</td>
+                    <td>B+</td>
+                    <td>
+                        <a href="/pacientes/editar/30422973" class="btn small">Editar</a>
+                        <a href="/historias/nuevo?dniPaciente=30422973" class="btn small success">Crear historia</a>
+                        <a href="/pacientes/30422973/historial" class="btn small secondary">Ver historial</a>
+                        <form action="/pacientes/eliminar/30422973" method="post" class="inline-action" onsubmit="return confirm('¿Deseas eliminar este paciente?');"><input type="hidden" name="_csrf" value="token-qa-is3">
+                            <button type="submit" class="btn small danger">Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+                <tr>
+                    <td>30422976</td>
+                    <td>Paciente Qa422975</td>
+                    <td>900422976</td>
+                    <td>qa422976@test.pe</td>
+                    <td>FEMENINO</td>
+                    <td>O+</td>
+                    <td>
+                        <a href="/pacientes/editar/30422976" class="btn small">Editar</a>
+                        <a href="/historias/nuevo?dniPaciente=30422976" class="btn small success">Crear historia</a>
+                        <a href="/pacientes/30422976/historial" class="btn small secondary">Ver historial</a>
+                        <form action="/pacientes/eliminar/30422976" method="post" class="inline-action" onsubmit="return confirm('¿Deseas eliminar este paciente?');"><input type="hidden" name="_csrf" value="token-qa-is3">
+                            <button type="submit" class="btn small danger">Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+                <tr>
+                    <td>30422979</td>
+                    <td>Paciente Qa422978</td>
+                    <td>900422979</td>
+                    <td>qa422979@test.pe</td>
+                    <td>FEMENINO</td>
+                    <td>O+</td>
+                    <td>
+                        <a href="/pacientes/editar/30422979" class="btn small">Editar</a>
+                        <a href="/historias/nuevo?dniPaciente=30422979" class="btn small success">Crear historia</a>
+                        <a href="/pacientes/30422979/historial" class="btn small secondary">Ver historial</a>
+                        <form action="/pacientes/eliminar/30422979" method="post" class="inline-action" onsubmit="return confirm('¿Deseas eliminar este paciente?');"><input type="hidden" name="_csrf" value="token-qa-is3">
+                            <button type="submit" class="btn small danger">Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+                
+                </tbody>
+            </table>
+            <nav class="pagination">
+
+    <span class="page-info">
+        Página <strong>1</strong> de
+        <strong>505</strong>
+        · <span>5041</span> resultado(s)
+    </span>
+
+    <div class="page-controls">
+        <a class="page-btn  disabled" href="/pacientes?pagina=-1&amp;buscar=&amp;estado=&amp;q=&amp;nombre=&amp;stockMinimo=">
+            ‹ Anterior
+        </a>
+        <a class="page-btn" href="/pacientes?pagina=1&amp;buscar=&amp;estado=&amp;q=&amp;nombre=&amp;stockMinimo=">
+            Siguiente ›
+        </a>
+    </div>
+
+</nav>
+        </main>
+    </div>
+</div>
+</body>
+</html>
+
+    Forwarded URL = null
+   Redirected URL = null
+          Cookies = []
+]]></system-out>
+  </testcase>
+  <testcase name="ftc008" classname="Acceso al sistema, panel principal y pacientes (FTC001–FTC010)" time="0.049"/>
+  <testcase name="ftc009" classname="Acceso al sistema, panel principal y pacientes (FTC001–FTC010)" time="0.034"/>
+  <testcase name="ftc010" classname="Acceso al sistema, panel principal y pacientes (FTC001–FTC010)" time="0.006"/>
+</testsuite>

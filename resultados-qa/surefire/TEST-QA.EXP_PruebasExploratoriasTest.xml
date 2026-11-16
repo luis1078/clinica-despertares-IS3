@@ -1,0 +1,1406 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="QA.EXP_PruebasExploratoriasTest" time="11.608" tests="12" errors="0" skipped="0" failures="12" flakes="0">
+  <properties>
+    <property name="java.specification.version" value="21"/>
+    <property name="sun.jnu.encoding" value="UTF-8"/>
+    <property name="java.class.path" value="/home/runner/work/clinica-despertares-IS3/clinica-despertares-IS3/target/test-classes:/home/runner/work/clinica-despertares-IS3/clinica-despertares-IS3/target/classes:/home/runner/.m2/repository/org/springframework/boot/spring-boot-starter-data-jpa/3.5.14/spring-boot-starter-data-jpa-3.5.14.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot-starter/3.5.14/spring-boot-starter-3.5.14.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot/3.5.14/spring-boot-3.5.14.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot-autoconfigure/3.5.14/spring-boot-autoconfigure-3.5.14.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot-starter-logging/3.5.14/spring-boot-starter-logging-3.5.14.jar:/home/runner/.m2/repository/ch/qos/logback/logback-classic/1.5.32/logback-classic-1.5.32.jar:/home/runner/.m2/repository/ch/qos/logback/logback-core/1.5.32/logback-core-1.5.32.jar:/home/runner/.m2/repository/org/apache/logging/log4j/log4j-to-slf4j/2.24.3/log4j-to-slf4j-2.24.3.jar:/home/runner/.m2/repository/org/apache/logging/log4j/log4j-api/2.24.3/log4j-api-2.24.3.jar:/home/runner/.m2/repository/org/slf4j/jul-to-slf4j/2.0.17/jul-to-slf4j-2.0.17.jar:/home/runner/.m2/repository/jakarta/annotation/jakarta.annotation-api/2.1.1/jakarta.annotation-api-2.1.1.jar:/home/runner/.m2/repository/org/yaml/snakeyaml/2.4/snakeyaml-2.4.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot-starter-jdbc/3.5.14/spring-boot-starter-jdbc-3.5.14.jar:/home/runner/.m2/repository/com/zaxxer/HikariCP/6.3.3/HikariCP-6.3.3.jar:/home/runner/.m2/repository/org/springframework/spring-jdbc/6.2.18/spring-jdbc-6.2.18.jar:/home/runner/.m2/repository/org/hibernate/orm/hibernate-core/6.6.49.Final/hibernate-core-6.6.49.Final.jar:/home/runner/.m2/repository/jakarta/persistence/jakarta.persistence-api/3.1.0/jakarta.persistence-api-3.1.0.jar:/home/runner/.m2/repository/jakarta/transaction/jakarta.transaction-api/2.0.1/jakarta.transaction-api-2.0.1.jar:/home/runner/.m2/repository/org/jboss/logging/jboss-logging/3.6.3.Final/jboss-logging-3.6.3.Final.jar:/home/runner/.m2/repository/org/hibernate/common/hibernate-commons-annotations/7.0.3.Final/hibernate-commons-annotations-7.0.3.Final.jar:/home/runner/.m2/repository/io/smallrye/jandex/3.2.0/jandex-3.2.0.jar:/home/runner/.m2/repository/com/fasterxml/classmate/1.7.3/classmate-1.7.3.jar:/home/runner/.m2/repository/net/bytebuddy/byte-buddy/1.17.8/byte-buddy-1.17.8.jar:/home/runner/.m2/repository/org/glassfish/jaxb/jaxb-runtime/4.0.6/jaxb-runtime-4.0.6.jar:/home/runner/.m2/repository/org/glassfish/jaxb/jaxb-core/4.0.6/jaxb-core-4.0.6.jar:/home/runner/.m2/repository/org/eclipse/angus/angus-activation/2.0.3/angus-activation-2.0.3.jar:/home/runner/.m2/repository/org/glassfish/jaxb/txw2/4.0.6/txw2-4.0.6.jar:/home/runner/.m2/repository/com/sun/istack/istack-commons-runtime/4.1.2/istack-commons-runtime-4.1.2.jar:/home/runner/.m2/repository/jakarta/inject/jakarta.inject-api/2.0.1/jakarta.inject-api-2.0.1.jar:/home/runner/.m2/repository/org/antlr/antlr4-runtime/4.13.0/antlr4-runtime-4.13.0.jar:/home/runner/.m2/repository/org/springframework/data/spring-data-jpa/3.5.11/spring-data-jpa-3.5.11.jar:/home/runner/.m2/repository/org/springframework/data/spring-data-commons/3.5.11/spring-data-commons-3.5.11.jar:/home/runner/.m2/repository/org/springframework/spring-orm/6.2.18/spring-orm-6.2.18.jar:/home/runner/.m2/repository/org/springframework/spring-context/6.2.18/spring-context-6.2.18.jar:/home/runner/.m2/repository/org/springframework/spring-aop/6.2.18/spring-aop-6.2.18.jar:/home/runner/.m2/repository/org/springframework/spring-tx/6.2.18/spring-tx-6.2.18.jar:/home/runner/.m2/repository/org/springframework/spring-beans/6.2.18/spring-beans-6.2.18.jar:/home/runner/.m2/repository/org/slf4j/slf4j-api/2.0.17/slf4j-api-2.0.17.jar:/home/runner/.m2/repository/org/springframework/spring-aspects/6.2.18/spring-aspects-6.2.18.jar:/home/runner/.m2/repository/org/aspectj/aspectjweaver/1.9.25.1/aspectjweaver-1.9.25.1.jar:/home/runner/.m2/repository/org/projectlombok/lombok/1.18.46/lombok-1.18.46.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot-starter-thymeleaf/3.5.14/spring-boot-starter-thymeleaf-3.5.14.jar:/home/runner/.m2/repository/org/thymeleaf/thymeleaf-spring6/3.1.5.RELEASE/thymeleaf-spring6-3.1.5.RELEASE.jar:/home/runner/.m2/repository/org/thymeleaf/thymeleaf/3.1.5.RELEASE/thymeleaf-3.1.5.RELEASE.jar:/home/runner/.m2/repository/org/attoparser/attoparser/2.0.7.RELEASE/attoparser-2.0.7.RELEASE.jar:/home/runner/.m2/repository/org/unbescape/unbescape/1.1.6.RELEASE/unbescape-1.1.6.RELEASE.jar:/home/runner/.m2/repository/org/springframework/security/spring-security-crypto/6.5.10/spring-security-crypto-6.5.10.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot-starter-web/3.5.14/spring-boot-starter-web-3.5.14.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot-starter-json/3.5.14/spring-boot-starter-json-3.5.14.jar:/home/runner/.m2/repository/com/fasterxml/jackson/core/jackson-databind/2.21.2/jackson-databind-2.21.2.jar:/home/runner/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.21/jackson-annotations-2.21.jar:/home/runner/.m2/repository/com/fasterxml/jackson/core/jackson-core/2.21.2/jackson-core-2.21.2.jar:/home/runner/.m2/repository/com/fasterxml/jackson/datatype/jackson-datatype-jdk8/2.21.2/jackson-datatype-jdk8-2.21.2.jar:/home/runner/.m2/repository/com/fasterxml/jackson/datatype/jackson-datatype-jsr310/2.21.2/jackson-datatype-jsr310-2.21.2.jar:/home/runner/.m2/repository/com/fasterxml/jackson/module/jackson-module-parameter-names/2.21.2/jackson-module-parameter-names-2.21.2.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot-starter-tomcat/3.5.14/spring-boot-starter-tomcat-3.5.14.jar:/home/runner/.m2/repository/org/apache/tomcat/embed/tomcat-embed-core/10.1.54/tomcat-embed-core-10.1.54.jar:/home/runner/.m2/repository/org/apache/tomcat/embed/tomcat-embed-el/10.1.54/tomcat-embed-el-10.1.54.jar:/home/runner/.m2/repository/org/apache/tomcat/embed/tomcat-embed-websocket/10.1.54/tomcat-embed-websocket-10.1.54.jar:/home/runner/.m2/repository/org/springframework/spring-web/6.2.18/spring-web-6.2.18.jar:/home/runner/.m2/repository/io/micrometer/micrometer-observation/1.15.11/micrometer-observation-1.15.11.jar:/home/runner/.m2/repository/io/micrometer/micrometer-commons/1.15.11/micrometer-commons-1.15.11.jar:/home/runner/.m2/repository/org/springframework/spring-webmvc/6.2.18/spring-webmvc-6.2.18.jar:/home/runner/.m2/repository/org/springframework/spring-expression/6.2.18/spring-expression-6.2.18.jar:/home/runner/.m2/repository/org/postgresql/postgresql/42.7.10/postgresql-42.7.10.jar:/home/runner/.m2/repository/org/checkerframework/checker-qual/3.52.0/checker-qual-3.52.0.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot-starter-test/3.5.14/spring-boot-starter-test-3.5.14.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot-test/3.5.14/spring-boot-test-3.5.14.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot-test-autoconfigure/3.5.14/spring-boot-test-autoconfigure-3.5.14.jar:/home/runner/.m2/repository/com/jayway/jsonpath/json-path/2.9.0/json-path-2.9.0.jar:/home/runner/.m2/repository/jakarta/xml/bind/jakarta.xml.bind-api/4.0.4/jakarta.xml.bind-api-4.0.4.jar:/home/runner/.m2/repository/jakarta/activation/jakarta.activation-api/2.1.4/jakarta.activation-api-2.1.4.jar:/home/runner/.m2/repository/net/minidev/json-smart/2.5.2/json-smart-2.5.2.jar:/home/runner/.m2/repository/net/minidev/accessors-smart/2.5.2/accessors-smart-2.5.2.jar:/home/runner/.m2/repository/org/ow2/asm/asm/9.7.1/asm-9.7.1.jar:/home/runner/.m2/repository/org/assertj/assertj-core/3.27.7/assertj-core-3.27.7.jar:/home/runner/.m2/repository/org/awaitility/awaitility/4.2.2/awaitility-4.2.2.jar:/home/runner/.m2/repository/org/hamcrest/hamcrest/3.0/hamcrest-3.0.jar:/home/runner/.m2/repository/org/junit/jupiter/junit-jupiter/5.12.2/junit-jupiter-5.12.2.jar:/home/runner/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.12.2/junit-jupiter-api-5.12.2.jar:/home/runner/.m2/repository/org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.jar:/home/runner/.m2/repository/org/junit/platform/junit-platform-commons/1.12.2/junit-platform-commons-1.12.2.jar:/home/runner/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/home/runner/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.12.2/junit-jupiter-params-5.12.2.jar:/home/runner/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.12.2/junit-jupiter-engine-5.12.2.jar:/home/runner/.m2/repository/org/junit/platform/junit-platform-engine/1.12.2/junit-platform-engine-1.12.2.jar:/home/runner/.m2/repository/org/mockito/mockito-core/5.17.0/mockito-core-5.17.0.jar:/home/runner/.m2/repository/net/bytebuddy/byte-buddy-agent/1.17.8/byte-buddy-agent-1.17.8.jar:/home/runner/.m2/repository/org/objenesis/objenesis/3.3/objenesis-3.3.jar:/home/runner/.m2/repository/org/mockito/mockito-junit-jupiter/5.17.0/mockito-junit-jupiter-5.17.0.jar:/home/runner/.m2/repository/org/skyscreamer/jsonassert/1.5.3/jsonassert-1.5.3.jar:/home/runner/.m2/repository/com/vaadin/external/google/android-json/0.0.20131108.vaadin1/android-json-0.0.20131108.vaadin1.jar:/home/runner/.m2/repository/org/springframework/spring-core/6.2.18/spring-core-6.2.18.jar:/home/runner/.m2/repository/org/springframework/spring-jcl/6.2.18/spring-jcl-6.2.18.jar:/home/runner/.m2/repository/org/springframework/spring-test/6.2.18/spring-test-6.2.18.jar:/home/runner/.m2/repository/org/xmlunit/xmlunit-core/2.10.4/xmlunit-core-2.10.4.jar:"/>
+    <property name="java.vm.vendor" value="Eclipse Adoptium"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="java.vendor.url" value="https://adoptium.net/"/>
+    <property name="user.timezone" value="Etc/UTC"/>
+    <property name="org.jboss.logging.provider" value="slf4j"/>
+    <property name="os.name" value="Linux"/>
+    <property name="java.vm.specification.version" value="21"/>
+    <property name="APPLICATION_NAME" value="clinica_Despertares"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="sun.boot.library.path" value="/usr/lib/jvm/temurin-21-jdk-amd64/lib"/>
+    <property name="sun.java.command" value="/home/runner/work/clinica-despertares-IS3/clinica-despertares-IS3/target/surefire/surefirebooter-20261116163900224_3.jar /home/runner/work/clinica-despertares-IS3/clinica-despertares-IS3/target/surefire 2026-11-16T16-39-00_010-jvmRun1 surefire-20261116163900224_1tmp surefire_0-20261116163900224_2tmp"/>
+    <property name="jdk.debug" value="release"/>
+    <property name="surefire.test.class.path" value="/home/runner/work/clinica-despertares-IS3/clinica-despertares-IS3/target/test-classes:/home/runner/work/clinica-despertares-IS3/clinica-despertares-IS3/target/classes:/home/runner/.m2/repository/org/springframework/boot/spring-boot-starter-data-jpa/3.5.14/spring-boot-starter-data-jpa-3.5.14.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot-starter/3.5.14/spring-boot-starter-3.5.14.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot/3.5.14/spring-boot-3.5.14.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot-autoconfigure/3.5.14/spring-boot-autoconfigure-3.5.14.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot-starter-logging/3.5.14/spring-boot-starter-logging-3.5.14.jar:/home/runner/.m2/repository/ch/qos/logback/logback-classic/1.5.32/logback-classic-1.5.32.jar:/home/runner/.m2/repository/ch/qos/logback/logback-core/1.5.32/logback-core-1.5.32.jar:/home/runner/.m2/repository/org/apache/logging/log4j/log4j-to-slf4j/2.24.3/log4j-to-slf4j-2.24.3.jar:/home/runner/.m2/repository/org/apache/logging/log4j/log4j-api/2.24.3/log4j-api-2.24.3.jar:/home/runner/.m2/repository/org/slf4j/jul-to-slf4j/2.0.17/jul-to-slf4j-2.0.17.jar:/home/runner/.m2/repository/jakarta/annotation/jakarta.annotation-api/2.1.1/jakarta.annotation-api-2.1.1.jar:/home/runner/.m2/repository/org/yaml/snakeyaml/2.4/snakeyaml-2.4.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot-starter-jdbc/3.5.14/spring-boot-starter-jdbc-3.5.14.jar:/home/runner/.m2/repository/com/zaxxer/HikariCP/6.3.3/HikariCP-6.3.3.jar:/home/runner/.m2/repository/org/springframework/spring-jdbc/6.2.18/spring-jdbc-6.2.18.jar:/home/runner/.m2/repository/org/hibernate/orm/hibernate-core/6.6.49.Final/hibernate-core-6.6.49.Final.jar:/home/runner/.m2/repository/jakarta/persistence/jakarta.persistence-api/3.1.0/jakarta.persistence-api-3.1.0.jar:/home/runner/.m2/repository/jakarta/transaction/jakarta.transaction-api/2.0.1/jakarta.transaction-api-2.0.1.jar:/home/runner/.m2/repository/org/jboss/logging/jboss-logging/3.6.3.Final/jboss-logging-3.6.3.Final.jar:/home/runner/.m2/repository/org/hibernate/common/hibernate-commons-annotations/7.0.3.Final/hibernate-commons-annotations-7.0.3.Final.jar:/home/runner/.m2/repository/io/smallrye/jandex/3.2.0/jandex-3.2.0.jar:/home/runner/.m2/repository/com/fasterxml/classmate/1.7.3/classmate-1.7.3.jar:/home/runner/.m2/repository/net/bytebuddy/byte-buddy/1.17.8/byte-buddy-1.17.8.jar:/home/runner/.m2/repository/org/glassfish/jaxb/jaxb-runtime/4.0.6/jaxb-runtime-4.0.6.jar:/home/runner/.m2/repository/org/glassfish/jaxb/jaxb-core/4.0.6/jaxb-core-4.0.6.jar:/home/runner/.m2/repository/org/eclipse/angus/angus-activation/2.0.3/angus-activation-2.0.3.jar:/home/runner/.m2/repository/org/glassfish/jaxb/txw2/4.0.6/txw2-4.0.6.jar:/home/runner/.m2/repository/com/sun/istack/istack-commons-runtime/4.1.2/istack-commons-runtime-4.1.2.jar:/home/runner/.m2/repository/jakarta/inject/jakarta.inject-api/2.0.1/jakarta.inject-api-2.0.1.jar:/home/runner/.m2/repository/org/antlr/antlr4-runtime/4.13.0/antlr4-runtime-4.13.0.jar:/home/runner/.m2/repository/org/springframework/data/spring-data-jpa/3.5.11/spring-data-jpa-3.5.11.jar:/home/runner/.m2/repository/org/springframework/data/spring-data-commons/3.5.11/spring-data-commons-3.5.11.jar:/home/runner/.m2/repository/org/springframework/spring-orm/6.2.18/spring-orm-6.2.18.jar:/home/runner/.m2/repository/org/springframework/spring-context/6.2.18/spring-context-6.2.18.jar:/home/runner/.m2/repository/org/springframework/spring-aop/6.2.18/spring-aop-6.2.18.jar:/home/runner/.m2/repository/org/springframework/spring-tx/6.2.18/spring-tx-6.2.18.jar:/home/runner/.m2/repository/org/springframework/spring-beans/6.2.18/spring-beans-6.2.18.jar:/home/runner/.m2/repository/org/slf4j/slf4j-api/2.0.17/slf4j-api-2.0.17.jar:/home/runner/.m2/repository/org/springframework/spring-aspects/6.2.18/spring-aspects-6.2.18.jar:/home/runner/.m2/repository/org/aspectj/aspectjweaver/1.9.25.1/aspectjweaver-1.9.25.1.jar:/home/runner/.m2/repository/org/projectlombok/lombok/1.18.46/lombok-1.18.46.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot-starter-thymeleaf/3.5.14/spring-boot-starter-thymeleaf-3.5.14.jar:/home/runner/.m2/repository/org/thymeleaf/thymeleaf-spring6/3.1.5.RELEASE/thymeleaf-spring6-3.1.5.RELEASE.jar:/home/runner/.m2/repository/org/thymeleaf/thymeleaf/3.1.5.RELEASE/thymeleaf-3.1.5.RELEASE.jar:/home/runner/.m2/repository/org/attoparser/attoparser/2.0.7.RELEASE/attoparser-2.0.7.RELEASE.jar:/home/runner/.m2/repository/org/unbescape/unbescape/1.1.6.RELEASE/unbescape-1.1.6.RELEASE.jar:/home/runner/.m2/repository/org/springframework/security/spring-security-crypto/6.5.10/spring-security-crypto-6.5.10.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot-starter-web/3.5.14/spring-boot-starter-web-3.5.14.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot-starter-json/3.5.14/spring-boot-starter-json-3.5.14.jar:/home/runner/.m2/repository/com/fasterxml/jackson/core/jackson-databind/2.21.2/jackson-databind-2.21.2.jar:/home/runner/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.21/jackson-annotations-2.21.jar:/home/runner/.m2/repository/com/fasterxml/jackson/core/jackson-core/2.21.2/jackson-core-2.21.2.jar:/home/runner/.m2/repository/com/fasterxml/jackson/datatype/jackson-datatype-jdk8/2.21.2/jackson-datatype-jdk8-2.21.2.jar:/home/runner/.m2/repository/com/fasterxml/jackson/datatype/jackson-datatype-jsr310/2.21.2/jackson-datatype-jsr310-2.21.2.jar:/home/runner/.m2/repository/com/fasterxml/jackson/module/jackson-module-parameter-names/2.21.2/jackson-module-parameter-names-2.21.2.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot-starter-tomcat/3.5.14/spring-boot-starter-tomcat-3.5.14.jar:/home/runner/.m2/repository/org/apache/tomcat/embed/tomcat-embed-core/10.1.54/tomcat-embed-core-10.1.54.jar:/home/runner/.m2/repository/org/apache/tomcat/embed/tomcat-embed-el/10.1.54/tomcat-embed-el-10.1.54.jar:/home/runner/.m2/repository/org/apache/tomcat/embed/tomcat-embed-websocket/10.1.54/tomcat-embed-websocket-10.1.54.jar:/home/runner/.m2/repository/org/springframework/spring-web/6.2.18/spring-web-6.2.18.jar:/home/runner/.m2/repository/io/micrometer/micrometer-observation/1.15.11/micrometer-observation-1.15.11.jar:/home/runner/.m2/repository/io/micrometer/micrometer-commons/1.15.11/micrometer-commons-1.15.11.jar:/home/runner/.m2/repository/org/springframework/spring-webmvc/6.2.18/spring-webmvc-6.2.18.jar:/home/runner/.m2/repository/org/springframework/spring-expression/6.2.18/spring-expression-6.2.18.jar:/home/runner/.m2/repository/org/postgresql/postgresql/42.7.10/postgresql-42.7.10.jar:/home/runner/.m2/repository/org/checkerframework/checker-qual/3.52.0/checker-qual-3.52.0.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot-starter-test/3.5.14/spring-boot-starter-test-3.5.14.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot-test/3.5.14/spring-boot-test-3.5.14.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot-test-autoconfigure/3.5.14/spring-boot-test-autoconfigure-3.5.14.jar:/home/runner/.m2/repository/com/jayway/jsonpath/json-path/2.9.0/json-path-2.9.0.jar:/home/runner/.m2/repository/jakarta/xml/bind/jakarta.xml.bind-api/4.0.4/jakarta.xml.bind-api-4.0.4.jar:/home/runner/.m2/repository/jakarta/activation/jakarta.activation-api/2.1.4/jakarta.activation-api-2.1.4.jar:/home/runner/.m2/repository/net/minidev/json-smart/2.5.2/json-smart-2.5.2.jar:/home/runner/.m2/repository/net/minidev/accessors-smart/2.5.2/accessors-smart-2.5.2.jar:/home/runner/.m2/repository/org/ow2/asm/asm/9.7.1/asm-9.7.1.jar:/home/runner/.m2/repository/org/assertj/assertj-core/3.27.7/assertj-core-3.27.7.jar:/home/runner/.m2/repository/org/awaitility/awaitility/4.2.2/awaitility-4.2.2.jar:/home/runner/.m2/repository/org/hamcrest/hamcrest/3.0/hamcrest-3.0.jar:/home/runner/.m2/repository/org/junit/jupiter/junit-jupiter/5.12.2/junit-jupiter-5.12.2.jar:/home/runner/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.12.2/junit-jupiter-api-5.12.2.jar:/home/runner/.m2/repository/org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.jar:/home/runner/.m2/repository/org/junit/platform/junit-platform-commons/1.12.2/junit-platform-commons-1.12.2.jar:/home/runner/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/home/runner/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.12.2/junit-jupiter-params-5.12.2.jar:/home/runner/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.12.2/junit-jupiter-engine-5.12.2.jar:/home/runner/.m2/repository/org/junit/platform/junit-platform-engine/1.12.2/junit-platform-engine-1.12.2.jar:/home/runner/.m2/repository/org/mockito/mockito-core/5.17.0/mockito-core-5.17.0.jar:/home/runner/.m2/repository/net/bytebuddy/byte-buddy-agent/1.17.8/byte-buddy-agent-1.17.8.jar:/home/runner/.m2/repository/org/objenesis/objenesis/3.3/objenesis-3.3.jar:/home/runner/.m2/repository/org/mockito/mockito-junit-jupiter/5.17.0/mockito-junit-jupiter-5.17.0.jar:/home/runner/.m2/repository/org/skyscreamer/jsonassert/1.5.3/jsonassert-1.5.3.jar:/home/runner/.m2/repository/com/vaadin/external/google/android-json/0.0.20131108.vaadin1/android-json-0.0.20131108.vaadin1.jar:/home/runner/.m2/repository/org/springframework/spring-core/6.2.18/spring-core-6.2.18.jar:/home/runner/.m2/repository/org/springframework/spring-jcl/6.2.18/spring-jcl-6.2.18.jar:/home/runner/.m2/repository/org/springframework/spring-test/6.2.18/spring-test-6.2.18.jar:/home/runner/.m2/repository/org/xmlunit/xmlunit-core/2.10.4/xmlunit-core-2.10.4.jar:"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="user.home" value="/home/runner"/>
+    <property name="user.language" value="en"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.version.date" value="2026-10-20"/>
+    <property name="java.home" value="/usr/lib/jvm/temurin-21-jdk-amd64"/>
+    <property name="file.separator" value="/"/>
+    <property name="basedir" value="/home/runner/work/clinica-despertares-IS3/clinica-despertares-IS3"/>
+    <property name="java.vm.compressedOopsMode" value="Zero based"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="FILE_LOG_CHARSET" value="UTF-8"/>
+    <property name="java.awt.headless" value="true"/>
+    <property name="surefire.real.class.path" value="/home/runner/work/clinica-despertares-IS3/clinica-despertares-IS3/target/surefire/surefirebooter-20261116163900224_3.jar"/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="java.runtime.version" value="21.0.13+9-LTS"/>
+    <property name="user.name" value="runner"/>
+    <property name="stdout.encoding" value="UTF-8"/>
+    <property name="path.separator" value=":"/>
+    <property name="os.version" value="7.0.0-1019-azure"/>
+    <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
+    <property name="file.encoding" value="UTF-8"/>
+    <property name="java.vm.name" value="OpenJDK 64-Bit Server VM"/>
+    <property name="java.vendor.version" value="Temurin-21.0.13+9"/>
+    <property name="localRepository" value="/home/runner/.m2/repository"/>
+    <property name="java.vendor.url.bug" value="https://github.com/adoptium/adoptium-support/issues"/>
+    <property name="java.io.tmpdir" value="/tmp"/>
+    <property name="com.zaxxer.hikari.pool_number" value="1"/>
+    <property name="java.version" value="21.0.13"/>
+    <property name="user.dir" value="/home/runner/work/clinica-despertares-IS3/clinica-despertares-IS3"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="PID" value="3111"/>
+    <property name="CONSOLE_LOG_CHARSET" value="UTF-8"/>
+    <property name="native.encoding" value="UTF-8"/>
+    <property name="java.library.path" value="/usr/java/packages/lib:/usr/lib64:/lib64:/lib:/usr/lib"/>
+    <property name="java.vm.info" value="mixed mode, sharing"/>
+    <property name="stderr.encoding" value="UTF-8"/>
+    <property name="java.vendor" value="Eclipse Adoptium"/>
+    <property name="java.vm.version" value="21.0.13+9-LTS"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="java.class.version" value="65.0"/>
+    <property name="maven.test.failure.ignore" value="true"/>
+    <property name="LOGGED_APPLICATION_NAME" value="[clinica_Despertares] "/>
+  </properties>
+  <testcase name="exp01" classname="Pruebas exploratorias (EXP01–EXP12)" time="1.317">
+    <failure message="Multiple Failures (2 failures)&#10;	org.opentest4j.AssertionFailedError: Un visitante sin sesión creó una cuenta con rol MEDICO y contraseña &apos;1&apos; ==&gt; expected: &lt;false&gt; but was: &lt;true&gt;&#10;	org.opentest4j.AssertionFailedError: La cuenta auto-registrada accede a la administración de usuarios ==&gt; expected: &lt;false&gt; but was: &lt;true&gt;" type="org.opentest4j.MultipleFailuresError"><![CDATA[org.opentest4j.MultipleFailuresError: 
+Multiple Failures (2 failures)
+	org.opentest4j.AssertionFailedError: Un visitante sin sesión creó una cuenta con rol MEDICO y contraseña '1' ==> expected: <false> but was: <true>
+	org.opentest4j.AssertionFailedError: La cuenta auto-registrada accede a la administración de usuarios ==> expected: <false> but was: <true>
+	at org.junit.jupiter.api.AssertAll.assertAll(AssertAll.java:80)
+	at org.junit.jupiter.api.AssertAll.assertAll(AssertAll.java:44)
+	at org.junit.jupiter.api.AssertAll.assertAll(AssertAll.java:38)
+	at org.junit.jupiter.api.Assertions.assertAll(Assertions.java:2944)
+	at QA.EXP_PruebasExploratoriasTest.exp01(EXP_PruebasExploratoriasTest.java:42)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	Suppressed: org.opentest4j.AssertionFailedError: Un visitante sin sesión creó una cuenta con rol MEDICO y contraseña '1' ==> expected: <false> but was: <true>
+		at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+		at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+		at org.junit.jupiter.api.AssertFalse.failNotFalse(AssertFalse.java:63)
+		at org.junit.jupiter.api.AssertFalse.assertFalse(AssertFalse.java:36)
+		at org.junit.jupiter.api.Assertions.assertFalse(Assertions.java:239)
+		at QA.EXP_PruebasExploratoriasTest.lambda$exp01$0(EXP_PruebasExploratoriasTest.java:43)
+		at org.junit.jupiter.api.AssertAll.lambda$assertAll$0(AssertAll.java:68)
+		at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+		at java.base/java.util.Spliterators$ArraySpliterator.forEachRemaining(Spliterators.java:1024)
+		at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
+		at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
+		at java.base/java.util.stream.ReduceOps$ReduceOp.evaluateSequential(ReduceOps.java:921)
+		at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+		at java.base/java.util.stream.ReferencePipeline.collect(ReferencePipeline.java:682)
+		at org.junit.jupiter.api.AssertAll.assertAll(AssertAll.java:77)
+		... 7 more
+	Suppressed: org.opentest4j.AssertionFailedError: La cuenta auto-registrada accede a la administración de usuarios ==> expected: <false> but was: <true>
+		at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+		at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+		at org.junit.jupiter.api.AssertFalse.failNotFalse(AssertFalse.java:63)
+		at org.junit.jupiter.api.AssertFalse.assertFalse(AssertFalse.java:36)
+		at org.junit.jupiter.api.Assertions.assertFalse(Assertions.java:239)
+		at QA.EXP_PruebasExploratoriasTest.lambda$exp01$1(EXP_PruebasExploratoriasTest.java:44)
+		at org.junit.jupiter.api.AssertAll.lambda$assertAll$0(AssertAll.java:68)
+		at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+		at java.base/java.util.Spliterators$ArraySpliterator.forEachRemaining(Spliterators.java:1024)
+		at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
+		at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
+		at java.base/java.util.stream.ReduceOps$ReduceOp.evaluateSequential(ReduceOps.java:921)
+		at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+		at java.base/java.util.stream.ReferencePipeline.collect(ReferencePipeline.java:682)
+		at org.junit.jupiter.api.AssertAll.assertAll(AssertAll.java:77)
+		... 7 more
+]]></failure>
+    <system-out><![CDATA[
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::               (v3.5.14)
+
+2026-11-16T16:39:02.906Z  INFO 3111 --- [clinica_Despertares] [           main] QA.EXP_PruebasExploratoriasTest          : Starting EXP_PruebasExploratoriasTest using Java 21.0.13 with PID 3111 (started by runner in /home/runner/work/clinica-despertares-IS3/clinica-despertares-IS3)
+2026-11-16T16:39:02.910Z  INFO 3111 --- [clinica_Despertares] [           main] QA.EXP_PruebasExploratoriasTest          : No active profile set, falling back to 1 default profile: "default"
+2026-11-16T16:39:03.830Z  INFO 3111 --- [clinica_Despertares] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-11-16T16:39:03.939Z  INFO 3111 --- [clinica_Despertares] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 93 ms. Found 15 JPA repository interfaces.
+2026-11-16T16:39:05.021Z  INFO 3111 --- [clinica_Despertares] [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-11-16T16:39:05.103Z  INFO 3111 --- [clinica_Despertares] [           main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.49.Final
+2026-11-16T16:39:05.156Z  INFO 3111 --- [clinica_Despertares] [           main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-11-16T16:39:05.559Z  INFO 3111 --- [clinica_Despertares] [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-11-16T16:39:05.603Z  INFO 3111 --- [clinica_Despertares] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-11-16T16:39:05.885Z  INFO 3111 --- [clinica_Despertares] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@35da9f7f
+2026-11-16T16:39:05.887Z  INFO 3111 --- [clinica_Despertares] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-11-16T16:39:05.933Z  WARN 3111 --- [clinica_Despertares] [           main] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-11-16T16:39:05.958Z  INFO 3111 --- [clinica_Despertares] [           main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 16.16
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-11-16T16:39:07.670Z  INFO 3111 --- [clinica_Despertares] [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-11-16T16:39:07.802Z  WARN 3111 --- [clinica_Despertares] [           main] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2026-11-16T16:39:07.803Z  WARN 3111 --- [clinica_Despertares] [           main] o.h.engine.jdbc.spi.SqlExceptionHelper   : constraint "ukt8fsq4f4qc5rdan6q1rmbbr5v" of relation "historiamedica" does not exist, skipping
+2026-11-16T16:39:07.805Z  WARN 3111 --- [clinica_Despertares] [           main] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2026-11-16T16:39:07.805Z  WARN 3111 --- [clinica_Despertares] [           main] o.h.engine.jdbc.spi.SqlExceptionHelper   : constraint "ukpnwaxuie76ppbglatgnmp98xt" of relation "medico" does not exist, skipping
+2026-11-16T16:39:07.807Z  WARN 3111 --- [clinica_Despertares] [           main] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2026-11-16T16:39:07.808Z  WARN 3111 --- [clinica_Despertares] [           main] o.h.engine.jdbc.spi.SqlExceptionHelper   : constraint "ukm9kxf9gelsvlkvcws66fhxrah" of relation "medico" does not exist, skipping
+2026-11-16T16:39:07.810Z  WARN 3111 --- [clinica_Despertares] [           main] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2026-11-16T16:39:07.810Z  WARN 3111 --- [clinica_Despertares] [           main] o.h.engine.jdbc.spi.SqlExceptionHelper   : constraint "ukpy7ohbgakq76m9sy1l0bbcyx7" of relation "paciente" does not exist, skipping
+2026-11-16T16:39:07.813Z  WARN 3111 --- [clinica_Despertares] [           main] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2026-11-16T16:39:07.813Z  WARN 3111 --- [clinica_Despertares] [           main] o.h.engine.jdbc.spi.SqlExceptionHelper   : constraint "uk879t6bs95a0qya35lft3nools" of relation "paciente" does not exist, skipping
+2026-11-16T16:39:07.815Z  WARN 3111 --- [clinica_Despertares] [           main] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2026-11-16T16:39:07.815Z  WARN 3111 --- [clinica_Despertares] [           main] o.h.engine.jdbc.spi.SqlExceptionHelper   : constraint "ukdsamx23t2ov26q0ct020cuq7u" of relation "proveedor" does not exist, skipping
+2026-11-16T16:39:07.817Z  WARN 3111 --- [clinica_Despertares] [           main] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2026-11-16T16:39:07.818Z  WARN 3111 --- [clinica_Despertares] [           main] o.h.engine.jdbc.spi.SqlExceptionHelper   : constraint "ukfg1grbhl2582gql3l5d9rw8x9" of relation "proveedor" does not exist, skipping
+2026-11-16T16:39:07.820Z  WARN 3111 --- [clinica_Despertares] [           main] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2026-11-16T16:39:07.820Z  WARN 3111 --- [clinica_Despertares] [           main] o.h.engine.jdbc.spi.SqlExceptionHelper   : constraint "uk2mlfr087gb1ce55f2j87o74t" of relation "usuario" does not exist, skipping
+2026-11-16T16:39:07.822Z  WARN 3111 --- [clinica_Despertares] [           main] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2026-11-16T16:39:07.822Z  WARN 3111 --- [clinica_Despertares] [           main] o.h.engine.jdbc.spi.SqlExceptionHelper   : constraint "uk863n1y3x0jalatoir4325ehal" of relation "usuario" does not exist, skipping
+2026-11-16T16:39:07.824Z  WARN 3111 --- [clinica_Despertares] [           main] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2026-11-16T16:39:07.824Z  WARN 3111 --- [clinica_Despertares] [           main] o.h.engine.jdbc.spi.SqlExceptionHelper   : constraint "ukf2yy0v558lf0wlg3orvu69tje" of relation "usuario" does not exist, skipping
+2026-11-16T16:39:07.862Z  INFO 3111 --- [clinica_Despertares] [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-11-16T16:39:08.658Z  INFO 3111 --- [clinica_Despertares] [           main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-11-16T16:39:10.495Z  WARN 3111 --- [clinica_Despertares] [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-11-16T16:39:10.521Z  INFO 3111 --- [clinica_Despertares] [           main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2026-11-16T16:39:10.986Z  INFO 3111 --- [clinica_Despertares] [           main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2026-11-16T16:39:10.987Z  INFO 3111 --- [clinica_Despertares] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-11-16T16:39:10.988Z  INFO 3111 --- [clinica_Despertares] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2026-11-16T16:39:11.017Z  INFO 3111 --- [clinica_Despertares] [           main] QA.EXP_PruebasExploratoriasTest          : Started EXP_PruebasExploratoriasTest in 8.663 seconds (process running for 10.744)
+
+MockHttpServletRequest:
+      HTTP Method = POST
+      Request URI = /registro
+       Parameters = {_csrf=[token-qa-is3], username=[intruso422971], correo=[intruso422971@x.pe], password=[1], confirmarPassword=[1], rol=[MEDICO], idMedico=[6]}
+          Headers = []
+             Body = null
+    Session Attrs = {csrfToken=token-qa-is3, org.springframework.web.servlet.support.SessionFlashMapManager.FLASH_MAPS=[FlashMap [attributes={mensaje=Usuario registrado correctamente. Ahora puede iniciar sesión.}, targetRequestPath=/login, targetRequestParams={}]]}
+
+Handler:
+             Type = Controller.AuthController
+           Method = Controller.AuthController#registrar(UsuarioEntity, String, Long, Model, RedirectAttributes)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = redirect:/login
+             View = null
+            Model = null
+
+FlashMap:
+        Attribute = mensaje
+            value = Usuario registrado correctamente. Ahora puede iniciar sesión.
+
+MockHttpServletResponse:
+           Status = 302
+    Error message = null
+          Headers = [Content-Language:"en", Location:"/login"]
+     Content type = null
+             Body = 
+    Forwarded URL = null
+   Redirected URL = /login
+          Cookies = []
+
+MockHttpServletRequest:
+      HTTP Method = POST
+      Request URI = /login
+       Parameters = {_csrf=[token-qa-is3], username=[intruso422971], password=[1]}
+          Headers = []
+             Body = null
+    Session Attrs = {csrfToken=token-qa-is3, rolUsuario=MEDICO, idUsuario=1, usuarioLogueado=Entity.UsuarioEntity@241f78b0, nombreUsuario=intruso422971}
+
+Handler:
+             Type = Controller.AuthController
+           Method = Controller.AuthController#login(String, String, HttpSession, RedirectAttributes)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = redirect:/
+             View = null
+            Model = null
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 302
+    Error message = null
+          Headers = [Content-Language:"en", Location:"/"]
+     Content type = null
+             Body = 
+    Forwarded URL = null
+   Redirected URL = /
+          Cookies = []
+
+MockHttpServletRequest:
+      HTTP Method = GET
+      Request URI = /usuarios
+       Parameters = {}
+          Headers = []
+             Body = null
+    Session Attrs = {csrfToken=token-qa-is3, rolUsuario=MEDICO, idUsuario=1, usuarioLogueado=Entity.UsuarioEntity@241f78b0, nombreUsuario=intruso422971}
+
+Handler:
+             Type = Controller.UsuarioController
+           Method = Controller.UsuarioController#listar(int, Model)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = usuarios/listar
+             View = null
+        Attribute = usuarios
+            value = [Entity.UsuarioEntity@22150412]
+        Attribute = pagina
+            value = Pagina[contenido=[Entity.UsuarioEntity@22150412], numero=0, tamano=10, totalElementos=1]
+           errors = []
+        Attribute = csrfToken
+            value = token-qa-is3
+        Attribute = currentUri
+            value = /usuarios
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 200
+    Error message = null
+          Headers = [Content-Language:"en", Content-Type:"text/html;charset=UTF-8"]
+     Content type = text/html;charset=UTF-8
+             Body = <!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8"><script>try{var t=localStorage.getItem('tema');if(t){document.documentElement.setAttribute('data-theme',t);}}catch(e){}</script>
+    <title>Usuarios</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/css/styles-b0b9db80416e29c17c730f72838d4cfb.css">
+<script src="/js/vendor/turbo.es2017-umd.min-f3b0ef926ea0676b0af5f7c5f88e2eea.js"></script></head>
+
+<body class="app-body">
+
+<div>
+    <header class="app-header">
+
+        <a href="/" class="header-logo">
+            <span class="header-logo-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+    <path d="M12 4v16M4 12h16"/>
+</svg></span>
+            <span>Clínica Despertares</span>
+        </a>
+
+        <div class="header-user-area">
+
+            <div class="user-mini-card">
+                <div class="user-role-icon">
+                    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M6.3 4v5.7a3.9 3.9 0 0 0 7.8 0V4"/>
+    <path d="M6.3 4H5M14.1 4h1.3"/>
+    <path d="M18 12.3v2.1a5.6 5.6 0 0 1-11.2 0"/>
+    <circle cx="18.4" cy="10.4" r="1.9"/>
+</svg></span>
+                    
+                    
+                    
+                    
+                    
+                    
+                </div>
+
+                <div class="user-mini-data">
+                    <strong>intruso422971</strong>
+                    <small>MEDICO</small>
+                </div>
+            </div>
+
+            <button type="button" id="theme-toggle" class="theme-toggle" aria-label="Cambiar tema" title="Cambiar tema">
+                <span class="icon-sol"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="4.2"/>
+    <path d="M12 3v2.4M12 18.6V21M4.2 12H2M22 12h-2.2M5.6 5.6l1.6 1.6M16.8 16.8l1.6 1.6M18.4 5.6l-1.6 1.6M7.2 16.8l-1.6 1.6"/>
+</svg></span>
+                <span class="icon-luna"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M20 14.3A8.5 8.5 0 1 1 9.7 4a6.6 6.6 0 0 0 10.3 10.3z"/>
+</svg></span>
+            </button>
+
+            <a href="/logout"
+               class="btn-logout">
+                <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M9 4.2H5.6a1.6 1.6 0 0 0-1.6 1.6v12.4a1.6 1.6 0 0 0 1.6 1.6H9"/>
+    <path d="M14 8l4 4-4 4M18 12H9"/>
+</svg></span>
+                Salir
+            </a>
+
+        </div>
+    </header>
+
+    <script>
+    (function () {
+        var boton = document.getElementById('theme-toggle');
+        if (!boton) { return; }
+
+        var iconoSol = boton.querySelector('.icon-sol');
+        var iconoLuna = boton.querySelector('.icon-luna');
+
+        function temaActual() {
+            var manual = document.documentElement.getAttribute('data-theme');
+            if (manual) { return manual; }
+            return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+
+        function actualizarIcono() {
+            var oscuro = temaActual() === 'dark';
+            iconoSol.hidden = !oscuro;
+            iconoLuna.hidden = oscuro;
+        }
+
+        actualizarIcono();
+
+        boton.addEventListener('click', function () {
+            var nuevoTema = temaActual() === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', nuevoTema);
+            try {
+                localStorage.setItem('tema', nuevoTema);
+            } catch (e) {
+                // localStorage puede no estar disponible (modo privado, etc.); no es crítico.
+            }
+            actualizarIcono();
+            // Los gráficos de Chart.js (si los hay en la página) leen los colores
+            // de las variables CSS al crearse y no se actualizan solos.
+            document.dispatchEvent(new CustomEvent('tema-cambiado'));
+        });
+    })();
+    </script>
+</div>
+
+<main class="dashboard-body">
+
+    <aside class="app-sidebar">
+
+    <nav class="sidebar-nav">
+
+        <a class="sidebar-item" href="/pacientes">
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="8.2" r="3.4"/>
+    <path d="M5 20c0-3.6 3.1-6 7-6s7 2.4 7 6"/>
+</svg></span>
+            <p>Pacientes</p>
+        </a>
+
+        <a class="sidebar-item" href="/citas">
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="3.5" y="5" width="17" height="15" rx="2.5"/>
+    <path d="M3.5 9.7h17"/>
+    <path d="M8 3v4M16 3v4"/>
+</svg></span>
+            <p>Citas médicas</p>
+        </a>
+
+        <a class="sidebar-item" href="/historias">
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="6" y="4.5" width="12" height="16" rx="2"/>
+    <path d="M9 4.5a1.5 1.5 0 0 1 1.5-1.5h3A1.5 1.5 0 0 1 15 4.5"/>
+    <path d="M9 8.7h6M9 12.2h6M9 15.7h4"/>
+</svg></span>
+            <p>Historias médicas</p>
+        </a>
+
+        <a class="sidebar-item" href="/diagnosticos">
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M6.3 4v5.7a3.9 3.9 0 0 0 7.8 0V4"/>
+    <path d="M6.3 4H5M14.1 4h1.3"/>
+    <path d="M18 12.3v2.1a5.6 5.6 0 0 1-11.2 0"/>
+    <circle cx="18.4" cy="10.4" r="1.9"/>
+</svg></span>
+            <p>Diagnósticos</p>
+        </a>
+
+        <a class="sidebar-item" href="/tratamientos">
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="4" y="9.3" width="16" height="5.4" rx="2.7" transform="rotate(45 12 12)"/>
+    <line x1="12" y1="6.3" x2="12" y2="17.7" transform="rotate(45 12 12)"/>
+</svg></span>
+            <p>Tratamientos</p>
+        </a>
+
+        
+
+        
+
+        
+
+        
+
+        <a class="sidebar-item" href="/examenes">
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M10 3.5h4"/>
+    <path d="M10.5 3.5v5.3L6 16.8a2 2 0 0 0 1.7 3h8.6a2 2 0 0 0 1.7-3l-4.5-8V3.5"/>
+    <path d="M7.6 14.2h8.8"/>
+</svg></span>
+            <p>Exámenes médicos</p>
+        </a>
+
+        <a class="sidebar-item" href="/laboratorio">
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M9 20h7"/>
+    <path d="M11 20v-3.4a4.6 4.6 0 1 1 4-2.3"/>
+    <path d="M9.3 9.6l4-2.3"/>
+    <path d="M8 4.6l3 1.7"/>
+    <path d="M4 20h4.2"/>
+</svg></span>
+            <p>Laboratorio</p>
+        </a>
+
+        <a class="sidebar-item" href="/imagenes">
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="3.5" y="4.5" width="17" height="15" rx="2.2"/>
+    <circle cx="9" cy="10" r="1.9"/>
+    <path d="M4 17.5l5-5 3.5 3.5L17 11l3.5 3.5"/>
+</svg></span>
+            <p>Imágenes diagnósticas</p>
+        </a>
+
+        <a class="sidebar-item sidebar-admin  active" href="/usuarios">
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="9" cy="8.3" r="3"/>
+    <path d="M3.5 19c0-3.3 2.6-5.5 5.5-5.5s5.5 2.2 5.5 5.5"/>
+    <path d="M16 8.6a2.6 2.6 0 1 0 0-5.2"/>
+    <path d="M18.5 19c0-2.6-1.7-4.6-3.8-5.3"/>
+</svg></span>
+            <p>Modificar usuarios</p>
+        </a>
+
+    </nav>
+
+</aside>
+
+    <section class="content-card">
+        <h1>Gestión de Usuarios</h1><div class="actions"><a class="btn" href="/usuarios/nuevo">Nuevo usuario</a></div><table><thead><tr><th>ID</th><th>Username</th><th>Correo</th><th>Rol</th><th>Estado</th><th>Médico</th><th>Acciones</th></tr></thead><tbody><tr><td>1</td><td>intruso422971</td><td>intruso422971@x.pe</td><td>MEDICO</td><td>Activo</td><td>Medico Qa422972</td><td><a class="btn small warning" href="/usuarios/editar/1">Editar</a> <form action="/usuarios/activar/1" method="post" class="inline-action"><input type="hidden" name="_csrf" value="token-qa-is3"><button type="submit" class="btn small success">Activar</button></form> <form action="/usuarios/desactivar/1" method="post" class="inline-action"><input type="hidden" name="_csrf" value="token-qa-is3"><button type="submit" class="btn small secondary">Desactivar</button></form> <form action="/usuarios/eliminar/1" method="post" class="inline-action" onsubmit="return confirm('¿Eliminar usuario?');"><input type="hidden" name="_csrf" value="token-qa-is3"><button type="submit" class="btn small danger">Eliminar</button></form></td></tr></tbody></table>
+        <nav class="pagination">
+
+    <span class="page-info">
+        Página <strong>1</strong> de
+        <strong>1</strong>
+        · <span>1</span> resultado(s)
+    </span>
+
+    <div class="page-controls">
+        <a class="page-btn  disabled" href="/usuarios?pagina=-1&amp;buscar=&amp;estado=&amp;q=&amp;nombre=&amp;stockMinimo=">
+            ‹ Anterior
+        </a>
+        <a class="page-btn  disabled" href="/usuarios?pagina=1&amp;buscar=&amp;estado=&amp;q=&amp;nombre=&amp;stockMinimo=">
+            Siguiente ›
+        </a>
+    </div>
+
+</nav>
+    </section>
+
+</main>
+
+</body>
+</html>
+
+    Forwarded URL = null
+   Redirected URL = null
+          Cookies = []
+]]></system-out>
+    <system-err><![CDATA[Mockito is currently self-attaching to enable the inline-mock-maker. This will no longer work in future releases of the JDK. Please add Mockito as an agent to your build as described in Mockito's documentation: https://javadoc.io/doc/org.mockito/mockito-core/latest/org.mockito/org/mockito/Mockito.html#0.3
+WARNING: A Java agent has been loaded dynamically (/home/runner/.m2/repository/net/bytebuddy/byte-buddy-agent/1.17.8/byte-buddy-agent-1.17.8.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+]]></system-err>
+  </testcase>
+  <testcase name="exp02" classname="Pruebas exploratorias (EXP01–EXP12)" time="0.043">
+    <failure message="El registro con un DNI ya existente reemplazó al paciente original por &apos;Sobrescrito&apos; ==&gt; expected: &lt;Original&gt; but was: &lt;Sobrescrito&gt;" type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: El registro con un DNI ya existente reemplazó al paciente original por 'Sobrescrito' ==> expected: <Original> but was: <Sobrescrito>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:182)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:1156)
+	at QA.EXP_PruebasExploratoriasTest.exp02(EXP_PruebasExploratoriasTest.java:59)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+]]></failure>
+    <system-out><![CDATA[
+MockHttpServletRequest:
+      HTTP Method = POST
+      Request URI = /pacientes/guardar
+       Parameters = {_csrf=[token-qa-is3], dnipaciente=[30422973], nombrePaciente=[Sobrescrito], apellidoPaciente=[Otro], genero=[MASCULINO], telefono=[500422974], correoElectronico=[otro422974@mail.pe], fechaNacimiento=[2000-01-01], tipoSangre=[B+]}
+          Headers = []
+             Body = null
+    Session Attrs = {rolUsuario=ENFERMERA, csrfToken=token-qa-is3, usuarioLogueado=Entity.UsuarioEntity@2e951744, org.springframework.web.servlet.support.SessionFlashMapManager.FLASH_MAPS=[FlashMap [attributes={mensaje=Paciente guardado correctamente.}, targetRequestPath=/pacientes, targetRequestParams={}]], nombreUsuario=qa_enfermera}
+
+Handler:
+             Type = Controller.PacienteController
+           Method = Controller.PacienteController#guardar(PacienteEntity, RedirectAttributes)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = redirect:/pacientes
+             View = null
+            Model = null
+
+FlashMap:
+        Attribute = mensaje
+            value = Paciente guardado correctamente.
+
+MockHttpServletResponse:
+           Status = 302
+    Error message = null
+          Headers = [Content-Language:"en", Location:"/pacientes"]
+     Content type = null
+             Body = 
+    Forwarded URL = null
+   Redirected URL = /pacientes
+          Cookies = []
+]]></system-out>
+  </testcase>
+  <testcase name="exp03" classname="Pruebas exploratorias (EXP01–EXP12)" time="0.052">
+    <failure message="Quedaron 2 citas PENDIENTES del mismo médico a las 10:00 (doble reserva vía edición) ==&gt; expected: &lt;1&gt; but was: &lt;2&gt;" type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: Quedaron 2 citas PENDIENTES del mismo médico a las 10:00 (doble reserva vía edición) ==> expected: <1> but was: <2>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:166)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:664)
+	at QA.EXP_PruebasExploratoriasTest.exp03(EXP_PruebasExploratoriasTest.java:76)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+]]></failure>
+    <system-out><![CDATA[
+MockHttpServletRequest:
+      HTTP Method = POST
+      Request URI = /citas/guardar
+       Parameters = {_csrf=[token-qa-is3], codCitaMedica=[2], dniPaciente=[30422976], idMedico=[7], fechaCita=[2026-12-11], horaCita=[10:00], estadoCita=[PENDIENTE], motivoConsulta=[Editada]}
+          Headers = []
+             Body = null
+    Session Attrs = {rolUsuario=ENFERMERA, csrfToken=token-qa-is3, usuarioLogueado=Entity.UsuarioEntity@5a730d8f, org.springframework.web.servlet.support.SessionFlashMapManager.FLASH_MAPS=[FlashMap [attributes={mensaje=Cita médica actualizada correctamente.}, targetRequestPath=/citas, targetRequestParams={}]], nombreUsuario=qa_enfermera}
+
+Handler:
+             Type = Controller.CitaMedicaController
+           Method = Controller.CitaMedicaController#guardar(CitaMedicaEntity, String, Long, RedirectAttributes, Model)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = redirect:/citas
+             View = null
+            Model = null
+
+FlashMap:
+        Attribute = mensaje
+            value = Cita médica actualizada correctamente.
+
+MockHttpServletResponse:
+           Status = 302
+    Error message = null
+          Headers = [Content-Language:"en", Location:"/citas"]
+     Content type = null
+             Body = 
+    Forwarded URL = null
+   Redirected URL = /citas
+          Cookies = []
+]]></system-out>
+  </testcase>
+  <testcase name="exp04" classname="Pruebas exploratorias (EXP01–EXP12)" time="0.071">
+    <failure message="Se aceptaron 2 citas con fecha anterior a hoy ==&gt; expected: &lt;0&gt; but was: &lt;2&gt;" type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: Se aceptaron 2 citas con fecha anterior a hoy ==> expected: <0> but was: <2>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:166)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:664)
+	at QA.EXP_PruebasExploratoriasTest.exp04(EXP_PruebasExploratoriasTest.java:93)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+]]></failure>
+    <system-out><![CDATA[
+MockHttpServletRequest:
+      HTTP Method = POST
+      Request URI = /citas/guardar
+       Parameters = {_csrf=[token-qa-is3], dniPaciente=[30422979], idMedico=[8], fechaCita=[2026-11-15], horaCita=[09:00], motivoConsulta=[Pasada]}
+          Headers = []
+             Body = null
+    Session Attrs = {rolUsuario=ENFERMERA, csrfToken=token-qa-is3, usuarioLogueado=Entity.UsuarioEntity@38778314, org.springframework.web.servlet.support.SessionFlashMapManager.FLASH_MAPS=[FlashMap [attributes={mensaje=Cita médica registrada correctamente. Se generó el comprobante de pago automáticamente.}, targetRequestPath=/citas, targetRequestParams={}]], nombreUsuario=qa_enfermera}
+
+Handler:
+             Type = Controller.CitaMedicaController
+           Method = Controller.CitaMedicaController#guardar(CitaMedicaEntity, String, Long, RedirectAttributes, Model)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = redirect:/citas
+             View = null
+            Model = null
+
+FlashMap:
+        Attribute = mensaje
+            value = Cita médica registrada correctamente. Se generó el comprobante de pago automáticamente.
+
+MockHttpServletResponse:
+           Status = 302
+    Error message = null
+          Headers = [Content-Language:"en", Location:"/citas"]
+     Content type = null
+             Body = 
+    Forwarded URL = null
+   Redirected URL = /citas
+          Cookies = []
+
+MockHttpServletRequest:
+      HTTP Method = POST
+      Request URI = /citas/reprogramar/4
+       Parameters = {_csrf=[token-qa-is3], nuevaFecha=[2026-10-17], nuevaHora=[09:00]}
+          Headers = []
+             Body = null
+    Session Attrs = {rolUsuario=ENFERMERA, csrfToken=token-qa-is3, usuarioLogueado=Entity.UsuarioEntity@2cd9522c, org.springframework.web.servlet.support.SessionFlashMapManager.FLASH_MAPS=[FlashMap [attributes={mensaje=Cita médica reprogramada correctamente.}, targetRequestPath=/citas, targetRequestParams={}]], nombreUsuario=qa_enfermera}
+
+Handler:
+             Type = Controller.CitaMedicaController
+           Method = Controller.CitaMedicaController#reprogramar(Long, LocalDate, LocalTime, RedirectAttributes)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = redirect:/citas
+             View = null
+            Model = null
+
+FlashMap:
+        Attribute = mensaje
+            value = Cita médica reprogramada correctamente.
+
+MockHttpServletResponse:
+           Status = 302
+    Error message = null
+          Headers = [Content-Language:"en", Location:"/citas"]
+     Content type = null
+             Body = 
+    Forwarded URL = null
+   Redirected URL = /citas
+          Cookies = []
+]]></system-out>
+  </testcase>
+  <testcase name="exp05" classname="Pruebas exploratorias (EXP01–EXP12)" time="0.068">
+    <failure message="Se registró la venta de un medicamento vencido y el stock bajó a 9 ==&gt; expected: &lt;true&gt; but was: &lt;false&gt;" type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: Se registró la venta de un medicamento vencido y el stock bajó a 9 ==> expected: <true> but was: <false>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertTrue.failNotTrue(AssertTrue.java:63)
+	at org.junit.jupiter.api.AssertTrue.assertTrue(AssertTrue.java:36)
+	at org.junit.jupiter.api.Assertions.assertTrue(Assertions.java:214)
+	at QA.EXP_PruebasExploratoriasTest.exp05(EXP_PruebasExploratoriasTest.java:107)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+]]></failure>
+    <system-out><![CDATA[[QA] EXP05 medicamentos vencidos en inventario (incluye datos semilla): 2
+
+MockHttpServletRequest:
+      HTTP Method = POST
+      Request URI = /detalle-comprobantes/guardar
+       Parameters = {_csrf=[token-qa-is3], codComprobante=[2], tipoItem=[MEDICAMENTO], codMedicamento=[7], descripcionDetalle=[Venta], cantidad=[1], precioUnitario=[3.00]}
+          Headers = []
+             Body = null
+    Session Attrs = {rolUsuario=CAJERO, csrfToken=token-qa-is3, usuarioLogueado=Entity.UsuarioEntity@42e447f7, org.springframework.web.servlet.support.SessionFlashMapManager.FLASH_MAPS=[FlashMap [attributes={mensaje=Detalle de comprobante guardado correctamente.}, targetRequestPath=/detalle-comprobantes, targetRequestParams={}]], nombreUsuario=qa_cajero}
+
+Handler:
+             Type = Controller.DetalleComprobanteController
+           Method = Controller.DetalleComprobanteController#guardar(DetalleComprobanteEntity, Long, TipoItemEnum, Long, Long, Long, HttpSession, RedirectAttributes)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = redirect:/detalle-comprobantes
+             View = null
+            Model = null
+
+FlashMap:
+        Attribute = mensaje
+            value = Detalle de comprobante guardado correctamente.
+
+MockHttpServletResponse:
+           Status = 302
+    Error message = null
+          Headers = [Content-Language:"en", Location:"/detalle-comprobantes"]
+     Content type = null
+             Body = 
+    Forwarded URL = null
+   Redirected URL = /detalle-comprobantes
+          Cookies = []
+]]></system-out>
+  </testcase>
+  <testcase name="exp06" classname="Pruebas exploratorias (EXP01–EXP12)" time="0.033">
+    <failure message="Se guardó un medicamento con stock -10 y mínimo -3 ==&gt; expected: &lt;true&gt; but was: &lt;false&gt;" type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: Se guardó un medicamento con stock -10 y mínimo -3 ==> expected: <true> but was: <false>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertTrue.failNotTrue(AssertTrue.java:63)
+	at org.junit.jupiter.api.AssertTrue.assertTrue(AssertTrue.java:36)
+	at org.junit.jupiter.api.Assertions.assertTrue(Assertions.java:214)
+	at QA.EXP_PruebasExploratoriasTest.exp06(EXP_PruebasExploratoriasTest.java:119)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+]]></failure>
+    <system-out><![CDATA[
+MockHttpServletRequest:
+      HTTP Method = POST
+      Request URI = /medicamentos/guardar
+       Parameters = {_csrf=[token-qa-is3], rucProveedor=[20123456789], nombreMedicamento=[QA Neg 422984], descripcionMedicamento=[x], tipoMedicamento=[x], fechaVencimiento=[2027-11-16], stockInventario=[-10], cantidadMinima=[-3]}
+          Headers = []
+             Body = null
+    Session Attrs = {rolUsuario=FARMACEUTICO, csrfToken=token-qa-is3, usuarioLogueado=Entity.UsuarioEntity@7654d932, org.springframework.web.servlet.support.SessionFlashMapManager.FLASH_MAPS=[FlashMap [attributes={mensaje=Medicamento guardado correctamente.}, targetRequestPath=/medicamentos, targetRequestParams={}]], nombreUsuario=qa_farmaceutico}
+
+Handler:
+             Type = Controller.MedicamentoController
+           Method = Controller.MedicamentoController#guardar(MedicamentoEntity, String, HttpSession, RedirectAttributes)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = redirect:/medicamentos
+             View = null
+            Model = null
+
+FlashMap:
+        Attribute = mensaje
+            value = Medicamento guardado correctamente.
+
+MockHttpServletResponse:
+           Status = 302
+    Error message = null
+          Headers = [Content-Language:"en", Location:"/medicamentos"]
+     Content type = null
+             Body = 
+    Forwarded URL = null
+   Redirected URL = /medicamentos
+          Cookies = []
+]]></system-out>
+  </testcase>
+  <testcase name="exp07" classname="Pruebas exploratorias (EXP01–EXP12)" time="0.136">
+    <failure message="La solicitud creada en /examenes no aparece en /laboratorio (no se crea el registro en examenlaboratorio) ==&gt; expected: &lt;true&gt; but was: &lt;false&gt;" type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: La solicitud creada en /examenes no aparece en /laboratorio (no se crea el registro en examenlaboratorio) ==> expected: <true> but was: <false>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertTrue.failNotTrue(AssertTrue.java:63)
+	at org.junit.jupiter.api.AssertTrue.assertTrue(AssertTrue.java:36)
+	at org.junit.jupiter.api.Assertions.assertTrue(Assertions.java:214)
+	at QA.EXP_PruebasExploratoriasTest.exp07(EXP_PruebasExploratoriasTest.java:131)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+]]></failure>
+    <system-out><![CDATA[
+MockHttpServletRequest:
+      HTTP Method = POST
+      Request URI = /examenes/guardar
+       Parameters = {_csrf=[token-qa-is3], idDiagnostico=[1], tipoExamen=[LABORATORIO]}
+          Headers = []
+             Body = null
+    Session Attrs = {rolUsuario=MEDICO, csrfToken=token-qa-is3, usuarioLogueado=Entity.UsuarioEntity@7172d2c6, org.springframework.web.servlet.support.SessionFlashMapManager.FLASH_MAPS=[FlashMap [attributes={mensaje=Solicitud de examen guardada correctamente.}, targetRequestPath=/examenes, targetRequestParams={}]], nombreUsuario=qa_medico}
+
+Handler:
+             Type = Controller.ExamenMedicoController
+           Method = Controller.ExamenMedicoController#guardar(ExamenMedicoEntity, Long, RedirectAttributes)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = redirect:/examenes
+             View = null
+            Model = null
+
+FlashMap:
+        Attribute = mensaje
+            value = Solicitud de examen guardada correctamente.
+
+MockHttpServletResponse:
+           Status = 302
+    Error message = null
+          Headers = [Content-Language:"en", Location:"/examenes"]
+     Content type = null
+             Body = 
+    Forwarded URL = null
+   Redirected URL = /examenes
+          Cookies = []
+
+MockHttpServletRequest:
+      HTTP Method = GET
+      Request URI = /laboratorio
+       Parameters = {buscar=[30422986]}
+          Headers = []
+             Body = null
+    Session Attrs = {rolUsuario=BIOLOGO, csrfToken=token-qa-is3, usuarioLogueado=Entity.UsuarioEntity@124453c0, nombreUsuario=qa_biologo}
+
+Handler:
+             Type = Controller.ExamenLaboratorioController
+           Method = Controller.ExamenLaboratorioController#listar(String, int, Model)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = laboratorio/listar
+             View = null
+        Attribute = examenes
+            value = []
+        Attribute = pagina
+            value = Pagina[contenido=[], numero=0, tamano=10, totalElementos=0]
+           errors = []
+        Attribute = buscar
+            value = 30422986
+        Attribute = csrfToken
+            value = token-qa-is3
+        Attribute = currentUri
+            value = /laboratorio
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 200
+    Error message = null
+          Headers = [Content-Language:"en", Content-Type:"text/html;charset=UTF-8"]
+     Content type = text/html;charset=UTF-8
+             Body = <!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8"><script>try{var t=localStorage.getItem('tema');if(t){document.documentElement.setAttribute('data-theme',t);}}catch(e){}</script>
+    <title>Laboratorio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/css/styles-b0b9db80416e29c17c730f72838d4cfb.css">
+<script src="/js/vendor/turbo.es2017-umd.min-f3b0ef926ea0676b0af5f7c5f88e2eea.js"></script></head>
+
+<body class="app-body">
+
+<div>
+    <header class="app-header">
+
+        <a href="/" class="header-logo">
+            <span class="header-logo-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+    <path d="M12 4v16M4 12h16"/>
+</svg></span>
+            <span>Clínica Despertares</span>
+        </a>
+
+        <div class="header-user-area">
+
+            <div class="user-mini-card">
+                <div class="user-role-icon">
+                    
+                    
+                    
+                    
+                    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M10 3.5h4"/>
+    <path d="M10.5 3.5v5.3L6 16.8a2 2 0 0 0 1.7 3h8.6a2 2 0 0 0 1.7-3l-4.5-8V3.5"/>
+    <path d="M7.6 14.2h8.8"/>
+</svg></span>
+                    
+                    
+                </div>
+
+                <div class="user-mini-data">
+                    <strong>qa_biologo</strong>
+                    <small>BIOLOGO</small>
+                </div>
+            </div>
+
+            <button type="button" id="theme-toggle" class="theme-toggle" aria-label="Cambiar tema" title="Cambiar tema">
+                <span class="icon-sol"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="4.2"/>
+    <path d="M12 3v2.4M12 18.6V21M4.2 12H2M22 12h-2.2M5.6 5.6l1.6 1.6M16.8 16.8l1.6 1.6M18.4 5.6l-1.6 1.6M7.2 16.8l-1.6 1.6"/>
+</svg></span>
+                <span class="icon-luna"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M20 14.3A8.5 8.5 0 1 1 9.7 4a6.6 6.6 0 0 0 10.3 10.3z"/>
+</svg></span>
+            </button>
+
+            <a href="/logout"
+               class="btn-logout">
+                <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M9 4.2H5.6a1.6 1.6 0 0 0-1.6 1.6v12.4a1.6 1.6 0 0 0 1.6 1.6H9"/>
+    <path d="M14 8l4 4-4 4M18 12H9"/>
+</svg></span>
+                Salir
+            </a>
+
+        </div>
+    </header>
+
+    <script>
+    (function () {
+        var boton = document.getElementById('theme-toggle');
+        if (!boton) { return; }
+
+        var iconoSol = boton.querySelector('.icon-sol');
+        var iconoLuna = boton.querySelector('.icon-luna');
+
+        function temaActual() {
+            var manual = document.documentElement.getAttribute('data-theme');
+            if (manual) { return manual; }
+            return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+
+        function actualizarIcono() {
+            var oscuro = temaActual() === 'dark';
+            iconoSol.hidden = !oscuro;
+            iconoLuna.hidden = oscuro;
+        }
+
+        actualizarIcono();
+
+        boton.addEventListener('click', function () {
+            var nuevoTema = temaActual() === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', nuevoTema);
+            try {
+                localStorage.setItem('tema', nuevoTema);
+            } catch (e) {
+                // localStorage puede no estar disponible (modo privado, etc.); no es crítico.
+            }
+            actualizarIcono();
+            // Los gráficos de Chart.js (si los hay en la página) leen los colores
+            // de las variables CSS al crearse y no se actualizan solos.
+            document.dispatchEvent(new CustomEvent('tema-cambiado'));
+        });
+    })();
+    </script>
+</div>
+
+<main class="dashboard-body">
+
+    <aside class="app-sidebar">
+
+    <nav class="sidebar-nav">
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        <a class="sidebar-item" href="/examenes">
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M10 3.5h4"/>
+    <path d="M10.5 3.5v5.3L6 16.8a2 2 0 0 0 1.7 3h8.6a2 2 0 0 0 1.7-3l-4.5-8V3.5"/>
+    <path d="M7.6 14.2h8.8"/>
+</svg></span>
+            <p>Exámenes médicos</p>
+        </a>
+
+        <a class="sidebar-item active" href="/laboratorio">
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M9 20h7"/>
+    <path d="M11 20v-3.4a4.6 4.6 0 1 1 4-2.3"/>
+    <path d="M9.3 9.6l4-2.3"/>
+    <path d="M8 4.6l3 1.7"/>
+    <path d="M4 20h4.2"/>
+</svg></span>
+            <p>Laboratorio</p>
+        </a>
+
+        
+
+        
+
+    </nav>
+
+</aside>
+
+    <section class="content-card">
+        <div class="actions">
+            <h1>Gestión de Exámenes de Laboratorio</h1>
+
+            <a class="btn"
+               href="/laboratorio/nuevo">
+                Nuevo examen de laboratorio
+            </a>
+        </div>
+
+        
+        
+
+        <form action="/laboratorio" method="get" class="inline-form actions">
+            <input type="text"
+                   name="buscar"
+                   value="30422986"
+                   placeholder="Buscar por paciente, DNI, muestra, resultado o unidad">
+
+            <button class="btn" type="submit">Buscar</button>
+            <a class="btn secondary" href="/laboratorio">Limpiar</a>
+        </form>
+
+        <table>
+            <thead>
+            <tr>
+                <th>Código</th>
+                <th>Paciente</th>
+                <th>Muestra</th>
+                <th>Fecha examen</th>
+                <th>Fecha resultado</th>
+                <th>Estado</th>
+                <th>Resultado</th>
+                <th>Valor referencia</th>
+                <th>Unidad</th>
+                <th>Acciones</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            
+
+            <tr>
+                <td colspan="10" class="empty-row">
+                    No se encontraron exámenes de laboratorio.
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        
+    </section>
+
+</main>
+
+</body>
+</html>
+
+    Forwarded URL = null
+   Redirected URL = null
+          Cookies = []
+]]></system-out>
+  </testcase>
+  <testcase name="exp08" classname="Pruebas exploratorias (EXP01–EXP12)" time="0.055">
+    <failure message="El examen pasó a EN_PROCESO sin que su comprobante esté pagado ==&gt; expected: &lt;PENDIENTE&gt; but was: &lt;EN_PROCESO&gt;" type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: El examen pasó a EN_PROCESO sin que su comprobante esté pagado ==> expected: <PENDIENTE> but was: <EN_PROCESO>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:182)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:1156)
+	at QA.EXP_PruebasExploratoriasTest.exp08(EXP_PruebasExploratoriasTest.java:144)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+]]></failure>
+    <system-out><![CDATA[
+MockHttpServletRequest:
+      HTTP Method = POST
+      Request URI = /examenes/guardar
+       Parameters = {_csrf=[token-qa-is3], idDiagnostico=[2], tipoExamen=[LABORATORIO]}
+          Headers = []
+             Body = null
+    Session Attrs = {rolUsuario=MEDICO, csrfToken=token-qa-is3, usuarioLogueado=Entity.UsuarioEntity@4ea08d6a, org.springframework.web.servlet.support.SessionFlashMapManager.FLASH_MAPS=[FlashMap [attributes={mensaje=Solicitud de examen guardada correctamente.}, targetRequestPath=/examenes, targetRequestParams={}]], nombreUsuario=qa_medico}
+
+Handler:
+             Type = Controller.ExamenMedicoController
+           Method = Controller.ExamenMedicoController#guardar(ExamenMedicoEntity, Long, RedirectAttributes)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = redirect:/examenes
+             View = null
+            Model = null
+
+FlashMap:
+        Attribute = mensaje
+            value = Solicitud de examen guardada correctamente.
+
+MockHttpServletResponse:
+           Status = 302
+    Error message = null
+          Headers = [Content-Language:"en", Location:"/examenes"]
+     Content type = null
+             Body = 
+    Forwarded URL = null
+   Redirected URL = /examenes
+          Cookies = []
+
+MockHttpServletRequest:
+      HTTP Method = POST
+      Request URI = /examenes/proceso/2
+       Parameters = {_csrf=[token-qa-is3]}
+          Headers = []
+             Body = null
+    Session Attrs = {rolUsuario=BIOLOGO, csrfToken=token-qa-is3, usuarioLogueado=Entity.UsuarioEntity@2f42f229, org.springframework.web.servlet.support.SessionFlashMapManager.FLASH_MAPS=[FlashMap [attributes={mensaje=Examen marcado como EN PROCESO correctamente.}, targetRequestPath=/examenes, targetRequestParams={}]], nombreUsuario=qa_biologo}
+
+Handler:
+             Type = Controller.ExamenMedicoController
+           Method = Controller.ExamenMedicoController#proceso(Long, RedirectAttributes)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = redirect:/examenes
+             View = null
+            Model = null
+
+FlashMap:
+        Attribute = mensaje
+            value = Examen marcado como EN PROCESO correctamente.
+
+MockHttpServletResponse:
+           Status = 302
+    Error message = null
+          Headers = [Content-Language:"en", Location:"/examenes"]
+     Content type = null
+             Body = 
+    Forwarded URL = null
+   Redirected URL = /examenes
+          Cookies = []
+]]></system-out>
+  </testcase>
+  <testcase name="exp09" classname="Pruebas exploratorias (EXP01–EXP12)" time="0.043">
+    <failure message="El total de un comprobante ya pagado cambió a S/ 50.00 ==&gt; expected: &lt;0&gt; but was: &lt;-1&gt;" type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: El total de un comprobante ya pagado cambió a S/ 50.00 ==> expected: <0> but was: <-1>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:150)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:563)
+	at QA.EXP_PruebasExploratoriasTest.exp09(EXP_PruebasExploratoriasTest.java:158)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+]]></failure>
+    <system-out><![CDATA[
+MockHttpServletRequest:
+      HTTP Method = POST
+      Request URI = /detalle-comprobantes/guardar
+       Parameters = {_csrf=[token-qa-is3], codComprobante=[5], tipoItem=[CITA], codCitaMedica=[5], descripcionDetalle=[Agregado tras el pago], cantidad=[1], precioUnitario=[50.00]}
+          Headers = []
+             Body = null
+    Session Attrs = {rolUsuario=CAJERO, csrfToken=token-qa-is3, usuarioLogueado=Entity.UsuarioEntity@1a524d81, org.springframework.web.servlet.support.SessionFlashMapManager.FLASH_MAPS=[FlashMap [attributes={mensaje=Detalle de comprobante guardado correctamente.}, targetRequestPath=/detalle-comprobantes, targetRequestParams={}]], nombreUsuario=qa_cajero}
+
+Handler:
+             Type = Controller.DetalleComprobanteController
+           Method = Controller.DetalleComprobanteController#guardar(DetalleComprobanteEntity, Long, TipoItemEnum, Long, Long, Long, HttpSession, RedirectAttributes)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = redirect:/detalle-comprobantes
+             View = null
+            Model = null
+
+FlashMap:
+        Attribute = mensaje
+            value = Detalle de comprobante guardado correctamente.
+
+MockHttpServletResponse:
+           Status = 302
+    Error message = null
+          Headers = [Content-Language:"en", Location:"/detalle-comprobantes"]
+     Content type = null
+             Body = 
+    Forwarded URL = null
+   Redirected URL = /detalle-comprobantes
+          Cookies = []
+]]></system-out>
+  </testcase>
+  <testcase name="exp10" classname="Pruebas exploratorias (EXP01–EXP12)" time="0.048">
+    <failure message="Se guardó un estudio con nombre, región e informe vacíos ==&gt; expected: &lt;0&gt; but was: &lt;1&gt;" type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: Se guardó un estudio con nombre, región e informe vacíos ==> expected: <0> but was: <1>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:150)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:563)
+	at QA.EXP_PruebasExploratoriasTest.exp10(EXP_PruebasExploratoriasTest.java:169)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+]]></failure>
+    <system-out><![CDATA[
+MockHttpServletRequest:
+      HTTP Method = POST
+      Request URI = /imagenes/guardar
+       Parameters = {_csrf=[token-qa-is3], idDiagnostico=[3], nombreImagen=[ ], regionCuerpo=[], informeMedico=[], usaContraste=[false]}
+          Headers = []
+             Body = null
+    Session Attrs = {rolUsuario=RADIOLOGO, csrfToken=token-qa-is3, usuarioLogueado=Entity.UsuarioEntity@70a9eb08, org.springframework.web.servlet.support.SessionFlashMapManager.FLASH_MAPS=[FlashMap [attributes={mensaje=Imagen diagnóstica guardada correctamente.}, targetRequestPath=/imagenes, targetRequestParams={}]], nombreUsuario=qa_radiologo}
+
+Handler:
+             Type = Controller.ImagenDiagnosticaController
+           Method = Controller.ImagenDiagnosticaController#guardar(ImagenDiagnosticaEntity, Long, RedirectAttributes)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = redirect:/imagenes
+             View = null
+            Model = null
+
+FlashMap:
+        Attribute = mensaje
+            value = Imagen diagnóstica guardada correctamente.
+
+MockHttpServletResponse:
+           Status = 302
+    Error message = null
+          Headers = [Content-Language:"en", Location:"/imagenes"]
+     Content type = null
+             Body = 
+    Forwarded URL = null
+   Redirected URL = /imagenes
+          Cookies = []
+]]></system-out>
+  </testcase>
+  <testcase name="exp11" classname="Pruebas exploratorias (EXP01–EXP12)" time="0.02">
+    <failure message="Se registró un paciente con DNI &apos;AB994&apos; ==&gt; expected: &lt;true&gt; but was: &lt;false&gt;" type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: Se registró un paciente con DNI 'AB994' ==> expected: <true> but was: <false>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertTrue.failNotTrue(AssertTrue.java:63)
+	at org.junit.jupiter.api.AssertTrue.assertTrue(AssertTrue.java:36)
+	at org.junit.jupiter.api.Assertions.assertTrue(Assertions.java:214)
+	at QA.EXP_PruebasExploratoriasTest.exp11(EXP_PruebasExploratoriasTest.java:182)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+]]></failure>
+    <system-out><![CDATA[
+MockHttpServletRequest:
+      HTTP Method = POST
+      Request URI = /pacientes/guardar
+       Parameters = {_csrf=[token-qa-is3], dnipaciente=[AB994], nombrePaciente=[Formato], apellidoPaciente=[Invalido], genero=[MASCULINO], telefono=[400422994], correoElectronico=[fmt422994@mail.pe], fechaNacimiento=[2000-01-01], tipoSangre=[O+]}
+          Headers = []
+             Body = null
+    Session Attrs = {rolUsuario=ENFERMERA, csrfToken=token-qa-is3, usuarioLogueado=Entity.UsuarioEntity@15c1d20a, org.springframework.web.servlet.support.SessionFlashMapManager.FLASH_MAPS=[FlashMap [attributes={mensaje=Paciente guardado correctamente.}, targetRequestPath=/pacientes, targetRequestParams={}]], nombreUsuario=qa_enfermera}
+
+Handler:
+             Type = Controller.PacienteController
+           Method = Controller.PacienteController#guardar(PacienteEntity, RedirectAttributes)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = redirect:/pacientes
+             View = null
+            Model = null
+
+FlashMap:
+        Attribute = mensaje
+            value = Paciente guardado correctamente.
+
+MockHttpServletResponse:
+           Status = 302
+    Error message = null
+          Headers = [Content-Language:"en", Location:"/pacientes"]
+     Content type = null
+             Body = 
+    Forwarded URL = null
+   Redirected URL = /pacientes
+          Cookies = []
+]]></system-out>
+  </testcase>
+  <testcase name="exp12" classname="Pruebas exploratorias (EXP01–EXP12)" time="0.195">
+    <failure message="Con 8 solicitudes simultáneas se crearon 6 citas en el mismo horario ==&gt; expected: &lt;1&gt; but was: &lt;6&gt;" type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: Con 8 solicitudes simultáneas se crearon 6 citas en el mismo horario ==> expected: <1> but was: <6>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:166)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:664)
+	at QA.EXP_PruebasExploratoriasTest.exp12(EXP_PruebasExploratoriasTest.java:208)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+]]></failure>
+    <system-out><![CDATA[[QA] EXP12 citas creadas en el mismo horario con 8 solicitudes simultáneas: 6
+]]></system-out>
+  </testcase>
+</testsuite>

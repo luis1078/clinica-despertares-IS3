@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: QA.FTC05_UnitariasServiceTest
+-------------------------------------------------------------------------------
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.609 s -- in QA.FTC05_UnitariasServiceTest

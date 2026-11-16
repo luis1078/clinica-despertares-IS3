@@ -1,0 +1,1288 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="QA.FTC04_ExamenesEImagenesTest" time="0.813" tests="16" errors="0" skipped="0" failures="6" flakes="0">
+  <properties>
+    <property name="java.specification.version" value="21"/>
+    <property name="sun.jnu.encoding" value="UTF-8"/>
+    <property name="java.class.path" value="/home/runner/work/clinica-despertares-IS3/clinica-despertares-IS3/target/test-classes:/home/runner/work/clinica-despertares-IS3/clinica-despertares-IS3/target/classes:/home/runner/.m2/repository/org/springframework/boot/spring-boot-starter-data-jpa/3.5.14/spring-boot-starter-data-jpa-3.5.14.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot-starter/3.5.14/spring-boot-starter-3.5.14.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot/3.5.14/spring-boot-3.5.14.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot-autoconfigure/3.5.14/spring-boot-autoconfigure-3.5.14.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot-starter-logging/3.5.14/spring-boot-starter-logging-3.5.14.jar:/home/runner/.m2/repository/ch/qos/logback/logback-classic/1.5.32/logback-classic-1.5.32.jar:/home/runner/.m2/repository/ch/qos/logback/logback-core/1.5.32/logback-core-1.5.32.jar:/home/runner/.m2/repository/org/apache/logging/log4j/log4j-to-slf4j/2.24.3/log4j-to-slf4j-2.24.3.jar:/home/runner/.m2/repository/org/apache/logging/log4j/log4j-api/2.24.3/log4j-api-2.24.3.jar:/home/runner/.m2/repository/org/slf4j/jul-to-slf4j/2.0.17/jul-to-slf4j-2.0.17.jar:/home/runner/.m2/repository/jakarta/annotation/jakarta.annotation-api/2.1.1/jakarta.annotation-api-2.1.1.jar:/home/runner/.m2/repository/org/yaml/snakeyaml/2.4/snakeyaml-2.4.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot-starter-jdbc/3.5.14/spring-boot-starter-jdbc-3.5.14.jar:/home/runner/.m2/repository/com/zaxxer/HikariCP/6.3.3/HikariCP-6.3.3.jar:/home/runner/.m2/repository/org/springframework/spring-jdbc/6.2.18/spring-jdbc-6.2.18.jar:/home/runner/.m2/repository/org/hibernate/orm/hibernate-core/6.6.49.Final/hibernate-core-6.6.49.Final.jar:/home/runner/.m2/repository/jakarta/persistence/jakarta.persistence-api/3.1.0/jakarta.persistence-api-3.1.0.jar:/home/runner/.m2/repository/jakarta/transaction/jakarta.transaction-api/2.0.1/jakarta.transaction-api-2.0.1.jar:/home/runner/.m2/repository/org/jboss/logging/jboss-logging/3.6.3.Final/jboss-logging-3.6.3.Final.jar:/home/runner/.m2/repository/org/hibernate/common/hibernate-commons-annotations/7.0.3.Final/hibernate-commons-annotations-7.0.3.Final.jar:/home/runner/.m2/repository/io/smallrye/jandex/3.2.0/jandex-3.2.0.jar:/home/runner/.m2/repository/com/fasterxml/classmate/1.7.3/classmate-1.7.3.jar:/home/runner/.m2/repository/net/bytebuddy/byte-buddy/1.17.8/byte-buddy-1.17.8.jar:/home/runner/.m2/repository/org/glassfish/jaxb/jaxb-runtime/4.0.6/jaxb-runtime-4.0.6.jar:/home/runner/.m2/repository/org/glassfish/jaxb/jaxb-core/4.0.6/jaxb-core-4.0.6.jar:/home/runner/.m2/repository/org/eclipse/angus/angus-activation/2.0.3/angus-activation-2.0.3.jar:/home/runner/.m2/repository/org/glassfish/jaxb/txw2/4.0.6/txw2-4.0.6.jar:/home/runner/.m2/repository/com/sun/istack/istack-commons-runtime/4.1.2/istack-commons-runtime-4.1.2.jar:/home/runner/.m2/repository/jakarta/inject/jakarta.inject-api/2.0.1/jakarta.inject-api-2.0.1.jar:/home/runner/.m2/repository/org/antlr/antlr4-runtime/4.13.0/antlr4-runtime-4.13.0.jar:/home/runner/.m2/repository/org/springframework/data/spring-data-jpa/3.5.11/spring-data-jpa-3.5.11.jar:/home/runner/.m2/repository/org/springframework/data/spring-data-commons/3.5.11/spring-data-commons-3.5.11.jar:/home/runner/.m2/repository/org/springframework/spring-orm/6.2.18/spring-orm-6.2.18.jar:/home/runner/.m2/repository/org/springframework/spring-context/6.2.18/spring-context-6.2.18.jar:/home/runner/.m2/repository/org/springframework/spring-aop/6.2.18/spring-aop-6.2.18.jar:/home/runner/.m2/repository/org/springframework/spring-tx/6.2.18/spring-tx-6.2.18.jar:/home/runner/.m2/repository/org/springframework/spring-beans/6.2.18/spring-beans-6.2.18.jar:/home/runner/.m2/repository/org/slf4j/slf4j-api/2.0.17/slf4j-api-2.0.17.jar:/home/runner/.m2/repository/org/springframework/spring-aspects/6.2.18/spring-aspects-6.2.18.jar:/home/runner/.m2/repository/org/aspectj/aspectjweaver/1.9.25.1/aspectjweaver-1.9.25.1.jar:/home/runner/.m2/repository/org/projectlombok/lombok/1.18.46/lombok-1.18.46.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot-starter-thymeleaf/3.5.14/spring-boot-starter-thymeleaf-3.5.14.jar:/home/runner/.m2/repository/org/thymeleaf/thymeleaf-spring6/3.1.5.RELEASE/thymeleaf-spring6-3.1.5.RELEASE.jar:/home/runner/.m2/repository/org/thymeleaf/thymeleaf/3.1.5.RELEASE/thymeleaf-3.1.5.RELEASE.jar:/home/runner/.m2/repository/org/attoparser/attoparser/2.0.7.RELEASE/attoparser-2.0.7.RELEASE.jar:/home/runner/.m2/repository/org/unbescape/unbescape/1.1.6.RELEASE/unbescape-1.1.6.RELEASE.jar:/home/runner/.m2/repository/org/springframework/security/spring-security-crypto/6.5.10/spring-security-crypto-6.5.10.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot-starter-web/3.5.14/spring-boot-starter-web-3.5.14.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot-starter-json/3.5.14/spring-boot-starter-json-3.5.14.jar:/home/runner/.m2/repository/com/fasterxml/jackson/core/jackson-databind/2.21.2/jackson-databind-2.21.2.jar:/home/runner/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.21/jackson-annotations-2.21.jar:/home/runner/.m2/repository/com/fasterxml/jackson/core/jackson-core/2.21.2/jackson-core-2.21.2.jar:/home/runner/.m2/repository/com/fasterxml/jackson/datatype/jackson-datatype-jdk8/2.21.2/jackson-datatype-jdk8-2.21.2.jar:/home/runner/.m2/repository/com/fasterxml/jackson/datatype/jackson-datatype-jsr310/2.21.2/jackson-datatype-jsr310-2.21.2.jar:/home/runner/.m2/repository/com/fasterxml/jackson/module/jackson-module-parameter-names/2.21.2/jackson-module-parameter-names-2.21.2.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot-starter-tomcat/3.5.14/spring-boot-starter-tomcat-3.5.14.jar:/home/runner/.m2/repository/org/apache/tomcat/embed/tomcat-embed-core/10.1.54/tomcat-embed-core-10.1.54.jar:/home/runner/.m2/repository/org/apache/tomcat/embed/tomcat-embed-el/10.1.54/tomcat-embed-el-10.1.54.jar:/home/runner/.m2/repository/org/apache/tomcat/embed/tomcat-embed-websocket/10.1.54/tomcat-embed-websocket-10.1.54.jar:/home/runner/.m2/repository/org/springframework/spring-web/6.2.18/spring-web-6.2.18.jar:/home/runner/.m2/repository/io/micrometer/micrometer-observation/1.15.11/micrometer-observation-1.15.11.jar:/home/runner/.m2/repository/io/micrometer/micrometer-commons/1.15.11/micrometer-commons-1.15.11.jar:/home/runner/.m2/repository/org/springframework/spring-webmvc/6.2.18/spring-webmvc-6.2.18.jar:/home/runner/.m2/repository/org/springframework/spring-expression/6.2.18/spring-expression-6.2.18.jar:/home/runner/.m2/repository/org/postgresql/postgresql/42.7.10/postgresql-42.7.10.jar:/home/runner/.m2/repository/org/checkerframework/checker-qual/3.52.0/checker-qual-3.52.0.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot-starter-test/3.5.14/spring-boot-starter-test-3.5.14.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot-test/3.5.14/spring-boot-test-3.5.14.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot-test-autoconfigure/3.5.14/spring-boot-test-autoconfigure-3.5.14.jar:/home/runner/.m2/repository/com/jayway/jsonpath/json-path/2.9.0/json-path-2.9.0.jar:/home/runner/.m2/repository/jakarta/xml/bind/jakarta.xml.bind-api/4.0.4/jakarta.xml.bind-api-4.0.4.jar:/home/runner/.m2/repository/jakarta/activation/jakarta.activation-api/2.1.4/jakarta.activation-api-2.1.4.jar:/home/runner/.m2/repository/net/minidev/json-smart/2.5.2/json-smart-2.5.2.jar:/home/runner/.m2/repository/net/minidev/accessors-smart/2.5.2/accessors-smart-2.5.2.jar:/home/runner/.m2/repository/org/ow2/asm/asm/9.7.1/asm-9.7.1.jar:/home/runner/.m2/repository/org/assertj/assertj-core/3.27.7/assertj-core-3.27.7.jar:/home/runner/.m2/repository/org/awaitility/awaitility/4.2.2/awaitility-4.2.2.jar:/home/runner/.m2/repository/org/hamcrest/hamcrest/3.0/hamcrest-3.0.jar:/home/runner/.m2/repository/org/junit/jupiter/junit-jupiter/5.12.2/junit-jupiter-5.12.2.jar:/home/runner/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.12.2/junit-jupiter-api-5.12.2.jar:/home/runner/.m2/repository/org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.jar:/home/runner/.m2/repository/org/junit/platform/junit-platform-commons/1.12.2/junit-platform-commons-1.12.2.jar:/home/runner/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/home/runner/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.12.2/junit-jupiter-params-5.12.2.jar:/home/runner/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.12.2/junit-jupiter-engine-5.12.2.jar:/home/runner/.m2/repository/org/junit/platform/junit-platform-engine/1.12.2/junit-platform-engine-1.12.2.jar:/home/runner/.m2/repository/org/mockito/mockito-core/5.17.0/mockito-core-5.17.0.jar:/home/runner/.m2/repository/net/bytebuddy/byte-buddy-agent/1.17.8/byte-buddy-agent-1.17.8.jar:/home/runner/.m2/repository/org/objenesis/objenesis/3.3/objenesis-3.3.jar:/home/runner/.m2/repository/org/mockito/mockito-junit-jupiter/5.17.0/mockito-junit-jupiter-5.17.0.jar:/home/runner/.m2/repository/org/skyscreamer/jsonassert/1.5.3/jsonassert-1.5.3.jar:/home/runner/.m2/repository/com/vaadin/external/google/android-json/0.0.20131108.vaadin1/android-json-0.0.20131108.vaadin1.jar:/home/runner/.m2/repository/org/springframework/spring-core/6.2.18/spring-core-6.2.18.jar:/home/runner/.m2/repository/org/springframework/spring-jcl/6.2.18/spring-jcl-6.2.18.jar:/home/runner/.m2/repository/org/springframework/spring-test/6.2.18/spring-test-6.2.18.jar:/home/runner/.m2/repository/org/xmlunit/xmlunit-core/2.10.4/xmlunit-core-2.10.4.jar:"/>
+    <property name="java.vm.vendor" value="Eclipse Adoptium"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="java.vendor.url" value="https://adoptium.net/"/>
+    <property name="user.timezone" value="Etc/UTC"/>
+    <property name="org.jboss.logging.provider" value="slf4j"/>
+    <property name="os.name" value="Linux"/>
+    <property name="java.vm.specification.version" value="21"/>
+    <property name="APPLICATION_NAME" value="clinica_Despertares"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="sun.boot.library.path" value="/usr/lib/jvm/temurin-21-jdk-amd64/lib"/>
+    <property name="sun.java.command" value="/home/runner/work/clinica-despertares-IS3/clinica-despertares-IS3/target/surefire/surefirebooter-20261116163900224_3.jar /home/runner/work/clinica-despertares-IS3/clinica-despertares-IS3/target/surefire 2026-11-16T16-39-00_010-jvmRun1 surefire-20261116163900224_1tmp surefire_0-20261116163900224_2tmp"/>
+    <property name="jdk.debug" value="release"/>
+    <property name="surefire.test.class.path" value="/home/runner/work/clinica-despertares-IS3/clinica-despertares-IS3/target/test-classes:/home/runner/work/clinica-despertares-IS3/clinica-despertares-IS3/target/classes:/home/runner/.m2/repository/org/springframework/boot/spring-boot-starter-data-jpa/3.5.14/spring-boot-starter-data-jpa-3.5.14.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot-starter/3.5.14/spring-boot-starter-3.5.14.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot/3.5.14/spring-boot-3.5.14.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot-autoconfigure/3.5.14/spring-boot-autoconfigure-3.5.14.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot-starter-logging/3.5.14/spring-boot-starter-logging-3.5.14.jar:/home/runner/.m2/repository/ch/qos/logback/logback-classic/1.5.32/logback-classic-1.5.32.jar:/home/runner/.m2/repository/ch/qos/logback/logback-core/1.5.32/logback-core-1.5.32.jar:/home/runner/.m2/repository/org/apache/logging/log4j/log4j-to-slf4j/2.24.3/log4j-to-slf4j-2.24.3.jar:/home/runner/.m2/repository/org/apache/logging/log4j/log4j-api/2.24.3/log4j-api-2.24.3.jar:/home/runner/.m2/repository/org/slf4j/jul-to-slf4j/2.0.17/jul-to-slf4j-2.0.17.jar:/home/runner/.m2/repository/jakarta/annotation/jakarta.annotation-api/2.1.1/jakarta.annotation-api-2.1.1.jar:/home/runner/.m2/repository/org/yaml/snakeyaml/2.4/snakeyaml-2.4.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot-starter-jdbc/3.5.14/spring-boot-starter-jdbc-3.5.14.jar:/home/runner/.m2/repository/com/zaxxer/HikariCP/6.3.3/HikariCP-6.3.3.jar:/home/runner/.m2/repository/org/springframework/spring-jdbc/6.2.18/spring-jdbc-6.2.18.jar:/home/runner/.m2/repository/org/hibernate/orm/hibernate-core/6.6.49.Final/hibernate-core-6.6.49.Final.jar:/home/runner/.m2/repository/jakarta/persistence/jakarta.persistence-api/3.1.0/jakarta.persistence-api-3.1.0.jar:/home/runner/.m2/repository/jakarta/transaction/jakarta.transaction-api/2.0.1/jakarta.transaction-api-2.0.1.jar:/home/runner/.m2/repository/org/jboss/logging/jboss-logging/3.6.3.Final/jboss-logging-3.6.3.Final.jar:/home/runner/.m2/repository/org/hibernate/common/hibernate-commons-annotations/7.0.3.Final/hibernate-commons-annotations-7.0.3.Final.jar:/home/runner/.m2/repository/io/smallrye/jandex/3.2.0/jandex-3.2.0.jar:/home/runner/.m2/repository/com/fasterxml/classmate/1.7.3/classmate-1.7.3.jar:/home/runner/.m2/repository/net/bytebuddy/byte-buddy/1.17.8/byte-buddy-1.17.8.jar:/home/runner/.m2/repository/org/glassfish/jaxb/jaxb-runtime/4.0.6/jaxb-runtime-4.0.6.jar:/home/runner/.m2/repository/org/glassfish/jaxb/jaxb-core/4.0.6/jaxb-core-4.0.6.jar:/home/runner/.m2/repository/org/eclipse/angus/angus-activation/2.0.3/angus-activation-2.0.3.jar:/home/runner/.m2/repository/org/glassfish/jaxb/txw2/4.0.6/txw2-4.0.6.jar:/home/runner/.m2/repository/com/sun/istack/istack-commons-runtime/4.1.2/istack-commons-runtime-4.1.2.jar:/home/runner/.m2/repository/jakarta/inject/jakarta.inject-api/2.0.1/jakarta.inject-api-2.0.1.jar:/home/runner/.m2/repository/org/antlr/antlr4-runtime/4.13.0/antlr4-runtime-4.13.0.jar:/home/runner/.m2/repository/org/springframework/data/spring-data-jpa/3.5.11/spring-data-jpa-3.5.11.jar:/home/runner/.m2/repository/org/springframework/data/spring-data-commons/3.5.11/spring-data-commons-3.5.11.jar:/home/runner/.m2/repository/org/springframework/spring-orm/6.2.18/spring-orm-6.2.18.jar:/home/runner/.m2/repository/org/springframework/spring-context/6.2.18/spring-context-6.2.18.jar:/home/runner/.m2/repository/org/springframework/spring-aop/6.2.18/spring-aop-6.2.18.jar:/home/runner/.m2/repository/org/springframework/spring-tx/6.2.18/spring-tx-6.2.18.jar:/home/runner/.m2/repository/org/springframework/spring-beans/6.2.18/spring-beans-6.2.18.jar:/home/runner/.m2/repository/org/slf4j/slf4j-api/2.0.17/slf4j-api-2.0.17.jar:/home/runner/.m2/repository/org/springframework/spring-aspects/6.2.18/spring-aspects-6.2.18.jar:/home/runner/.m2/repository/org/aspectj/aspectjweaver/1.9.25.1/aspectjweaver-1.9.25.1.jar:/home/runner/.m2/repository/org/projectlombok/lombok/1.18.46/lombok-1.18.46.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot-starter-thymeleaf/3.5.14/spring-boot-starter-thymeleaf-3.5.14.jar:/home/runner/.m2/repository/org/thymeleaf/thymeleaf-spring6/3.1.5.RELEASE/thymeleaf-spring6-3.1.5.RELEASE.jar:/home/runner/.m2/repository/org/thymeleaf/thymeleaf/3.1.5.RELEASE/thymeleaf-3.1.5.RELEASE.jar:/home/runner/.m2/repository/org/attoparser/attoparser/2.0.7.RELEASE/attoparser-2.0.7.RELEASE.jar:/home/runner/.m2/repository/org/unbescape/unbescape/1.1.6.RELEASE/unbescape-1.1.6.RELEASE.jar:/home/runner/.m2/repository/org/springframework/security/spring-security-crypto/6.5.10/spring-security-crypto-6.5.10.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot-starter-web/3.5.14/spring-boot-starter-web-3.5.14.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot-starter-json/3.5.14/spring-boot-starter-json-3.5.14.jar:/home/runner/.m2/repository/com/fasterxml/jackson/core/jackson-databind/2.21.2/jackson-databind-2.21.2.jar:/home/runner/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.21/jackson-annotations-2.21.jar:/home/runner/.m2/repository/com/fasterxml/jackson/core/jackson-core/2.21.2/jackson-core-2.21.2.jar:/home/runner/.m2/repository/com/fasterxml/jackson/datatype/jackson-datatype-jdk8/2.21.2/jackson-datatype-jdk8-2.21.2.jar:/home/runner/.m2/repository/com/fasterxml/jackson/datatype/jackson-datatype-jsr310/2.21.2/jackson-datatype-jsr310-2.21.2.jar:/home/runner/.m2/repository/com/fasterxml/jackson/module/jackson-module-parameter-names/2.21.2/jackson-module-parameter-names-2.21.2.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot-starter-tomcat/3.5.14/spring-boot-starter-tomcat-3.5.14.jar:/home/runner/.m2/repository/org/apache/tomcat/embed/tomcat-embed-core/10.1.54/tomcat-embed-core-10.1.54.jar:/home/runner/.m2/repository/org/apache/tomcat/embed/tomcat-embed-el/10.1.54/tomcat-embed-el-10.1.54.jar:/home/runner/.m2/repository/org/apache/tomcat/embed/tomcat-embed-websocket/10.1.54/tomcat-embed-websocket-10.1.54.jar:/home/runner/.m2/repository/org/springframework/spring-web/6.2.18/spring-web-6.2.18.jar:/home/runner/.m2/repository/io/micrometer/micrometer-observation/1.15.11/micrometer-observation-1.15.11.jar:/home/runner/.m2/repository/io/micrometer/micrometer-commons/1.15.11/micrometer-commons-1.15.11.jar:/home/runner/.m2/repository/org/springframework/spring-webmvc/6.2.18/spring-webmvc-6.2.18.jar:/home/runner/.m2/repository/org/springframework/spring-expression/6.2.18/spring-expression-6.2.18.jar:/home/runner/.m2/repository/org/postgresql/postgresql/42.7.10/postgresql-42.7.10.jar:/home/runner/.m2/repository/org/checkerframework/checker-qual/3.52.0/checker-qual-3.52.0.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot-starter-test/3.5.14/spring-boot-starter-test-3.5.14.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot-test/3.5.14/spring-boot-test-3.5.14.jar:/home/runner/.m2/repository/org/springframework/boot/spring-boot-test-autoconfigure/3.5.14/spring-boot-test-autoconfigure-3.5.14.jar:/home/runner/.m2/repository/com/jayway/jsonpath/json-path/2.9.0/json-path-2.9.0.jar:/home/runner/.m2/repository/jakarta/xml/bind/jakarta.xml.bind-api/4.0.4/jakarta.xml.bind-api-4.0.4.jar:/home/runner/.m2/repository/jakarta/activation/jakarta.activation-api/2.1.4/jakarta.activation-api-2.1.4.jar:/home/runner/.m2/repository/net/minidev/json-smart/2.5.2/json-smart-2.5.2.jar:/home/runner/.m2/repository/net/minidev/accessors-smart/2.5.2/accessors-smart-2.5.2.jar:/home/runner/.m2/repository/org/ow2/asm/asm/9.7.1/asm-9.7.1.jar:/home/runner/.m2/repository/org/assertj/assertj-core/3.27.7/assertj-core-3.27.7.jar:/home/runner/.m2/repository/org/awaitility/awaitility/4.2.2/awaitility-4.2.2.jar:/home/runner/.m2/repository/org/hamcrest/hamcrest/3.0/hamcrest-3.0.jar:/home/runner/.m2/repository/org/junit/jupiter/junit-jupiter/5.12.2/junit-jupiter-5.12.2.jar:/home/runner/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.12.2/junit-jupiter-api-5.12.2.jar:/home/runner/.m2/repository/org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.jar:/home/runner/.m2/repository/org/junit/platform/junit-platform-commons/1.12.2/junit-platform-commons-1.12.2.jar:/home/runner/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/home/runner/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.12.2/junit-jupiter-params-5.12.2.jar:/home/runner/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.12.2/junit-jupiter-engine-5.12.2.jar:/home/runner/.m2/repository/org/junit/platform/junit-platform-engine/1.12.2/junit-platform-engine-1.12.2.jar:/home/runner/.m2/repository/org/mockito/mockito-core/5.17.0/mockito-core-5.17.0.jar:/home/runner/.m2/repository/net/bytebuddy/byte-buddy-agent/1.17.8/byte-buddy-agent-1.17.8.jar:/home/runner/.m2/repository/org/objenesis/objenesis/3.3/objenesis-3.3.jar:/home/runner/.m2/repository/org/mockito/mockito-junit-jupiter/5.17.0/mockito-junit-jupiter-5.17.0.jar:/home/runner/.m2/repository/org/skyscreamer/jsonassert/1.5.3/jsonassert-1.5.3.jar:/home/runner/.m2/repository/com/vaadin/external/google/android-json/0.0.20131108.vaadin1/android-json-0.0.20131108.vaadin1.jar:/home/runner/.m2/repository/org/springframework/spring-core/6.2.18/spring-core-6.2.18.jar:/home/runner/.m2/repository/org/springframework/spring-jcl/6.2.18/spring-jcl-6.2.18.jar:/home/runner/.m2/repository/org/springframework/spring-test/6.2.18/spring-test-6.2.18.jar:/home/runner/.m2/repository/org/xmlunit/xmlunit-core/2.10.4/xmlunit-core-2.10.4.jar:"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="user.home" value="/home/runner"/>
+    <property name="user.language" value="en"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.version.date" value="2026-10-20"/>
+    <property name="java.home" value="/usr/lib/jvm/temurin-21-jdk-amd64"/>
+    <property name="file.separator" value="/"/>
+    <property name="basedir" value="/home/runner/work/clinica-despertares-IS3/clinica-despertares-IS3"/>
+    <property name="java.vm.compressedOopsMode" value="Zero based"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="FILE_LOG_CHARSET" value="UTF-8"/>
+    <property name="java.awt.headless" value="true"/>
+    <property name="surefire.real.class.path" value="/home/runner/work/clinica-despertares-IS3/clinica-despertares-IS3/target/surefire/surefirebooter-20261116163900224_3.jar"/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="java.runtime.version" value="21.0.13+9-LTS"/>
+    <property name="user.name" value="runner"/>
+    <property name="stdout.encoding" value="UTF-8"/>
+    <property name="path.separator" value=":"/>
+    <property name="os.version" value="7.0.0-1019-azure"/>
+    <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
+    <property name="file.encoding" value="UTF-8"/>
+    <property name="java.vm.name" value="OpenJDK 64-Bit Server VM"/>
+    <property name="java.vendor.version" value="Temurin-21.0.13+9"/>
+    <property name="localRepository" value="/home/runner/.m2/repository"/>
+    <property name="java.vendor.url.bug" value="https://github.com/adoptium/adoptium-support/issues"/>
+    <property name="java.io.tmpdir" value="/tmp"/>
+    <property name="com.zaxxer.hikari.pool_number" value="1"/>
+    <property name="java.version" value="21.0.13"/>
+    <property name="user.dir" value="/home/runner/work/clinica-despertares-IS3/clinica-despertares-IS3"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="PID" value="3111"/>
+    <property name="CONSOLE_LOG_CHARSET" value="UTF-8"/>
+    <property name="native.encoding" value="UTF-8"/>
+    <property name="java.library.path" value="/usr/java/packages/lib:/usr/lib64:/lib64:/lib:/usr/lib"/>
+    <property name="java.vm.info" value="mixed mode, sharing"/>
+    <property name="stderr.encoding" value="UTF-8"/>
+    <property name="java.vendor" value="Eclipse Adoptium"/>
+    <property name="java.vm.version" value="21.0.13+9-LTS"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="java.class.version" value="65.0"/>
+    <property name="maven.test.failure.ignore" value="true"/>
+    <property name="LOGGED_APPLICATION_NAME" value="[clinica_Despertares] "/>
+  </properties>
+  <testcase name="ftc054" classname="Exámenes de laboratorio y estudios por imágenes (FTC054–FTC069)" time="0.039"/>
+  <testcase name="ftc055" classname="Exámenes de laboratorio y estudios por imágenes (FTC054–FTC069)" time="0.105">
+    <failure message="Multiple Failures (2 failures)&#10;	org.opentest4j.AssertionFailedError: BIOLOGO pudo abrir /examenes/nuevo (vista: examenes/formulario) ==&gt; expected: &lt;true&gt; but was: &lt;false&gt;&#10;	org.opentest4j.AssertionFailedError: RADIOLOGO pudo abrir /examenes/nuevo (vista: examenes/formulario) ==&gt; expected: &lt;true&gt; but was: &lt;false&gt;" type="org.opentest4j.MultipleFailuresError"><![CDATA[org.opentest4j.MultipleFailuresError: 
+Multiple Failures (2 failures)
+	org.opentest4j.AssertionFailedError: BIOLOGO pudo abrir /examenes/nuevo (vista: examenes/formulario) ==> expected: <true> but was: <false>
+	org.opentest4j.AssertionFailedError: RADIOLOGO pudo abrir /examenes/nuevo (vista: examenes/formulario) ==> expected: <true> but was: <false>
+	at org.junit.jupiter.api.AssertAll.assertAll(AssertAll.java:80)
+	at org.junit.jupiter.api.AssertAll.assertAll(AssertAll.java:44)
+	at org.junit.jupiter.api.AssertAll.assertAll(AssertAll.java:38)
+	at org.junit.jupiter.api.Assertions.assertAll(Assertions.java:2944)
+	at QA.FTC04_ExamenesEImagenesTest.ftc055(FTC04_ExamenesEImagenesTest.java:55)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	Suppressed: org.opentest4j.AssertionFailedError: BIOLOGO pudo abrir /examenes/nuevo (vista: examenes/formulario) ==> expected: <true> but was: <false>
+		at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+		at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+		at org.junit.jupiter.api.AssertTrue.failNotTrue(AssertTrue.java:63)
+		at org.junit.jupiter.api.AssertTrue.assertTrue(AssertTrue.java:36)
+		at org.junit.jupiter.api.Assertions.assertTrue(Assertions.java:214)
+		at QA.FTC04_ExamenesEImagenesTest.lambda$ftc055$7(FTC04_ExamenesEImagenesTest.java:56)
+		at org.junit.jupiter.api.AssertAll.lambda$assertAll$0(AssertAll.java:68)
+		at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+		at java.base/java.util.Spliterators$ArraySpliterator.forEachRemaining(Spliterators.java:1024)
+		at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
+		at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
+		at java.base/java.util.stream.ReduceOps$ReduceOp.evaluateSequential(ReduceOps.java:921)
+		at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+		at java.base/java.util.stream.ReferencePipeline.collect(ReferencePipeline.java:682)
+		at org.junit.jupiter.api.AssertAll.assertAll(AssertAll.java:77)
+		... 7 more
+	Suppressed: org.opentest4j.AssertionFailedError: RADIOLOGO pudo abrir /examenes/nuevo (vista: examenes/formulario) ==> expected: <true> but was: <false>
+		at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+		at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+		at org.junit.jupiter.api.AssertTrue.failNotTrue(AssertTrue.java:63)
+		at org.junit.jupiter.api.AssertTrue.assertTrue(AssertTrue.java:36)
+		at org.junit.jupiter.api.Assertions.assertTrue(Assertions.java:214)
+		at QA.FTC04_ExamenesEImagenesTest.lambda$ftc055$8(FTC04_ExamenesEImagenesTest.java:57)
+		at org.junit.jupiter.api.AssertAll.lambda$assertAll$0(AssertAll.java:68)
+		at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+		at java.base/java.util.Spliterators$ArraySpliterator.forEachRemaining(Spliterators.java:1024)
+		at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
+		at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
+		at java.base/java.util.stream.ReduceOps$ReduceOp.evaluateSequential(ReduceOps.java:921)
+		at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+		at java.base/java.util.stream.ReferencePipeline.collect(ReferencePipeline.java:682)
+		at org.junit.jupiter.api.AssertAll.assertAll(AssertAll.java:77)
+		... 7 more
+]]></failure>
+    <system-out><![CDATA[
+MockHttpServletRequest:
+      HTTP Method = GET
+      Request URI = /examenes/nuevo
+       Parameters = {}
+          Headers = []
+             Body = null
+    Session Attrs = {rolUsuario=BIOLOGO, csrfToken=token-qa-is3, usuarioLogueado=Entity.UsuarioEntity@45e596ec, nombreUsuario=qa_biologo}
+
+Handler:
+             Type = Controller.ExamenMedicoController
+           Method = Controller.ExamenMedicoController#nuevo(Model)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = examenes/formulario
+             View = null
+        Attribute = examen
+            value = Entity.ExamenMedicoEntity@dba795f
+           errors = []
+        Attribute = diagnosticos
+            value = [Entity.DiagnosticoEntity@5ecd868d, Entity.DiagnosticoEntity@18b32b54, Entity.DiagnosticoEntity@45ab6c75, Entity.DiagnosticoEntity@698d0a68, Entity.DiagnosticoEntity@4e99bdc3]
+        Attribute = tipos
+            value = [IMAGEN, LABORATORIO]
+        Attribute = estados
+            value = [PENDIENTE, EN_PROCESO, FINALIZADO]
+        Attribute = csrfToken
+            value = token-qa-is3
+        Attribute = currentUri
+            value = /examenes/nuevo
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 200
+    Error message = null
+          Headers = [Content-Language:"en", Content-Type:"text/html;charset=UTF-8"]
+     Content type = text/html;charset=UTF-8
+             Body = <!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8"><script>try{var t=localStorage.getItem('tema');if(t){document.documentElement.setAttribute('data-theme',t);}}catch(e){}</script>
+    <title>Formulario Examen Médico</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/css/styles-b0b9db80416e29c17c730f72838d4cfb.css">
+<script src="/js/vendor/turbo.es2017-umd.min-f3b0ef926ea0676b0af5f7c5f88e2eea.js"></script></head>
+
+<body class="app-body">
+
+<div>
+    <header class="app-header">
+
+        <a href="/" class="header-logo">
+            <span class="header-logo-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+    <path d="M12 4v16M4 12h16"/>
+</svg></span>
+            <span>Clínica Despertares</span>
+        </a>
+
+        <div class="header-user-area">
+
+            <div class="user-mini-card">
+                <div class="user-role-icon">
+                    
+                    
+                    
+                    
+                    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M10 3.5h4"/>
+    <path d="M10.5 3.5v5.3L6 16.8a2 2 0 0 0 1.7 3h8.6a2 2 0 0 0 1.7-3l-4.5-8V3.5"/>
+    <path d="M7.6 14.2h8.8"/>
+</svg></span>
+                    
+                    
+                </div>
+
+                <div class="user-mini-data">
+                    <strong>qa_biologo</strong>
+                    <small>BIOLOGO</small>
+                </div>
+            </div>
+
+            <button type="button" id="theme-toggle" class="theme-toggle" aria-label="Cambiar tema" title="Cambiar tema">
+                <span class="icon-sol"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="4.2"/>
+    <path d="M12 3v2.4M12 18.6V21M4.2 12H2M22 12h-2.2M5.6 5.6l1.6 1.6M16.8 16.8l1.6 1.6M18.4 5.6l-1.6 1.6M7.2 16.8l-1.6 1.6"/>
+</svg></span>
+                <span class="icon-luna"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M20 14.3A8.5 8.5 0 1 1 9.7 4a6.6 6.6 0 0 0 10.3 10.3z"/>
+</svg></span>
+            </button>
+
+            <a href="/logout"
+               class="btn-logout">
+                <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M9 4.2H5.6a1.6 1.6 0 0 0-1.6 1.6v12.4a1.6 1.6 0 0 0 1.6 1.6H9"/>
+    <path d="M14 8l4 4-4 4M18 12H9"/>
+</svg></span>
+                Salir
+            </a>
+
+        </div>
+    </header>
+
+    <script>
+    (function () {
+        var boton = document.getElementById('theme-toggle');
+        if (!boton) { return; }
+
+        var iconoSol = boton.querySelector('.icon-sol');
+        var iconoLuna = boton.querySelector('.icon-luna');
+
+        function temaActual() {
+            var manual = document.documentElement.getAttribute('data-theme');
+            if (manual) { return manual; }
+            return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+
+        function actualizarIcono() {
+            var oscuro = temaActual() === 'dark';
+            iconoSol.hidden = !oscuro;
+            iconoLuna.hidden = oscuro;
+        }
+
+        actualizarIcono();
+
+        boton.addEventListener('click', function () {
+            var nuevoTema = temaActual() === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', nuevoTema);
+            try {
+                localStorage.setItem('tema', nuevoTema);
+            } catch (e) {
+                // localStorage puede no estar disponible (modo privado, etc.); no es crítico.
+            }
+            actualizarIcono();
+            // Los gráficos de Chart.js (si los hay en la página) leen los colores
+            // de las variables CSS al crearse y no se actualizan solos.
+            document.dispatchEvent(new CustomEvent('tema-cambiado'));
+        });
+    })();
+    </script>
+</div>
+
+<main class="dashboard-body">
+
+    <aside class="app-sidebar">
+
+    <nav class="sidebar-nav">
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        <a class="sidebar-item active" href="/examenes">
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M10 3.5h4"/>
+    <path d="M10.5 3.5v5.3L6 16.8a2 2 0 0 0 1.7 3h8.6a2 2 0 0 0 1.7-3l-4.5-8V3.5"/>
+    <path d="M7.6 14.2h8.8"/>
+</svg></span>
+            <p>Exámenes médicos</p>
+        </a>
+
+        <a class="sidebar-item" href="/laboratorio">
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M9 20h7"/>
+    <path d="M11 20v-3.4a4.6 4.6 0 1 1 4-2.3"/>
+    <path d="M9.3 9.6l4-2.3"/>
+    <path d="M8 4.6l3 1.7"/>
+    <path d="M4 20h4.2"/>
+</svg></span>
+            <p>Laboratorio</p>
+        </a>
+
+        
+
+        
+
+    </nav>
+
+</aside>
+
+    <section class="content-card">
+        <h1>Formulario de Solicitud de Examen Médico</h1><form action="/examenes/guardar" method="post" class="form-grid"><input type="hidden" name="_csrf" value="token-qa-is3"><input type="hidden" id="codExamenMedico" name="codExamenMedico" value=""><div class="form-group"><label>Diagnóstico</label><select name="idDiagnostico" required><option value="">Seleccione</option><option value="1">Diagnóstico 1 - Paciente Qa422985</option><option value="2">Diagnóstico 2 - Paciente Qa422987</option><option value="3">Diagnóstico 3 - Paciente Qa422992</option><option value="4">Diagnóstico 4 - Paciente Qa423007</option><option value="5">Diagnóstico 5 - Paciente Qa423036</option></select></div><div class="form-group"><label>Tipo examen</label><select required id="tipoExamen" name="tipoExamen"><option value="">Seleccione</option><option value="IMAGEN">IMAGEN</option><option value="LABORATORIO">LABORATORIO</option></select></div><div class="form-group"><label>Fecha examen</label><input type="date" required id="fechaExamen" name="fechaExamen" value=""></div><div class="form-group"><label>Fecha resultado</label><input type="date" id="fechaResultado" name="fechaResultado" value=""></div><div class="form-group"><label>Estado</label><select required id="estadoExamenMedico" name="estadoExamenMedico"><option value="">Seleccione</option><option value="PENDIENTE">PENDIENTE</option><option value="EN_PROCESO">EN_PROCESO</option><option value="FINALIZADO">FINALIZADO</option></select></div><div class="form-group full"><label>Observaciones</label><textarea id="observaciones" name="observaciones"></textarea></div><div class="form-group full"><button class="btn success" type="submit">Guardar</button><a class="btn secondary" href="/examenes">Cancelar</a></div></form>
+    </section>
+
+</main>
+
+</body>
+</html>
+
+    Forwarded URL = null
+   Redirected URL = null
+          Cookies = []
+
+MockHttpServletRequest:
+      HTTP Method = GET
+      Request URI = /examenes/nuevo
+       Parameters = {}
+          Headers = []
+             Body = null
+    Session Attrs = {rolUsuario=RADIOLOGO, csrfToken=token-qa-is3, usuarioLogueado=Entity.UsuarioEntity@78aad31b, nombreUsuario=qa_radiologo}
+
+Handler:
+             Type = Controller.ExamenMedicoController
+           Method = Controller.ExamenMedicoController#nuevo(Model)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = examenes/formulario
+             View = null
+        Attribute = examen
+            value = Entity.ExamenMedicoEntity@53bece17
+           errors = []
+        Attribute = diagnosticos
+            value = [Entity.DiagnosticoEntity@3392c067, Entity.DiagnosticoEntity@3b0c5bb8, Entity.DiagnosticoEntity@cb55cf3, Entity.DiagnosticoEntity@4593d01d, Entity.DiagnosticoEntity@130ad9af]
+        Attribute = tipos
+            value = [IMAGEN, LABORATORIO]
+        Attribute = estados
+            value = [PENDIENTE, EN_PROCESO, FINALIZADO]
+        Attribute = csrfToken
+            value = token-qa-is3
+        Attribute = currentUri
+            value = /examenes/nuevo
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 200
+    Error message = null
+          Headers = [Content-Language:"en", Content-Type:"text/html;charset=UTF-8"]
+     Content type = text/html;charset=UTF-8
+             Body = <!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8"><script>try{var t=localStorage.getItem('tema');if(t){document.documentElement.setAttribute('data-theme',t);}}catch(e){}</script>
+    <title>Formulario Examen Médico</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/css/styles-b0b9db80416e29c17c730f72838d4cfb.css">
+<script src="/js/vendor/turbo.es2017-umd.min-f3b0ef926ea0676b0af5f7c5f88e2eea.js"></script></head>
+
+<body class="app-body">
+
+<div>
+    <header class="app-header">
+
+        <a href="/" class="header-logo">
+            <span class="header-logo-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+    <path d="M12 4v16M4 12h16"/>
+</svg></span>
+            <span>Clínica Despertares</span>
+        </a>
+
+        <div class="header-user-area">
+
+            <div class="user-mini-card">
+                <div class="user-role-icon">
+                    
+                    
+                    
+                    
+                    
+                    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="3.5" y="4.5" width="17" height="15" rx="2.2"/>
+    <circle cx="9" cy="10" r="1.9"/>
+    <path d="M4 17.5l5-5 3.5 3.5L17 11l3.5 3.5"/>
+</svg></span>
+                    
+                </div>
+
+                <div class="user-mini-data">
+                    <strong>qa_radiologo</strong>
+                    <small>RADIOLOGO</small>
+                </div>
+            </div>
+
+            <button type="button" id="theme-toggle" class="theme-toggle" aria-label="Cambiar tema" title="Cambiar tema">
+                <span class="icon-sol"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="4.2"/>
+    <path d="M12 3v2.4M12 18.6V21M4.2 12H2M22 12h-2.2M5.6 5.6l1.6 1.6M16.8 16.8l1.6 1.6M18.4 5.6l-1.6 1.6M7.2 16.8l-1.6 1.6"/>
+</svg></span>
+                <span class="icon-luna"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M20 14.3A8.5 8.5 0 1 1 9.7 4a6.6 6.6 0 0 0 10.3 10.3z"/>
+</svg></span>
+            </button>
+
+            <a href="/logout"
+               class="btn-logout">
+                <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M9 4.2H5.6a1.6 1.6 0 0 0-1.6 1.6v12.4a1.6 1.6 0 0 0 1.6 1.6H9"/>
+    <path d="M14 8l4 4-4 4M18 12H9"/>
+</svg></span>
+                Salir
+            </a>
+
+        </div>
+    </header>
+
+    <script>
+    (function () {
+        var boton = document.getElementById('theme-toggle');
+        if (!boton) { return; }
+
+        var iconoSol = boton.querySelector('.icon-sol');
+        var iconoLuna = boton.querySelector('.icon-luna');
+
+        function temaActual() {
+            var manual = document.documentElement.getAttribute('data-theme');
+            if (manual) { return manual; }
+            return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+
+        function actualizarIcono() {
+            var oscuro = temaActual() === 'dark';
+            iconoSol.hidden = !oscuro;
+            iconoLuna.hidden = oscuro;
+        }
+
+        actualizarIcono();
+
+        boton.addEventListener('click', function () {
+            var nuevoTema = temaActual() === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', nuevoTema);
+            try {
+                localStorage.setItem('tema', nuevoTema);
+            } catch (e) {
+                // localStorage puede no estar disponible (modo privado, etc.); no es crítico.
+            }
+            actualizarIcono();
+            // Los gráficos de Chart.js (si los hay en la página) leen los colores
+            // de las variables CSS al crearse y no se actualizan solos.
+            document.dispatchEvent(new CustomEvent('tema-cambiado'));
+        });
+    })();
+    </script>
+</div>
+
+<main class="dashboard-body">
+
+    <aside class="app-sidebar">
+
+    <nav class="sidebar-nav">
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        <a class="sidebar-item active" href="/examenes">
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M10 3.5h4"/>
+    <path d="M10.5 3.5v5.3L6 16.8a2 2 0 0 0 1.7 3h8.6a2 2 0 0 0 1.7-3l-4.5-8V3.5"/>
+    <path d="M7.6 14.2h8.8"/>
+</svg></span>
+            <p>Exámenes médicos</p>
+        </a>
+
+        
+
+        <a class="sidebar-item" href="/imagenes">
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="3.5" y="4.5" width="17" height="15" rx="2.2"/>
+    <circle cx="9" cy="10" r="1.9"/>
+    <path d="M4 17.5l5-5 3.5 3.5L17 11l3.5 3.5"/>
+</svg></span>
+            <p>Imágenes diagnósticas</p>
+        </a>
+
+        
+
+    </nav>
+
+</aside>
+
+    <section class="content-card">
+        <h1>Formulario de Solicitud de Examen Médico</h1><form action="/examenes/guardar" method="post" class="form-grid"><input type="hidden" name="_csrf" value="token-qa-is3"><input type="hidden" id="codExamenMedico" name="codExamenMedico" value=""><div class="form-group"><label>Diagnóstico</label><select name="idDiagnostico" required><option value="">Seleccione</option><option value="1">Diagnóstico 1 - Paciente Qa422985</option><option value="2">Diagnóstico 2 - Paciente Qa422987</option><option value="3">Diagnóstico 3 - Paciente Qa422992</option><option value="4">Diagnóstico 4 - Paciente Qa423007</option><option value="5">Diagnóstico 5 - Paciente Qa423036</option></select></div><div class="form-group"><label>Tipo examen</label><select required id="tipoExamen" name="tipoExamen"><option value="">Seleccione</option><option value="IMAGEN">IMAGEN</option><option value="LABORATORIO">LABORATORIO</option></select></div><div class="form-group"><label>Fecha examen</label><input type="date" required id="fechaExamen" name="fechaExamen" value=""></div><div class="form-group"><label>Fecha resultado</label><input type="date" id="fechaResultado" name="fechaResultado" value=""></div><div class="form-group"><label>Estado</label><select required id="estadoExamenMedico" name="estadoExamenMedico"><option value="">Seleccione</option><option value="PENDIENTE">PENDIENTE</option><option value="EN_PROCESO">EN_PROCESO</option><option value="FINALIZADO">FINALIZADO</option></select></div><div class="form-group full"><label>Observaciones</label><textarea id="observaciones" name="observaciones"></textarea></div><div class="form-group full"><button class="btn success" type="submit">Guardar</button><a class="btn secondary" href="/examenes">Cancelar</a></div></form>
+    </section>
+
+</main>
+
+</body>
+</html>
+
+    Forwarded URL = null
+   Redirected URL = null
+          Cookies = []
+]]></system-out>
+  </testcase>
+  <testcase name="ftc056" classname="Exámenes de laboratorio y estudios por imágenes (FTC054–FTC069)" time="0.06"/>
+  <testcase name="ftc057" classname="Exámenes de laboratorio y estudios por imágenes (FTC054–FTC069)" time="0.053">
+    <failure message="Multiple Failures (2 failures)&#10;	org.opentest4j.AssertionFailedError: La vista de laboratorio no muestra el estado de pago de la solicitud ==&gt; expected: &lt;true&gt; but was: &lt;false&gt;&#10;	org.opentest4j.AssertionFailedError: El biólogo tampoco puede consultar /comprobantes ==&gt; expected: &lt;false&gt; but was: &lt;true&gt;" type="org.opentest4j.MultipleFailuresError"><![CDATA[org.opentest4j.MultipleFailuresError: 
+Multiple Failures (2 failures)
+	org.opentest4j.AssertionFailedError: La vista de laboratorio no muestra el estado de pago de la solicitud ==> expected: <true> but was: <false>
+	org.opentest4j.AssertionFailedError: El biólogo tampoco puede consultar /comprobantes ==> expected: <false> but was: <true>
+	at org.junit.jupiter.api.AssertAll.assertAll(AssertAll.java:80)
+	at org.junit.jupiter.api.AssertAll.assertAll(AssertAll.java:44)
+	at org.junit.jupiter.api.AssertAll.assertAll(AssertAll.java:38)
+	at org.junit.jupiter.api.Assertions.assertAll(Assertions.java:2944)
+	at QA.FTC04_ExamenesEImagenesTest.ftc057(FTC04_ExamenesEImagenesTest.java:94)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	Suppressed: org.opentest4j.AssertionFailedError: La vista de laboratorio no muestra el estado de pago de la solicitud ==> expected: <true> but was: <false>
+		at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+		at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+		at org.junit.jupiter.api.AssertTrue.failNotTrue(AssertTrue.java:63)
+		at org.junit.jupiter.api.AssertTrue.assertTrue(AssertTrue.java:36)
+		at org.junit.jupiter.api.Assertions.assertTrue(Assertions.java:214)
+		at QA.FTC04_ExamenesEImagenesTest.lambda$ftc057$12(FTC04_ExamenesEImagenesTest.java:95)
+		at org.junit.jupiter.api.AssertAll.lambda$assertAll$0(AssertAll.java:68)
+		at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+		at java.base/java.util.Spliterators$ArraySpliterator.forEachRemaining(Spliterators.java:1024)
+		at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
+		at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
+		at java.base/java.util.stream.ReduceOps$ReduceOp.evaluateSequential(ReduceOps.java:921)
+		at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+		at java.base/java.util.stream.ReferencePipeline.collect(ReferencePipeline.java:682)
+		at org.junit.jupiter.api.AssertAll.assertAll(AssertAll.java:77)
+		... 7 more
+	Suppressed: org.opentest4j.AssertionFailedError: El biólogo tampoco puede consultar /comprobantes ==> expected: <false> but was: <true>
+		at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+		at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+		at org.junit.jupiter.api.AssertFalse.failNotFalse(AssertFalse.java:63)
+		at org.junit.jupiter.api.AssertFalse.assertFalse(AssertFalse.java:36)
+		at org.junit.jupiter.api.Assertions.assertFalse(Assertions.java:239)
+		at QA.FTC04_ExamenesEImagenesTest.lambda$ftc057$13(FTC04_ExamenesEImagenesTest.java:96)
+		at org.junit.jupiter.api.AssertAll.lambda$assertAll$0(AssertAll.java:68)
+		at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+		at java.base/java.util.Spliterators$ArraySpliterator.forEachRemaining(Spliterators.java:1024)
+		at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
+		at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
+		at java.base/java.util.stream.ReduceOps$ReduceOp.evaluateSequential(ReduceOps.java:921)
+		at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+		at java.base/java.util.stream.ReferencePipeline.collect(ReferencePipeline.java:682)
+		at org.junit.jupiter.api.AssertAll.assertAll(AssertAll.java:77)
+		... 7 more
+]]></failure>
+    <system-out><![CDATA[
+MockHttpServletRequest:
+      HTTP Method = GET
+      Request URI = /laboratorio
+       Parameters = {buscar=[30423039]}
+          Headers = []
+             Body = null
+    Session Attrs = {rolUsuario=BIOLOGO, csrfToken=token-qa-is3, usuarioLogueado=Entity.UsuarioEntity@133c1953, nombreUsuario=qa_biologo}
+
+Handler:
+             Type = Controller.ExamenLaboratorioController
+           Method = Controller.ExamenLaboratorioController#listar(String, int, Model)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = laboratorio/listar
+             View = null
+        Attribute = examenes
+            value = [Entity.ExamenLaboratorioEntity@11faa224]
+        Attribute = pagina
+            value = Pagina[contenido=[Entity.ExamenLaboratorioEntity@11faa224], numero=0, tamano=10, totalElementos=1]
+           errors = []
+        Attribute = buscar
+            value = 30423039
+        Attribute = csrfToken
+            value = token-qa-is3
+        Attribute = currentUri
+            value = /laboratorio
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 200
+    Error message = null
+          Headers = [Content-Language:"en", Content-Type:"text/html;charset=UTF-8"]
+     Content type = text/html;charset=UTF-8
+             Body = <!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8"><script>try{var t=localStorage.getItem('tema');if(t){document.documentElement.setAttribute('data-theme',t);}}catch(e){}</script>
+    <title>Laboratorio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/css/styles-b0b9db80416e29c17c730f72838d4cfb.css">
+<script src="/js/vendor/turbo.es2017-umd.min-f3b0ef926ea0676b0af5f7c5f88e2eea.js"></script></head>
+
+<body class="app-body">
+
+<div>
+    <header class="app-header">
+
+        <a href="/" class="header-logo">
+            <span class="header-logo-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+    <path d="M12 4v16M4 12h16"/>
+</svg></span>
+            <span>Clínica Despertares</span>
+        </a>
+
+        <div class="header-user-area">
+
+            <div class="user-mini-card">
+                <div class="user-role-icon">
+                    
+                    
+                    
+                    
+                    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M10 3.5h4"/>
+    <path d="M10.5 3.5v5.3L6 16.8a2 2 0 0 0 1.7 3h8.6a2 2 0 0 0 1.7-3l-4.5-8V3.5"/>
+    <path d="M7.6 14.2h8.8"/>
+</svg></span>
+                    
+                    
+                </div>
+
+                <div class="user-mini-data">
+                    <strong>qa_biologo</strong>
+                    <small>BIOLOGO</small>
+                </div>
+            </div>
+
+            <button type="button" id="theme-toggle" class="theme-toggle" aria-label="Cambiar tema" title="Cambiar tema">
+                <span class="icon-sol"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="4.2"/>
+    <path d="M12 3v2.4M12 18.6V21M4.2 12H2M22 12h-2.2M5.6 5.6l1.6 1.6M16.8 16.8l1.6 1.6M18.4 5.6l-1.6 1.6M7.2 16.8l-1.6 1.6"/>
+</svg></span>
+                <span class="icon-luna"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M20 14.3A8.5 8.5 0 1 1 9.7 4a6.6 6.6 0 0 0 10.3 10.3z"/>
+</svg></span>
+            </button>
+
+            <a href="/logout"
+               class="btn-logout">
+                <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M9 4.2H5.6a1.6 1.6 0 0 0-1.6 1.6v12.4a1.6 1.6 0 0 0 1.6 1.6H9"/>
+    <path d="M14 8l4 4-4 4M18 12H9"/>
+</svg></span>
+                Salir
+            </a>
+
+        </div>
+    </header>
+
+    <script>
+    (function () {
+        var boton = document.getElementById('theme-toggle');
+        if (!boton) { return; }
+
+        var iconoSol = boton.querySelector('.icon-sol');
+        var iconoLuna = boton.querySelector('.icon-luna');
+
+        function temaActual() {
+            var manual = document.documentElement.getAttribute('data-theme');
+            if (manual) { return manual; }
+            return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+
+        function actualizarIcono() {
+            var oscuro = temaActual() === 'dark';
+            iconoSol.hidden = !oscuro;
+            iconoLuna.hidden = oscuro;
+        }
+
+        actualizarIcono();
+
+        boton.addEventListener('click', function () {
+            var nuevoTema = temaActual() === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', nuevoTema);
+            try {
+                localStorage.setItem('tema', nuevoTema);
+            } catch (e) {
+                // localStorage puede no estar disponible (modo privado, etc.); no es crítico.
+            }
+            actualizarIcono();
+            // Los gráficos de Chart.js (si los hay en la página) leen los colores
+            // de las variables CSS al crearse y no se actualizan solos.
+            document.dispatchEvent(new CustomEvent('tema-cambiado'));
+        });
+    })();
+    </script>
+</div>
+
+<main class="dashboard-body">
+
+    <aside class="app-sidebar">
+
+    <nav class="sidebar-nav">
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        <a class="sidebar-item" href="/examenes">
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M10 3.5h4"/>
+    <path d="M10.5 3.5v5.3L6 16.8a2 2 0 0 0 1.7 3h8.6a2 2 0 0 0 1.7-3l-4.5-8V3.5"/>
+    <path d="M7.6 14.2h8.8"/>
+</svg></span>
+            <p>Exámenes médicos</p>
+        </a>
+
+        <a class="sidebar-item active" href="/laboratorio">
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M9 20h7"/>
+    <path d="M11 20v-3.4a4.6 4.6 0 1 1 4-2.3"/>
+    <path d="M9.3 9.6l4-2.3"/>
+    <path d="M8 4.6l3 1.7"/>
+    <path d="M4 20h4.2"/>
+</svg></span>
+            <p>Laboratorio</p>
+        </a>
+
+        
+
+        
+
+    </nav>
+
+</aside>
+
+    <section class="content-card">
+        <div class="actions">
+            <h1>Gestión de Exámenes de Laboratorio</h1>
+
+            <a class="btn"
+               href="/laboratorio/nuevo">
+                Nuevo examen de laboratorio
+            </a>
+        </div>
+
+        
+        
+
+        <form action="/laboratorio" method="get" class="inline-form actions">
+            <input type="text"
+                   name="buscar"
+                   value="30423039"
+                   placeholder="Buscar por paciente, DNI, muestra, resultado o unidad">
+
+            <button class="btn" type="submit">Buscar</button>
+            <a class="btn secondary" href="/laboratorio">Limpiar</a>
+        </form>
+
+        <table>
+            <thead>
+            <tr>
+                <th>Código</th>
+                <th>Paciente</th>
+                <th>Muestra</th>
+                <th>Fecha examen</th>
+                <th>Fecha resultado</th>
+                <th>Estado</th>
+                <th>Resultado</th>
+                <th>Valor referencia</th>
+                <th>Unidad</th>
+                <th>Acciones</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr>
+                <td>7</td>
+                <td>Paciente Qa423038 - 30423039</td>
+                <td>Sangre</td>
+                <td>2026-11-16</td>
+                <td></td>
+                <td>PENDIENTE</td>
+                <td>Pendiente de resultado</td>
+                <td></td>
+                <td></td>
+                <td>
+                    <a class="btn small warning"
+                       href="/laboratorio/editar/7">
+                        Editar resultado
+                    </a>
+                    <form action="/laboratorio/eliminar/7"
+                          method="post"
+                          class="inline-action"
+                          onsubmit="return confirm('¿Eliminar examen?');"><input type="hidden" name="_csrf" value="token-qa-is3">
+                        <button type="submit" class="btn small danger">Eliminar</button>
+                    </form>
+                </td>
+            </tr>
+
+            
+            </tbody>
+        </table>
+        <nav class="pagination">
+
+    <span class="page-info">
+        Página <strong>1</strong> de
+        <strong>1</strong>
+        · <span>1</span> resultado(s)
+    </span>
+
+    <div class="page-controls">
+        <a class="page-btn  disabled" href="/laboratorio?pagina=-1&amp;buscar=30423039&amp;estado=&amp;q=&amp;nombre=&amp;stockMinimo=">
+            ‹ Anterior
+        </a>
+        <a class="page-btn  disabled" href="/laboratorio?pagina=1&amp;buscar=30423039&amp;estado=&amp;q=&amp;nombre=&amp;stockMinimo=">
+            Siguiente ›
+        </a>
+    </div>
+
+</nav>
+    </section>
+
+</main>
+
+</body>
+</html>
+
+    Forwarded URL = null
+   Redirected URL = null
+          Cookies = []
+
+MockHttpServletRequest:
+      HTTP Method = GET
+      Request URI = /comprobantes
+       Parameters = {}
+          Headers = []
+             Body = null
+    Session Attrs = {rolUsuario=BIOLOGO, csrfToken=token-qa-is3, usuarioLogueado=Entity.UsuarioEntity@7238b249, nombreUsuario=qa_biologo}
+
+Handler:
+             Type = Controller.ComprobantePagoController
+           Method = Controller.ComprobantePagoController#listar(EstadoPagoEnum, int, Model, HttpSession, RedirectAttributes)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = null
+             View = null
+            Model = null
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 302
+    Error message = null
+          Headers = [Location:"/acceso-denegado"]
+     Content type = null
+             Body = 
+    Forwarded URL = null
+   Redirected URL = /acceso-denegado
+          Cookies = []
+]]></system-out>
+  </testcase>
+  <testcase name="ftc058" classname="Exámenes de laboratorio y estudios por imágenes (FTC054–FTC069)" time="0.039"/>
+  <testcase name="ftc059" classname="Exámenes de laboratorio y estudios por imágenes (FTC054–FTC069)" time="0.045">
+    <failure message="Multiple Failures (3 failures)&#10;	org.opentest4j.AssertionFailedError: El MÉDICO cambió el estado a EN_PROCESO ==&gt; expected: &lt;PENDIENTE&gt; but was: &lt;EN_PROCESO&gt;&#10;	org.opentest4j.AssertionFailedError: Un examen FINALIZADO volvió a EN_PROCESO ==&gt; expected: &lt;FINALIZADO&gt; but was: &lt;EN_PROCESO&gt;&#10;	org.opentest4j.AssertionFailedError: Un examen PENDIENTE pasó directo a FINALIZADO ==&gt; expected: &lt;PENDIENTE&gt; but was: &lt;FINALIZADO&gt;" type="org.opentest4j.MultipleFailuresError"><![CDATA[org.opentest4j.MultipleFailuresError: 
+Multiple Failures (3 failures)
+	org.opentest4j.AssertionFailedError: El MÉDICO cambió el estado a EN_PROCESO ==> expected: <PENDIENTE> but was: <EN_PROCESO>
+	org.opentest4j.AssertionFailedError: Un examen FINALIZADO volvió a EN_PROCESO ==> expected: <FINALIZADO> but was: <EN_PROCESO>
+	org.opentest4j.AssertionFailedError: Un examen PENDIENTE pasó directo a FINALIZADO ==> expected: <PENDIENTE> but was: <FINALIZADO>
+	at org.junit.jupiter.api.AssertAll.assertAll(AssertAll.java:80)
+	at org.junit.jupiter.api.AssertAll.assertAll(AssertAll.java:44)
+	at org.junit.jupiter.api.AssertAll.assertAll(AssertAll.java:38)
+	at org.junit.jupiter.api.Assertions.assertAll(Assertions.java:2944)
+	at QA.FTC04_ExamenesEImagenesTest.ftc059(FTC04_ExamenesEImagenesTest.java:129)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	Suppressed: org.opentest4j.AssertionFailedError: El MÉDICO cambió el estado a EN_PROCESO ==> expected: <PENDIENTE> but was: <EN_PROCESO>
+		at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+		at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+		at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+		at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:182)
+		at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:1156)
+		at QA.FTC04_ExamenesEImagenesTest.lambda$ftc059$17(FTC04_ExamenesEImagenesTest.java:130)
+		at org.junit.jupiter.api.AssertAll.lambda$assertAll$0(AssertAll.java:68)
+		at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+		at java.base/java.util.Spliterators$ArraySpliterator.forEachRemaining(Spliterators.java:1024)
+		at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
+		at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
+		at java.base/java.util.stream.ReduceOps$ReduceOp.evaluateSequential(ReduceOps.java:921)
+		at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+		at java.base/java.util.stream.ReferencePipeline.collect(ReferencePipeline.java:682)
+		at org.junit.jupiter.api.AssertAll.assertAll(AssertAll.java:77)
+		... 7 more
+	Suppressed: org.opentest4j.AssertionFailedError: Un examen FINALIZADO volvió a EN_PROCESO ==> expected: <FINALIZADO> but was: <EN_PROCESO>
+		at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+		at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+		at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+		at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:182)
+		at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:1156)
+		at QA.FTC04_ExamenesEImagenesTest.lambda$ftc059$18(FTC04_ExamenesEImagenesTest.java:131)
+		at org.junit.jupiter.api.AssertAll.lambda$assertAll$0(AssertAll.java:68)
+		at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+		at java.base/java.util.Spliterators$ArraySpliterator.forEachRemaining(Spliterators.java:1024)
+		at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
+		at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
+		at java.base/java.util.stream.ReduceOps$ReduceOp.evaluateSequential(ReduceOps.java:921)
+		at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+		at java.base/java.util.stream.ReferencePipeline.collect(ReferencePipeline.java:682)
+		at org.junit.jupiter.api.AssertAll.assertAll(AssertAll.java:77)
+		... 7 more
+	Suppressed: org.opentest4j.AssertionFailedError: Un examen PENDIENTE pasó directo a FINALIZADO ==> expected: <PENDIENTE> but was: <FINALIZADO>
+		at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+		at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+		at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+		at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:182)
+		at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:1156)
+		at QA.FTC04_ExamenesEImagenesTest.lambda$ftc059$19(FTC04_ExamenesEImagenesTest.java:132)
+		at org.junit.jupiter.api.AssertAll.lambda$assertAll$0(AssertAll.java:68)
+		at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+		at java.base/java.util.Spliterators$ArraySpliterator.forEachRemaining(Spliterators.java:1024)
+		at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
+		at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
+		at java.base/java.util.stream.ReduceOps$ReduceOp.evaluateSequential(ReduceOps.java:921)
+		at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+		at java.base/java.util.stream.ReferencePipeline.collect(ReferencePipeline.java:682)
+		at org.junit.jupiter.api.AssertAll.assertAll(AssertAll.java:77)
+		... 7 more
+]]></failure>
+    <system-out><![CDATA[
+MockHttpServletRequest:
+      HTTP Method = POST
+      Request URI = /examenes/proceso/9
+       Parameters = {_csrf=[token-qa-is3]}
+          Headers = []
+             Body = null
+    Session Attrs = {rolUsuario=MEDICO, csrfToken=token-qa-is3, usuarioLogueado=Entity.UsuarioEntity@67b3a8ba, org.springframework.web.servlet.support.SessionFlashMapManager.FLASH_MAPS=[FlashMap [attributes={mensaje=Examen marcado como EN PROCESO correctamente.}, targetRequestPath=/examenes, targetRequestParams={}]], nombreUsuario=qa_medico}
+
+Handler:
+             Type = Controller.ExamenMedicoController
+           Method = Controller.ExamenMedicoController#proceso(Long, RedirectAttributes)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = redirect:/examenes
+             View = null
+            Model = null
+
+FlashMap:
+        Attribute = mensaje
+            value = Examen marcado como EN PROCESO correctamente.
+
+MockHttpServletResponse:
+           Status = 302
+    Error message = null
+          Headers = [Content-Language:"en", Location:"/examenes"]
+     Content type = null
+             Body = 
+    Forwarded URL = null
+   Redirected URL = /examenes
+          Cookies = []
+
+MockHttpServletRequest:
+      HTTP Method = POST
+      Request URI = /examenes/proceso/10
+       Parameters = {_csrf=[token-qa-is3]}
+          Headers = []
+             Body = null
+    Session Attrs = {rolUsuario=BIOLOGO, csrfToken=token-qa-is3, usuarioLogueado=Entity.UsuarioEntity@14bc1d6f, org.springframework.web.servlet.support.SessionFlashMapManager.FLASH_MAPS=[FlashMap [attributes={mensaje=Examen marcado como EN PROCESO correctamente.}, targetRequestPath=/examenes, targetRequestParams={}]], nombreUsuario=qa_biologo}
+
+Handler:
+             Type = Controller.ExamenMedicoController
+           Method = Controller.ExamenMedicoController#proceso(Long, RedirectAttributes)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = redirect:/examenes
+             View = null
+            Model = null
+
+FlashMap:
+        Attribute = mensaje
+            value = Examen marcado como EN PROCESO correctamente.
+
+MockHttpServletResponse:
+           Status = 302
+    Error message = null
+          Headers = [Content-Language:"en", Location:"/examenes"]
+     Content type = null
+             Body = 
+    Forwarded URL = null
+   Redirected URL = /examenes
+          Cookies = []
+
+MockHttpServletRequest:
+      HTTP Method = POST
+      Request URI = /examenes/finalizar/11
+       Parameters = {_csrf=[token-qa-is3]}
+          Headers = []
+             Body = null
+    Session Attrs = {rolUsuario=BIOLOGO, csrfToken=token-qa-is3, usuarioLogueado=Entity.UsuarioEntity@57ff2f4a, org.springframework.web.servlet.support.SessionFlashMapManager.FLASH_MAPS=[FlashMap [attributes={mensaje=Examen marcado como finalizado.}, targetRequestPath=/examenes, targetRequestParams={}]], nombreUsuario=qa_biologo}
+
+Handler:
+             Type = Controller.ExamenMedicoController
+           Method = Controller.ExamenMedicoController#finalizar(Long, RedirectAttributes)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = redirect:/examenes
+             View = null
+            Model = null
+
+FlashMap:
+        Attribute = mensaje
+            value = Examen marcado como finalizado.
+
+MockHttpServletResponse:
+           Status = 302
+    Error message = null
+          Headers = [Content-Language:"en", Location:"/examenes"]
+     Content type = null
+             Body = 
+    Forwarded URL = null
+   Redirected URL = /examenes
+          Cookies = []
+]]></system-out>
+  </testcase>
+  <testcase name="ftc060" classname="Exámenes de laboratorio y estudios por imágenes (FTC054–FTC069)" time="0.036"/>
+  <testcase name="ftc061" classname="Exámenes de laboratorio y estudios por imágenes (FTC054–FTC069)" time="0.006"/>
+  <testcase name="ftc062" classname="Exámenes de laboratorio y estudios por imágenes (FTC054–FTC069)" time="0.003">
+    <failure message="No existe estado ni marca de &apos;validado&apos; para los resultados de examen ==&gt; expected: &lt;true&gt; but was: &lt;false&gt;" type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: No existe estado ni marca de 'validado' para los resultados de examen ==> expected: <true> but was: <false>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertTrue.failNotTrue(AssertTrue.java:63)
+	at org.junit.jupiter.api.AssertTrue.assertTrue(AssertTrue.java:36)
+	at org.junit.jupiter.api.Assertions.assertTrue(Assertions.java:214)
+	at QA.FTC04_ExamenesEImagenesTest.ftc062(FTC04_ExamenesEImagenesTest.java:168)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+]]></failure>
+  </testcase>
+  <testcase name="ftc063" classname="Exámenes de laboratorio y estudios por imágenes (FTC054–FTC069)" time="0.087"/>
+  <testcase name="ftc064" classname="Exámenes de laboratorio y estudios por imágenes (FTC054–FTC069)" time="0.034"/>
+  <testcase name="ftc065" classname="Exámenes de laboratorio y estudios por imágenes (FTC054–FTC069)" time="0.061"/>
+  <testcase name="ftc066" classname="Exámenes de laboratorio y estudios por imágenes (FTC054–FTC069)" time="0.04">
+    <failure message="Multiple Failures (1 failure)&#10;	org.opentest4j.AssertionFailedError: El BIÓLOGO cambió el estado de un estudio de imágenes a EN_PROCESO ==&gt; expected: &lt;PENDIENTE&gt; but was: &lt;EN_PROCESO&gt;" type="org.opentest4j.MultipleFailuresError"><![CDATA[org.opentest4j.MultipleFailuresError: 
+Multiple Failures (1 failure)
+	org.opentest4j.AssertionFailedError: El BIÓLOGO cambió el estado de un estudio de imágenes a EN_PROCESO ==> expected: <PENDIENTE> but was: <EN_PROCESO>
+	at org.junit.jupiter.api.AssertAll.assertAll(AssertAll.java:80)
+	at org.junit.jupiter.api.AssertAll.assertAll(AssertAll.java:44)
+	at org.junit.jupiter.api.AssertAll.assertAll(AssertAll.java:38)
+	at org.junit.jupiter.api.Assertions.assertAll(Assertions.java:2944)
+	at QA.FTC04_ExamenesEImagenesTest.ftc066(FTC04_ExamenesEImagenesTest.java:239)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	Suppressed: org.opentest4j.AssertionFailedError: El BIÓLOGO cambió el estado de un estudio de imágenes a EN_PROCESO ==> expected: <PENDIENTE> but was: <EN_PROCESO>
+		at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+		at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+		at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+		at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:182)
+		at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:1156)
+		at QA.FTC04_ExamenesEImagenesTest.lambda$ftc066$45(FTC04_ExamenesEImagenesTest.java:242)
+		at org.junit.jupiter.api.AssertAll.lambda$assertAll$0(AssertAll.java:68)
+		at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+		at java.base/java.util.Spliterators$ArraySpliterator.forEachRemaining(Spliterators.java:1024)
+		at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
+		at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
+		at java.base/java.util.stream.ReduceOps$ReduceOp.evaluateSequential(ReduceOps.java:921)
+		at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+		at java.base/java.util.stream.ReferencePipeline.collect(ReferencePipeline.java:682)
+		at org.junit.jupiter.api.AssertAll.assertAll(AssertAll.java:77)
+		... 7 more
+]]></failure>
+    <system-out><![CDATA[
+MockHttpServletRequest:
+      HTTP Method = POST
+      Request URI = /examenes/proceso/16
+       Parameters = {_csrf=[token-qa-is3]}
+          Headers = []
+             Body = null
+    Session Attrs = {rolUsuario=RADIOLOGO, csrfToken=token-qa-is3, usuarioLogueado=Entity.UsuarioEntity@40a56901, org.springframework.web.servlet.support.SessionFlashMapManager.FLASH_MAPS=[FlashMap [attributes={mensaje=Examen marcado como EN PROCESO correctamente.}, targetRequestPath=/examenes, targetRequestParams={}]], nombreUsuario=qa_radiologo}
+
+Handler:
+             Type = Controller.ExamenMedicoController
+           Method = Controller.ExamenMedicoController#proceso(Long, RedirectAttributes)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = redirect:/examenes
+             View = null
+            Model = null
+
+FlashMap:
+        Attribute = mensaje
+            value = Examen marcado como EN PROCESO correctamente.
+
+MockHttpServletResponse:
+           Status = 302
+    Error message = null
+          Headers = [Content-Language:"en", Location:"/examenes"]
+     Content type = null
+             Body = 
+    Forwarded URL = null
+   Redirected URL = /examenes
+          Cookies = []
+
+MockHttpServletRequest:
+      HTTP Method = POST
+      Request URI = /examenes/finalizar/16
+       Parameters = {_csrf=[token-qa-is3]}
+          Headers = []
+             Body = null
+    Session Attrs = {rolUsuario=RADIOLOGO, csrfToken=token-qa-is3, usuarioLogueado=Entity.UsuarioEntity@40a56901, org.springframework.web.servlet.support.SessionFlashMapManager.FLASH_MAPS=[FlashMap [attributes={mensaje=Examen marcado como EN PROCESO correctamente.}, targetRequestPath=/examenes, targetRequestParams={}], FlashMap [attributes={mensaje=Examen marcado como finalizado.}, targetRequestPath=/examenes, targetRequestParams={}]], nombreUsuario=qa_radiologo}
+
+Handler:
+             Type = Controller.ExamenMedicoController
+           Method = Controller.ExamenMedicoController#finalizar(Long, RedirectAttributes)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = redirect:/examenes
+             View = null
+            Model = null
+
+FlashMap:
+        Attribute = mensaje
+            value = Examen marcado como finalizado.
+
+MockHttpServletResponse:
+           Status = 302
+    Error message = null
+          Headers = [Content-Language:"en", Location:"/examenes"]
+     Content type = null
+             Body = 
+    Forwarded URL = null
+   Redirected URL = /examenes
+          Cookies = []
+
+MockHttpServletRequest:
+      HTTP Method = POST
+      Request URI = /examenes/proceso/17
+       Parameters = {_csrf=[token-qa-is3]}
+          Headers = []
+             Body = null
+    Session Attrs = {rolUsuario=BIOLOGO, csrfToken=token-qa-is3, usuarioLogueado=Entity.UsuarioEntity@2b9c384a, org.springframework.web.servlet.support.SessionFlashMapManager.FLASH_MAPS=[FlashMap [attributes={mensaje=Examen marcado como EN PROCESO correctamente.}, targetRequestPath=/examenes, targetRequestParams={}]], nombreUsuario=qa_biologo}
+
+Handler:
+             Type = Controller.ExamenMedicoController
+           Method = Controller.ExamenMedicoController#proceso(Long, RedirectAttributes)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = redirect:/examenes
+             View = null
+            Model = null
+
+FlashMap:
+        Attribute = mensaje
+            value = Examen marcado como EN PROCESO correctamente.
+
+MockHttpServletResponse:
+           Status = 302
+    Error message = null
+          Headers = [Content-Language:"en", Location:"/examenes"]
+     Content type = null
+             Body = 
+    Forwarded URL = null
+   Redirected URL = /examenes
+          Cookies = []
+]]></system-out>
+  </testcase>
+  <testcase name="ftc067" classname="Exámenes de laboratorio y estudios por imágenes (FTC054–FTC069)" time="0.004">
+    <failure message="ImagenDiagnosticaEntity solo guarda el nombre de la imagen; no hay carga de archivos ==&gt; expected: &lt;true&gt; but was: &lt;false&gt;" type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: ImagenDiagnosticaEntity solo guarda el nombre de la imagen; no hay carga de archivos ==> expected: <true> but was: <false>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertTrue.failNotTrue(AssertTrue.java:63)
+	at org.junit.jupiter.api.AssertTrue.assertTrue(AssertTrue.java:36)
+	at org.junit.jupiter.api.Assertions.assertTrue(Assertions.java:214)
+	at QA.FTC04_ExamenesEImagenesTest.ftc067(FTC04_ExamenesEImagenesTest.java:253)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+]]></failure>
+  </testcase>
+  <testcase name="ftc068" classname="Exámenes de laboratorio y estudios por imágenes (FTC054–FTC069)" time="0.075"/>
+  <testcase name="ftc069" classname="Exámenes de laboratorio y estudios por imágenes (FTC054–FTC069)" time="0.094"/>
+</testsuite>

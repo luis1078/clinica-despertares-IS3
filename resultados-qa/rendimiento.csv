@@ -1,0 +1,9 @@
+escenario,usuarios,peticiones,exitosas,errores,tasa_error_pct,promedio_ms,p50_ms,p95_ms,p99_ms,max_ms,cumple
+RND01 Buscar paciente por DNI,10,300,300,0,0.00,76.4,77,110,128,136,SI
+RND02 Buscar paciente por nombre,10,300,300,0,0.00,601.0,597,691,717,777,SI
+RND03 Listar/filtrar citas,10,300,300,0,0.00,2626.8,2610,2780,2929,2970,SI
+RND04 Registrar cita (disponibilidad),10,300,300,0,0.00,107.2,105,144,163,169,SI
+RND05 Consultar inventario,10,300,300,0,0.00,45.2,43,76,93,126,SI
+RND06 Procesar pago,10,300,300,0,0.00,11.2,11,16,19,24,SI
+RND07 Historial clínico completo,10,300,300,0,0.00,107.3,108,147,176,192,SI
+RND08 Panel principal,10,300,300,0,0.00,4292.7,4263,4543,4654,4708,NO
